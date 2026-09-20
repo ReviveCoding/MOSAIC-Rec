@@ -1,0 +1,17 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "freeze_status": "PROPOSED_FOR_E04_NOT_FROZEN",
+  "primary_metric": "NDCG@20",
+  "primary_unit": "first eligible role event per FIT-history user",
+  "paired_primary_cluster": "user_id",
+  "cold_sensitivity_cluster": "item_id",
+  "bootstrap_draws": 10000,
+  "bootstrap_seed": 20260920,
+  "interval": "paired percentile 95 percent",
+  "cold_gate": "lower_95_percent_bound_of_MOSAIC_minus_frozen_cold_comparator_gt_0",
+  "warm_gate": "lower_95_percent_bound_of_MOSAIC_minus_frozen_sequence_comparator_gt_negative_frozen_margin",
+  "secondary_family": ["Recall@20", "MRR@20", "HitRate@20"],
+  "secondary_multiplicity": "Holm within the predeclared secondary family",
+  "warning": "No protected outcomes are accessible under this proposed manifest. Final comparators, margin, and family must be frozen in QUALIFICATION before locked execution."
+}

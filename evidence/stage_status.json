@@ -2,8 +2,10 @@
   "protocol_id": "mosaic-rec-2026-09-20-p1",
   "scientific_state": "DEVELOPMENT",
   "updated_utc": "2026-09-20T17:38:00Z",
-  "canonical_receipts_current": 50,
+  "canonical_receipts_current": 52,
   "baseline_b1": "VALIDATION_SELECTED_7_DAYS_THREE_TRACKS",
+  "baseline_b9_bm3": "ONE_EPOCH_REFERENCE_PROTOCOL_PILOT_PASS_UNQUALIFIED",
+  "baseline_b10_freedom": "ATTEMPT1_INTERRUPTED_CAUSE_UNPROVEN_RETRY_HELD_GPU_CONTENTION",
   "pixelrec_publisher_image_features": "PASS_LOCAL_ONLY",
   "recovery": {
     "state": "AUDIT_PASS",

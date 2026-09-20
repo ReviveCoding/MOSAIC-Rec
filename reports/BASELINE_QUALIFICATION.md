@@ -13,8 +13,8 @@ All numbers below are **VALIDATION development pilots** under protocol `mosaic-r
 | B6 SASRec | CUDA pilot; isolated RecBole runtime smoke | ID-only cold limitation | RecBole uses internal FIT-only split; no common-protocol parity |
 | B7 BERT4Rec | Isolated RecBole CUDA runtime smoke | ID-only cold limitation | Local common-protocol evaluator/training, HPO and parity pending |
 | B8 VBPR | CUDA pilot | Content can score FIT-hidden items | HPO, seeds and parity pending |
-| B9 BM3 | Official reference code and hash-aligned inputs inspected; local adapter syntax checked | Reference inference scores graph/ID embeddings | CUDA runtime/common-validation pilot, HPO and seed parity pending; not sole cold comparator |
-| B10 FREEDOM | Official reference code inspected; padded-item-safe MicroLens adapter syntax checked | Content item graph may support FIT-hidden items | Declared CUDA runtime/common-validation pilot, HPO and parity pending |
+| B9 BM3 | One-epoch MMRec architecture CUDA/common-validation pilot; overall NDCG@20 0.002922, controlled cold 0, FIT-warm 0.006078 | Reference inference scores graph/ID embeddings | Undertrained pilot only; HPO and seed parity pending; not sole cold comparator |
+| B10 FREEDOM | Attempt 1 began on CUDA, wrote a hashed item graph cache, then exited abruptly without metric/checkpoint; distinct attempt 2 is prepared | Content item graph may support FIT-hidden items | Runtime failure cause unproven; CUDA retry, HPO and parity pending |
 
 The 7-day selected setting also measured PixelRec overall NDCG@20 0.002820 and MovieLens overall 0.052523. The MovieLens figure applies to 6,465 users with FIT history; 15,879 validation users without FIT history were excluded. The declared search and all nine receipts are in `configs/baseline_b1_search_p1.json` and `evidence/b1_search_selection_p1.json`. These results cannot establish a MOSAIC promotion or any production impact.
 

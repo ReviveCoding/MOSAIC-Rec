@@ -1,0 +1,61 @@
+{
+  "stage_id": "C04",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "REFERENCE_PROTOCOL_PILOT",
+  "started_utc": "2026-09-20T17:59:41.129329+00:00",
+  "ended_utc": "2026-09-20T18:01:32.254818+00:00",
+  "dataset": "microlens-100k",
+  "model": "B9_BM3_MMREC_REFERENCE",
+  "reference_commit": "c68ee7c9b0de1ca7c5150258322edb4994be29d9",
+  "git_commit": "702589a90289df500ef346e7482f2580d3fe6c3f",
+  "input_sha256": {
+    "fit_visible": "1571406f3bea51f96ee5839ccad858e4587d9b1aab5aafa296dde3854ce996e6",
+    "validation": "1328a9ff79bdc1afdd5961891835749b15e761b6263e926d2e74e6eccfbefd9c",
+    "vision": "d5ac75c413af0781f6e49e414f15495c82e835f6f7f2c3df26febfd8eeaf3237",
+    "text": "98b62102a54ae2d6e9755f7091541c4c9596119d6d742710ea988a8af19b28b9"
+  },
+  "environment": {
+    "torch": "2.14.0+cu130",
+    "scipy": "1.15.3"
+  },
+  "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "seed": 20260920,
+  "epochs": 1,
+  "training_log": [
+    {
+      "epoch": 1,
+      "fit_loss": 4.407711557606283
+    }
+  ],
+  "train_seconds": 35.04870189699977,
+  "score_seconds": 17.506790056999307,
+  "peak_vram_bytes": 1019683328,
+  "validation_slices": {
+    "all": {
+      "n": 41694,
+      "ndcg_at_20": 0.002922168064418383,
+      "recall_at_20": 0.00942581666426824
+    },
+    "controlled_cold": {
+      "n": 918,
+      "ndcg_at_20": 0.0,
+      "recall_at_20": 0.0
+    },
+    "warm_fit": {
+      "n": 20047,
+      "ndcg_at_20": 0.006077561494381208,
+      "recall_at_20": 0.01960393076270764
+    }
+  },
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_bm3_mmrec_reference_pilot.pt",
+  "checkpoint_sha256": "0f72c1704667bc7d77f3c92dc7e8aa42fabb19e404f22c7b27e9d9c23ae80d94",
+  "warnings": [
+    "Reference BM3 architecture evaluated on common temporal validation; no equal-budget HPO or seed qualification.",
+    "BM3 inference uses graph/ID embeddings, not a direct content-only cold item representation.",
+    "SciPy DOK private _update was restored by element assignment; adjacency values are unchanged.",
+    "Sparse reference path uses FP32; no CPU fallback occurred."
+  ],
+  "evidence_class": "measured_development_reference_pilot",
+  "config_sha256": "18a31687da9ae7214183757ecc62c0550a45a9e432ce5938dc26e14ec4b756d5"
+}

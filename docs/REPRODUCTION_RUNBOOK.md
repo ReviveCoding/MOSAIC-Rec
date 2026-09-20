@@ -54,3 +54,5 @@ wsl -d Ubuntu-22.04 -- bash scripts/run_mmrec_reference_pilots.sh
 ```
 
 The script refuses existing receipt/checkpoint paths and checks GPU occupancy before each job. It preserves separate logs and failure receipts. An epoch-one pilot is never a qualified comparator. Rebuild and validate the evidence warehouse after inspecting any new receipt.
+
+`src/mosaic_rec/statistics.py` implements paired user-cluster percentile intervals, cold item-cluster sensitivity, and Holm adjustment. `configs/statistics_development_p1.json` records the proposed design. It is **not** an E04 scientific freeze; no locked scores may be analyzed until the full qualification manifest is sealed.

@@ -224,6 +224,7 @@ def main() -> None:
     parser.add_argument("--lock", type=Path, required=True)
     parser.add_argument("--epochs", type=int, default=1)
     parser.add_argument("--seed", type=int, default=20260920)
+    parser.add_argument("--attempt", type=int, default=1)
     args = parser.parse_args()
     if args.receipt.exists() or args.checkpoint.exists():
         raise FileExistsError("Pilot output exists; preserve the prior attempt and choose new paths")
@@ -240,7 +241,7 @@ def main() -> None:
             "state": "DEVELOPMENT", "status": "FAIL_REFERENCE_RUNTIME",
             "started_utc": started, "ended_utc": datetime.now(timezone.utc).isoformat(),
             "dataset": "microlens-100k", "model": "B10_FREEDOM_MMREC_REFERENCE",
-            "seed": args.seed, "epochs": args.epochs,
+            "seed": args.seed, "epochs": args.epochs, "attempt": args.attempt,
             "failure_class": ("external_gpu_contention" if "GPU busy" in str(exc)
                               else "implementation_or_reference_compatibility"),
             "exception": repr(exc), "traceback": traceback.format_exc(),
@@ -248,6 +249,11 @@ def main() -> None:
         }
         args.receipt.write_text(json.dumps(result, indent=2) + "\n")
         raise
+    result["attempt"] = args.attempt
+    if args.attempt == 2:
+        result["attempt_manifest_sha256"] = hashlib.sha256(
+            Path("configs/freedom_reference_attempt2_p1.json").read_bytes()
+        ).hexdigest()
     args.receipt.write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps(result, indent=2))
 

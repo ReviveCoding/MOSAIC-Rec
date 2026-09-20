@@ -19,7 +19,7 @@ Current: C01-C05 baseline qualification and D08 finalist investigation, with Pix
 
 ## GPU queue
 
-Completed CUDA jobs: BPR-MF, SASRec, GRU4Rec, LightGCN, VBPR, content Two-Tower pilots, revision-pinned text extraction, RecBole SASRec/BERT4Rec reference smokes, MOSAIC M0-M7 pilots. Queue: BM3 then FREEDOM reference runtime pilots, M1/M4/M6/M7 development seed stability, qualified HPO, exact ranking, robustness, systems benchmarks. GPU lock path: `/home/bjw-0/mosaic-rec-work/locks/gpu.lock`; its pre-reboot PID text is stale but the advisory lock is free. An unrelated ACT-Agent model rollout currently holds material VRAM/compute, so heavy MOSAIC jobs wait. CPU acquisition/preprocessing/statistics can overlap safely.
+Completed CUDA jobs: BPR-MF, SASRec, GRU4Rec, LightGCN, VBPR, content Two-Tower pilots, revision-pinned text extraction, RecBole SASRec/BERT4Rec reference smokes, MOSAIC M0-M7 pilots, and a one-epoch BM3 reference runtime pilot. FREEDOM attempt 1 interrupted after graph-cache creation without a metric; preserve it. Queue: distinct FREEDOM attempt 2, M1/M4/M6/M7 development seed stability, qualified HPO, exact ranking, robustness, systems benchmarks. GPU lock path: `/home/bjw-0/mosaic-rec-work/locks/gpu.lock`; the old pre-reboot PID text was superseded by reference pilot owners and the advisory lock is now free. An unrelated ACT-Agent SFT trainer currently holds material VRAM/compute, so heavy MOSAIC jobs wait. CPU acquisition/preprocessing/statistics can overlap safely.
 
 ## Artifacts and validation
 

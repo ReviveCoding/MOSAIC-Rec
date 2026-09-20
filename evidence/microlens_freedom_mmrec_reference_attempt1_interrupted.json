@@ -1,0 +1,38 @@
+{
+  "stage_id": "C04",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "INTERRUPTED_ABRUPT_EXIT",
+  "evidence_class": "observed_reference_runtime_failure",
+  "dataset": "microlens-100k",
+  "model": "B10_FREEDOM_MMREC_REFERENCE",
+  "attempt": 1,
+  "git_commit": "702589a90289df500ef346e7482f2580d3fe6c3f",
+  "reference_commit": "c68ee7c9b0de1ca7c5150258322edb4994be29d9",
+  "seed": 20260920,
+  "epochs_requested": 1,
+  "started_utc_approx": "2026-09-20T18:04:26Z",
+  "recorded_utc": "2026-09-20T18:07:35Z",
+  "failure_class": "abrupt_process_exit_cause_unproven",
+  "observations": [
+    "FREEDOM process 46066 was observed on CUDA after the launcher reported start.",
+    "The GPU showed 8,307 MiB total memory with a second transient compute PID, then 2,108 MiB and 98 percent utilization with only FREEDOM visible.",
+    "The process disappeared without a Python traceback or result receipt. Its log contains only a PyTorch sparse-constructor deprecation warning.",
+    "The reference item graph cache was created; no checkpoint or completed validation metric exists.",
+    "An unrelated ACT-Agent training process was later observed on the GPU. Temporal overlap and cause of termination are not established.",
+    "No Linux kernel OOM-kill or segfault line was found in the inspected recent dmesg; this does not prove that no resource fault occurred."
+  ],
+  "artifacts": {
+    "log": "/home/bjw-0/mosaic-rec-work/logs/microlens_freedom_mmrec_reference_pilot.log",
+    "log_sha256": "e38ecdc8258bed4167bc2793bee907d690618fd9ac5afeed078db63df3a8f6a7",
+    "item_graph_cache": "/home/bjw-0/mosaic-rec-work/references/mmrec_micro_p1/mm_adj_freedomdsp_10_1.pt",
+    "item_graph_sha256": "ff008b888d4dc4c9f590392767b651469f14241afc6045ee6d8f4705ec774a91",
+    "checkpoint": null,
+    "validation_receipt": null
+  },
+  "warnings": [
+    "Do not count this attempt as a passed runtime pilot or a scientific score.",
+    "Preserve the graph cache and log; any retry requires a distinct attempt identity and output paths.",
+    "Do not infer GPU OOM from abrupt exit without confirming evidence."
+  ]
+}

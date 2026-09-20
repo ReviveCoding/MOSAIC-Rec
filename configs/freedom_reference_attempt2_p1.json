@@ -1,0 +1,16 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "model": "B10_FREEDOM_MMREC_REFERENCE",
+  "attempt": 2,
+  "reason": "Attempt 1 abruptly exited after creating an item graph cache; cause unproven, no validation metric or checkpoint.",
+  "scientific_config": "configs/freedom_reference_pilot_p1.json",
+  "same_seed": 20260920,
+  "same_epochs": 1,
+  "new_feature_directory": "/home/bjw-0/mosaic-rec-work/references/mmrec_micro_p1_freedom_attempt2",
+  "vision_sha256": "d5ac75c413af0781f6e49e414f15495c82e835f6f7f2c3df26febfd8eeaf3237",
+  "text_sha256": "98b62102a54ae2d6e9755f7091541c4c9596119d6d742710ea988a8af19b28b9",
+  "new_item_graph_cache": true,
+  "preserve_attempt1_graph_cache": true,
+  "warning": "Retry is an infrastructure/reference-runtime diagnostic, not HPO or model reselection. Do not pool timing with attempt 1."
+}

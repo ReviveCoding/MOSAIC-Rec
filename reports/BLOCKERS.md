@@ -7,3 +7,4 @@
 - Historical content revision timestamps are absent from the current MicroLens/PixelRec extracts. Even with temporal interaction splits, content-time leakage cannot be ruled out for a confirmatory historical-content claim.
 - Transient GPU contention from an unrelated local process interrupted the BERT4Rec reference smoke. The process exited and BERT4Rec resumed; its wall time is unsuitable for throughput claims.
 - After reboot, an unrelated ContextWeave process again used about 9 GB on the sole GPU. Heavy MOSAIC neural work is held until contention clears. CUDA requalification itself passed.
+- FREEDOM MMRec reference attempt 1 ended abruptly after creating a hashed item graph cache and before any checkpoint/metric receipt. No Python traceback or kernel OOM-kill evidence was observed, so the cause remains unclassified. The attempt is recorded as INTERRUPTED, not PASS. A distinct retry is held while unrelated ACT-Agent SFT training uses the GPU.
