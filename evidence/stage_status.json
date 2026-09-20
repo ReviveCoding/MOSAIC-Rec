@@ -1,13 +1,14 @@
 {
   "protocol_id": "mosaic-rec-2026-09-20-p1",
   "scientific_state": "DEVELOPMENT",
-  "updated_utc": "2026-09-20T17:38:00Z",
-  "canonical_receipts_current": 53,
+  "updated_utc": "2026-09-20T19:56:30Z",
+  "canonical_receipts_current": 54,
   "baseline_b1": "VALIDATION_SELECTED_7_DAYS_THREE_TRACKS",
   "baseline_b9_bm3": "ONE_EPOCH_REFERENCE_PROTOCOL_PILOT_PASS_UNQUALIFIED",
   "baseline_b10_freedom": "ATTEMPT1_INTERRUPTED_CAUSE_UNPROVEN_RETRY_HELD_GPU_CONTENTION",
   "pixelrec_publisher_image_features": "PASS_LOCAL_ONLY",
   "pixelrec_content_alignment": "PASS_82865_ITEMS_109_TAGS_LOCAL_ONLY",
+  "pixelrec_fit_dense_adapter": "PASS_FIT_ONLY_PREPARATION_NOT_REPLICATION",
   "recovery": {
     "state": "AUDIT_PASS",
     "artifact_hash_checks": 49,
@@ -22,8 +23,8 @@
     "D00": "PILOT_PASS", "D01": "PILOT_PASS", "D02": "PILOT_PASS", "D03": "PILOT_PASS", "D04": "PILOT_PASS", "D05": "PILOT_PASS", "D06": "PILOT_PASS", "D07": "PILOT_PASS", "D08": "PENDING",
     "E00": "PENDING", "E01": "PENDING", "E02": "PENDING", "E03": "PENDING", "E04": "PENDING", "E05": "PENDING",
     "F00": "PENDING", "F01": "PENDING", "F02": "PENDING", "F03": "PENDING", "F04": "PENDING", "F05": "PENDING",
-    "Gxx": "PENDING", "Hxx": "PENDING", "I00": "PENDING", "I01": "PENDING", "I02": "PENDING",
+    "Gxx": "PENDING", "Hxx": "PENDING", "I00": "PENDING", "I01": "FIT_INPUT_PREP_PASS_REPLICATION_PENDING", "I02": "PENDING",
     "J00": "PENDING", "J01": "PENDING", "J02": "PENDING", "J03": "PENDING", "J04": "PENDING", "J05": "PENDING",
-    "K00": "PENDING", "K01": "PENDING", "K02": "DRAFT_DEVELOPMENT_ONLY", "K03": "PENDING", "K04": "PENDING", "K05": "PENDING"
+    "K00": "PENDING", "K01": "PENDING", "K02": "DRAFT_CLAIM_LEDGER", "K03": "DRAFT_DEVELOPMENT_ONLY", "K04": "PENDING", "K05": "PENDING"
   }
 }

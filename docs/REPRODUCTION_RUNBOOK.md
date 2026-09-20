@@ -65,6 +65,10 @@ The script refuses existing attempt-2 receipt/checkpoint/cache paths and checks 
 
 `src/mosaic_rec/interventions.py` defines a seeded item derangement for cached image-embedding mismatch. Its permutation has no fixed points and does not alter the vector multiset. It is a feature-level mismatch intervention, not a claim about raw-image blur, crop, or occlusion; those remain held by the license audit.
 
+## PixelRec FIT-only replication input
+
+`evidence/pixelrec_fit_dense_adapter_p1.json` records the prepared FIT-only dense index, which aligns item row `i` with the qualified publisher image and local text feature row `i-1` (padding is ID zero). Its data files are in `/home/bjw-0/mosaic-rec-work/data/pixelrec50k/fit_dense_p1/`, outside Git. Every dense user/item ID and timestamp was independently reversed to the source FIT_VISIBLE Parquet. The adapter accessed no validation or protected outcome rows and does not establish a replication result. Do not rerun over its output path; use a distinct path and receipt identity for a reproduction.
+
 ## Local demonstration API
 
 The optional FastAPI service is a **development checkpoint demonstration**. It uses the hash-verified M1 pilot checkpoint at the FIT-end snapshot and scores the available catalog on CUDA. It requires an otherwise free GPU and holds the exclusive project GPU lock for its lifetime; do not run it beside a trainer. In Ubuntu-22.04 WSL, from the repository root:

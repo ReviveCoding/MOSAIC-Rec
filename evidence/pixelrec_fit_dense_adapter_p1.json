@@ -1,0 +1,37 @@
+{
+  "stage_id": "I01",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "FIT_INPUT_PREP_PASS_NOT_REPLICATION",
+  "started_utc": "2026-09-20T19:56:27.563290+00:00",
+  "ended_utc": "2026-09-20T19:56:29.097604+00:00",
+  "dataset": "pixelrec50k",
+  "model": "FIT_DENSE_ADAPTER",
+  "git_commit": "3a7ea2d289f2679bb2033653310b75bf6b961e36",
+  "rows": 657160,
+  "fit_users": 48611,
+  "catalog_items": 82865,
+  "fit_items": 57166,
+  "cold_items_with_fit_support": 0,
+  "input_sha256": {
+    "fit_visible": "3b5809898a4044388592bba6625a61c13a403ad36d1ec90473549f3bf2383672",
+    "qualified_item_ids": "ac84d699f63c4d11b5c2085047edab2fb128e0bd20a96b9a19d1506217add209",
+    "controlled_cold_ids": "a87d16eaff448727bb8d67c127a5acd3dff4cfa94218bb3cc151f51d99857142"
+  },
+  "output_sha256": {
+    "fit_dense": "1f18bd08f640ee15d36d31fda8585d782eb766c29957c51f8bd414172c7e4f5c",
+    "user_ids": "68ce968354cdec7a1a2b9c18cae8173798107aead635063c00d979a0bbbc26af",
+    "item_ids": "ac84d699f63c4d11b5c2085047edab2fb128e0bd20a96b9a19d1506217add209"
+  },
+  "outputs": {
+    "fit_dense": "/home/bjw-0/mosaic-rec-work/data/pixelrec50k/fit_dense_p1/FIT_DENSE.parquet",
+    "user_ids": "/home/bjw-0/mosaic-rec-work/data/pixelrec50k/fit_dense_p1/user_ids.txt",
+    "item_ids": "/home/bjw-0/mosaic-rec-work/data/pixelrec50k/fit_dense_p1/item_ids.txt"
+  },
+  "warnings": [
+    "FIT-only preparation; no validation, qualification, or locked outcome rows accessed.",
+    "PixelRec publisher image features remain local only; historical content time is unknown.",
+    "No model training or external replication result follows from this adapter."
+  ],
+  "evidence_class": "derived_fit_input_preparation"
+}
