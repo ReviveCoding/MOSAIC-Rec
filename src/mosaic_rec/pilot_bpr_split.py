@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import bisect
 import csv
 import fcntl
 import hashlib
@@ -32,6 +33,34 @@ class BPRMF(nn.Module):
         nn.init.normal_(self.items.weight, std=0.02)
 
 
+def time_safe_negatives(
+    fit: list[tuple[int, int, int]], seed: int
+) -> tuple[list[int], list[int], list[int], dict[int, set[int]], set[int]]:
+    first_fit: dict[int, int] = {}
+    for stamp, _, item in fit:
+        first_fit[item] = min(stamp, first_fit.get(item, stamp))
+    warm = set(first_fit)
+    available = sorted(warm, key=lambda item: (first_fit[item], item))
+    available_times = [first_fit[item] for item in available]
+    seen: dict[int, set[int]] = defaultdict(set)
+    rng = random.Random(seed)
+    training_users, training_items, negatives = [], [], []
+    for stamp, user, item in fit:
+        limit = bisect.bisect_right(available_times, stamp)
+        excluded = seen[user] | {item}
+        if len(excluded) < limit:
+            negative = available[rng.randrange(limit)]
+            while negative in excluded:
+                negative = available[rng.randrange(limit)]
+            training_users.append(user)
+            training_items.append(item)
+            negatives.append(negative)
+        seen[user].add(item)
+    if not training_items:
+        raise ValueError("No time-eligible FIT negative samples")
+    return training_users, training_items, negatives, seen, warm
+
+
 def run(
     split_dir: Path, source: Path, checkpoint: Path, epochs: int, seed: int
 ) -> dict:
@@ -45,20 +74,9 @@ def run(
     fit = read_events(split_dir / "FIT_VISIBLE.parquet")
     validation = read_events(split_dir / "VALIDATION.parquet")
     n_users, n_items = max(user for _, user, _ in fit), 19738
-    seen: dict[int, set[int]] = defaultdict(set)
-    for _, user, item in fit:
-        seen[user].add(item)
-    warm = {item for _, _, item in fit}
-    warm_items = sorted(warm)
-    rng = random.Random(seed)
-    negatives = []
-    for _, user, item in fit:
-        if len(seen[user]) >= len(warm_items):
-            raise ValueError("User exhausted FIT negative pool")
-        negative = warm_items[rng.randrange(len(warm_items))]
-        while negative in seen[user] or negative == item:
-            negative = warm_items[rng.randrange(len(warm_items))]
-        negatives.append(negative)
+    training_users, training_items, negatives, seen, warm = time_safe_negatives(
+        fit, seed
+    )
     first_val: dict[int, tuple[int, int]] = {}
     for stamp, user, item in validation:
         first_val.setdefault(user, (stamp, item))
@@ -80,8 +98,8 @@ def run(
     optimizer = torch.optim.Adam(model.parameters(), lr=0.003)
     loader = DataLoader(
         TensorDataset(
-            torch.tensor([u for _, u, _ in fit], dtype=torch.long),
-            torch.tensor([i for _, _, i in fit], dtype=torch.long),
+            torch.tensor(training_users, dtype=torch.long),
+            torch.tensor(training_items, dtype=torch.long),
             torch.tensor(negatives, dtype=torch.long),
         ),
         batch_size=8192,
@@ -116,7 +134,9 @@ def run(
             loss.backward()
             optimizer.step()
             loss_sum += float(bpr.detach()) * len(users)
-        training_log.append({"epoch": epoch + 1, "fit_bpr_loss": loss_sum / len(fit)})
+        training_log.append(
+            {"epoch": epoch + 1, "fit_bpr_loss": loss_sum / len(training_items)}
+        )
     torch.cuda.synchronize()
     train_seconds = time.perf_counter() - start
     model.eval()
@@ -179,6 +199,7 @@ def run(
         "model": "B2_BPR_MF_FIT_VISIBLE",
         "seed": seed,
         "epochs": epochs,
+        "fit_samples": len(training_items),
         "device": torch.cuda.get_device_name(0),
         "git_commit": subprocess.check_output(
             ["git", "rev-parse", "HEAD"], text=True

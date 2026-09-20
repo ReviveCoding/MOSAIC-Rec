@@ -6,7 +6,7 @@ All numbers below are **VALIDATION development pilots** under protocol `mosaic-r
 |---|---|---|---|
 | B0 global popularity | Exact FIT-only pilot | No controlled-cold hits | Descriptive comparator only |
 | B1 recent popularity | Declared 7/30/90-day FIT-only validation search selected 7 days; overall NDCG@20 0.006341 | No controlled-cold hits | Deterministic development selection; no locked result |
-| B2 BPR-MF | Earlier two-epoch CUDA pilot predates FIT-hidden cohort; a separate common FIT-visible 10-epoch CUDA pilot is declared and code-checked | Learned IDs lack FIT-hidden support | Common pilot execution, HPO and seed parity pending; old score is not comparable |
+| B2 BPR-MF | Earlier two-epoch CUDA pilot predates FIT-hidden cohort; a separate common FIT-visible 10-epoch CUDA pilot is declared with event-time-safe negative sampling and a known-answer leakage test | Learned IDs lack FIT-hidden support | Corrected common pilot execution, HPO and seed parity pending; old score is not comparable |
 | B3 LightGCN | Two-layer CUDA pilot | Zero controlled-cold hits | HPO, seeds and parity pending |
 | B4 Two-Tower content | CUDA pilot | Content can score FIT-hidden items | HPO, seeds and reference parity pending |
 | B5 GRU4Rec | CUDA pilot | ID-only cold limitation | HPO, seeds and parity pending |

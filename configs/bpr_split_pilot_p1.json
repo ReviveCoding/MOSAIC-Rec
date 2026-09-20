@@ -8,7 +8,7 @@
   "batch_size": 8192,
   "learning_rate": 0.003,
   "weight_decay": 0.0001,
-  "negative_pool": "FIT-visible items not interacted by this user during FIT",
+  "negative_pool": "items first observed in FIT no later than this FIT event, excluding this item and the user's interactions before this event",
   "evaluation": "exact first VALIDATION event per FIT-history user, available catalog, FIT seen mask",
   "warning": "Common-split runtime pilot only; no equal-budget HPO or independent seed qualification."
 }
