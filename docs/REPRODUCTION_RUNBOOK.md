@@ -46,3 +46,11 @@ wsl -d Ubuntu-22.04 -- /home/bjw-0/mosaic-rec-work/.venv/bin/python -m mosaic_re
 ```
 
 This accesses VALIDATION only. Do not inspect QUALIFICATION or LOCKED_FINAL outcome rows before the appropriate state transition. The current baseline status is in `reports/BASELINE_QUALIFICATION.md`; no public model comparison is authorized from these pilots.
+
+The declared MMRec BM3 and FREEDOM one-epoch reference runtime pilots use the isolated checkout in WSL scratch and the hash-qualified MicroLens publisher vectors. After checking that unrelated GPU compute processes have exited, run them sequentially:
+
+```powershell
+wsl -d Ubuntu-22.04 -- bash scripts/run_mmrec_reference_pilots.sh
+```
+
+The script refuses existing receipt/checkpoint paths and checks GPU occupancy before each job. It preserves separate logs and failure receipts. An epoch-one pilot is never a qualified comparator. Rebuild and validate the evidence warehouse after inspecting any new receipt.

@@ -134,7 +134,6 @@ def run(reference_root: Path, feature_dir: Path, split_dir: Path, source: Path,
     lock.parent.mkdir(parents=True, exist_ok=True)
     training_log = []
     with lock.open("w") as handle:
-        fcntl.flock(handle, fcntl.LOCK_EX)
         handle.write(f"pid={__import__('os').getpid()} model=BM3_MMREC_REFERENCE\n")
         handle.flush()
         start = time.perf_counter()
@@ -190,7 +189,6 @@ def run(reference_root: Path, feature_dir: Path, split_dir: Path, source: Path,
         checkpoint.parent.mkdir(parents=True, exist_ok=True)
         torch.save({"model": model.state_dict(), "seed": seed, "epochs": epochs}, checkpoint)
         peak_vram = torch.cuda.max_memory_allocated()
-        fcntl.flock(handle, fcntl.LOCK_UN)
     slices = {name: {"n": int(v[2]),
                      "ndcg_at_20": v[0] / v[2] if v[2] else None,
                      "recall_at_20": v[1] / v[2] if v[2] else None}
@@ -241,8 +239,11 @@ def main() -> None:
         raise FileExistsError("Pilot output exists; preserve the prior attempt and choose new paths")
     started_utc = datetime.now(timezone.utc).isoformat()
     try:
-        result = run(args.reference_root, args.feature_dir, args.split_dir, args.source,
-                     args.checkpoint, args.lock, args.epochs, args.seed)
+        args.lock.parent.mkdir(parents=True, exist_ok=True)
+        with args.lock.open("a+") as heavy_lock:
+            fcntl.flock(heavy_lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            result = run(args.reference_root, args.feature_dir, args.split_dir, args.source,
+                         args.checkpoint, args.lock, args.epochs, args.seed)
     except Exception as exc:
         result = {
             "stage_id": "C04", "protocol_id": "mosaic-rec-2026-09-20-p1",

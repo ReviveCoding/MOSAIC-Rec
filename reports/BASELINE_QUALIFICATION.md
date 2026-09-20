@@ -14,7 +14,7 @@ All numbers below are **VALIDATION development pilots** under protocol `mosaic-r
 | B7 BERT4Rec | Isolated RecBole CUDA runtime smoke | ID-only cold limitation | Local common-protocol evaluator/training, HPO and parity pending |
 | B8 VBPR | CUDA pilot | Content can score FIT-hidden items | HPO, seeds and parity pending |
 | B9 BM3 | Official reference code and hash-aligned inputs inspected; local adapter syntax checked | Reference inference scores graph/ID embeddings | CUDA runtime/common-validation pilot, HPO and seed parity pending; not sole cold comparator |
-| B10 FREEDOM | Reference code inspected | Content item graph may support FIT-hidden items | Feasible MicroLens adapter/runtime pilot, HPO and parity pending |
+| B10 FREEDOM | Official reference code inspected; padded-item-safe MicroLens adapter syntax checked | Content item graph may support FIT-hidden items | Declared CUDA runtime/common-validation pilot, HPO and parity pending |
 
 The 7-day selected setting also measured PixelRec overall NDCG@20 0.002820 and MovieLens overall 0.052523. The MovieLens figure applies to 6,465 users with FIT history; 15,879 validation users without FIT history were excluded. The declared search and all nine receipts are in `configs/baseline_b1_search_p1.json` and `evidence/b1_search_selection_p1.json`. These results cannot establish a MOSAIC promotion or any production impact.
 
