@@ -1,0 +1,34 @@
+{
+  "stage_id": "I00",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "FIT_INPUT_PREP_PASS_NOT_REPLICATION",
+  "started_utc": "2026-09-20T20:20:46.793337+00:00",
+  "ended_utc": "2026-09-20T20:21:00.200991+00:00",
+  "dataset": "movielens-32m",
+  "model": "FIT_DENSE_ADAPTER",
+  "git_commit": "280968746a6d3b61f27d20094e8fccbf9df56af1",
+  "rows": 22400143,
+  "fit_users": 154612,
+  "catalog_items": 87585,
+  "input_sha256": {
+    "fit_visible": "3cd4a1717f16e18896c6effa0d397fa576ef8fb557fa260c83016bdae91b961b",
+    "official_catalog": "b37ca1abc7798de741138ed252b62f69f7e37c84b8a8fab1b82d409b4c6c5cc2"
+  },
+  "output_sha256": {
+    "fit_dense": "b8cc908206c3c98cce9fc5ac7268a3e4df9e3e7c0d057f680c7c6b8ab8fca182",
+    "users": "003386a92e3696126064cfb20bd1a7a1ce7d68da493743201c8807cafd48948d",
+    "items": "3ed0fbec43f85a42299c942def590f6b8f0f0c93520962e5b53b931bcb6b4267"
+  },
+  "outputs": {
+    "fit_dense": "/home/bjw-0/mosaic-rec-work/data/ml-32m/fit_dense_p1/FIT_DENSE.parquet",
+    "users": "/home/bjw-0/mosaic-rec-work/data/ml-32m/fit_dense_p1/users.parquet",
+    "items": "/home/bjw-0/mosaic-rec-work/data/ml-32m/fit_dense_p1/items.parquet"
+  },
+  "warnings": [
+    "FIT-only preparation; no validation, qualification, or locked outcome rows accessed.",
+    "The catalog contains all official movie IDs, including items without FIT support.",
+    "No model training or behavioral replication result follows from this adapter."
+  ],
+  "evidence_class": "derived_fit_input_preparation"
+}

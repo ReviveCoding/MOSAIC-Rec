@@ -69,6 +69,8 @@ The script refuses existing attempt-2 receipt/checkpoint/cache paths and checks 
 
 `evidence/pixelrec_fit_dense_adapter_p1.json` records the prepared FIT-only dense index, which aligns item row `i` with the qualified publisher image and local text feature row `i-1` (padding is ID zero). Its data files are in `/home/bjw-0/mosaic-rec-work/data/pixelrec50k/fit_dense_p1/`, outside Git. Every dense user/item ID and timestamp was independently reversed to the source FIT_VISIBLE Parquet. The adapter accessed no validation or protected outcome rows and does not establish a replication result. Do not rerun over its output path; use a distinct path and receipt identity for a reproduction.
 
+`evidence/movielens_fit_dense_adapter_p1.json` records the FIT-only MovieLens behavioral input in `/home/bjw-0/mosaic-rec-work/data/ml-32m/fit_dense_p1/`. DuckDB bounded memory to 4 GB while mapping 22,400,143 FIT rows to dense user IDs and all official `movies.csv` item IDs. An independent full-multiset reverse mapping against FIT_VISIBLE found zero differences. The mapped Parquet and user/item maps are hash-identified; no validation or protected outcome rows entered preparation. This is an input artifact, not evidence of behavioral replication.
+
 ## Local demonstration API
 
 The optional FastAPI service is a **development checkpoint demonstration**. It uses the hash-verified M1 pilot checkpoint at the FIT-end snapshot and scores the available catalog on CUDA. It requires an otherwise free GPU and holds the exclusive project GPU lock for its lifetime; do not run it beside a trainer. In Ubuntu-22.04 WSL, from the repository root:
