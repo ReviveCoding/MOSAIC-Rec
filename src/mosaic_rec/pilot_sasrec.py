@@ -287,6 +287,7 @@ def main() -> None:
     parser.add_argument("receipt", type=Path)
     parser.add_argument("--lock", type=Path, required=True)
     parser.add_argument("--checkpoint", type=Path, required=True)
+    parser.add_argument("--manifest", type=Path)
     parser.add_argument("--epochs", type=int, default=3)
     parser.add_argument("--seed", type=int, default=20260920)
     parser.add_argument(
@@ -297,6 +298,11 @@ def main() -> None:
         raise FileExistsError(
             "Pilot output exists; preserve prior evidence and use new paths"
         )
+    manifest_sha256 = (
+        hashlib.sha256(args.manifest.read_bytes()).hexdigest()
+        if args.manifest is not None
+        else None
+    )
     result = run(
         args.split_dir,
         args.source_first_seen,
@@ -306,6 +312,8 @@ def main() -> None:
         args.seed,
         args.architecture,
     )
+    if manifest_sha256 is not None:
+        result["config_sha256"] = manifest_sha256
     args.receipt.write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps(result, indent=2))
 

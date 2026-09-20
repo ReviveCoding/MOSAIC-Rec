@@ -18,4 +18,6 @@ All numbers below are **VALIDATION development pilots** under protocol `mosaic-r
 
 The 7-day selected setting also measured PixelRec overall NDCG@20 0.002820 and MovieLens overall 0.052523. The MovieLens figure applies to 6,465 users with FIT history; 15,879 validation users without FIT history were excluded. The declared search and all nine receipts are in `configs/baseline_b1_search_p1.json` and `evidence/b1_search_selection_p1.json`. These results cannot establish a MOSAIC promotion or any production impact.
 
+`configs/sequence_coldguard_pilot_p1.json` and `scripts/run_corrected_sequence_pilots.sh` declare distinct SASRec/GRU4Rec development reruns with FIT-only event-time negative eligibility, full past-history exclusion, cold-ID assertion, original seed, and separate receipt/checkpoint paths. They have not run while unrelated GPU work is active. Even if they pass, they remain one-seed pilots until HPO, parity and seed qualification close.
+
 Receipt identities are in `evidence/`; the canonical `metrics` table is the source for numerical reporting. Every baseline failure or underqualification remains visible and must not be used as a weak comparator by default.

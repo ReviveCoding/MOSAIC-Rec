@@ -61,6 +61,8 @@ wsl -d Ubuntu-22.04 -- bash scripts/run_freedom_reference_attempt2.sh
 
 The script refuses existing attempt-2 receipt/checkpoint/cache paths and checks GPU occupancy. If it exits abruptly without a receipt, preserve its log/cache and create a distinct interrupted receipt before any further attempt. An epoch-one pilot is never a qualified comparator. Rebuild and validate the evidence warehouse after inspecting any new receipt.
 
+The historical SASRec/GRU4Rec pilots may have trained on FIT-hidden cold item IDs as sampled negatives. Their receipts are preserved and their cold-start interpretation is unqualified. `scripts/run_corrected_sequence_pilots.sh` declares distinct, event-time-safe development reruns under `configs/sequence_coldguard_pilot_p1.json`. It requires a free GPU and writes new checkpoint, log and receipt paths; execute it only after the earlier GPU queue and inspect each result before warehouse refresh. These reruns remain unqualified pilots without fair HPO, reference parity and independent seeds.
+
 `src/mosaic_rec/statistics.py` implements paired user-cluster percentile intervals, cold item-cluster sensitivity, and Holm adjustment. `configs/statistics_development_p1.json` records the proposed design. It is **not** an E04 scientific freeze; no locked scores may be analyzed until the full qualification manifest is sealed.
 
 `src/mosaic_rec/interventions.py` defines a seeded item derangement for cached image-embedding mismatch. Its permutation has no fixed points and does not alter the vector multiset. It is a feature-level mismatch intervention, not a claim about raw-image blur, crop, or occlusion; those remain held by the license audit.

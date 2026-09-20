@@ -1,0 +1,12 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "models": ["SASRec", "GRU4Rec"],
+  "input": "MicroLens FIT_VISIBLE and VALIDATION; source-wide first-observed time only for evaluation availability",
+  "training_negatives": "FIT-visible items first observed by the FIT event time, excluding the current item and the user's entire earlier FIT history",
+  "controlled_cold_rule": "No controlled-cold item ID may enter FIT positives or negatives",
+  "seed": 20260920,
+  "epochs": 3,
+  "output_rule": "Distinct receipts/checkpoints; preserve historical pilot results",
+  "warning": "Corrected development runtime pilots only; no HPO, parity, seed qualification, comparator freeze or protected outcomes."
+}
