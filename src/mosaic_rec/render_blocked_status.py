@@ -25,6 +25,8 @@ def stage_disposition(evidence_status: str) -> str:
 
 def render(root: Path) -> str:
     stage = json.loads((root / "evidence/stage_status.json").read_text())
+    if stage.get("execution_status") != "BLOCKED_EXTERNAL":
+        raise ValueError("Blocked-status renderer requires BLOCKED_EXTERNAL execution")
     bootstrap = json.loads((root / "configs/bootstrap.json").read_text())
     con = duckdb.connect(str(root / "evidence/warehouse.duckdb"), read_only=True)
     receipts = con.execute("SELECT count(*) FROM runs").fetchone()[0]
@@ -55,7 +57,7 @@ def render(root: Path) -> str:
         f"Generated {datetime.now(timezone.utc).isoformat()} from canonical evidence.",
         "",
         (
-            "**Terminal decision for this execution window: BLOCKED_EXTERNAL_GPU_CONTENTION.** "
+            "**Terminal decision for this execution window: BLOCKED_EXTERNAL (sole GPU occupied by unrelated jobs).** "
             "The scientific protocol remains in DEVELOPMENT and is **not closed**. "
             "No finalist, qualified comparator, margin, locked result, or promotion decision exists."
         ),

@@ -1,7 +1,7 @@
 {
   "protocol_id": "mosaic-rec-2026-09-20-p1",
   "scientific_state": "DEVELOPMENT",
-  "execution_status": "BLOCKED_EXTERNAL_GPU_CONTENTION",
+  "execution_status": "BLOCKED_EXTERNAL",
   "updated_utc": "2026-09-20T20:21:00Z",
   "canonical_receipts_current": 55,
   "baseline_b1": "VALIDATION_SELECTED_7_DAYS_THREE_TRACKS",

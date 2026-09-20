@@ -20,4 +20,4 @@ An optional FastAPI demonstration can load a declared, hash-verified development
 
 This repository currently supports a development study and reproducibility audit. It does not establish production impact, reliability, external validity, or a winning MOSAIC model.
 
-The current [final execution status](reports/FINAL_STATUS.md) is **BLOCKED_EXTERNAL_GPU_CONTENTION**: unrelated serial jobs occupied the sole GPU during recovery. It is a blocked status report, not a completed scientific result. Protocol p1 remains in DEVELOPMENT and can resume when a sustained GPU window is available.
+The current [final execution status](reports/FINAL_STATUS.md) is **BLOCKED_EXTERNAL** because unrelated serial jobs occupied the sole GPU during recovery. It is a blocked status report, not a completed scientific result. Protocol p1 remains in DEVELOPMENT and can resume when a sustained GPU window is available.

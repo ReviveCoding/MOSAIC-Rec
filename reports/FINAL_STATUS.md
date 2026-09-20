@@ -1,13 +1,13 @@
 # MOSAIC-Rec final execution status
 
-Generated 2026-09-20T21:46:38.213914+00:00 from canonical evidence.
+Generated 2026-09-20T21:49:48.547645+00:00 from canonical evidence.
 
-**Terminal decision for this execution window: BLOCKED_EXTERNAL_GPU_CONTENTION.** The scientific protocol remains in DEVELOPMENT and is **not closed**. No finalist, qualified comparator, margin, locked result, or promotion decision exists.
+**Terminal decision for this execution window: BLOCKED_EXTERNAL (sole GPU occupied by unrelated jobs).** The scientific protocol remains in DEVELOPMENT and is **not closed**. No finalist, qualified comparator, margin, locked result, or promotion decision exists.
 
 ## Identity and evidence
 
 - Protocol: `mosaic-rec-2026-09-20-p1`; scientific state: `DEVELOPMENT`.
-- Git identity at report generation: `8c78e241337c317f82a70ada2135d861374ab602`.
+- Git identity at report generation: `471d758ebed5d3499f410826ed07a5ada93aeaeb`.
 - Runtime: Ubuntu-22.04; PyTorch `2.14.0+cu130`; CUDA runtime `13.0`; GPU inventory `0, NVIDIA GeForce RTX 4090 Laptop GPU, 16376 MiB, 616.92`.
 - Isolated environment: `/home/bjw-0/mosaic-rec-work/.venv`; scratch: `/home/bjw-0/mosaic-rec-work`.
 - `requirements.lock` SHA-256: `a46c8a71c3648ee0d3cacda594e4e99b42672fe5294f9dd334ee47523eec44f4`.
