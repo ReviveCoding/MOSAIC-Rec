@@ -249,6 +249,10 @@ def run(
         "dataset": "microlens-100k",
         "model": "B7_BERT4REC_LOCAL",
         "device": torch.cuda.get_device_name(0),
+        "environment": {
+            "torch": torch.__version__,
+            "cuda_runtime": torch.version.cuda,
+        },
         "seed": seed,
         "epochs": epochs,
         "fit_samples": len(dataset),
