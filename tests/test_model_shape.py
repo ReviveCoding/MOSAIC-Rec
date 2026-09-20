@@ -24,6 +24,20 @@ class ModelShapeTests(unittest.TestCase):
         self.assertEqual(tuple(weights.shape), (3, 4))
         torch.testing.assert_close(weights.sum(dim=-1), torch.ones(3))
 
+    def test_all_missing_modalities_have_finite_zero_fusion(self) -> None:
+        model = MosaicSequence(
+            1, torch.ones(1, 384), torch.ones(1, 1024),
+            torch.tensor([0]), torch.tensor([True]), 1,
+        )
+        fused, weights = model.fuse(
+            torch.tensor([1]), torch.tensor([0]),
+            text_available=torch.tensor([False]),
+            image_available=torch.tensor([False]),
+            metadata_available=torch.tensor([False]),
+        )
+        torch.testing.assert_close(fused, torch.zeros_like(fused))
+        torch.testing.assert_close(weights, torch.zeros_like(weights))
+
 
 if __name__ == "__main__":
     unittest.main()

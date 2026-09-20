@@ -1,0 +1,19 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "freeze_status": "PROPOSED_FOR_E04_NOT_FROZEN",
+  "selection_role": "VALIDATION",
+  "interventions": [
+    {"id": "image_missing_all", "mechanism": "image_available_false_for_all_items"},
+    {"id": "text_missing_all", "mechanism": "text_available_false_for_all_items"},
+    {"id": "metadata_missing_all", "mechanism": "metadata_available_false_for_all_items"},
+    {"id": "image_text_missing_all", "mechanism": "image_and_text_available_false_for_all_items"},
+    {"id": "image_embedding_mismatch", "mechanism": "deterministic_permutation_of_publisher_image_embeddings", "seed": 20260920},
+    {"id": "behavioral_support_zero", "mechanism": "set_item_support_to_zero_at_scoring"}
+  ],
+  "raw_cover_blur_crop_occlusion": "HOLD_RIGHTS_AND_SOURCE_REVIEW",
+  "headline_metric": "NDCG@20_degradation_relative_to_same_checkpoint_clean_validation",
+  "slices": ["all", "controlled_cold", "warm_fit"],
+  "gate_diagnostics": ["actual_branch_weight", "weight_change_under_intervention"],
+  "warning": "Embedding mismatch is not pixel corruption. Availability-mask responses are deterministic masking, not learned reliability. No locked robustness definition is frozen here."
+}

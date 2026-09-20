@@ -53,7 +53,10 @@ class MosaicSequence(nn.Module):
             self.item.weight[0].zero_()
 
     def fuse(self, ids: torch.Tensor, support: torch.Tensor,
-             augment: bool = False) -> tuple[torch.Tensor, torch.Tensor]:
+             augment: bool = False, *,
+             text_available: torch.Tensor | None = None,
+             image_available: torch.Tensor | None = None,
+             metadata_available: torch.Tensor | None = None) -> tuple[torch.Tensor, torch.Tensor]:
         safe = ids.clamp_min(1) - 1
         collaborative = self.item(ids)
         textual = self.text_projection(self.text[safe])
@@ -64,6 +67,13 @@ class MosaicSequence(nn.Module):
         available = torch.stack((active & support.gt(0),
                                  active & self.text_present[safe],
                                  active, active), dim=-1)
+        if text_available is not None:
+            available[..., 1] &= text_available.bool()
+        if image_available is not None:
+            available[..., 2] &= image_available.bool()
+        if metadata_available is not None:
+            available[..., 3] &= metadata_available.bool()
+        base_available = available.clone()
         if augment and self.training and self.variant >= 4:
             behavioral = torch.rand_like(support.float()) < 0.2
             available[..., 0] &= ~behavioral
@@ -71,7 +81,13 @@ class MosaicSequence(nn.Module):
             dropout = torch.rand((*ids.shape, 3), device=ids.device) < 0.1
             available[..., 1:] &= ~dropout
             none_left = active & ~available.any(-1)
-            available[..., 2] |= none_left
+            available[..., 2] |= none_left & base_available[..., 2]
+            remaining = none_left & ~base_available[..., 2]
+            available[..., 3] |= remaining & base_available[..., 3]
+            remaining &= ~base_available[..., 3]
+            available[..., 1] |= remaining & base_available[..., 1]
+            remaining &= ~base_available[..., 1]
+            available[..., 0] |= remaining & base_available[..., 0]
         if self.variant <= 1:
             logits = torch.zeros((*ids.shape, 4), device=ids.device)
         elif self.variant == 2:
@@ -82,8 +98,8 @@ class MosaicSequence(nn.Module):
             logits = self.mono_base.expand(*ids.shape, 4).clone()
             logits[..., 0] += torch.nn.functional.softplus(self.mono_slope) * torch.log1p(support.float())
         logits = logits.masked_fill(~available, -torch.inf)
-        logits = torch.where(active[..., None], logits, torch.zeros_like(logits))
-        weights = torch.softmax(logits, dim=-1)
+        logits = torch.where(available.any(-1)[..., None], logits, torch.zeros_like(logits))
+        weights = torch.softmax(logits, dim=-1) * available.float()
         if self.variant == 0:
             # Naive sum retains branch count/scale differences by design.
             fused = (branches * available[..., None]).sum(-2)
@@ -94,8 +110,16 @@ class MosaicSequence(nn.Module):
         return fused, weights
 
     def user_state(self, seq: torch.Tensor, seq_support: torch.Tensor,
-                   length: torch.Tensor) -> torch.Tensor:
-        vectors, _ = self.fuse(seq, seq_support, augment=True)
+                   length: torch.Tensor, *,
+                   text_available: torch.Tensor | None = None,
+                   image_available: torch.Tensor | None = None,
+                   metadata_available: torch.Tensor | None = None) -> torch.Tensor:
+        vectors, _ = self.fuse(
+            seq, seq_support, augment=True,
+            text_available=text_available,
+            image_available=image_available,
+            metadata_available=metadata_available,
+        )
         positions = torch.arange(seq.shape[1], device=seq.device)
         x = vectors + self.position(positions)[None, :, :]
         mask = torch.triu(torch.ones(seq.shape[1], seq.shape[1],

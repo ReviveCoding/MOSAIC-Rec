@@ -17,7 +17,7 @@ Protocol `mosaic-rec-2026-09-20-p1` remains in DEVELOPMENT. This is a live audit
 | Invalid content mapping | MicroLens publisher arrays and PixelRec publisher image vectors passed full item-ID mapping/finiteness checks. | PASS measured sources |
 | Unobserved-as-negative overclaim | BPR-style training samples unobserved FIT items; no exposure or true-negative labels are known. | Wording constraint |
 | Gate-weight overinterpretation | M0 diagnostic softmax did not control its sum; original receipt preserved and marked invalid for interpretation. | PASS correction; later diagnostics pending |
-| Reliability language | Controlled intervention and directional gate-response tests have not run. | UNSUPPORTED |
+| Reliability language | Controlled intervention and directional gate-response tests have not run. The current gate observes support but no image-quality signal, so a content mismatch at fixed support cannot induce learned gate response. | UNSUPPORTED |
 | Production language | Local FastAPI adapter is a development demonstration; no throughput/latency study or deployment. | UNSUPPORTED |
 | Causal language | Public interactions are observational; no randomized exposure. | UNSUPPORTED |
 | Multi-GPU claims | One RTX GPU is present. | UNSUPPORTED |
