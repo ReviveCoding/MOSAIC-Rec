@@ -6,7 +6,7 @@ Objective: execute the specified three-track study without opening protected out
 
 `A00-A06 -> B00-B01 -> C00-C05 -> D00-D08 -> E00-E05 -> F00-F05 -> Gxx/Hxx -> I00-I02 -> J00-J05 -> K00-K05`.
 
-Current: C01-C05 baseline qualification and D08 finalist investigation while PixelRec publisher image vectors download and cover acquisition remains BLOCKED_EXTERNAL by the official Drive quota. Completed and reverified: three-track split manifests, mechanical leakage receipts, MicroLens publisher features, local CUDA text features, validation-only B0/B1/BPR/SASRec/GRU4Rec/LightGCN/VBPR/Two-Tower pilots, RecBole SASRec/BERT4Rec CUDA runtime smokes, MOSAIC M0-M7 development ladder. A read-only 49-artifact hash/footer audit passed; the warehouse now validates 41 stage receipts and zero locked-execution receipts. Pending: remaining baseline families, equal-budget HPO and seed qualification, frozen comparator/margin, locked outcomes, robustness, replication, systems, statistics, closure. A blocked branch does not block independent branches.
+Current: C01-C05 baseline qualification and D08 finalist investigation, with PixelRec publisher-image vectors qualified for a local-only multimodal branch. Raw-cover extraction remains BLOCKED_EXTERNAL by the official Drive quota. Completed and reverified: three-track split manifests, mechanical leakage receipts, MicroLens and PixelRec publisher features, local CUDA text features, validation-only B0/B1/BPR/SASRec/GRU4Rec/LightGCN/VBPR/Two-Tower pilots, RecBole SASRec/BERT4Rec CUDA runtime smokes, MOSAIC M0-M7 development ladder. Post-reboot source/split/checkpoint/feature integrity audits passed. The canonical warehouse validates 50 receipts and zero locked-execution receipts. Pending: remaining baseline families, equal-budget HPO and seed qualification, frozen comparator/margin, locked outcomes, robustness, replication, systems, statistics, closure. A blocked branch does not block independent branches.
 
 ## Hard gates
 
@@ -19,7 +19,7 @@ Current: C01-C05 baseline qualification and D08 finalist investigation while Pix
 
 ## GPU queue
 
-Completed CUDA jobs: BPR-MF, SASRec, GRU4Rec, LightGCN, VBPR, content Two-Tower pilots, revision-pinned text extraction, RecBole SASRec/BERT4Rec reference smokes, MOSAIC M0-M7 pilots. Queue: multimodal reference baselines, qualified HPO, exact ranking, robustness, systems benchmarks. GPU lock path: `/home/bjw-0/mosaic-rec-work/locks/gpu.lock`; its pre-reboot PID text is stale but the advisory lock is free. An unrelated ContextWeave GPU process currently holds material VRAM, so heavy MOSAIC jobs wait. CPU acquisition/preprocessing/statistics can overlap safely.
+Completed CUDA jobs: BPR-MF, SASRec, GRU4Rec, LightGCN, VBPR, content Two-Tower pilots, revision-pinned text extraction, RecBole SASRec/BERT4Rec reference smokes, MOSAIC M0-M7 pilots. Queue: BM3 reference runtime pilot, M1/M4/M6/M7 development seed stability, remaining multimodal reference baselines, qualified HPO, exact ranking, robustness, systems benchmarks. GPU lock path: `/home/bjw-0/mosaic-rec-work/locks/gpu.lock`; its pre-reboot PID text is stale but the advisory lock is free. An unrelated ACT-Agent model rollout currently holds material VRAM/compute, so heavy MOSAIC jobs wait. CPU acquisition/preprocessing/statistics can overlap safely.
 
 ## Artifacts and validation
 

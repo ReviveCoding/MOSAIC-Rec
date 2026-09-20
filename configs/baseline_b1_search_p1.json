@@ -1,0 +1,12 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "model": "B1_RECENT_FIT_POPULARITY",
+  "half_life_days": [7, 30, 90],
+  "ranking": "FIT-only exponential decay evaluated at FIT end",
+  "selection_role": "VALIDATION",
+  "selection_metric": "all_ndcg_at_20",
+  "ties": "prefer longer half-life, then deterministic item-ID order",
+  "candidate_policy": "exact available catalog with first-observed time <= query time",
+  "warning": "This is a CPU descriptive baseline search, not neural HPO or confirmatory evidence."
+}

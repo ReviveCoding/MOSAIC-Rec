@@ -1,0 +1,20 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "model": "B9_BM3_MMREC_REFERENCE",
+  "reference_commit": "c68ee7c9b0de1ca7c5150258322edb4994be29d9",
+  "reference_defaults": {
+    "embedding_size": 64,
+    "n_layers": 1,
+    "reg_weight": 0.1,
+    "cl_weight": 2.0,
+    "dropout": 0.3,
+    "learning_rate": 0.001,
+    "batch_size": 2048
+  },
+  "pilot_epochs": 1,
+  "seed": 20260920,
+  "input": "MicroLens FIT_VISIBLE plus publisher image/text vectors, with index-zero padding",
+  "evaluation": "exact available catalog, first VALIDATION event per FIT-history user, FIT seen mask",
+  "warning": "Runtime/common-protocol pilot only. One epoch does not qualify a baseline or establish cold capability."
+}

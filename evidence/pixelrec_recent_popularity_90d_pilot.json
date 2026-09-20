@@ -1,0 +1,39 @@
+{
+  "stage_id": "C00",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "PILOT_PASS",
+  "ended_utc": "2026-09-20T17:07:17.905062+00:00",
+  "dataset": "pixelrec50k",
+  "model": "B1_RECENT_FIT_POPULARITY",
+  "half_life_days": 90.0,
+  "role": "VALIDATION",
+  "validation_slices": {
+    "all": {
+      "n": 31954,
+      "ndcg_at_20": 0.00029723098971031484,
+      "recall_at_20": 0.0007823746635788947,
+      "mrr_at_20": 0.00016215747448420156
+    },
+    "controlled_cold": {
+      "n": 677,
+      "ndcg_at_20": 0.0,
+      "recall_at_20": 0.0,
+      "mrr_at_20": 0.0
+    },
+    "warm_fit": {
+      "n": 11064,
+      "ndcg_at_20": 0.0008584344762475959,
+      "recall_at_20": 0.002259580621836587,
+      "mrr_at_20": 0.00046832790488685614
+    }
+  },
+  "excluded_no_fit_user": 741,
+  "ranking": "Exact all available FIT-or-validation items, FIT-only exponentially decayed counts at FIT end, item-ID tie break",
+  "candidate_availability": "first observed timestamp <= event timestamp",
+  "warnings": [
+    "Validation pilot only; no locked result or paired inferential claim.",
+    "First observed time is a visibility proxy, not launch time."
+  ],
+  "evidence_class": "measured_development_pilot"
+}

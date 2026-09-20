@@ -1,24 +1,19 @@
 # MOSAIC-Rec
 
-MOSAIC-Rec is an auditable local research study of multimodal sequential recommendation. The primary track uses MicroLens-100K; MovieLens 32M and PixelRec50K are external validity tracks. The scientific design and outcome gates are in [the specification](docs/MOSAIC_REC_SPEC.md). [PLANS.md](PLANS.md) records execution state, and [reports/PROGRESS.md](reports/PROGRESS.md) records measured work.
+MOSAIC-Rec is a temporal, multimodal recommendation study with an explicit controlled-cold item cohort. Its scientific design is in [`docs/MOSAIC_REC_SPEC.md`](docs/MOSAIC_REC_SPEC.md); the execution ledger is [`PLANS.md`](PLANS.md). The current protocol is `mosaic-rec-2026-09-20-p1` in **DEVELOPMENT**. There is no frozen finalist, qualified comparator, locked result, or promotion claim.
 
-**Current state:** development pilots. No baseline, MOSAIC finalist, promotion result, or production effect is established. The controlled cold and FIT-warm slices have shown conflicting pilot behavior; preserve both. For exact stage status and limitations, see [evidence/stage_status.json](evidence/stage_status.json) and [reports/BLOCKERS.md](reports/BLOCKERS.md).
+## Current evidence
 
-## Runtime and data
+- MicroLens-100K, MovieLens 32M, and PixelRec50K interaction tracks have temporal FIT/VALIDATION/QUALIFICATION/LOCKED_FINAL split artifacts and passing mechanical leakage audits. MicroLens has 772 controlled-cold FIT-hidden items; PixelRec has 3,109.
+- The M0-M7 CUDA development ladder is complete on MicroLens. It shows a cold/warm tradeoff: M4 led the controlled-cold pilot slice while M7 led the FIT-warm pilot slice. Neither observation selects a finalist.
+- A FIT-only 7/30/90-day recent-popularity development search is recorded on all three tracks. RecBole SASRec/BERT4Rec CUDA reference runtime smokes completed; they use different internal splits and are not protocol parity.
+- The official PixelRec publisher image-feature file maps all 82,865 track items to finite vectors. Its raw cover archive is still an 11.47 GB preserved partial because Google Drive refused continuation on quota. The publisher-feature branch can proceed locally; raw-cover extraction cannot.
+- The canonical warehouse currently validates 50 stage receipts and **zero** locked-execution receipts. Check [`reports/PROGRESS.md`](reports/PROGRESS.md) for the latest live state and [`reports/RECOVERY_AUDIT.md`](reports/RECOVERY_AUDIT.md) for the post-reboot audit.
 
-Windows PowerShell is the control plane. All scientific Python, PyTorch and CUDA execution runs in Ubuntu-22.04 WSL. The isolated environment and large raw data, features, caches and checkpoints live in `/home/bjw-0/mosaic-rec-work`; the Windows repository holds code, compact evidence and reports. `configs/bootstrap.json` and `configs/gpu_policy.json` define these paths and the single-GPU rule.
+## Runtime and evidence
 
-Datasets are obtained from their official sources, checked against terms, hashed, and schema-qualified before use. Raw data, media and extracted vectors must stay outside this repository. See [the license audit](reports/DATASET_LICENSE_AUDIT.md) for source URLs and restrictions. TMDB content is excluded.
+PowerShell 7 is the control plane; all scientific Python/PyTorch/CUDA work runs in Ubuntu-22.04 WSL. The isolated Python environment and high-I/O scratch paths are in [`configs/bootstrap.json`](configs/bootstrap.json). The sole RTX GPU is reserved for one heavy MOSAIC trainer at a time. Raw datasets, features, caches, and checkpoints stay in WSL scratch, outside Git.
 
-## Reproduction entry points
+The reproduction commands and protected-outcome rules are in [`docs/REPRODUCTION_RUNBOOK.md`](docs/REPRODUCTION_RUNBOOK.md). Compact stage receipts live in `evidence/`; `evidence/warehouse.duckdb` and `evidence/tables/*.parquet` are regenerated from them and checked by `mosaic_rec.validate_evidence`. Claims are tracked in `evidence/claims.json`. Dataset rights and provenance are in [`reports/DATASET_LICENSE_AUDIT.md`](reports/DATASET_LICENSE_AUDIT.md).
 
-Run these from PowerShell at the repository root. The `wsl` commands cross into Ubuntu-22.04 for scientific execution.
-
-```powershell
-wsl -d Ubuntu-22.04 -- /home/bjw-0/mosaic-rec-work/.venv/bin/python scripts/gpu_probe.py
-wsl -d Ubuntu-22.04 -- /home/bjw-0/mosaic-rec-work/.venv/bin/python -m unittest discover -s tests -v
-wsl -d Ubuntu-22.04 -- /home/bjw-0/mosaic-rec-work/.venv/bin/python -m mosaic_rec.warehouse evidence evidence/warehouse.duckdb evidence/tables
-wsl -d Ubuntu-22.04 -- /home/bjw-0/mosaic-rec-work/.venv/bin/python -m mosaic_rec.validate_evidence evidence evidence/warehouse.duckdb
-```
-
-The WSL environment has the package installed in editable mode; `requirements.lock` captures its resolved packages. The current pilot does **not** reproduce a locked scientific conclusion. The complete acquisition identities, split cutoffs, and results are in `configs/data_registry.json`, `configs/split_p1.json`, and `evidence/`.
+This repository currently supports a development study and reproducibility audit. It does not establish production impact, reliability, external validity, or a winning MOSAIC model.

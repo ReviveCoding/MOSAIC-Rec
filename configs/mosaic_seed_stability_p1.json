@@ -1,0 +1,12 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "purpose": "Three-seed stability check of the adverse cold/warm ladder tradeoff",
+  "variants": [1, 4, 6, 7],
+  "original_seed": 20260920,
+  "additional_seeds": [20260921, 20260922],
+  "epochs": 3,
+  "selection_role": "VALIDATION",
+  "selection_metrics": ["controlled_cold_ndcg_at_20", "warm_fit_ndcg_at_20"],
+  "warning": "Development stability check only; not equal-budget neural HPO, comparator freeze or locked evidence."
+}

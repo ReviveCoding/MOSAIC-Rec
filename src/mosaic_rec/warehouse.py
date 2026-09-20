@@ -14,7 +14,7 @@ SCHEMAS = {
     "runs": "receipt_id VARCHAR, stage_id VARCHAR, protocol_id VARCHAR, state VARCHAR, status VARCHAR, dataset VARCHAR, model VARCHAR, ended_utc VARCHAR, evidence_class VARCHAR, receipt_sha256 VARCHAR",
     "datasets": "receipt_id VARCHAR, dataset VARCHAR, rows BIGINT, users BIGINT, items BIGINT, source_sha256 VARCHAR",
     "splits": "receipt_id VARCHAR, dataset VARCHAR, role VARCHAR, rows BIGINT, parquet_sha256 VARCHAR, parquet_path VARCHAR",
-    "trials": "receipt_id VARCHAR, model VARCHAR, epoch BIGINT, objective_loss DOUBLE",
+    "trials": "receipt_id VARCHAR, model VARCHAR, epoch BIGINT, objective_loss DOUBLE, dataset VARCHAR, hyperparameter_json VARCHAR, validation_ndcg_at_20 DOUBLE, source_receipt_id VARCHAR",
     "checkpoints": "receipt_id VARCHAR, model VARCHAR, checkpoint_path VARCHAR, checkpoint_sha256 VARCHAR",
     "metrics": "receipt_id VARCHAR, dataset VARCHAR, model VARCHAR, role VARCHAR, slice VARCHAR, metric VARCHAR, value DOUBLE, n BIGINT",
     "slices": "receipt_id VARCHAR, dataset VARCHAR, model VARCHAR, slice VARCHAR, n BIGINT",
@@ -71,11 +71,21 @@ def build(evidence_dir: Path, output: Path, tables_dir: Path) -> dict:
                 ])
                 counts["splits"] += 1
         for epoch in data.get("training_log", []):
-            con.execute("INSERT INTO trials VALUES (?, ?, ?, ?)", [
+            con.execute("INSERT INTO trials VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [
                 rid, data.get("model"), epoch.get("epoch"),
                 epoch.get("fit_bpr_loss", epoch.get("fit_loss")),
+                data.get("dataset"), None, None, None,
             ])
             counts["trials"] += 1
+        if data.get("status") == "VALIDATION_SELECTED" and isinstance(data.get("trials"), dict):
+            for dataset, trial_list in data["trials"].items():
+                for trial in trial_list:
+                    con.execute("INSERT INTO trials VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [
+                        rid, data.get("model"), None, None, dataset,
+                        json.dumps({"half_life_days": trial["half_life_days"]}, sort_keys=True),
+                        trial["all_ndcg_at_20"], trial["receipt_id"],
+                    ])
+                    counts["trials"] += 1
         if data.get("checkpoint_sha256"):
             con.execute("INSERT INTO checkpoints VALUES (?, ?, ?, ?)", [
                 rid, data.get("model"), data.get("checkpoint"), data["checkpoint_sha256"],

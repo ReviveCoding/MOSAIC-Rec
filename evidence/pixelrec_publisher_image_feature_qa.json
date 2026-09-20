@@ -1,0 +1,28 @@
+{
+  "stage_id": "B01",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "PASS",
+  "ended_utc": "2026-09-20T17:23:44.583711+00:00",
+  "dataset": "pixelrec50k",
+  "feature_source": "/home/bjw-0/mosaic-rec-work/features/pixelrec50k/publisher_image_feature.json",
+  "feature_source_sha256": "b74fb95313afe53bfc432ef918f732b731ad64728887a2890417401e2ce19779",
+  "publisher_vectors_seen": 408374,
+  "items_expected": 82865,
+  "items_mapped": 82865,
+  "items_missing": 0,
+  "bad_vectors": 0,
+  "feature_shape": [
+    82865,
+    1024
+  ],
+  "warnings": [
+    "Publisher-provided frozen image vectors; no local image encoder parity or provenance is claimed.",
+    "Item content effective times are unknown; historical content revision leakage cannot be ruled out."
+  ],
+  "evidence_class": "measured_feature_qa",
+  "feature_path": "/home/bjw-0/mosaic-rec-work/features/pixelrec50k/publisher_image_features.npy",
+  "feature_sha256": "bb114e3d89e3983aa3798f72e0d3756f535c881366a8bacb65e44f70a9c301ae",
+  "item_index_path": "/home/bjw-0/mosaic-rec-work/features/pixelrec50k/publisher_image_item_ids.txt",
+  "item_index_sha256": "ac84d699f63c4d11b5c2085047edab2fb128e0bd20a96b9a19d1506217add209"
+}

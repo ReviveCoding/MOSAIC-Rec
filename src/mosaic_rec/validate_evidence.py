@@ -72,6 +72,15 @@ def validate(evidence_dir: Path, warehouse: Path) -> dict[str, object]:
     ).fetchone()[0]
     if bad_gate:
         errors.append(f"invalid gate weights: {bad_gate}")
+    bad_trials = con.execute(
+        "SELECT count(*) FROM trials t LEFT JOIN runs r ON t.source_receipt_id=r.receipt_id "
+        "WHERE (t.source_receipt_id IS NOT NULL AND r.receipt_id IS NULL) "
+        "OR (t.validation_ndcg_at_20 IS NOT NULL AND "
+        "(NOT isfinite(t.validation_ndcg_at_20) OR t.validation_ndcg_at_20 < 0 "
+        "OR t.validation_ndcg_at_20 > 1))"
+    ).fetchone()[0]
+    if bad_trials:
+        errors.append(f"invalid or orphan search trials: {bad_trials}")
     unexecuted_finals = con.execute(
         "SELECT count(*) FROM runs WHERE state='LOCKED_EXECUTION'"
     ).fetchone()[0]

@@ -1,0 +1,34 @@
+{
+  "stage_id": "C04",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "REFERENCE_INPUT_PASS",
+  "ended_utc": "2026-09-20T17:33:49.854381+00:00",
+  "dataset": "microlens-100k",
+  "reference": "MMRec",
+  "outputs": {
+    "vision": {
+      "path": "/home/bjw-0/mosaic-rec-work/references/mmrec_micro_p1/vision.npy",
+      "sha256": "d5ac75c413af0781f6e49e414f15495c82e835f6f7f2c3df26febfd8eeaf3237",
+      "shape": [
+        19739,
+        1024
+      ],
+      "source_sha256": "61798511c916a8e36cd47d15aea66519bd0b4e390b491f7abbb3aeb0fa1eb57a"
+    },
+    "text": {
+      "path": "/home/bjw-0/mosaic-rec-work/references/mmrec_micro_p1/text.npy",
+      "sha256": "98b62102a54ae2d6e9755f7091541c4c9596119d6d742710ea988a8af19b28b9",
+      "shape": [
+        19739,
+        1024
+      ],
+      "source_sha256": "ce0625f211489d118937ea17b94c6eacd8afcbfe3be61ca3c669363d65bc4402"
+    }
+  },
+  "warnings": [
+    "Adds only the index-zero padding row required by MMRec; item IDs 1..19738 retain publisher alignment.",
+    "Reference input preparation is not a model score or parity result."
+  ],
+  "evidence_class": "derived_reference_input"
+}

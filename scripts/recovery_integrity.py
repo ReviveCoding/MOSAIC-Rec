@@ -67,7 +67,7 @@ def main() -> None:
             check(f"{name} {role}", Path(info["path"]), info["sha256"], info["rows"])
 
     for path in sorted(EVIDENCE.glob("*.json")):
-        if path.name.startswith("recovery_integrity_"):
+        if path.name.startswith(("recovery_integrity_", "integrity_after_")):
             continue
         data = json.loads(path.read_text())
         if not isinstance(data, dict):
@@ -76,6 +76,15 @@ def main() -> None:
             check(f"checkpoint {path.stem}", Path(data["checkpoint"]), data["checkpoint_sha256"])
         if data.get("features_sha256"):
             check(f"local features {path.stem}", Path(data["features_path"]), data["features_sha256"])
+        if data.get("feature_source_sha256"):
+            check(f"publisher source {path.stem}", Path(data["feature_source"]),
+                  data["feature_source_sha256"])
+        if data.get("feature_sha256") and data.get("feature_path"):
+            check(f"mapped publisher features {path.stem}", Path(data["feature_path"]),
+                  data["feature_sha256"])
+        if data.get("item_index_sha256"):
+            check(f"publisher item index {path.stem}", Path(data["item_index_path"]),
+                  data["item_index_sha256"])
 
     feature = json.loads((EVIDENCE / "microlens_feature_qa.json").read_text())["features"]
     directory = ROOT / "features/microlens-100k"

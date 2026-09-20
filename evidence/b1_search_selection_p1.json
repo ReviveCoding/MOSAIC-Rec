@@ -1,0 +1,120 @@
+{
+  "stage_id": "C00",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "VALIDATION_SELECTED",
+  "ended_utc": "2026-09-20T17:08:55.759463+00:00",
+  "model": "B1_RECENT_FIT_POPULARITY",
+  "config_sha256": "02e5dd51e3175b4c6c4d7be51f76634914f4d1fca11f68455a22a9f355f84282",
+  "git_head": "b107e9203fb075e5caf857284b6c413db1f2cfe0",
+  "trials": {
+    "microlens-100k": [
+      {
+        "half_life_days": 7,
+        "receipt_id": "microlens_recent_popularity_7d_pilot",
+        "receipt_sha256": "583cab3517017201de19eba2a4f794e3f95dc7ce7dcb328854fe1dff54490e78",
+        "all_ndcg_at_20": 0.006340516881706508,
+        "users": 41694,
+        "cold_ndcg_at_20": 0.0,
+        "warm_ndcg_at_20": 0.013187085891448652
+      },
+      {
+        "half_life_days": 30,
+        "receipt_id": "microlens_recent_popularity_30d_pilot",
+        "receipt_sha256": "f5981ae120d57c8a39fe4952708ba0419a587bcba688244026957b1c8ecceea9",
+        "all_ndcg_at_20": 0.0039061820012320867,
+        "users": 41694,
+        "cold_ndcg_at_20": 0.0,
+        "warm_ndcg_at_20": 0.00812412592205171
+      },
+      {
+        "half_life_days": 90,
+        "receipt_id": "microlens_recent_popularity_90d_pilot",
+        "receipt_sha256": "1bbc76afaa6a6eb2af15444d2e952c1c0ba56f3d1bfac1bdf42124bf17c9cbfa",
+        "all_ndcg_at_20": 0.0022882569031602643,
+        "users": 41694,
+        "cold_ndcg_at_20": 0.0,
+        "warm_ndcg_at_20": 0.004759145174857289
+      }
+    ],
+    "pixelrec50k": [
+      {
+        "half_life_days": 7,
+        "receipt_id": "pixelrec_recent_popularity_7d_pilot",
+        "receipt_sha256": "ba1ea0212ef7c4e65c08884cfaa234e870c7484383ed0d7af7f23c83917a5a7b",
+        "all_ndcg_at_20": 0.0028195325484494833,
+        "users": 31954,
+        "cold_ndcg_at_20": 0.0,
+        "warm_ndcg_at_20": 0.008143107651225126
+      },
+      {
+        "half_life_days": 30,
+        "receipt_id": "pixelrec_recent_popularity_30d_pilot",
+        "receipt_sha256": "dd4a1ab2285c9c661e720c37c6b6ea1090c372dde4b7b6bbdc8a655343ec0d43",
+        "all_ndcg_at_20": 0.001108763063683959,
+        "users": 31954,
+        "cold_ndcg_at_20": 0.0,
+        "warm_ndcg_at_20": 0.0032022247773822506
+      },
+      {
+        "half_life_days": 90,
+        "receipt_id": "pixelrec_recent_popularity_90d_pilot",
+        "receipt_sha256": "e42c07e51a56b8e9a543f1db52f49dda0b653a42e1f70a48c7499ad8c162da37",
+        "all_ndcg_at_20": 0.00029723098971031484,
+        "users": 31954,
+        "cold_ndcg_at_20": 0.0,
+        "warm_ndcg_at_20": 0.0008584344762475959
+      }
+    ],
+    "ml-32m": [
+      {
+        "half_life_days": 7,
+        "receipt_id": "ml32m_recent_popularity_7d_pilot",
+        "receipt_sha256": "6fe8ccd56393f2704a92e155ed8a4bf8e79fbee930b33c9f53e6388a7354c211",
+        "all_ndcg_at_20": 0.052522807471829955,
+        "users": 6465,
+        "cold_ndcg_at_20": null,
+        "warm_ndcg_at_20": 0.05747460228594798
+      },
+      {
+        "half_life_days": 30,
+        "receipt_id": "ml32m_recent_popularity_30d_pilot",
+        "receipt_sha256": "97b93a19670f8befdd7e4658d04432e1209a4ceaaeaca9c1168df3d2fe3c92c5",
+        "all_ndcg_at_20": 0.05151674539346823,
+        "users": 6465,
+        "cold_ndcg_at_20": null,
+        "warm_ndcg_at_20": 0.05637368973743604
+      },
+      {
+        "half_life_days": 90,
+        "receipt_id": "ml32m_recent_popularity_90d_pilot",
+        "receipt_sha256": "4bdfdf8579e02fda70df1058f8cb97505c67528b631d45545da2d6425437528d",
+        "all_ndcg_at_20": 0.04805187939117493,
+        "users": 6465,
+        "cold_ndcg_at_20": null,
+        "warm_ndcg_at_20": 0.052582159828020635
+      }
+    ]
+  },
+  "selected": {
+    "microlens-100k": {
+      "half_life_days": 7,
+      "receipt_id": "microlens_recent_popularity_7d_pilot",
+      "all_ndcg_at_20": 0.006340516881706508
+    },
+    "pixelrec50k": {
+      "half_life_days": 7,
+      "receipt_id": "pixelrec_recent_popularity_7d_pilot",
+      "all_ndcg_at_20": 0.0028195325484494833
+    },
+    "ml-32m": {
+      "half_life_days": 7,
+      "receipt_id": "ml32m_recent_popularity_7d_pilot",
+      "all_ndcg_at_20": 0.052522807471829955
+    }
+  },
+  "warnings": [
+    "Validation-selected descriptive baseline, not a frozen neural comparator or locked result."
+  ],
+  "evidence_class": "derived_development_selection"
+}
