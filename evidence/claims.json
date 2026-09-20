@@ -25,6 +25,15 @@
     "prohibited_stronger_formulation": "BM3 cannot handle cold items or MOSAIC outperforms a qualified BM3 baseline."
   },
   {
+    "claim_id": "pixelrec_local_content_alignment",
+    "statement": "The local PixelRec50K publisher image and MiniLM text feature indices align on all 82,865 track items, with finite vectors and mapped tag/title-presence fields.",
+    "evidence_class": "measured_content_alignment_qa",
+    "receipt_id": "pixelrec_content_alignment_p1",
+    "status": "SUPPORTED",
+    "limitation": "This is local feature QA, not image-encoder parity, historical content-time validity, a model result, or permission to redistribute derived vectors.",
+    "prohibited_stronger_formulation": "PixelRec multimodal replication passed or raw covers were independently encoded."
+  },
+  {
     "claim_id": "core_promotion",
     "statement": "MOSAIC improves controlled cold NDCG@20 while retaining warm quality.",
     "evidence_class": "unexecuted",

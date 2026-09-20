@@ -37,6 +37,8 @@ wsl -d Ubuntu-22.04 -- /home/bjw-0/mosaic-rec-work/.venv/bin/python -m mosaic_re
 
 The validator prints `locked_execution_receipts`. It must remain zero until comparator, finalist, margin, seed, metric, and robustness definitions are validly frozen. Read `reports/RECOVERY_AUDIT.md` before resuming from a host or WSL interruption.
 
+`mosaic_rec.protocol` defines the allowed PILOT → DEVELOPMENT → QUALIFICATION → FROZEN → LOCKED_EXECUTION → ANALYSIS → CLOSED transitions and fails closed on protected role access. A freeze manifest must identify source, split/cohort/feature hashes, both comparator roles, finalist, seeds, HPO selection, metric/candidate definitions, margin, gates, robustness, and ablations. This repository is still in DEVELOPMENT; there is no valid freeze manifest and `LOCKED_FINAL` access is prohibited.
+
 ## Development runs
 
 Existing M0–M7 receipts and checkpoints passed the post-reboot hash audit; **do not rerun over their paths**. To reproduce a pilot independently, use a new receipt and checkpoint path, retain the seed, and label the new run as development evidence. `scripts/run_mosaic_ladder.sh` documents the historical single-GPU command sequence but writes to the existing paths and must not be replayed in place.
