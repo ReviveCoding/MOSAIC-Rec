@@ -1,0 +1,18 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "model": "B7_BERT4REC_LOCAL_COMMON_PILOT",
+  "dataset": "microlens-100k",
+  "training_role": "FIT_VISIBLE",
+  "evaluation_role": "VALIDATION",
+  "architecture": "two-layer bidirectional Transformer, 64-dimensional item embeddings, max length 20",
+  "objective": "20 percent random Cloze masking plus mandatory final-position mask; full FIT-item softmax",
+  "cold_rule": "FIT-hidden controlled-cold IDs are absent from input histories and training output classes",
+  "epochs": 3,
+  "seed": 20260920,
+  "batch_size": 512,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "evaluation": "first VALIDATION event per FIT-history user; exact available full catalog; FIT seen mask",
+  "warning": "Local algorithmic pilot, not RecBole metric parity or qualified comparator. No protected outcomes."
+}

@@ -11,7 +11,7 @@ All numbers below are **VALIDATION development pilots** under protocol `mosaic-r
 | B4 Two-Tower content | CUDA pilot | Content can score FIT-hidden items | HPO, seeds and reference parity pending |
 | B5 GRU4Rec | CUDA pilot used a source-wide negative pool with possible FIT-hidden cold negative updates; future training code now guards the cold cohort | ID-only; historical cold evidence unqualified | Corrected common pilot, HPO, seeds and parity pending |
 | B6 SASRec | CUDA pilot had the same possible FIT-hidden cold negative updates; isolated RecBole runtime smoke uses a different internal split | ID-only; historical cold evidence unqualified | Corrected common pilot, HPO, seeds and parity pending |
-| B7 BERT4Rec | Isolated RecBole CUDA runtime smoke | ID-only cold limitation | Local common-protocol evaluator/training, HPO and parity pending |
+| B7 BERT4Rec | Isolated RecBole CUDA runtime smoke; local common-protocol Cloze pilot code and CPU cold-gradient test prepared, not trained | ID-only cold limitation | Local CUDA pilot, HPO, reference/local parity and seeds pending |
 | B8 VBPR | CUDA pilot | Content can score FIT-hidden items | HPO, seeds and parity pending |
 | B9 BM3 | One-epoch MMRec architecture CUDA/common-validation pilot; overall NDCG@20 0.002922, controlled cold 0, FIT-warm 0.006078 | Reference inference scores graph/ID embeddings | Undertrained pilot only; HPO and seed parity pending; not sole cold comparator |
 | B10 FREEDOM | Attempt 1 began on CUDA, wrote a hashed item graph cache, then exited abruptly without metric/checkpoint; distinct attempt 2 is prepared | Content item graph may support FIT-hidden items | Runtime failure cause unproven; CUDA retry, HPO and parity pending |
