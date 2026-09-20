@@ -53,13 +53,13 @@ This accesses VALIDATION only. Do not inspect QUALIFICATION or LOCKED_FINAL outc
 
 `scripts/run_mosaic_validation_replay.sh` is a read-only CUDA replay of the existing M1/M4/M6/M7 development checkpoints. It writes first-event per-user exact available-catalog outcomes to WSL scratch, checks aggregate agreement with the original receipts within 1e-6, and creates distinct D08 replay receipts. It never retrains and has no QUALIFICATION or LOCKED_FINAL input. Run it only after the GPU is free and the earlier reference-pilot queue is resolved.
 
-The declared MMRec BM3 and FREEDOM one-epoch reference runtime pilots use the isolated checkout in WSL scratch and the hash-qualified MicroLens publisher vectors. After checking that unrelated GPU compute processes have exited, run them sequentially:
+The MMRec BM3 one-epoch reference pilot is complete. FREEDOM attempt 1 is preserved as interrupted; do not replay it over its paths. Attempt 2 uses the same hash-qualified publisher vectors through a distinct WSL input/cache path. After confirming sustained absence of unrelated GPU work, launch only the prepared retry:
 
 ```powershell
-wsl -d Ubuntu-22.04 -- bash scripts/run_mmrec_reference_pilots.sh
+wsl -d Ubuntu-22.04 -- bash scripts/run_freedom_reference_attempt2.sh
 ```
 
-The script refuses existing receipt/checkpoint paths and checks GPU occupancy before each job. It preserves separate logs and failure receipts. An epoch-one pilot is never a qualified comparator. Rebuild and validate the evidence warehouse after inspecting any new receipt.
+The script refuses existing attempt-2 receipt/checkpoint/cache paths and checks GPU occupancy. If it exits abruptly without a receipt, preserve its log/cache and create a distinct interrupted receipt before any further attempt. An epoch-one pilot is never a qualified comparator. Rebuild and validate the evidence warehouse after inspecting any new receipt.
 
 `src/mosaic_rec/statistics.py` implements paired user-cluster percentile intervals, cold item-cluster sensitivity, and Holm adjustment. `configs/statistics_development_p1.json` records the proposed design. It is **not** an E04 scientific freeze; no locked scores may be analyzed until the full qualification manifest is sealed.
 

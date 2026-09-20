@@ -23,3 +23,9 @@ Live recheck on 2026-09-20: the [official MMRec repository](https://github.com/e
 # BERT4Rec runtime follow-up
 
 RecBole 1.2.1 BERT4Rec completed a one-epoch CUDA FIT-only train, checkpoint reload and internal evaluation smoke. Its internal NDCG@20 was 0.0028 validation and 0.0014 test. The split and candidate protocol differ from MOSAIC; these are **reference runtime checks only**, not parity or baseline scores. An unrelated GPU process appeared during the run, so wall time is invalid for throughput.
+
+# MMRec common-validation runtime follow-up
+
+The one-epoch BM3 reference adapter completed CUDA training, checkpoint hashing, and common temporal exact-catalog validation on MicroLens. Its overall first-event NDCG@20 was 0.002922 on 41,694 eligible users, controlled-cold NDCG@20 was 0 on 918 examples, and FIT-warm NDCG@20 was 0.006078 on 20,047 examples. The zero cold score is retained as an unfavorable pilot result. BM3 remains **unqualified**: one epoch, one seed, no equal-budget HPO or reference/local metric parity. Its FIT-hidden items have no collaborative graph support and it cannot be the sole cold-capable comparator. Source: `evidence/microlens_bm3_mmrec_reference_pilot.json`.
+
+FREEDOM attempt 1 exited after graph-cache creation without a checkpoint or metric; the preserved interrupted receipt is `evidence/microlens_freedom_mmrec_reference_attempt1_interrupted.json`. Attempt 2 has separate input/cache/output identities and is held until the single GPU is free of unrelated model-rollout evaluation. An empty GPU instant during another project's training/evaluation handoff is insufficient authorization to launch a competing heavy trainer.

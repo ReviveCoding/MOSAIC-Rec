@@ -6,7 +6,7 @@ Objective: execute the specified three-track study without opening protected out
 
 `A00-A06 -> B00-B01 -> C00-C05 -> D00-D08 -> E00-E05 -> F00-F05 -> Gxx/Hxx -> I00-I02 -> J00-J05 -> K00-K05`.
 
-Current: C01-C05 baseline qualification and D08 finalist investigation, with PixelRec publisher-image vectors qualified for a local-only multimodal branch. Raw-cover extraction remains BLOCKED_EXTERNAL by the official Drive quota. Completed and reverified: three-track split manifests, mechanical leakage receipts, MicroLens and PixelRec publisher features, local CUDA text features, validation-only B0/B1/BPR/SASRec/GRU4Rec/LightGCN/VBPR/Two-Tower pilots, RecBole SASRec/BERT4Rec CUDA runtime smokes, MOSAIC M0-M7 development ladder. Post-reboot source/split/checkpoint/feature integrity audits passed. The canonical warehouse validates 50 receipts and zero locked-execution receipts. Pending: remaining baseline families, equal-budget HPO and seed qualification, frozen comparator/margin, locked outcomes, robustness, replication, systems, statistics, closure. A blocked branch does not block independent branches.
+Current: C01-C05 baseline qualification and D08 finalist investigation, with PixelRec publisher-image vectors qualified for a local-only multimodal branch. Raw-cover extraction remains BLOCKED_EXTERNAL by the official Drive quota. Completed and reverified: three-track split manifests, mechanical leakage receipts, MicroLens and PixelRec publisher features, local CUDA text features, validation-only B0/B1/BPR/SASRec/GRU4Rec/LightGCN/VBPR/Two-Tower pilots, RecBole SASRec/BERT4Rec CUDA runtime smokes, MOSAIC M0-M7 development ladder. Post-reboot source/split/checkpoint/feature integrity audits passed. The canonical warehouse validates 53 receipts and zero locked-execution receipts. A warehouse-derived technical report exists as a clearly labeled development draft. Pending: remaining baseline families, equal-budget HPO and seed qualification, frozen comparator/margin, locked outcomes, robustness, replication, systems, statistics, closure. A blocked branch does not block independent branches.
 
 ## Hard gates
 
@@ -23,7 +23,7 @@ Completed CUDA jobs: an earlier BPR-MF pilot, SASRec, GRU4Rec, LightGCN, VBPR, c
 
 ## Artifacts and validation
 
-Windows repository holds code, compact evidence, reports, config manifests and aggregate outputs. `/home/bjw-0/mosaic-rec-work` holds raw datasets, feature caches, checkpoints, and logs. Validate by checksums, schema and leakage checks, known-answer metric tests, CUDA tensor probe, stage receipts, evidence and claim-ledger audits.
+Windows repository holds code, compact evidence, reports, config manifests and aggregate outputs. `/home/bjw-0/mosaic-rec-work` holds raw datasets, feature caches, checkpoints, and logs. Validate by checksums, schema and leakage checks, known-answer metric tests, CUDA tensor probe, stage receipts, evidence and claim-ledger audits. Render the technical report with `python -m mosaic_rec.render_technical_report evidence/warehouse.duckdb evidence/stage_status.json reports/MOSAIC_REC_FINAL_TECHNICAL_REPORT.md` from the isolated WSL environment after warehouse updates.
 
 ## Recovery
 
