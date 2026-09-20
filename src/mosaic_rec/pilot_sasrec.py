@@ -128,7 +128,7 @@ def run(
         history = histories[user]
         if history:
             seq = history[-20:]
-            seen = set(seq)
+            seen = set(history)
             seen.add(item)
             limit = bisect.bisect_right(available_times, stamp)
             if len(seen) < limit:
