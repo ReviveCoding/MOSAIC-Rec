@@ -9,10 +9,21 @@ from pathlib import Path
 
 import duckdb
 
-
 TABLES = (
-    "runs", "datasets", "splits", "trials", "checkpoints", "metrics", "slices",
-    "robustness", "ablations", "gate_weights", "latency", "gpu", "bootstrap", "claims",
+    "runs",
+    "datasets",
+    "splits",
+    "trials",
+    "checkpoints",
+    "metrics",
+    "slices",
+    "robustness",
+    "ablations",
+    "gate_weights",
+    "latency",
+    "gpu",
+    "bootstrap",
+    "claims",
 )
 
 
@@ -24,7 +35,9 @@ def validate(evidence_dir: Path, warehouse: Path) -> dict[str, object]:
     if errors:
         con.close()
         return {"status": "FAIL", "errors": errors}
-    rows = con.execute("SELECT receipt_id, receipt_sha256, status, evidence_class FROM runs").fetchall()
+    rows = con.execute(
+        "SELECT receipt_id, receipt_sha256, status, evidence_class FROM runs"
+    ).fetchall()
     receipt_ids = set()
     for rid, digest, status, evidence_class in rows:
         if rid in receipt_ids:
@@ -42,13 +55,18 @@ def validate(evidence_dir: Path, warehouse: Path) -> dict[str, object]:
         if path.name in {"stage_status.json", "gpu_qualification.json", "claims.json"}:
             continue
         data = json.loads(path.read_text())
-        if (isinstance(data, dict) and "stage_id" in data
-                and "state" in data and "evidence_class" in data
-                and path.stem not in receipt_ids):
+        if (
+            isinstance(data, dict)
+            and "stage_id" in data
+            and "state" in data
+            and "evidence_class" in data
+            and path.stem not in receipt_ids
+        ):
             errors.append(f"receipt omitted from warehouse: {path.stem}")
     claims = json.loads((evidence_dir / "claims.json").read_text())
     warehouse_claims = {
-        row[0]: row[1] for row in con.execute("SELECT claim_id, status FROM claims").fetchall()
+        row[0]: row[1]
+        for row in con.execute("SELECT claim_id, status FROM claims").fetchall()
     }
     seen_claims: set[str] = set()
     for claim in claims:
@@ -58,10 +76,16 @@ def validate(evidence_dir: Path, warehouse: Path) -> dict[str, object]:
         seen_claims.add(cid)
         if warehouse_claims.get(cid) != claim["status"]:
             errors.append(f"claim mismatch: {cid}")
-        if claim["status"] in {"SUPPORTED", "INTERNAL_PILOT"} and claim.get("receipt_id") not in receipt_ids:
+        if (
+            claim["status"] in {"SUPPORTED", "INTERNAL_PILOT"}
+            and claim.get("receipt_id") not in receipt_ids
+        ):
             errors.append(f"measured claim lacks receipt: {cid}")
         if claim["status"] == "SUPPORTED" and claim.get("evidence_class") in {
-            "unexecuted", "unsupported", "simulated", "projected",
+            "unexecuted",
+            "unsupported",
+            "simulated",
+            "projected",
         }:
             errors.append(f"supported claim has invalid evidence class: {cid}")
     bad_metrics = con.execute(
@@ -88,7 +112,10 @@ def validate(evidence_dir: Path, warehouse: Path) -> dict[str, object]:
     unexecuted_finals = con.execute(
         "SELECT count(*) FROM runs WHERE state='LOCKED_EXECUTION'"
     ).fetchone()[0]
-    counts = {name: con.execute(f"SELECT count(*) FROM {name}").fetchone()[0] for name in TABLES}
+    counts = {
+        name: con.execute(f"SELECT count(*) FROM {name}").fetchone()[0]
+        for name in TABLES
+    }
     stage_status = json.loads((evidence_dir / "stage_status.json").read_text())
     if stage_status.get("canonical_receipts_current") != counts["runs"]:
         errors.append("stage_status canonical receipt count differs from warehouse")

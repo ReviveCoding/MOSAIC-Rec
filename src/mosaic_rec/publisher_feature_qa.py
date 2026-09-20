@@ -24,7 +24,9 @@ def sha256(path: Path) -> str:
 
 def qualify(source: Path, item_info: Path, output: Path, index: Path) -> dict:
     if not source.is_file() or source.suffix == ".part":
-        raise FileNotFoundError("A completed official publisher feature JSON is required")
+        raise FileNotFoundError(
+            "A completed official publisher feature JSON is required"
+        )
     with item_info.open(newline="", encoding="utf-8") as handle:
         item_ids = [row["item_id"] for row in csv.DictReader(handle)]
     if len(item_ids) != len(set(item_ids)):
@@ -33,8 +35,9 @@ def qualify(source: Path, item_info: Path, output: Path, index: Path) -> dict:
     positions = {item: pos for pos, item in enumerate(ordered)}
     output.parent.mkdir(parents=True, exist_ok=True)
     tmp = output.with_suffix(".npy.tmp")
-    vectors = np.lib.format.open_memmap(tmp, mode="w+", dtype="float32",
-                                         shape=(len(ordered), 1024))
+    vectors = np.lib.format.open_memmap(
+        tmp, mode="w+", dtype="float32", shape=(len(ordered), 1024)
+    )
     seen: set[str] = set()
     mapped = 0
     total = 0
@@ -57,13 +60,19 @@ def qualify(source: Path, item_info: Path, output: Path, index: Path) -> dict:
     del vectors
     missing = len(ordered) - mapped
     result = {
-        "stage_id": "B01", "protocol_id": "mosaic-rec-2026-09-20-p1",
-        "state": "DEVELOPMENT", "status": "PASS" if not (missing or bad) else "FAIL",
+        "stage_id": "B01",
+        "protocol_id": "mosaic-rec-2026-09-20-p1",
+        "state": "DEVELOPMENT",
+        "status": "PASS" if not (missing or bad) else "FAIL",
         "ended_utc": datetime.now(timezone.utc).isoformat(),
-        "dataset": "pixelrec50k", "feature_source": str(source),
+        "dataset": "pixelrec50k",
+        "feature_source": str(source),
         "feature_source_sha256": sha256(source),
-        "publisher_vectors_seen": total, "items_expected": len(ordered),
-        "items_mapped": mapped, "items_missing": missing, "bad_vectors": bad,
+        "publisher_vectors_seen": total,
+        "items_expected": len(ordered),
+        "items_mapped": mapped,
+        "items_missing": missing,
+        "bad_vectors": bad,
         "feature_shape": [len(ordered), 1024],
         "warnings": [
             "Publisher-provided frozen image vectors; no local image encoder parity or provenance is claimed.",
@@ -74,8 +83,12 @@ def qualify(source: Path, item_info: Path, output: Path, index: Path) -> dict:
     if result["status"] == "PASS":
         os.replace(tmp, output)
         index.write_text("\n".join(ordered) + "\n", encoding="utf-8")
-        result.update(feature_path=str(output), feature_sha256=sha256(output),
-                      item_index_path=str(index), item_index_sha256=sha256(index))
+        result.update(
+            feature_path=str(output),
+            feature_sha256=sha256(output),
+            item_index_path=str(index),
+            item_index_sha256=sha256(index),
+        )
     return result
 
 

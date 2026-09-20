@@ -39,25 +39,30 @@ def inspect(dataset: str, interactions: Path, content: Path) -> dict:
                 ids.append(row["item_id"])
                 empty += not bool((row["title"] or "").strip())
             columns_excluded = [
-                col for col in (reader.fieldnames or [])
-                if col.endswith("_number")
+                col for col in (reader.fieldnames or []) if col.endswith("_number")
             ]
     else:
         raise ValueError(dataset)
     mapped = set(ids)
     result = {
-        "stage_id": "A03", "protocol_id": "mosaic-rec-2026-09-20-p1",
-        "state": "PILOT", "status": "PASS" if items <= mapped and len(ids) == len(mapped) else "FAIL",
+        "stage_id": "A03",
+        "protocol_id": "mosaic-rec-2026-09-20-p1",
+        "state": "PILOT",
+        "status": "PASS" if items <= mapped and len(ids) == len(mapped) else "FAIL",
         "ended_utc": datetime.now(timezone.utc).isoformat(),
-        "dataset": dataset, "content_file": content.name,
+        "dataset": dataset,
+        "content_file": content.name,
         "content_sha256": sha256(content),
-        "interaction_items": len(items), "content_rows": len(ids),
+        "interaction_items": len(items),
+        "content_rows": len(ids),
         "unique_content_items": len(mapped),
         "interaction_items_missing_content": len(items - mapped),
         "content_items_without_interactions": len(mapped - items),
         "empty_titles": empty,
         "time_unsafe_aggregate_columns_excluded_from_features": columns_excluded,
-        "warnings": ["Titles/descriptions lack effective-time metadata; historical revision leakage remains possible."],
+        "warnings": [
+            "Titles/descriptions lack effective-time metadata; historical revision leakage remains possible."
+        ],
         "evidence_class": "measured_data_qa",
     }
     if result["status"] != "PASS":

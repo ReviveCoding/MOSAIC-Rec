@@ -22,9 +22,16 @@ from torch import nn
 
 
 class ContentBPR(nn.Module):
-    def __init__(self, n_users: int, n_items: int, n_tags: int,
-                 text: torch.Tensor, image: torch.Tensor, tags: torch.Tensor,
-                 mode: str) -> None:
+    def __init__(
+        self,
+        n_users: int,
+        n_items: int,
+        n_tags: int,
+        text: torch.Tensor,
+        image: torch.Tensor,
+        tags: torch.Tensor,
+        mode: str,
+    ) -> None:
         super().__init__()
         self.mode = mode
         self.user = nn.Embedding(n_users + 1, 64)
@@ -38,7 +45,9 @@ class ContentBPR(nn.Module):
         nn.init.normal_(self.user.weight, std=0.02)
         nn.init.normal_(self.item_id.weight, std=0.02)
 
-    def item_vector(self, ids: torch.Tensor, cold: torch.Tensor | None = None) -> torch.Tensor:
+    def item_vector(
+        self, ids: torch.Tensor, cold: torch.Tensor | None = None
+    ) -> torch.Tensor:
         visual = self.image_projection(self.image[ids - 1])
         if self.mode == "vbpr":
             collaborative = self.item_id(ids)
@@ -55,9 +64,14 @@ class ContentBPR(nn.Module):
 
 def parquet_events(path: Path) -> list[tuple[int, int, int]]:
     table = pq.read_table(path, columns=["user_id", "item_id", "timestamp"])
-    return sorted((int(t), int(u), int(i)) for u, i, t in zip(
-        table["user_id"].to_pylist(), table["item_id"].to_pylist(),
-        table["timestamp"].to_pylist()))
+    return sorted(
+        (int(t), int(u), int(i))
+        for u, i, t in zip(
+            table["user_id"].to_pylist(),
+            table["item_id"].to_pylist(),
+            table["timestamp"].to_pylist(),
+        )
+    )
 
 
 def load_features(feature_dir: Path, tag_file: Path, device: torch.device):
@@ -74,15 +88,31 @@ def load_features(feature_dir: Path, tag_file: Path, device: torch.device):
             tag_values[int(key)] = tag.strip()
     if set(tag_values) != set(range(1, 19739)):
         raise ValueError("Tag item mapping mismatch")
-    tag_vocab = {tag: index for index, tag in enumerate(sorted(set(tag_values.values())))}
-    tags = torch.tensor([tag_vocab[tag_values[i]] for i in range(1, 19739)], device=device)
-    return (torch.as_tensor(text, device=device), torch.as_tensor(image, device=device),
-            tags, len(tag_vocab))
+    tag_vocab = {
+        tag: index for index, tag in enumerate(sorted(set(tag_values.values())))
+    }
+    tags = torch.tensor(
+        [tag_vocab[tag_values[i]] for i in range(1, 19739)], device=device
+    )
+    return (
+        torch.as_tensor(text, device=device),
+        torch.as_tensor(image, device=device),
+        tags,
+        len(tag_vocab),
+    )
 
 
-def run(mode: str, split_dir: Path, interaction_csv: Path,
-        feature_dir: Path, tag_file: Path, lock: Path,
-        checkpoint: Path, epochs: int, seed: int) -> dict:
+def run(
+    mode: str,
+    split_dir: Path,
+    interaction_csv: Path,
+    feature_dir: Path,
+    tag_file: Path,
+    lock: Path,
+    checkpoint: Path,
+    epochs: int,
+    seed: int,
+) -> dict:
     if not torch.cuda.is_available():
         raise RuntimeError("CUDA required; CPU fallback prohibited")
     if mode not in {"vbpr", "two_tower_content"}:
@@ -118,11 +148,16 @@ def run(mode: str, split_dir: Path, interaction_csv: Path,
     first_val: dict[int, tuple[int, int]] = {}
     for stamp, user, item in validation:
         first_val.setdefault(user, (stamp, item))
-    eval_rows = [(user, stamp, item) for user, (stamp, item) in first_val.items() if user in fit_seen]
+    eval_rows = [
+        (user, stamp, item)
+        for user, (stamp, item) in first_val.items()
+        if user in fit_seen
+    ]
     text, image, tags, n_tags = load_features(feature_dir, tag_file, device)
     torch.manual_seed(seed)
-    model = ContentBPR(max(user for _, user, _ in fit), 19738, n_tags,
-                       text, image, tags, mode).to(device)
+    model = ContentBPR(
+        max(user for _, user, _ in fit), 19738, n_tags, text, image, tags, mode
+    ).to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=0.001, weight_decay=1e-4)
     user_tensor = torch.tensor(user_ids, device=device)
     pos_tensor = torch.tensor(positives, device=device)
@@ -139,7 +174,7 @@ def run(mode: str, split_dir: Path, interaction_csv: Path,
             order = torch.randperm(len(user_tensor), device=device)
             loss_sum = 0.0
             for offset in range(0, len(order), 8192):
-                idx = order[offset:offset + 8192]
+                idx = order[offset : offset + 8192]
                 with torch.autocast("cuda", dtype=torch.bfloat16):
                     pos = model.score(user_tensor[idx], pos_tensor[idx])
                     neg = model.score(user_tensor[idx], neg_tensor[idx])
@@ -148,31 +183,50 @@ def run(mode: str, split_dir: Path, interaction_csv: Path,
                 loss.backward()
                 optimizer.step()
                 loss_sum += float(loss.detach()) * len(idx)
-            log.append({"epoch": epoch + 1, "fit_bpr_loss": loss_sum / len(user_tensor)})
+            log.append(
+                {"epoch": epoch + 1, "fit_bpr_loss": loss_sum / len(user_tensor)}
+            )
         torch.cuda.synchronize()
         train_seconds = time.perf_counter() - train_start
         model.eval()
         item_ids = torch.arange(1, 19739, device=device)
-        cold_mask = torch.tensor([i not in warm_first for i in range(1, 19739)], device=device)
-        first_tensor = torch.tensor([first_seen[i] for i in range(1, 19739)], device=device)
-        cold_cohort = {int(line) for line in (split_dir / "controlled_cold_item_ids.txt").read_text().splitlines()}
-        metrics = {"all": [0.0, 0.0, 0.0, 0], "controlled_cold": [0.0, 0.0, 0.0, 0],
-                   "warm_fit": [0.0, 0.0, 0.0, 0]}
+        cold_mask = torch.tensor(
+            [i not in warm_first for i in range(1, 19739)], device=device
+        )
+        first_tensor = torch.tensor(
+            [first_seen[i] for i in range(1, 19739)], device=device
+        )
+        cold_cohort = {
+            int(line)
+            for line in (split_dir / "controlled_cold_item_ids.txt")
+            .read_text()
+            .splitlines()
+        }
+        metrics = {
+            "all": [0.0, 0.0, 0.0, 0],
+            "controlled_cold": [0.0, 0.0, 0.0, 0],
+            "warm_fit": [0.0, 0.0, 0.0, 0],
+        }
         score_start = time.perf_counter()
         with torch.inference_mode():
             with torch.autocast("cuda", dtype=torch.bfloat16):
                 catalog = model.item_vector(item_ids, cold_mask).to(torch.float32)
             for offset in range(0, len(eval_rows), 256):
-                batch = eval_rows[offset:offset + 256]
+                batch = eval_rows[offset : offset + 256]
                 users = torch.tensor([r[0] for r in batch], device=device)
                 with torch.autocast("cuda", dtype=torch.bfloat16):
                     scores = model.user(users) @ catalog.T
                 scores = scores.to(torch.float64)
-                scores -= torch.arange(19738, device=device, dtype=torch.float64)[None, :] * 1e-12
+                scores -= (
+                    torch.arange(19738, device=device, dtype=torch.float64)[None, :]
+                    * 1e-12
+                )
                 stamps = torch.tensor([r[1] for r in batch], device=device)
                 scores.masked_fill_(first_tensor[None, :] > stamps[:, None], -torch.inf)
                 for row, (user, _, _) in enumerate(batch):
-                    scores[row, torch.tensor(list(fit_seen[user]), device=device) - 1] = -torch.inf
+                    scores[
+                        row, torch.tensor(list(fit_seen[user]), device=device) - 1
+                    ] = -torch.inf
                 top = scores.topk(20, dim=1).indices.cpu().tolist()
                 for ranked, (_, _, target) in zip(top, batch):
                     slices = ["all"]
@@ -191,28 +245,43 @@ def run(mode: str, split_dir: Path, interaction_csv: Path,
         torch.cuda.synchronize()
         score_seconds = time.perf_counter() - score_start
         checkpoint.parent.mkdir(parents=True, exist_ok=True)
-        torch.save({"model": model.state_dict(), "mode": mode, "seed": seed}, checkpoint)
+        torch.save(
+            {"model": model.state_dict(), "mode": mode, "seed": seed}, checkpoint
+        )
         peak_vram = torch.cuda.max_memory_allocated()
         fcntl.flock(lock_handle, fcntl.LOCK_UN)
     slices = {
-        key: {"n": int(v[3]), "ndcg_at_20": v[0] / v[3] if v[3] else None,
-              "recall_at_20": v[1] / v[3] if v[3] else None,
-              "mrr_at_20": v[2] / v[3] if v[3] else None}
+        key: {
+            "n": int(v[3]),
+            "ndcg_at_20": v[0] / v[3] if v[3] else None,
+            "recall_at_20": v[1] / v[3] if v[3] else None,
+            "mrr_at_20": v[2] / v[3] if v[3] else None,
+        }
         for key, v in metrics.items()
     }
     return {
         "stage_id": "C04" if mode == "vbpr" else "C02",
-        "protocol_id": "mosaic-rec-2026-09-20-p1", "state": "DEVELOPMENT",
-        "status": "PILOT_PASS", "ended_utc": datetime.now(timezone.utc).isoformat(),
-        "model": mode.upper(), "dataset": "microlens-100k",
-        "device": torch.cuda.get_device_name(0), "seed": seed,
-        "fit_samples": len(user_ids), "epochs": epochs,
-        "training_log": log, "train_seconds": train_seconds,
-        "score_seconds": score_seconds, "peak_vram_bytes": peak_vram,
+        "protocol_id": "mosaic-rec-2026-09-20-p1",
+        "state": "DEVELOPMENT",
+        "status": "PILOT_PASS",
+        "ended_utc": datetime.now(timezone.utc).isoformat(),
+        "model": mode.upper(),
+        "dataset": "microlens-100k",
+        "device": torch.cuda.get_device_name(0),
+        "seed": seed,
+        "fit_samples": len(user_ids),
+        "epochs": epochs,
+        "training_log": log,
+        "train_seconds": train_seconds,
+        "score_seconds": score_seconds,
+        "peak_vram_bytes": peak_vram,
         "validation_slices": slices,
-        "checkpoint": str(checkpoint), "checkpoint_sha256": hashlib.sha256(checkpoint.read_bytes()).hexdigest(),
-        "warnings": ["Development pilot only; no equal-budget HPO, reference parity, or locked result.",
-                     "Untimestamped historical content revisions are not ruled out."],
+        "checkpoint": str(checkpoint),
+        "checkpoint_sha256": hashlib.sha256(checkpoint.read_bytes()).hexdigest(),
+        "warnings": [
+            "Development pilot only; no equal-budget HPO, reference parity, or locked result.",
+            "Untimestamped historical content revisions are not ruled out.",
+        ],
         "evidence_class": "measured_development_pilot",
     }
 
@@ -230,9 +299,17 @@ def main() -> None:
     parser.add_argument("--epochs", type=int, default=5)
     parser.add_argument("--seed", type=int, default=20260920)
     args = parser.parse_args()
-    result = run(args.mode, args.split_dir, args.interaction_csv,
-                 args.feature_dir, args.tag_file, args.lock,
-                 args.checkpoint, args.epochs, args.seed)
+    result = run(
+        args.mode,
+        args.split_dir,
+        args.interaction_csv,
+        args.feature_dir,
+        args.tag_file,
+        args.lock,
+        args.checkpoint,
+        args.epochs,
+        args.seed,
+    )
     args.receipt.write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps(result, indent=2))
 

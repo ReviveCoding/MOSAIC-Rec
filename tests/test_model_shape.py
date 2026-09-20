@@ -5,6 +5,7 @@ from importlib.util import find_spec
 
 if find_spec("torch"):
     import torch
+
     from mosaic_rec.pilot_mosaic import MosaicSequence
 else:
     torch = None
@@ -15,8 +16,12 @@ else:
 class ModelShapeTests(unittest.TestCase):
     def test_non_microlens_content_widths(self) -> None:
         model = MosaicSequence(
-            1, torch.ones(3, 384), torch.ones(3, 1024),
-            torch.tensor([0, 1, 0]), torch.tensor([True, True, False]), 2,
+            1,
+            torch.ones(3, 384),
+            torch.ones(3, 1024),
+            torch.tensor([0, 1, 0]),
+            torch.tensor([True, True, False]),
+            2,
         )
         model.eval()
         fused, weights = model.fuse(torch.tensor([1, 2, 3]), torch.tensor([0, 1, 2]))
@@ -26,11 +31,16 @@ class ModelShapeTests(unittest.TestCase):
 
     def test_all_missing_modalities_have_finite_zero_fusion(self) -> None:
         model = MosaicSequence(
-            1, torch.ones(1, 384), torch.ones(1, 1024),
-            torch.tensor([0]), torch.tensor([True]), 1,
+            1,
+            torch.ones(1, 384),
+            torch.ones(1, 1024),
+            torch.tensor([0]),
+            torch.tensor([True]),
+            1,
         )
         fused, weights = model.fuse(
-            torch.tensor([1]), torch.tensor([0]),
+            torch.tensor([1]),
+            torch.tensor([0]),
             text_available=torch.tensor([False]),
             image_available=torch.tensor([False]),
             metadata_available=torch.tensor([False]),

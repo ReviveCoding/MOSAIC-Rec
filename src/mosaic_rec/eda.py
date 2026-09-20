@@ -59,10 +59,13 @@ def inspect(dataset: str, path: Path) -> dict:
         FROM per_user"""
     ).fetchone()
     return {
-        "stage_id": "A04", "protocol_id": "mosaic-rec-2026-09-20-p1",
-        "state": "PILOT", "status": "PASS",
+        "stage_id": "A04",
+        "protocol_id": "mosaic-rec-2026-09-20-p1",
+        "state": "PILOT",
+        "status": "PASS",
         "ended_utc": datetime.now(timezone.utc).isoformat(),
-        "dataset": dataset, "source_file": path.name,
+        "dataset": dataset,
+        "source_file": path.name,
         "exact_candidate_cutoffs_unfrozen": cutoffs,
         "roles_at_candidate_cutoffs": [
             dict(zip(("role", "events", "users", "items"), row)) for row in roles

@@ -8,7 +8,6 @@ from pathlib import Path
 
 import pyarrow.parquet as pq
 
-
 ROOT = Path("/home/bjw-0/mosaic-rec-work")
 EVIDENCE = Path("evidence")
 
@@ -45,23 +44,54 @@ def main() -> None:
     movie = ROOT / "data/ml-32m"
     pixel = ROOT / "data/pixelrec50k"
     for label, path, expected in (
-        ("MicroLens pairs", micro / "pairs.csv", registry["microlens-100k"]["pairs_sha256"]),
-        ("MicroLens titles", micro / "title_en.csv", registry["microlens-100k"]["title_en_sha256"]),
-        ("MovieLens archive", movie / "ml-32m.zip", registry["ml-32m"]["archive_sha256"]),
-        ("MovieLens ratings", movie / "ml-32m/ratings.csv", registry["ml-32m"]["ratings_sha256"]),
-        ("PixelRec interactions", pixel / "interaction.csv", registry["pixelrec50k"]["interactions_sha256"]),
-        ("PixelRec item info", pixel / "item_info.csv", registry["pixelrec50k"]["item_info_sha256"]),
+        (
+            "MicroLens pairs",
+            micro / "pairs.csv",
+            registry["microlens-100k"]["pairs_sha256"],
+        ),
+        (
+            "MicroLens titles",
+            micro / "title_en.csv",
+            registry["microlens-100k"]["title_en_sha256"],
+        ),
+        (
+            "MovieLens archive",
+            movie / "ml-32m.zip",
+            registry["ml-32m"]["archive_sha256"],
+        ),
+        (
+            "MovieLens ratings",
+            movie / "ml-32m/ratings.csv",
+            registry["ml-32m"]["ratings_sha256"],
+        ),
+        (
+            "PixelRec interactions",
+            pixel / "interaction.csv",
+            registry["pixelrec50k"]["interactions_sha256"],
+        ),
+        (
+            "PixelRec item info",
+            pixel / "item_info.csv",
+            registry["pixelrec50k"]["item_info_sha256"],
+        ),
     ):
         check(label, path, expected)
 
     for name in ("microlens", "ml32m", "pixelrec"):
         manifest = json.loads((EVIDENCE / f"{name}_split_p1.json").read_text())
-        check(f"{name} source", {
-            "microlens": micro / "pairs.csv",
-            "ml32m": movie / "ml-32m/ratings.csv",
-            "pixelrec": pixel / "interaction.csv",
-        }[name], manifest["source_sha256"])
-        cold_path = Path(next(iter(manifest["outputs"].values()))["path"]).parent / "controlled_cold_item_ids.txt"
+        check(
+            f"{name} source",
+            {
+                "microlens": micro / "pairs.csv",
+                "ml32m": movie / "ml-32m/ratings.csv",
+                "pixelrec": pixel / "interaction.csv",
+            }[name],
+            manifest["source_sha256"],
+        )
+        cold_path = (
+            Path(next(iter(manifest["outputs"].values()))["path"]).parent
+            / "controlled_cold_item_ids.txt"
+        )
         check(f"{name} cold IDs", cold_path, manifest["cold_cohort_sha256"])
         for role, info in manifest["outputs"].items():
             check(f"{name} {role}", Path(info["path"]), info["sha256"], info["rows"])
@@ -73,35 +103,69 @@ def main() -> None:
         if not isinstance(data, dict):
             continue
         if data.get("checkpoint_sha256"):
-            check(f"checkpoint {path.stem}", Path(data["checkpoint"]), data["checkpoint_sha256"])
+            check(
+                f"checkpoint {path.stem}",
+                Path(data["checkpoint"]),
+                data["checkpoint_sha256"],
+            )
         if data.get("features_sha256"):
-            check(f"local features {path.stem}", Path(data["features_path"]), data["features_sha256"])
+            check(
+                f"local features {path.stem}",
+                Path(data["features_path"]),
+                data["features_sha256"],
+            )
         if data.get("feature_source_sha256"):
-            check(f"publisher source {path.stem}", Path(data["feature_source"]),
-                  data["feature_source_sha256"])
+            check(
+                f"publisher source {path.stem}",
+                Path(data["feature_source"]),
+                data["feature_source_sha256"],
+            )
         if data.get("feature_sha256") and data.get("feature_path"):
-            check(f"mapped publisher features {path.stem}", Path(data["feature_path"]),
-                  data["feature_sha256"])
+            check(
+                f"mapped publisher features {path.stem}",
+                Path(data["feature_path"]),
+                data["feature_sha256"],
+            )
         if data.get("item_index_sha256"):
-            check(f"publisher item index {path.stem}", Path(data["item_index_path"]),
-                  data["item_index_sha256"])
+            check(
+                f"publisher item index {path.stem}",
+                Path(data["item_index_path"]),
+                data["item_index_sha256"],
+            )
         if data.get("per_user_sha256"):
-            check(f"per-user predictions {path.stem}", Path(data["per_user_path"]),
-                  data["per_user_sha256"], data.get("per_user_rows"))
+            check(
+                f"per-user predictions {path.stem}",
+                Path(data["per_user_path"]),
+                data["per_user_sha256"],
+                data.get("per_user_rows"),
+            )
         artifacts = data.get("artifacts", {})
         if isinstance(artifacts, dict) and artifacts.get("item_graph_sha256"):
-            check(f"interrupted graph cache {path.stem}", Path(artifacts["item_graph_cache"]),
-                  artifacts["item_graph_sha256"])
+            check(
+                f"interrupted graph cache {path.stem}",
+                Path(artifacts["item_graph_cache"]),
+                artifacts["item_graph_sha256"],
+            )
 
-    feature = json.loads((EVIDENCE / "microlens_feature_qa.json").read_text())["features"]
+    feature = json.loads((EVIDENCE / "microlens_feature_qa.json").read_text())[
+        "features"
+    ]
     directory = ROOT / "features/microlens-100k"
     for key, prefix in (
         ("image", "MicroLens-100k_image_features_CLIPRN50"),
         ("text", "MicroLens-100k_title_en_text_features_BgeM3"),
         ("video_secondary", "MicroLens-100k_video_features_VideoMAE"),
     ):
-        check(f"publisher {key} NPY", directory / f"{prefix}.npy", feature[key]["npy_sha256"])
-        check(f"publisher {key} JSON", directory / f"{prefix}.json", feature[key]["json_sha256"])
+        check(
+            f"publisher {key} NPY",
+            directory / f"{prefix}.npy",
+            feature[key]["npy_sha256"],
+        )
+        check(
+            f"publisher {key} JSON",
+            directory / f"{prefix}.json",
+            feature[key]["json_sha256"],
+        )
 
     alignment_path = EVIDENCE / "pixelrec_content_alignment_p1.json"
     if alignment_path.is_file():
@@ -113,16 +177,25 @@ def main() -> None:
             ("publisher_image_features", "publisher_image_features.npy"),
             ("local_text_features", "local_minilm_text.npy"),
         ):
-            check(f"PixelRec aligned input {key}", pixel_features / filename,
-                  alignment["input_sha256"][key])
-        check("PixelRec aligned metadata", pixel / "item_info.csv",
-              alignment["input_sha256"]["item_metadata"])
+            check(
+                f"PixelRec aligned input {key}",
+                pixel_features / filename,
+                alignment["input_sha256"][key],
+            )
+        check(
+            "PixelRec aligned metadata",
+            pixel / "item_info.csv",
+            alignment["input_sha256"]["item_metadata"],
+        )
         for key, filename in (
             ("aligned_tag_ids", "aligned_tag_ids.npy"),
             ("aligned_text_present", "aligned_text_present.npy"),
         ):
-            check(f"PixelRec aligned output {key}", pixel_features / filename,
-                  alignment["output_sha256"][key])
+            check(
+                f"PixelRec aligned output {key}",
+                pixel_features / filename,
+                alignment["output_sha256"][key],
+            )
 
     status = "PASS" if all(row["status"] == "PASS" for row in checks) else "FAIL"
     print(json.dumps({"status": status, "checks": checks}, indent=2))

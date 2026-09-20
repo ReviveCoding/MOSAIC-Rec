@@ -5,14 +5,20 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from mosaic_rec.protocol import (ScientificState, assert_role_access,
-                                 assert_transition, validate_freeze_manifest)
+from mosaic_rec.protocol import (
+    ScientificState,
+    assert_role_access,
+    assert_transition,
+    validate_freeze_manifest,
+)
 
 
 class ProtocolGuardTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.status = {"protocol_id": "mosaic-rec-2026-09-20-p1",
-                       "scientific_state": "DEVELOPMENT"}
+        self.status = {
+            "protocol_id": "mosaic-rec-2026-09-20-p1",
+            "scientific_state": "DEVELOPMENT",
+        }
 
     def test_protected_roles_sealed_in_development(self) -> None:
         assert_role_access(self.status, "VALIDATION")
@@ -29,8 +35,9 @@ class ProtocolGuardTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 validate_freeze_manifest(path, self.status["protocol_id"])
             with self.assertRaises(ValueError):
-                assert_transition(self.status, ScientificState.FROZEN,
-                                  frozen_manifest_path=path)
+                assert_transition(
+                    self.status, ScientificState.FROZEN, frozen_manifest_path=path
+                )
 
     def test_no_skipping_states(self) -> None:
         with self.assertRaises(ValueError):

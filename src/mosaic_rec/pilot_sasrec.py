@@ -28,8 +28,12 @@ class SASRec(nn.Module):
         self.item = nn.Embedding(catalog_size + 1, width, padding_idx=0)
         self.position = nn.Embedding(length, width)
         layer = nn.TransformerEncoderLayer(
-            d_model=width, nhead=4, dim_feedforward=128,
-            dropout=0.2, batch_first=True, norm_first=True,
+            d_model=width,
+            nhead=4,
+            dim_feedforward=128,
+            dropout=0.2,
+            batch_first=True,
+            norm_first=True,
         )
         self.encoder = nn.TransformerEncoder(layer, num_layers=2)
         self.norm = nn.LayerNorm(width)
@@ -40,8 +44,10 @@ class SASRec(nn.Module):
     def forward(self, seq: torch.Tensor, lengths: torch.Tensor) -> torch.Tensor:
         pos = torch.arange(seq.shape[1], device=seq.device)
         x = self.item(seq) + self.position(pos)[None, :, :]
-        mask = torch.triu(torch.ones(seq.shape[1], seq.shape[1],
-                                     device=seq.device, dtype=torch.bool), diagonal=1)
+        mask = torch.triu(
+            torch.ones(seq.shape[1], seq.shape[1], device=seq.device, dtype=torch.bool),
+            diagonal=1,
+        )
         x = self.encoder(x, mask=mask, src_key_padding_mask=seq.eq(0))
         last = x[torch.arange(len(seq), device=seq.device), lengths - 1]
         return self.norm(last)
@@ -71,8 +77,15 @@ def load_rows(path: Path) -> list[tuple[int, int, int]]:
     return sorted((int(t), int(u), int(i)) for u, i, t in zip(users, items, stamps))
 
 
-def run(split_dir: Path, source_first_seen: Path, lock: Path,
-        checkpoint: Path, epochs: int, seed: int, architecture: str) -> dict:
+def run(
+    split_dir: Path,
+    source_first_seen: Path,
+    lock: Path,
+    checkpoint: Path,
+    epochs: int,
+    seed: int,
+    architecture: str,
+) -> dict:
     if not torch.cuda.is_available():
         raise RuntimeError("CUDA required; CPU fallback prohibited")
     fit = load_rows(split_dir / "FIT_VISIBLE.parquet")
@@ -80,6 +93,7 @@ def run(split_dir: Path, source_first_seen: Path, lock: Path,
     # First-observed item times are used only for availability <= query time.
     first_seen: dict[int, int] = {}
     import csv
+
     with source_first_seen.open(newline="") as handle:
         for row in csv.DictReader(handle):
             item, stamp = int(row["item"]), int(row["timestamp"])
@@ -112,26 +126,39 @@ def run(split_dir: Path, source_first_seen: Path, lock: Path,
     first_val: dict[int, tuple[int, int]] = {}
     for stamp, user, item in validation:
         first_val.setdefault(user, (stamp, item))
-    eval_rows = [(user, stamp, item) for user, (stamp, item) in first_val.items()
-                 if histories.get(user)]
+    eval_rows = [
+        (user, stamp, item)
+        for user, (stamp, item) in first_val.items()
+        if histories.get(user)
+    ]
     dataset = TensorDataset(
         torch.tensor(np.asarray(sequences), dtype=torch.long),
         torch.tensor(lengths, dtype=torch.long),
         torch.tensor(positives, dtype=torch.long),
         torch.tensor(negatives, dtype=torch.long),
     )
-    loader = DataLoader(dataset, batch_size=2048, shuffle=True, num_workers=2,
-                        pin_memory=True, persistent_workers=True, prefetch_factor=2)
+    loader = DataLoader(
+        dataset,
+        batch_size=2048,
+        shuffle=True,
+        num_workers=2,
+        pin_memory=True,
+        persistent_workers=True,
+        prefetch_factor=2,
+    )
     device = torch.device("cuda:0")
     torch.manual_seed(seed)
-    model = (SASRec(catalog_size) if architecture == "sasrec"
-             else GRU4Rec(catalog_size)).to(device)
+    model = (
+        SASRec(catalog_size) if architecture == "sasrec" else GRU4Rec(catalog_size)
+    ).to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=0.001, weight_decay=1e-4)
     log: list[dict] = []
     lock.parent.mkdir(parents=True, exist_ok=True)
     with lock.open("w") as lock_handle:
         fcntl.flock(lock_handle, fcntl.LOCK_EX)
-        lock_handle.write(f"pid={__import__('os').getpid()} model={architecture.upper()}_PILOT\n")
+        lock_handle.write(
+            f"pid={__import__('os').getpid()} model={architecture.upper()}_PILOT\n"
+        )
         lock_handle.flush()
         start = time.perf_counter()
         for epoch in range(epochs):
@@ -157,26 +184,39 @@ def run(split_dir: Path, source_first_seen: Path, lock: Path,
         model.eval()
         warm = {item for _, _, item in fit}
         catalog = model.item.weight[1:].detach().clone()
-        cold_mask = torch.tensor([item not in warm for item in range(1, catalog_size + 1)], device=device)
+        cold_mask = torch.tensor(
+            [item not in warm for item in range(1, catalog_size + 1)], device=device
+        )
         catalog[cold_mask] = 0
-        first_tensor = torch.tensor([first_seen[i] for i in range(1, catalog_size + 1)], device=device)
+        first_tensor = torch.tensor(
+            [first_seen[i] for i in range(1, catalog_size + 1)], device=device
+        )
         hit = reciprocal = ndcg = 0.0
         score_start = time.perf_counter()
         with torch.inference_mode():
             for offset in range(0, len(eval_rows), 256):
-                batch = eval_rows[offset:offset + 256]
+                batch = eval_rows[offset : offset + 256]
                 seqs = [histories[user][-20:] for user, _, _ in batch]
                 length = torch.tensor([len(seq) for seq in seqs], device=device)
-                seq = torch.tensor([s + [0] * (20 - len(s)) for s in seqs], device=device)
+                seq = torch.tensor(
+                    [s + [0] * (20 - len(s)) for s in seqs], device=device
+                )
                 with torch.autocast("cuda", dtype=torch.bfloat16):
                     state = model(seq, length)
                     scores = (state @ catalog.T).to(torch.float32)
                 scores = scores.to(torch.float64)
-                scores -= torch.arange(catalog_size, device=device, dtype=torch.float64)[None, :] * 1e-12
+                scores -= (
+                    torch.arange(catalog_size, device=device, dtype=torch.float64)[
+                        None, :
+                    ]
+                    * 1e-12
+                )
                 stamps = torch.tensor([r[1] for r in batch], device=device)
                 scores.masked_fill_(first_tensor[None, :] > stamps[:, None], -torch.inf)
                 for row, (user, _, _) in enumerate(batch):
-                    scores[row, torch.tensor(histories[user], device=device) - 1] = -torch.inf
+                    scores[
+                        row, torch.tensor(histories[user], device=device) - 1
+                    ] = -torch.inf
                 top = scores.topk(20, dim=1).indices.cpu().tolist()
                 for ranked, (_, _, target) in zip(top, batch):
                     if target - 1 in ranked:
@@ -187,23 +227,37 @@ def run(split_dir: Path, source_first_seen: Path, lock: Path,
         torch.cuda.synchronize()
         score_seconds = time.perf_counter() - score_start
         checkpoint.parent.mkdir(parents=True, exist_ok=True)
-        torch.save({"model": model.state_dict(), "seed": seed, "epochs": epochs}, checkpoint)
+        torch.save(
+            {"model": model.state_dict(), "seed": seed, "epochs": epochs}, checkpoint
+        )
         peak_vram = torch.cuda.max_memory_allocated()
         fcntl.flock(lock_handle, fcntl.LOCK_UN)
     return {
-        "stage_id": "C03", "protocol_id": "mosaic-rec-2026-09-20-p1",
-        "state": "DEVELOPMENT", "status": "PILOT_PASS",
+        "stage_id": "C03",
+        "protocol_id": "mosaic-rec-2026-09-20-p1",
+        "state": "DEVELOPMENT",
+        "status": "PILOT_PASS",
         "ended_utc": datetime.now(timezone.utc).isoformat(),
-        "model": f"{architecture.upper()}_ID_PILOT", "dataset": "microlens-100k",
-        "device": torch.cuda.get_device_name(0), "seed": seed,
-        "fit_samples": len(dataset), "epochs": epochs, "training_log": log,
-        "train_seconds": train_seconds, "score_seconds": score_seconds,
+        "model": f"{architecture.upper()}_ID_PILOT",
+        "dataset": "microlens-100k",
+        "device": torch.cuda.get_device_name(0),
+        "seed": seed,
+        "fit_samples": len(dataset),
+        "epochs": epochs,
+        "training_log": log,
+        "train_seconds": train_seconds,
+        "score_seconds": score_seconds,
         "peak_vram_bytes": peak_vram,
-        "validation_users": len(eval_rows), "ndcg_at_20": ndcg / len(eval_rows),
-        "recall_at_20": hit / len(eval_rows), "mrr_at_20": reciprocal / len(eval_rows),
-        "checkpoint": str(checkpoint), "checkpoint_sha256": hashlib.sha256(checkpoint.read_bytes()).hexdigest(),
-        "warnings": ["Pilot only: no fair HPO, reference parity, seed qualification, or locked result.",
-                     "ID-only model is not a valid sole cold comparator."],
+        "validation_users": len(eval_rows),
+        "ndcg_at_20": ndcg / len(eval_rows),
+        "recall_at_20": hit / len(eval_rows),
+        "mrr_at_20": reciprocal / len(eval_rows),
+        "checkpoint": str(checkpoint),
+        "checkpoint_sha256": hashlib.sha256(checkpoint.read_bytes()).hexdigest(),
+        "warnings": [
+            "Pilot only: no fair HPO, reference parity, seed qualification, or locked result.",
+            "ID-only model is not a valid sole cold comparator.",
+        ],
         "evidence_class": "measured_development_pilot",
     }
 
@@ -217,10 +271,19 @@ def main() -> None:
     parser.add_argument("--checkpoint", type=Path, required=True)
     parser.add_argument("--epochs", type=int, default=3)
     parser.add_argument("--seed", type=int, default=20260920)
-    parser.add_argument("--architecture", choices=["sasrec", "gru4rec"], default="sasrec")
+    parser.add_argument(
+        "--architecture", choices=["sasrec", "gru4rec"], default="sasrec"
+    )
     args = parser.parse_args()
-    result = run(args.split_dir, args.source_first_seen, args.lock,
-                 args.checkpoint, args.epochs, args.seed, args.architecture)
+    result = run(
+        args.split_dir,
+        args.source_first_seen,
+        args.lock,
+        args.checkpoint,
+        args.epochs,
+        args.seed,
+        args.architecture,
+    )
     args.receipt.write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps(result, indent=2))
 

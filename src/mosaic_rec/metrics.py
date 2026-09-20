@@ -2,11 +2,13 @@
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from math import log2
-from typing import Iterable
 
 
-def single_positive_metrics(ranks: Iterable[int | None], k: int = 20) -> dict[str, float | int]:
+def single_positive_metrics(
+    ranks: Iterable[int | None], k: int = 20
+) -> dict[str, float | int]:
     """Aggregate one held-out positive per query; ranks are 1-based, None is missed."""
     if k < 1:
         raise ValueError("k must be positive")

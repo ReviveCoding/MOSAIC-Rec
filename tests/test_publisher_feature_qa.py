@@ -36,8 +36,9 @@ class PublisherFeatureMappingTests(unittest.TestCase):
             (root / "item_info.csv").write_text("item_id\ni1\ni2\n")
             (root / "official.json").write_text(json.dumps({"i1": [1.0] * 1024}))
             output = root / "features.npy"
-            result = qualify(root / "official.json", root / "item_info.csv",
-                             output, root / "ids.txt")
+            result = qualify(
+                root / "official.json", root / "item_info.csv", output, root / "ids.txt"
+            )
             self.assertEqual(result["status"], "FAIL")
             self.assertEqual(result["items_missing"], 1)
             self.assertFalse(output.exists())

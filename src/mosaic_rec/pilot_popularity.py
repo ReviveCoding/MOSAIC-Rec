@@ -16,7 +16,11 @@ def evaluate(source: Path, fit_cutoff: int, validation_cutoff: int) -> dict:
     first_seen: dict[int, int] = {}
     with source.open(newline="") as handle:
         for row in csv.DictReader(handle):
-            user, item, stamp = int(row["user"]), int(row["item"]), int(row["timestamp"])
+            user, item, stamp = (
+                int(row["user"]),
+                int(row["item"]),
+                int(row["timestamp"]),
+            )
             events.append((stamp, user, item))
             first_seen[item] = min(first_seen.get(item, stamp), stamp)
     events.sort()
@@ -61,16 +65,21 @@ def evaluate(source: Path, fit_cutoff: int, validation_cutoff: int) -> dict:
     if not evaluated:
         raise ValueError("No eligible validation examples")
     return {
-        "stage_id": "C00", "protocol_id": "mosaic-rec-2026-09-20-p1",
-        "state": "PILOT", "status": "PASS",
+        "stage_id": "C00",
+        "protocol_id": "mosaic-rec-2026-09-20-p1",
+        "state": "PILOT",
+        "status": "PASS",
         "ended_utc": datetime.now(timezone.utc).isoformat(),
-        "dataset": "microlens-100k", "model": "B0_GLOBAL_FIT_POPULARITY",
-        "role": "VALIDATION", "fit_cutoff": fit_cutoff,
+        "dataset": "microlens-100k",
+        "model": "B0_GLOBAL_FIT_POPULARITY",
+        "role": "VALIDATION",
+        "fit_cutoff": fit_cutoff,
         "validation_cutoff": validation_cutoff,
         "evaluation_population": "first validation event per FIT-seen user with unseen target",
         "ranking": "exact all available items, FIT-only popularity, item-ID tie break",
         "candidate_availability": "first observed timestamp <= event timestamp",
-        "evaluated_users": evaluated, "excluded_no_fit_user": no_fit,
+        "evaluated_users": evaluated,
+        "excluded_no_fit_user": no_fit,
         "excluded_target_already_seen": repeat_target,
         "excluded_unavailable_target": unavailable,
         "ndcg_at_20": discounted / evaluated,

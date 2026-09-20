@@ -23,15 +23,18 @@ class ClusterInterval:
     seed: int
 
 
-def _validate(model: np.ndarray, comparator: np.ndarray,
-              cluster_ids: np.ndarray, draws: int) -> tuple[np.ndarray, np.ndarray]:
+def _validate(
+    model: np.ndarray, comparator: np.ndarray, cluster_ids: np.ndarray, draws: int
+) -> tuple[np.ndarray, np.ndarray]:
     model = np.asarray(model, dtype=np.float64)
     comparator = np.asarray(comparator, dtype=np.float64)
     cluster_ids = np.asarray(cluster_ids)
     if model.ndim != 1 or comparator.ndim != 1 or cluster_ids.ndim != 1:
         raise ValueError("Scores and cluster IDs must be one-dimensional")
     if not (len(model) == len(comparator) == len(cluster_ids)) or not len(model):
-        raise ValueError("Paired scores and cluster IDs must have the same nonzero length")
+        raise ValueError(
+            "Paired scores and cluster IDs must have the same nonzero length"
+        )
     if not np.isfinite(model).all() or not np.isfinite(comparator).all():
         raise ValueError("Scores must be finite")
     if np.any((model < 0) | (model > 1) | (comparator < 0) | (comparator > 1)):
@@ -42,11 +45,16 @@ def _validate(model: np.ndarray, comparator: np.ndarray,
     return model - comparator, inverse
 
 
-def paired_cluster_interval(model: np.ndarray, comparator: np.ndarray,
-                            cluster_ids: np.ndarray, *,
-                            cluster_kind: Literal["user", "item"],
-                            draws: int = 10_000, seed: int = 20260920,
-                            chunk_size: int = 128) -> ClusterInterval:
+def paired_cluster_interval(
+    model: np.ndarray,
+    comparator: np.ndarray,
+    cluster_ids: np.ndarray,
+    *,
+    cluster_kind: Literal["user", "item"],
+    draws: int = 10_000,
+    seed: int = 20260920,
+    chunk_size: int = 128,
+) -> ClusterInterval:
     """Percentile CI for a paired, example-weighted difference by cluster.
 
     Each resampled cluster contributes all of its examples. For the primary
@@ -70,8 +78,9 @@ def paired_cluster_interval(model: np.ndarray, comparator: np.ndarray,
         sampled = rng.integers(0, n_clusters, size=(stop - start, n_clusters))
         replicates[start:stop] = sums[sampled].sum(axis=1) / counts[sampled].sum(axis=1)
     lower, upper = np.quantile(replicates, [0.025, 0.975])
-    return ClusterInterval(point, float(lower), float(upper), draws,
-                           n_clusters, cluster_kind, seed)
+    return ClusterInterval(
+        point, float(lower), float(upper), draws, n_clusters, cluster_kind, seed
+    )
 
 
 def holm_adjust(p_values: np.ndarray) -> np.ndarray:

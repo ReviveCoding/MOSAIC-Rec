@@ -10,7 +10,6 @@ from pathlib import Path
 
 import numpy as np
 
-
 SOURCES = {
     "vision": ("MicroLens-100k_image_features_CLIPRN50.npy", "image"),
     "text": ("MicroLens-100k_title_en_text_features_BgeM3.npy", "text"),
@@ -41,13 +40,20 @@ def prepare(source_dir: Path, feature_receipt: Path, destination: Path) -> dict:
         padded[1:] = content
         path = destination / f"{label}.npy"
         np.save(path, padded)
-        outputs[label] = {"path": str(path), "sha256": sha256(path),
-                          "shape": list(padded.shape), "source_sha256": source_hash}
+        outputs[label] = {
+            "path": str(path),
+            "sha256": sha256(path),
+            "shape": list(padded.shape),
+            "source_sha256": source_hash,
+        }
     return {
-        "stage_id": "C04", "protocol_id": "mosaic-rec-2026-09-20-p1",
-        "state": "DEVELOPMENT", "status": "REFERENCE_INPUT_PASS",
+        "stage_id": "C04",
+        "protocol_id": "mosaic-rec-2026-09-20-p1",
+        "state": "DEVELOPMENT",
+        "status": "REFERENCE_INPUT_PASS",
         "ended_utc": datetime.now(timezone.utc).isoformat(),
-        "dataset": "microlens-100k", "reference": "MMRec",
+        "dataset": "microlens-100k",
+        "reference": "MMRec",
         "outputs": outputs,
         "warnings": [
             "Adds only the index-zero padding row required by MMRec; item IDs 1..19738 retain publisher alignment.",

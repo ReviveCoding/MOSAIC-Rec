@@ -23,8 +23,15 @@ from torch.utils.data import DataLoader, TensorDataset
 
 
 class MosaicSequence(nn.Module):
-    def __init__(self, variant: int, text: torch.Tensor, image: torch.Tensor,
-                 tags: torch.Tensor, text_present: torch.Tensor, n_tags: int) -> None:
+    def __init__(
+        self,
+        variant: int,
+        text: torch.Tensor,
+        image: torch.Tensor,
+        tags: torch.Tensor,
+        text_present: torch.Tensor,
+        n_tags: int,
+    ) -> None:
         super().__init__()
         self.variant = variant
         if text.ndim != 2 or image.ndim != 2 or text.shape[0] != image.shape[0]:
@@ -39,8 +46,12 @@ class MosaicSequence(nn.Module):
         self.mono_base = nn.Parameter(torch.zeros(4))
         self.mono_slope = nn.Parameter(torch.tensor(0.0))
         layer = nn.TransformerEncoderLayer(
-            d_model=64, nhead=4, dim_feedforward=128,
-            dropout=0.2, batch_first=True, norm_first=True,
+            d_model=64,
+            nhead=4,
+            dim_feedforward=128,
+            dropout=0.2,
+            batch_first=True,
+            norm_first=True,
         )
         self.encoder = nn.TransformerEncoder(layer, num_layers=2)
         self.norm = nn.LayerNorm(64)
@@ -52,11 +63,16 @@ class MosaicSequence(nn.Module):
         with torch.no_grad():
             self.item.weight[0].zero_()
 
-    def fuse(self, ids: torch.Tensor, support: torch.Tensor,
-             augment: bool = False, *,
-             text_available: torch.Tensor | None = None,
-             image_available: torch.Tensor | None = None,
-             metadata_available: torch.Tensor | None = None) -> tuple[torch.Tensor, torch.Tensor]:
+    def fuse(
+        self,
+        ids: torch.Tensor,
+        support: torch.Tensor,
+        augment: bool = False,
+        *,
+        text_available: torch.Tensor | None = None,
+        image_available: torch.Tensor | None = None,
+        metadata_available: torch.Tensor | None = None,
+    ) -> tuple[torch.Tensor, torch.Tensor]:
         safe = ids.clamp_min(1) - 1
         collaborative = self.item(ids)
         textual = self.text_projection(self.text[safe])
@@ -64,9 +80,10 @@ class MosaicSequence(nn.Module):
         metadata = self.tag_embedding(self.tags[safe])
         branches = torch.stack((collaborative, textual, visual, metadata), dim=-2)
         active = ids.ne(0)
-        available = torch.stack((active & support.gt(0),
-                                 active & self.text_present[safe],
-                                 active, active), dim=-1)
+        available = torch.stack(
+            (active & support.gt(0), active & self.text_present[safe], active, active),
+            dim=-1,
+        )
         if text_available is not None:
             available[..., 1] &= text_available.bool()
         if image_available is not None:
@@ -96,9 +113,13 @@ class MosaicSequence(nn.Module):
             logits = self.support_gate(torch.log1p(support.float())[..., None])
         else:
             logits = self.mono_base.expand(*ids.shape, 4).clone()
-            logits[..., 0] += torch.nn.functional.softplus(self.mono_slope) * torch.log1p(support.float())
+            logits[..., 0] += torch.nn.functional.softplus(
+                self.mono_slope
+            ) * torch.log1p(support.float())
         logits = logits.masked_fill(~available, -torch.inf)
-        logits = torch.where(available.any(-1)[..., None], logits, torch.zeros_like(logits))
+        logits = torch.where(
+            available.any(-1)[..., None], logits, torch.zeros_like(logits)
+        )
         weights = torch.softmax(logits, dim=-1) * available.float()
         if self.variant == 0:
             # Naive sum retains branch count/scale differences by design.
@@ -109,21 +130,30 @@ class MosaicSequence(nn.Module):
         weights = weights.masked_fill(~active[..., None], 0)
         return fused, weights
 
-    def user_state(self, seq: torch.Tensor, seq_support: torch.Tensor,
-                   length: torch.Tensor, *,
-                   text_available: torch.Tensor | None = None,
-                   image_available: torch.Tensor | None = None,
-                   metadata_available: torch.Tensor | None = None) -> torch.Tensor:
+    def user_state(
+        self,
+        seq: torch.Tensor,
+        seq_support: torch.Tensor,
+        length: torch.Tensor,
+        *,
+        text_available: torch.Tensor | None = None,
+        image_available: torch.Tensor | None = None,
+        metadata_available: torch.Tensor | None = None,
+    ) -> torch.Tensor:
         vectors, _ = self.fuse(
-            seq, seq_support, augment=True,
+            seq,
+            seq_support,
+            augment=True,
             text_available=text_available,
             image_available=image_available,
             metadata_available=metadata_available,
         )
         positions = torch.arange(seq.shape[1], device=seq.device)
         x = vectors + self.position(positions)[None, :, :]
-        mask = torch.triu(torch.ones(seq.shape[1], seq.shape[1],
-                                     device=seq.device, dtype=torch.bool), diagonal=1)
+        mask = torch.triu(
+            torch.ones(seq.shape[1], seq.shape[1], device=seq.device, dtype=torch.bool),
+            diagonal=1,
+        )
         encoded = self.encoder(x, mask=mask, src_key_padding_mask=seq.eq(0))
         last = encoded[torch.arange(len(seq), device=seq.device), length - 1]
         return self.norm(last)
@@ -131,13 +161,19 @@ class MosaicSequence(nn.Module):
 
 def events(path: Path) -> list[tuple[int, int, int]]:
     table = pq.read_table(path)
-    return sorted((int(t), int(u), int(i)) for u, i, t in zip(
-        table["user_id"].to_pylist(), table["item_id"].to_pylist(),
-        table["timestamp"].to_pylist()))
+    return sorted(
+        (int(t), int(u), int(i))
+        for u, i, t in zip(
+            table["user_id"].to_pylist(),
+            table["item_id"].to_pylist(),
+            table["timestamp"].to_pylist(),
+        )
+    )
 
 
-def load_content(feature_dir: Path, tag_file: Path,
-                 title_file: Path, device: torch.device):
+def load_content(
+    feature_dir: Path, tag_file: Path, title_file: Path, device: torch.device
+):
     text = np.load(feature_dir / "MicroLens-100k_title_en_text_features_BgeM3.npy")
     image = np.load(feature_dir / "MicroLens-100k_image_features_CLIPRN50.npy")
     text = text / np.maximum(np.linalg.norm(text, axis=1, keepdims=True), 1e-8)
@@ -155,16 +191,27 @@ def load_content(feature_dir: Path, tag_file: Path,
             titles[int(item)] = title.strip()
     if set(tags) != set(range(1, 19739)) or set(titles) != set(tags):
         raise ValueError("Content item mapping mismatch")
-    return (torch.as_tensor(text, device=device),
-            torch.as_tensor(image, device=device),
-            torch.tensor([vocab[tags[i]] for i in range(1, 19739)], device=device),
-            torch.tensor([bool(titles[i]) for i in range(1, 19739)], device=device),
-            len(vocab))
+    return (
+        torch.as_tensor(text, device=device),
+        torch.as_tensor(image, device=device),
+        torch.tensor([vocab[tags[i]] for i in range(1, 19739)], device=device),
+        torch.tensor([bool(titles[i]) for i in range(1, 19739)], device=device),
+        len(vocab),
+    )
 
 
-def run(variant: int, split_dir: Path, source: Path, feature_dir: Path,
-        tag_file: Path, title_file: Path, lock: Path,
-        checkpoint: Path, epochs: int, seed: int) -> dict:
+def run(
+    variant: int,
+    split_dir: Path,
+    source: Path,
+    feature_dir: Path,
+    tag_file: Path,
+    title_file: Path,
+    lock: Path,
+    checkpoint: Path,
+    epochs: int,
+    seed: int,
+) -> dict:
     if not torch.cuda.is_available():
         raise RuntimeError("CUDA required; CPU fallback prohibited")
     if variant not in range(8):
@@ -184,7 +231,16 @@ def run(variant: int, split_dir: Path, source: Path, feature_dir: Path,
     histories: dict[int, list[tuple[int, int]]] = defaultdict(list)
     user_seen: dict[int, set[int]] = defaultdict(set)
     counts: dict[int, int] = defaultdict(int)
-    seqs, supports, lengths, users, pos_ids, pos_s, neg_ids, neg_s = [], [], [], [], [], [], [], []
+    seqs, supports, lengths, users, pos_ids, pos_s, neg_ids, neg_s = (
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+    )
     rng = random.Random(seed)
     for stamp, user, item in fit:
         history = histories[user]
@@ -210,8 +266,11 @@ def run(variant: int, split_dir: Path, source: Path, feature_dir: Path,
     first_val: dict[int, tuple[int, int]] = {}
     for stamp, user, item in validation:
         first_val.setdefault(user, (stamp, item))
-    eval_rows = [(user, stamp, item) for user, (stamp, item) in first_val.items()
-                 if histories.get(user)]
+    eval_rows = [
+        (user, stamp, item)
+        for user, (stamp, item) in first_val.items()
+        if histories.get(user)
+    ]
     dataset = TensorDataset(
         torch.tensor(np.asarray(seqs), dtype=torch.long),
         torch.tensor(np.asarray(supports), dtype=torch.long),
@@ -221,8 +280,15 @@ def run(variant: int, split_dir: Path, source: Path, feature_dir: Path,
         torch.tensor(neg_ids, dtype=torch.long),
         torch.tensor(neg_s, dtype=torch.long),
     )
-    loader = DataLoader(dataset, batch_size=1024, shuffle=True, num_workers=2,
-                        pin_memory=True, persistent_workers=True, prefetch_factor=2)
+    loader = DataLoader(
+        dataset,
+        batch_size=1024,
+        shuffle=True,
+        num_workers=2,
+        pin_memory=True,
+        persistent_workers=True,
+        prefetch_factor=2,
+    )
     device = torch.device("cuda:0")
     content = load_content(feature_dir, tag_file, title_file, device)
     torch.manual_seed(seed)
@@ -238,7 +304,15 @@ def run(variant: int, split_dir: Path, source: Path, feature_dir: Path,
         for epoch in range(epochs):
             model.train()
             loss_sum = 0.0
-            for seq, seq_support, length, positive, positive_support, negative, negative_support in loader:
+            for (
+                seq,
+                seq_support,
+                length,
+                positive,
+                positive_support,
+                negative,
+                negative_support,
+            ) in loader:
                 seq = seq.to(device, non_blocking=True)
                 seq_support = seq_support.to(device, non_blocking=True)
                 length = length.to(device, non_blocking=True)
@@ -256,9 +330,13 @@ def run(variant: int, split_dir: Path, source: Path, feature_dir: Path,
                     if variant == 6:
                         text_vec = model.text_projection(model.text[positive - 1])
                         image_vec = model.image_projection(model.image[positive - 1])
-                        agreement = torch.nn.functional.cosine_similarity(text_vec, image_vec)
+                        agreement = torch.nn.functional.cosine_similarity(
+                            text_vec, image_vec
+                        )
                         present = model.text_present[positive - 1].float()
-                        loss = loss + 0.01 * ((1 - agreement) * present).sum() / present.sum().clamp_min(1)
+                        loss = loss + 0.01 * (
+                            (1 - agreement) * present
+                        ).sum() / present.sum().clamp_min(1)
                 optimizer.zero_grad(set_to_none=True)
                 loss.backward()
                 optimizer.step()
@@ -268,33 +346,54 @@ def run(variant: int, split_dir: Path, source: Path, feature_dir: Path,
         train_seconds = time.perf_counter() - start
         model.eval()
         item_ids = torch.arange(1, 19739, device=device)
-        final_support = torch.tensor([counts[i] for i in range(1, 19739)], device=device)
-        first_tensor = torch.tensor([first_seen[i] for i in range(1, 19739)], device=device)
-        cohort = {int(line) for line in (split_dir / "controlled_cold_item_ids.txt").read_text().splitlines()}
-        buckets = {"all": [0.0, 0.0, 0], "controlled_cold": [0.0, 0.0, 0],
-                   "warm_fit": [0.0, 0.0, 0]}
+        final_support = torch.tensor(
+            [counts[i] for i in range(1, 19739)], device=device
+        )
+        first_tensor = torch.tensor(
+            [first_seen[i] for i in range(1, 19739)], device=device
+        )
+        cohort = {
+            int(line)
+            for line in (split_dir / "controlled_cold_item_ids.txt")
+            .read_text()
+            .splitlines()
+        }
+        buckets = {
+            "all": [0.0, 0.0, 0],
+            "controlled_cold": [0.0, 0.0, 0],
+            "warm_fit": [0.0, 0.0, 0],
+        }
         score_start = time.perf_counter()
         with torch.inference_mode():
             with torch.autocast("cuda", dtype=torch.bfloat16):
                 catalog, gate_weights = model.fuse(item_ids, final_support)
             catalog = catalog.to(torch.float32)
             for offset in range(0, len(eval_rows), 256):
-                batch = eval_rows[offset:offset + 256]
+                batch = eval_rows[offset : offset + 256]
                 histories_batch = [histories[user][-20:] for user, _, _ in batch]
-                seq = torch.tensor([[x[0] for x in h] + [0] * (20 - len(h))
-                                    for h in histories_batch], device=device)
-                seq_support = torch.tensor([[x[1] for x in h] + [0] * (20 - len(h))
-                                            for h in histories_batch], device=device)
+                seq = torch.tensor(
+                    [[x[0] for x in h] + [0] * (20 - len(h)) for h in histories_batch],
+                    device=device,
+                )
+                seq_support = torch.tensor(
+                    [[x[1] for x in h] + [0] * (20 - len(h)) for h in histories_batch],
+                    device=device,
+                )
                 length = torch.tensor([len(h) for h in histories_batch], device=device)
                 with torch.autocast("cuda", dtype=torch.bfloat16):
                     state = model.user_state(seq, seq_support, length)
                     scores = state @ catalog.T
                 scores = scores.to(torch.float64)
-                scores -= torch.arange(19738, device=device, dtype=torch.float64)[None, :] * 1e-12
+                scores -= (
+                    torch.arange(19738, device=device, dtype=torch.float64)[None, :]
+                    * 1e-12
+                )
                 stamps = torch.tensor([row[1] for row in batch], device=device)
                 scores.masked_fill_(first_tensor[None, :] > stamps[:, None], -torch.inf)
                 for row, (user, _, _) in enumerate(batch):
-                    scores[row, torch.tensor(list(user_seen[user]), device=device) - 1] = -torch.inf
+                    scores[
+                        row, torch.tensor(list(user_seen[user]), device=device) - 1
+                    ] = -torch.inf
                 top = scores.topk(20, dim=1).indices.cpu().tolist()
                 for ranked, (_, _, target) in zip(top, batch):
                     labels = ["all"]
@@ -311,34 +410,58 @@ def run(variant: int, split_dir: Path, source: Path, feature_dir: Path,
         torch.cuda.synchronize()
         score_seconds = time.perf_counter() - score_start
         checkpoint.parent.mkdir(parents=True, exist_ok=True)
-        torch.save({"model": model.state_dict(), "variant": variant,
-                    "seed": seed, "epochs": epochs}, checkpoint)
+        torch.save(
+            {
+                "model": model.state_dict(),
+                "variant": variant,
+                "seed": seed,
+                "epochs": epochs,
+            },
+            checkpoint,
+        )
         peak_vram = torch.cuda.max_memory_allocated()
         fcntl.flock(lock_handle, fcntl.LOCK_UN)
     slices = {
-        label: {"n": int(v[2]), "ndcg_at_20": v[0] / v[2] if v[2] else None,
-                "recall_at_20": v[1] / v[2] if v[2] else None}
+        label: {
+            "n": int(v[2]),
+            "ndcg_at_20": v[0] / v[2] if v[2] else None,
+            "recall_at_20": v[1] / v[2] if v[2] else None,
+        }
         for label, v in buckets.items()
     }
     weights = gate_weights.float().cpu().numpy()
     cold_indices = np.asarray([i - 1 for i in cohort])
     warm_indices = np.asarray([i - 1 for i in counts if counts[i] > 20])
     return {
-        "stage_id": f"D0{variant}", "protocol_id": "mosaic-rec-2026-09-20-p1",
-        "state": "DEVELOPMENT", "status": "PILOT_PASS",
+        "stage_id": f"D0{variant}",
+        "protocol_id": "mosaic-rec-2026-09-20-p1",
+        "state": "DEVELOPMENT",
+        "status": "PILOT_PASS",
         "ended_utc": datetime.now(timezone.utc).isoformat(),
-        "model": f"M{variant}", "dataset": "microlens-100k",
-        "device": torch.cuda.get_device_name(0), "seed": seed,
-        "fit_samples": len(dataset), "epochs": epochs,
-        "training_log": log, "train_seconds": train_seconds,
-        "score_seconds": score_seconds, "peak_vram_bytes": peak_vram,
+        "model": f"M{variant}",
+        "dataset": "microlens-100k",
+        "device": torch.cuda.get_device_name(0),
+        "seed": seed,
+        "fit_samples": len(dataset),
+        "epochs": epochs,
+        "training_log": log,
+        "train_seconds": train_seconds,
+        "score_seconds": score_seconds,
+        "peak_vram_bytes": peak_vram,
         "validation_slices": slices,
-        "gate_weights_cold_mean": None if variant == 0 else weights[cold_indices].mean(axis=0).tolist(),
-        "gate_weights_warm_gt20_mean": None if variant == 0 else weights[warm_indices].mean(axis=0).tolist(),
-        "checkpoint": str(checkpoint), "checkpoint_sha256": hashlib.sha256(checkpoint.read_bytes()).hexdigest(),
-        "warnings": ["Development pilot only; no HPO, qualification, or locked result.",
-                     "Gate weights are relative fusion coefficients, not calibrated reliability probabilities.",
-                     "Untimestamped historical content revisions remain a leakage limitation."],
+        "gate_weights_cold_mean": None
+        if variant == 0
+        else weights[cold_indices].mean(axis=0).tolist(),
+        "gate_weights_warm_gt20_mean": None
+        if variant == 0
+        else weights[warm_indices].mean(axis=0).tolist(),
+        "checkpoint": str(checkpoint),
+        "checkpoint_sha256": hashlib.sha256(checkpoint.read_bytes()).hexdigest(),
+        "warnings": [
+            "Development pilot only; no HPO, qualification, or locked result.",
+            "Gate weights are relative fusion coefficients, not calibrated reliability probabilities.",
+            "Untimestamped historical content revisions remain a leakage limitation.",
+        ],
         "evidence_class": "measured_development_pilot",
     }
 
@@ -357,9 +480,18 @@ def main() -> None:
     parser.add_argument("--epochs", type=int, default=3)
     parser.add_argument("--seed", type=int, default=20260920)
     args = parser.parse_args()
-    result = run(args.variant, args.split_dir, args.source,
-                 args.feature_dir, args.tag_file, args.title_file,
-                 args.lock, args.checkpoint, args.epochs, args.seed)
+    result = run(
+        args.variant,
+        args.split_dir,
+        args.source,
+        args.feature_dir,
+        args.tag_file,
+        args.title_file,
+        args.lock,
+        args.checkpoint,
+        args.epochs,
+        args.seed,
+    )
     args.receipt.write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps(result, indent=2))
 

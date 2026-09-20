@@ -20,7 +20,6 @@ from pydantic import BaseModel, Field
 
 from mosaic_rec.pilot_mosaic import MosaicSequence, load_content
 
-
 BRANCHES = ("collaborative", "text", "image", "metadata")
 
 
@@ -38,14 +37,19 @@ class ServingBackend:
         if m["state"] != "DEVELOPMENT" or m["evidence_class"] != "demonstration_only":
             raise ValueError("This adapter only accepts a declared development demo")
         checkpoint = Path(m["checkpoint"])
-        if hashlib.sha256(checkpoint.read_bytes()).hexdigest() != m["checkpoint_sha256"]:
+        if (
+            hashlib.sha256(checkpoint.read_bytes()).hexdigest()
+            != m["checkpoint_sha256"]
+        ):
             raise ValueError("Serving checkpoint hash mismatch")
         current_processes = subprocess.check_output(
             ["nvidia-smi", "--query-compute-apps=pid", "--format=csv,noheader"],
             text=True,
         ).strip()
         if current_processes:
-            raise RuntimeError(f"GPU occupied before serving startup: {current_processes}")
+            raise RuntimeError(
+                f"GPU occupied before serving startup: {current_processes}"
+            )
         lock = Path("/home/bjw-0/mosaic-rec-work/locks/gpu.lock")
         lock.parent.mkdir(parents=True, exist_ok=True)
         self._lock_handle = lock.open("a+")
@@ -53,14 +57,22 @@ class ServingBackend:
             fcntl.flock(self._lock_handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
             self._lock_handle.seek(0)
             self._lock_handle.truncate()
-            self._lock_handle.write(f"pid={os.getpid()} model={m['model']}_SERVING_DEMO\n")
+            self._lock_handle.write(
+                f"pid={os.getpid()} model={m['model']}_SERVING_DEMO\n"
+            )
             self._lock_handle.flush()
             if not torch.cuda.is_available():
                 raise RuntimeError("CUDA required for neural serving demonstration")
             self.device = torch.device("cuda:0")
-            content = load_content(Path(m["feature_dir"]), Path(m["tag_file"]),
-                                   Path(m["title_file"]), self.device)
-            checkpoint_data = torch.load(checkpoint, map_location=self.device, weights_only=True)
+            content = load_content(
+                Path(m["feature_dir"]),
+                Path(m["tag_file"]),
+                Path(m["title_file"]),
+                self.device,
+            )
+            checkpoint_data = torch.load(
+                checkpoint, map_location=self.device, weights_only=True
+            )
             if checkpoint_data["variant"] != m["variant"]:
                 raise ValueError("Manifest/checkpoint model variant mismatch")
             self.model = MosaicSequence(m["variant"], *content).to(self.device)
@@ -69,10 +81,17 @@ class ServingBackend:
             self.histories: dict[int, list[tuple[int, int]]] = defaultdict(list)
             self.seen: dict[int, set[int]] = defaultdict(set)
             counts: dict[int, int] = defaultdict(int)
-            fit = pq.read_table(Path(m["split_dir"]) / "FIT_VISIBLE.parquet",
-                                columns=["timestamp", "user_id", "item_id"])
-            events = sorted(zip(fit["timestamp"].to_pylist(),
-                                fit["user_id"].to_pylist(), fit["item_id"].to_pylist()))
+            fit = pq.read_table(
+                Path(m["split_dir"]) / "FIT_VISIBLE.parquet",
+                columns=["timestamp", "user_id", "item_id"],
+            )
+            events = sorted(
+                zip(
+                    fit["timestamp"].to_pylist(),
+                    fit["user_id"].to_pylist(),
+                    fit["item_id"].to_pylist(),
+                )
+            )
             for _, user, item in events:
                 user, item = int(user), int(item)
                 self.histories[user].append((item, counts[item]))
@@ -88,8 +107,9 @@ class ServingBackend:
                 device=self.device,
             )
             self.item_ids = torch.arange(1, 19739, device=self.device)
-            self.support = torch.tensor([counts[i] for i in range(1, 19739)],
-                                        device=self.device)
+            self.support = torch.tensor(
+                [counts[i] for i in range(1, 19739)], device=self.device
+            )
             with torch.inference_mode(), torch.autocast("cuda", dtype=torch.bfloat16):
                 catalog, weights = self.model.fuse(self.item_ids, self.support)
             self.catalog = catalog.float()
@@ -109,25 +129,35 @@ class ServingBackend:
         if not history:
             raise KeyError(user_id)
         recent = history[-20:]
-        seq = torch.tensor([[x[0] for x in recent] + [0] * (20 - len(recent))],
-                           device=self.device)
-        support = torch.tensor([[x[1] for x in recent] + [0] * (20 - len(recent))],
-                               device=self.device)
+        seq = torch.tensor(
+            [[x[0] for x in recent] + [0] * (20 - len(recent))], device=self.device
+        )
+        support = torch.tensor(
+            [[x[1] for x in recent] + [0] * (20 - len(recent))], device=self.device
+        )
         length = torch.tensor([len(recent)], device=self.device)
         with torch.inference_mode(), torch.autocast("cuda", dtype=torch.bfloat16):
             return self.model.user_state(seq, support, length).float()[0]
 
-    def recommend(self, user_id: int, k: int, diagnostics: bool = False) -> dict[str, Any]:
+    def recommend(
+        self, user_id: int, k: int, diagnostics: bool = False
+    ) -> dict[str, Any]:
         state = self._state(user_id)
         with torch.inference_mode():
             scores = (self.catalog @ state).to(torch.float64)
-            scores -= torch.arange(19738, device=self.device, dtype=torch.float64) * 1e-12
+            scores -= (
+                torch.arange(19738, device=self.device, dtype=torch.float64) * 1e-12
+            )
             scores.masked_fill_(~self.available, -torch.inf)
-            scores[torch.tensor(sorted(self.seen[user_id]), device=self.device) - 1] = -torch.inf
+            scores[
+                torch.tensor(sorted(self.seen[user_id]), device=self.device) - 1
+            ] = -torch.inf
             values, indices = scores.topk(k)
             item_ids = (indices + 1).tolist()
-            results = [{"item_id": item, "score": float(value)}
-                       for item, value in zip(item_ids, values.tolist())]
+            results = [
+                {"item_id": item, "score": float(value)}
+                for item, value in zip(item_ids, values.tolist())
+            ]
             if diagnostics:
                 for result in results:
                     item = result["item_id"]
@@ -153,7 +183,9 @@ class ServingBackend:
                     )
                     result["branch_score_contributions"] = {
                         name: float(torch.dot(state, vector.float()) * coefficient)
-                        for name, vector, coefficient in zip(BRANCHES, branch_vectors, coefficients)
+                        for name, vector, coefficient in zip(
+                            BRANCHES, branch_vectors, coefficients
+                        )
                     }
         return {
             "protocol_id": self.manifest["protocol_id"],
@@ -194,11 +226,17 @@ def create_app(manifest_path: Path | None = None) -> FastAPI:
 
     def dispatch(request: RecommendRequest, diagnostics: bool) -> dict[str, Any]:
         if backend is None:
-            raise HTTPException(status_code=503, detail="No verified development checkpoint loaded")
+            raise HTTPException(
+                status_code=503, detail="No verified development checkpoint loaded"
+            )
         try:
-            return backend.recommend(request.user_id, request.k, diagnostics=diagnostics)
+            return backend.recommend(
+                request.user_id, request.k, diagnostics=diagnostics
+            )
         except KeyError:
-            raise HTTPException(status_code=404, detail="User has no FIT-visible history") from None
+            raise HTTPException(
+                status_code=404, detail="User has no FIT-visible history"
+            ) from None
 
     @app.post("/recommend")
     def recommend(request: RecommendRequest) -> dict[str, Any]:
@@ -211,5 +249,8 @@ def create_app(manifest_path: Path | None = None) -> FastAPI:
     return app
 
 
-app = create_app(Path(os.environ["MOSAIC_SERVING_MANIFEST"])
-                 if "MOSAIC_SERVING_MANIFEST" in os.environ else None)
+app = create_app(
+    Path(os.environ["MOSAIC_SERVING_MANIFEST"])
+    if "MOSAIC_SERVING_MANIFEST" in os.environ
+    else None
+)

@@ -13,7 +13,7 @@ def main() -> int:
 
     try:
         import torch
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 - torch import can fail through native CUDA libraries
         result.update(
             torch_import=False,
             error=repr(exc),

@@ -14,24 +14,47 @@ def audit(dataset: str, split_dir: Path, config_path: Path) -> dict:
     config = json.loads(config_path.read_text())
     bounds = config["datasets"][dataset]
     con = duckdb.connect()
-    roles = ["FIT_VISIBLE", "FIT_WITHHELD_COLD", "VALIDATION", "QUALIFICATION", "LOCKED_FINAL"]
+    roles = [
+        "FIT_VISIBLE",
+        "FIT_WITHHELD_COLD",
+        "VALIDATION",
+        "QUALIFICATION",
+        "LOCKED_FINAL",
+    ]
     paths = {role: split_dir / f"{role}.parquet" for role in roles}
     for role, path in paths.items():
         if not path.exists():
             raise FileNotFoundError(path)
-        con.execute(f"CREATE VIEW {role} AS SELECT * FROM read_parquet('{path.as_posix()}')")
+        con.execute(
+            f"CREATE VIEW {role} AS SELECT * FROM read_parquet('{path.as_posix()}')"
+        )
     violating_bounds = {
-        "fit_visible": con.execute(f"SELECT count(*) FROM FIT_VISIBLE WHERE timestamp > {bounds['fit_end']}").fetchone()[0],
-        "fit_withheld": con.execute(f"SELECT count(*) FROM FIT_WITHHELD_COLD WHERE timestamp > {bounds['fit_end']}").fetchone()[0],
-        "validation": con.execute(f"SELECT count(*) FROM VALIDATION WHERE timestamp <= {bounds['fit_end']} OR timestamp > {bounds['validation_end']}").fetchone()[0],
-        "qualification": con.execute(f"SELECT count(*) FROM QUALIFICATION WHERE timestamp <= {bounds['validation_end']} OR timestamp > {bounds['qualification_end']}").fetchone()[0],
-        "locked_final": con.execute(f"SELECT count(*) FROM LOCKED_FINAL WHERE timestamp <= {bounds['qualification_end']}").fetchone()[0],
+        "fit_visible": con.execute(
+            f"SELECT count(*) FROM FIT_VISIBLE WHERE timestamp > {bounds['fit_end']}"
+        ).fetchone()[0],
+        "fit_withheld": con.execute(
+            f"SELECT count(*) FROM FIT_WITHHELD_COLD WHERE timestamp > {bounds['fit_end']}"
+        ).fetchone()[0],
+        "validation": con.execute(
+            f"SELECT count(*) FROM VALIDATION WHERE timestamp <= {bounds['fit_end']} OR timestamp > {bounds['validation_end']}"
+        ).fetchone()[0],
+        "qualification": con.execute(
+            f"SELECT count(*) FROM QUALIFICATION WHERE timestamp <= {bounds['validation_end']} OR timestamp > {bounds['qualification_end']}"
+        ).fetchone()[0],
+        "locked_final": con.execute(
+            f"SELECT count(*) FROM LOCKED_FINAL WHERE timestamp <= {bounds['qualification_end']}"
+        ).fetchone()[0],
     }
     cohort_path = split_dir / "controlled_cold_item_ids.txt"
     cold_ids = set(cohort_path.read_text().splitlines())
     visible_cold = con.execute("SELECT DISTINCT item_id FROM FIT_VISIBLE").fetchall()
     visible_cold_count = sum(row[0] in cold_ids for row in visible_cold)
-    withheld_items = {row[0] for row in con.execute("SELECT DISTINCT item_id FROM FIT_WITHHELD_COLD").fetchall()}
+    withheld_items = {
+        row[0]
+        for row in con.execute(
+            "SELECT DISTINCT item_id FROM FIT_WITHHELD_COLD"
+        ).fetchall()
+    }
     withheld_outside_cohort = len(withheld_items - cold_ids)
     all_roles = " UNION ALL ".join(
         f"SELECT user_id, item_id, timestamp FROM {role}" for role in roles
@@ -39,13 +62,20 @@ def audit(dataset: str, split_dir: Path, config_path: Path) -> dict:
     duplicate_events = con.execute(
         f"SELECT count(*) - count(DISTINCT (user_id,item_id,timestamp)) FROM ({all_roles})"
     ).fetchone()[0]
-    pass_audit = not (any(violating_bounds.values()) or visible_cold_count or
-                      withheld_outside_cohort or duplicate_events)
+    pass_audit = not (
+        any(violating_bounds.values())
+        or visible_cold_count
+        or withheld_outside_cohort
+        or duplicate_events
+    )
     return {
-        "stage_id": "A06", "protocol_id": config["protocol_id"],
-        "state": "DEVELOPMENT", "status": "PASS" if pass_audit else "FAIL",
+        "stage_id": "A06",
+        "protocol_id": config["protocol_id"],
+        "state": "DEVELOPMENT",
+        "status": "PASS" if pass_audit else "FAIL",
         "ended_utc": datetime.now(timezone.utc).isoformat(),
-        "dataset": dataset, "temporal_boundary_violations": violating_bounds,
+        "dataset": dataset,
+        "temporal_boundary_violations": violating_bounds,
         "controlled_cold_items_with_visible_fit_interactions": visible_cold_count,
         "withheld_items_outside_cold_cohort": withheld_outside_cohort,
         "cross_role_duplicate_events": duplicate_events,

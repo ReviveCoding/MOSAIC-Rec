@@ -45,19 +45,25 @@ def inspect(feature_dir: Path) -> dict:
             max_abs_difference = max(max_abs_difference, difference)
         norms = np.linalg.norm(np.asarray(vectors), axis=1)
         results[modality] = {
-            "shape": list(vectors.shape), "dtype": str(vectors.dtype),
-            "npy_sha256": sha256(array_path), "json_sha256": sha256(json_path),
+            "shape": list(vectors.shape),
+            "dtype": str(vectors.dtype),
+            "npy_sha256": sha256(array_path),
+            "json_sha256": sha256(json_path),
             "finite": bool(np.isfinite(vectors).all()),
             "zero_norm_rows": int(np.count_nonzero(norms == 0)),
-            "min_norm": float(norms.min()), "median_norm": float(np.median(norms)),
+            "min_norm": float(norms.min()),
+            "median_norm": float(np.median(norms)),
             "max_norm": float(norms.max()),
             "max_abs_json_npy_difference": max_abs_difference,
         }
     return {
-        "stage_id": "B01", "protocol_id": "mosaic-rec-2026-09-20-p1",
-        "state": "PILOT", "status": "PASS",
+        "stage_id": "B01",
+        "protocol_id": "mosaic-rec-2026-09-20-p1",
+        "state": "PILOT",
+        "status": "PASS",
         "ended_utc": datetime.now(timezone.utc).isoformat(),
-        "dataset": "microlens-100k", "features": results,
+        "dataset": "microlens-100k",
+        "features": results,
         "warnings": [
             "Publisher-provided frozen embeddings; no local encoder extraction or encoder-version parity claimed.",
             "Verify source encoder training provenance before confirmatory use.",
