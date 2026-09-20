@@ -1,0 +1,24 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "freeze_status": "PROPOSED_FOR_E04_NOT_FROZEN",
+  "training_policy": "Retrain each applicable component removal on FIT with the frozen finalist configuration and identical frozen seeds; no post-lock HPO.",
+  "evaluation": "Exact available-catalog NDCG@20 on the same prespecified overall, controlled-cold, and FIT-warm roles and users.",
+  "components": [
+    "sequence",
+    "collaborative_signal",
+    "text",
+    "image",
+    "metadata",
+    "adaptive_gate",
+    "behavioral_dropout",
+    "modality_dropout",
+    "consistency_signal",
+    "monotonic_support_constraint",
+    "auxiliary_loss",
+    "retrieval_reranking_split"
+  ],
+  "not_present_rule": "If a component is absent from the frozen finalist, report NOT_APPLICABLE with that architectural reason and preserve applicable development-ladder evidence; do not invent a removal result.",
+  "claim_rule": "Negative or zero component value remains in the report; no post-hoc promotion of exploratory ablations.",
+  "warning": "The confirmatory family must be finalized during QUALIFICATION before locked outcome access. No ablation result is claimed by this manifest."
+}
