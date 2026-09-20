@@ -1,0 +1,38 @@
+{
+  "reviewed_utc": "2026-09-20T05:48:00Z",
+  "datasets": {
+    "microlens-100k": {
+      "official_source": "https://recsys.westlake.edu.cn/MicroLens-100k-Dataset/",
+      "citation": "Ni et al., A Content-Driven Micro-Video Recommendation Dataset at Scale, 2023",
+      "local_root_wsl": "/home/bjw-0/mosaic-rec-work/data/microlens-100k",
+      "pairs_sha256": "cc5972c79e8a24c8c7c8e229ce48b0d56c3719f804debb84df7382293c56bd4e",
+      "title_en_sha256": "1cc32b69821f3b782412833cf1f5750182779234f7c5ad87da7d8c6718b50b6b",
+      "raw_video_status": "HOLD_TERMS",
+      "redistribute": false
+    },
+    "ml-32m": {
+      "official_source": "https://files.grouplens.org/datasets/movielens/ml-32m.zip",
+      "citation": "Harper and Konstan, The MovieLens Datasets: History and Context, 2015",
+      "local_root_wsl": "/home/bjw-0/mosaic-rec-work/data/ml-32m",
+      "archive_sha256": "e4a68655d7386b8f95f2f2424b2ff975dfdd15ffd59e0d864a14dca43e99d6ee",
+      "ratings_sha256": "91159850e41ee59c86231165a688709647e2726cab2e7ba9faf04001bd5261ee",
+      "official_md5_file_check": "PASS",
+      "research_use": true,
+      "commercial_use_requires_permission": true,
+      "redistribute_under_same_terms": true
+    },
+    "pixelrec50k": {
+      "official_source": "https://drive.google.com/drive/folders/1bQPgM-6yAnzcD0jKBoUUheA9LL5xnCHG",
+      "citation": "Cheng et al., An Image Dataset for Benchmarking Recommender Systems with Raw Pixels, 2023",
+      "local_root_wsl": "/home/bjw-0/mosaic-rec-work/data/pixelrec50k",
+      "acquisition_status": "INTERACTIONS_AND_METADATA_QUALIFIED",
+      "interactions_sha256": "638b53ec100f760cb9bd540c361f6d6e3617c81b1c054ced63fffa41da909e4d",
+      "item_info_sha256": "a073c2c65900f215a8137929b27dc57cf6f4f8fa11453a5c74fa8ff3a730a04e",
+      "cover_acquisition_status": "PENDING",
+      "publisher_image_feature_source": "https://drive.google.com/file/d/12VW6o5AToMFWLbSILi5_c6tlSXS43qm6/view",
+      "publisher_image_feature_status": "DOWNLOADING_UNQUALIFIED",
+      "noncommercial_research_only": true,
+      "redistribute": false
+    }
+  }
+}

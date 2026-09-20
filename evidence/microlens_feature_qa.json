@@ -1,0 +1,60 @@
+{
+  "stage_id": "B01",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "PILOT",
+  "status": "PASS",
+  "ended_utc": "2026-09-20T05:56:26.346136+00:00",
+  "dataset": "microlens-100k",
+  "features": {
+    "image": {
+      "shape": [
+        19738,
+        1024
+      ],
+      "dtype": "float32",
+      "npy_sha256": "61798511c916a8e36cd47d15aea66519bd0b4e390b491f7abbb3aeb0fa1eb57a",
+      "json_sha256": "bd6df6e170af72afd8cb1b7d6107e67bbb9d6ecaecee14640c2a74a718a943b2",
+      "finite": true,
+      "zero_norm_rows": 0,
+      "min_norm": 1.3528995513916016,
+      "median_norm": 2.1615095138549805,
+      "max_norm": 4.426070213317871,
+      "max_abs_json_npy_difference": 0.0
+    },
+    "text": {
+      "shape": [
+        19738,
+        1024
+      ],
+      "dtype": "float32",
+      "npy_sha256": "ce0625f211489d118937ea17b94c6eacd8afcbfe3be61ca3c669363d65bc4402",
+      "json_sha256": "d94a0c5d50e412a3ad3e4d0a9429c151c5c7cb6c1e07fc0c429729e520eded7e",
+      "finite": true,
+      "zero_norm_rows": 0,
+      "min_norm": 0.9999997615814209,
+      "median_norm": 1.0,
+      "max_norm": 1.0000001192092896,
+      "max_abs_json_npy_difference": 0.0
+    },
+    "video_secondary": {
+      "shape": [
+        19738,
+        768
+      ],
+      "dtype": "float32",
+      "npy_sha256": "0217548e263a6253daf18874581db76d231f1843e6edc750b323d6c2a196cad8",
+      "json_sha256": "e0d19a3b3f926f24a5316062a94453053dec2e0c086fc6e2dd4acd33f045b7cb",
+      "finite": true,
+      "zero_norm_rows": 0,
+      "min_norm": 71.93285369873047,
+      "median_norm": 90.38713073730469,
+      "max_norm": 116.1300048828125,
+      "max_abs_json_npy_difference": 0.0
+    }
+  },
+  "warnings": [
+    "Publisher-provided frozen embeddings; no local encoder extraction or encoder-version parity claimed.",
+    "Verify source encoder training provenance before confirmatory use."
+  ],
+  "evidence_class": "measured_feature_qa"
+}

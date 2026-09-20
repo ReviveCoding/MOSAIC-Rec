@@ -1,38 +1,29 @@
-# Python
 __pycache__/
 *.py[cod]
+*.egg-info/
 .pytest_cache/
-.mypy_cache/
 .ruff_cache/
+.venv/
+log/
+log_tensorboard/
+*.log
+data/
+features/
+checkpoints/
+cache/
+.mypy_cache/
 .coverage
 htmlcov/
-.venv/
 venv/
-
-# Secrets
 .env
 .env.*
 !.env.example
 *.key
 *.pem
-
-# IDE / OS
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
-
-# Data / features
-data/raw/
-data/staged/
-data/processed/
-data/features/
-data/cache/
-data/images/
-data/videos/
-data/audio/
-
-# ML artifacts
 artifacts/checkpoints/
 artifacts/models/
 artifacts/cache/
@@ -41,14 +32,11 @@ artifacts/cache/
 *.pth
 *.safetensors
 *.lmdb
-
-# Services
 wandb/
 mlruns/
-
-# Local
 .local-work/
 tmp/
 scratch/
 *.tmp
 *.partial
+*.part

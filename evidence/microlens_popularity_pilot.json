@@ -1,0 +1,29 @@
+{
+  "stage_id": "C00",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "PILOT",
+  "status": "PASS",
+  "ended_utc": "2026-09-20T05:45:15.895976+00:00",
+  "dataset": "microlens-100k",
+  "model": "B0_GLOBAL_FIT_POPULARITY",
+  "role": "VALIDATION",
+  "fit_cutoff": 1660907163789,
+  "validation_cutoff": 1661520705715,
+  "evaluation_population": "first validation event per FIT-seen user with unseen target",
+  "ranking": "exact all available items, FIT-only popularity, item-ID tie break",
+  "candidate_availability": "first observed timestamp <= event timestamp",
+  "evaluated_users": 41851,
+  "excluded_no_fit_user": 1918,
+  "excluded_target_already_seen": 0,
+  "excluded_unavailable_target": 0,
+  "ndcg_at_20": 0.0013355559261500657,
+  "recall_at_20": 0.004372655372631478,
+  "mrr_at_20": 0.0005204189121538766,
+  "hit_rate_at_20": 0.004372655372631478,
+  "warnings": [
+    "Pilot validation only; no controlled cold cohort, HPO, or locked inference.",
+    "Unobserved items are not asserted to be true negatives.",
+    "First observed time is a visibility proxy, not launch time."
+  ],
+  "evidence_class": "measured_pilot_validation"
+}

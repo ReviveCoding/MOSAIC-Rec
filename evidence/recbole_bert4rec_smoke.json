@@ -1,0 +1,26 @@
+{
+  "stage_id": "C05",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "REFERENCE_RUNTIME_SMOKE_PASS",
+  "ended_utc": "2026-09-20T06:52:23.249339+00:00",
+  "reference": "RecBole 1.2.1 BERT4Rec",
+  "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "result": {
+    "best_valid_score": 0.0028,
+    "valid_score_bigger": true,
+    "best_valid_result": {
+      "ndcg@20": 0.0028,
+      "recall@20": 0.0091
+    },
+    "test_result": {
+      "ndcg@20": 0.0014,
+      "recall@20": 0.0047
+    }
+  },
+  "warnings": [
+    "RecBole internally splits FIT-only interactions for smoke; these results are not comparable to the frozen protocol and cannot select a comparator.",
+    "Wall time was contaminated by an unrelated GPU workload and a documented SIGSTOP/SIGCONT pause; do not use it for throughput."
+  ],
+  "evidence_class": "reference_runtime_smoke"
+}

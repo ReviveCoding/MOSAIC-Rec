@@ -1,0 +1,21 @@
+{
+  "stage_id": "A03",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "PILOT",
+  "status": "PASS",
+  "ended_utc": "2026-09-20T06:00:14.368752+00:00",
+  "dataset": "microlens-100k",
+  "content_file": "tags_to_summary.csv",
+  "content_sha256": "8cf88e9b145c7d55a0545d53927a05e4763677b6241528a14392a3ee36660c56",
+  "interaction_items": 19738,
+  "content_rows": 19738,
+  "unique_content_items": 19738,
+  "interaction_items_missing_content": 0,
+  "content_items_without_interactions": 0,
+  "empty_titles": 0,
+  "time_unsafe_aggregate_columns_excluded_from_features": [],
+  "warnings": [
+    "Titles/descriptions lack effective-time metadata; historical revision leakage remains possible."
+  ],
+  "evidence_class": "measured_data_qa"
+}

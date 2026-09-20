@@ -1,0 +1,23 @@
+{
+  "stage_id": "A06",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "PASS",
+  "ended_utc": "2026-09-20T05:59:42.146069+00:00",
+  "dataset": "ml-32m",
+  "temporal_boundary_violations": {
+    "fit_visible": 0,
+    "fit_withheld": 0,
+    "validation": 0,
+    "qualification": 0,
+    "locked_final": 0
+  },
+  "controlled_cold_items_with_visible_fit_interactions": 0,
+  "withheld_items_outside_cold_cohort": 0,
+  "cross_role_duplicate_events": 0,
+  "warnings": [
+    "This mechanical audit cannot establish historical validity of untimestamped content revisions.",
+    "Candidate-time filtering is enforced by evaluators and requires its own test."
+  ],
+  "evidence_class": "measured_leakage_audit"
+}

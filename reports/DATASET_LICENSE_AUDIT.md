@@ -1,0 +1,12 @@
+# Dataset source and license audit (2026-09-20)
+
+| Track | Official identity | Terms and use | Redistribution | Gate |
+|---|---|---|---|---|
+| MovieLens 32M | [GroupLens page](https://grouplens.org/datasets/movielens/32m/), [README](https://files.grouplens.org/datasets/movielens/ml-32m-README.html), release 2024 | Research use; acknowledge Harper and Konstan 2015; no commercial/revenue use without permission | Same license conditions | Eligible for local research; verify archive and README MD5s before modeling |
+| MicroLens 100K interactions/titles | [project](https://github.com/westlake-repl/MicroLens), [official portal](https://recsys.westlake.edu.cn/) | Citation Ni et al. 2023; project forbids private modified secondary downloads | Keep raw/derived content local; publish processing code only | Interaction/title acquisition eligible; schema and asset identities pending |
+| MicroLens videos | [portal declaration](https://recsys.westlake.edu.cn/) | Academic peers only, noncommercial; no modification or redistribution without permission | Prohibited | HOLD for raw video processing; do not infer permission for edits from public URL |
+| PixelRec50K | [project and Google Drive link](https://github.com/westlake-repl/PixelRec), [dataset LICENSE](https://github.com/westlake-repl/PixelRec/blob/main/dataset/LICENSE) | Noncommercial research/education; the license also states that no rights are granted to copy, modify, publish, distribute, or commercialize the dataset; cite Cheng et al. 2023 | No redistribution | Interaction and metadata files acquired, hashed, and mapped; cover archive downloading. Local derived visual features require a conservative terms decision before extraction. |
+
+TMDB content is excluded from training/features. Raw archives, media, and derived vectors stay in WSL scratch. The repository may contain hashes, schemas, code, and aggregate statistics only. Publication or commercial use requires a separate rights review.
+
+The [official PixelRec README](https://github.com/westlake-repl/PixelRec) separately links publisher image features (`image_feature.json`, Drive file `12VW6o5AToMFWLbSILi5_c6tlSXS43qm6`). A local download is in progress as a contingency for the cover quota block. It is not yet an eligible model input: full-file identity, vector schema, PixelRec50K item mapping, and finiteness must pass first. The publisher feature encoder and historical effective time are not established by the link alone; no local image-extraction or time-validity claim follows from using it.

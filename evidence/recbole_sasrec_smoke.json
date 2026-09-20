@@ -1,0 +1,25 @@
+{
+  "stage_id": "C05",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "REFERENCE_RUNTIME_SMOKE_PASS",
+  "ended_utc": "2026-09-20T06:25:42.828722+00:00",
+  "reference": "RecBole 1.2.1 SASRec",
+  "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "result": {
+    "best_valid_score": 0.0053,
+    "valid_score_bigger": true,
+    "best_valid_result": {
+      "ndcg@20": 0.0053,
+      "recall@20": 0.0149
+    },
+    "test_result": {
+      "ndcg@20": 0.0026,
+      "recall@20": 0.0076
+    }
+  },
+  "warnings": [
+    "RecBole internally splits FIT-only interactions for smoke; these results are not comparable to the frozen protocol and cannot select a comparator."
+  ],
+  "evidence_class": "reference_runtime_smoke"
+}

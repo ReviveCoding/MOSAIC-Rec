@@ -1,0 +1,314 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "label": "MicroLens pairs",
+      "path": "/home/bjw-0/mosaic-rec-work/data/microlens-100k/pairs.csv",
+      "status": "PASS",
+      "sha256": "cc5972c79e8a24c8c7c8e229ce48b0d56c3719f804debb84df7382293c56bd4e"
+    },
+    {
+      "label": "MicroLens titles",
+      "path": "/home/bjw-0/mosaic-rec-work/data/microlens-100k/title_en.csv",
+      "status": "PASS",
+      "sha256": "1cc32b69821f3b782412833cf1f5750182779234f7c5ad87da7d8c6718b50b6b"
+    },
+    {
+      "label": "MovieLens archive",
+      "path": "/home/bjw-0/mosaic-rec-work/data/ml-32m/ml-32m.zip",
+      "status": "PASS",
+      "sha256": "e4a68655d7386b8f95f2f2424b2ff975dfdd15ffd59e0d864a14dca43e99d6ee"
+    },
+    {
+      "label": "MovieLens ratings",
+      "path": "/home/bjw-0/mosaic-rec-work/data/ml-32m/ml-32m/ratings.csv",
+      "status": "PASS",
+      "sha256": "91159850e41ee59c86231165a688709647e2726cab2e7ba9faf04001bd5261ee"
+    },
+    {
+      "label": "PixelRec interactions",
+      "path": "/home/bjw-0/mosaic-rec-work/data/pixelrec50k/interaction.csv",
+      "status": "PASS",
+      "sha256": "638b53ec100f760cb9bd540c361f6d6e3617c81b1c054ced63fffa41da909e4d"
+    },
+    {
+      "label": "PixelRec item info",
+      "path": "/home/bjw-0/mosaic-rec-work/data/pixelrec50k/item_info.csv",
+      "status": "PASS",
+      "sha256": "a073c2c65900f215a8137929b27dc57cf6f4f8fa11453a5c74fa8ff3a730a04e"
+    },
+    {
+      "label": "microlens source",
+      "path": "/home/bjw-0/mosaic-rec-work/data/microlens-100k/pairs.csv",
+      "status": "PASS",
+      "sha256": "cc5972c79e8a24c8c7c8e229ce48b0d56c3719f804debb84df7382293c56bd4e"
+    },
+    {
+      "label": "microlens cold IDs",
+      "path": "/home/bjw-0/mosaic-rec-work/data/microlens-100k/split_p1/controlled_cold_item_ids.txt",
+      "status": "PASS",
+      "sha256": "440e659b22c3f6f3743fb9fa32aa32a5af36afab884fb52b59a57441f3c64969"
+    },
+    {
+      "label": "microlens FIT_VISIBLE",
+      "path": "/home/bjw-0/mosaic-rec-work/data/microlens-100k/split_p1/FIT_VISIBLE.parquet",
+      "status": "PASS",
+      "sha256": "1571406f3bea51f96ee5839ccad858e4587d9b1aab5aafa296dde3854ce996e6",
+      "rows": 481499
+    },
+    {
+      "label": "microlens FIT_WITHHELD_COLD",
+      "path": "/home/bjw-0/mosaic-rec-work/data/microlens-100k/split_p1/FIT_WITHHELD_COLD.parquet",
+      "status": "PASS",
+      "sha256": "f8c3ffb0b6c414a94b11bbce87aaac41c8b3662dcc4899e196b97985ee9388ad",
+      "rows": 22085
+    },
+    {
+      "label": "microlens VALIDATION",
+      "path": "/home/bjw-0/mosaic-rec-work/data/microlens-100k/split_p1/VALIDATION.parquet",
+      "status": "PASS",
+      "sha256": "1328a9ff79bdc1afdd5961891835749b15e761b6263e926d2e74e6eccfbefd9c",
+      "rows": 71940
+    },
+    {
+      "label": "microlens QUALIFICATION",
+      "path": "/home/bjw-0/mosaic-rec-work/data/microlens-100k/split_p1/QUALIFICATION.parquet",
+      "status": "PASS",
+      "sha256": "4dfaa84b391f523ec4ae553186ef3f8782c8cbaea09a5a07240332a468a2a1ad",
+      "rows": 71941
+    },
+    {
+      "label": "microlens LOCKED_FINAL",
+      "path": "/home/bjw-0/mosaic-rec-work/data/microlens-100k/split_p1/LOCKED_FINAL.parquet",
+      "status": "PASS",
+      "sha256": "89eadf4f60fe807e367b4e9f6190315f901bc627696fbaab3537679c32772421",
+      "rows": 71940
+    },
+    {
+      "label": "ml32m source",
+      "path": "/home/bjw-0/mosaic-rec-work/data/ml-32m/ml-32m/ratings.csv",
+      "status": "PASS",
+      "sha256": "91159850e41ee59c86231165a688709647e2726cab2e7ba9faf04001bd5261ee"
+    },
+    {
+      "label": "ml32m cold IDs",
+      "path": "/home/bjw-0/mosaic-rec-work/data/ml-32m/split_p1/controlled_cold_item_ids.txt",
+      "status": "PASS",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "ml32m FIT_VISIBLE",
+      "path": "/home/bjw-0/mosaic-rec-work/data/ml-32m/split_p1/FIT_VISIBLE.parquet",
+      "status": "PASS",
+      "sha256": "3cd4a1717f16e18896c6effa0d397fa576ef8fb557fa260c83016bdae91b961b",
+      "rows": 22400143
+    },
+    {
+      "label": "ml32m FIT_WITHHELD_COLD",
+      "path": "/home/bjw-0/mosaic-rec-work/data/ml-32m/split_p1/FIT_WITHHELD_COLD.parquet",
+      "status": "PASS",
+      "sha256": "a181a4cdb82c463f9c6479431adb4c61ef61eb2f57aebbb7204e16cf495bb704",
+      "rows": 0
+    },
+    {
+      "label": "ml32m VALIDATION",
+      "path": "/home/bjw-0/mosaic-rec-work/data/ml-32m/split_p1/VALIDATION.parquet",
+      "status": "PASS",
+      "sha256": "0c0258033b93fe5bb113844157b287f765675042da3892d2cb4a8dea1409b30e",
+      "rows": 3200021
+    },
+    {
+      "label": "ml32m QUALIFICATION",
+      "path": "/home/bjw-0/mosaic-rec-work/data/ml-32m/split_p1/QUALIFICATION.parquet",
+      "status": "PASS",
+      "sha256": "9d97f30ff819c9dcd4d42dec50fba68b6c532f874c26fef3002874f6d49692f5",
+      "rows": 3200021
+    },
+    {
+      "label": "ml32m LOCKED_FINAL",
+      "path": "/home/bjw-0/mosaic-rec-work/data/ml-32m/split_p1/LOCKED_FINAL.parquet",
+      "status": "PASS",
+      "sha256": "c143cc43a53710d93f85a21b4c09e69016a1c6ec878607a8aeebdb6f3c148d87",
+      "rows": 3200019
+    },
+    {
+      "label": "pixelrec source",
+      "path": "/home/bjw-0/mosaic-rec-work/data/pixelrec50k/interaction.csv",
+      "status": "PASS",
+      "sha256": "638b53ec100f760cb9bd540c361f6d6e3617c81b1c054ced63fffa41da909e4d"
+    },
+    {
+      "label": "pixelrec cold IDs",
+      "path": "/home/bjw-0/mosaic-rec-work/data/pixelrec50k/split_p1/controlled_cold_item_ids.txt",
+      "status": "PASS",
+      "sha256": "a87d16eaff448727bb8d67c127a5acd3dff4cfa94218bb3cc151f51d99857142"
+    },
+    {
+      "label": "pixelrec FIT_VISIBLE",
+      "path": "/home/bjw-0/mosaic-rec-work/data/pixelrec50k/split_p1/FIT_VISIBLE.parquet",
+      "status": "PASS",
+      "sha256": "3b5809898a4044388592bba6625a61c13a403ad36d1ec90473549f3bf2383672",
+      "rows": 657160
+    },
+    {
+      "label": "pixelrec FIT_WITHHELD_COLD",
+      "path": "/home/bjw-0/mosaic-rec-work/data/pixelrec50k/split_p1/FIT_WITHHELD_COLD.parquet",
+      "status": "PASS",
+      "sha256": "9a073af47948cab217ed66b8c91d66f3276bea9143a26efe748f5af8e8be9c0f",
+      "rows": 35486
+    },
+    {
+      "label": "pixelrec VALIDATION",
+      "path": "/home/bjw-0/mosaic-rec-work/data/pixelrec50k/split_p1/VALIDATION.parquet",
+      "status": "PASS",
+      "sha256": "f6af73bda1bcba8594788b18184b2ae7ef6427151dde442ce7ad34c7758044ec",
+      "rows": 98950
+    },
+    {
+      "label": "pixelrec QUALIFICATION",
+      "path": "/home/bjw-0/mosaic-rec-work/data/pixelrec50k/split_p1/QUALIFICATION.parquet",
+      "status": "PASS",
+      "sha256": "300e9c75ba6898a2e1a45e3aebc81e819791035949b49f71a3d77b91e96e519f",
+      "rows": 98949
+    },
+    {
+      "label": "pixelrec LOCKED_FINAL",
+      "path": "/home/bjw-0/mosaic-rec-work/data/pixelrec50k/split_p1/LOCKED_FINAL.parquet",
+      "status": "PASS",
+      "sha256": "093072501b2a4b445b019767a41781fef0ef4bc27f2ac5774eac244448308bf2",
+      "rows": 98949
+    },
+    {
+      "label": "checkpoint microlens_bpr_pilot",
+      "path": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_bpr_pilot.pt",
+      "status": "PASS",
+      "sha256": "385dea64981e64c46d10273807352fb38c89660103b2d00f782f86cc9536e5ee"
+    },
+    {
+      "label": "checkpoint microlens_gru4rec_pilot",
+      "path": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_gru4rec_pilot.pt",
+      "status": "PASS",
+      "sha256": "4fe75b360f18edb7daf40b8da4bd34f8050709bf240daf39b2cc410d27440e42"
+    },
+    {
+      "label": "checkpoint microlens_lightgcn_pilot",
+      "path": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_lightgcn_pilot.pt",
+      "status": "PASS",
+      "sha256": "3f971c5fd231ba255a6c0cf8c6722b0d6962ff6c525a992726efe47b68f475c9"
+    },
+    {
+      "label": "local features microlens_local_text_extraction",
+      "path": "/home/bjw-0/mosaic-rec-work/features/microlens-100k/local_minilm_text.npy",
+      "status": "PASS",
+      "sha256": "bef764937518335e8b985d13077f8ccd2041b3dfc370f7c0e372f1a06376adf7"
+    },
+    {
+      "label": "checkpoint microlens_m0_pilot",
+      "path": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_m0_pilot.pt",
+      "status": "PASS",
+      "sha256": "5d0dc6cc80c09d691bbd166179b1259cd5bfa0861b9ae2b7b0153d6c8a67e0d6"
+    },
+    {
+      "label": "checkpoint microlens_m1_pilot",
+      "path": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_m1_pilot.pt",
+      "status": "PASS",
+      "sha256": "b8fbce7c623a50a83a10df803d4eca827c9dd0b3eb29903b60e714d7780294b3"
+    },
+    {
+      "label": "checkpoint microlens_m2_pilot",
+      "path": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_m2_pilot.pt",
+      "status": "PASS",
+      "sha256": "a06d9e28a5d0f053295e5ca17540a17eb37d3d4fae38e0a7c0a396af48fd8987"
+    },
+    {
+      "label": "checkpoint microlens_m3_pilot",
+      "path": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_m3_pilot.pt",
+      "status": "PASS",
+      "sha256": "8465b09f811fe8c0259a37c78856d8b690d109d234b1f7113552453a43e50035"
+    },
+    {
+      "label": "checkpoint microlens_m4_pilot",
+      "path": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_m4_pilot.pt",
+      "status": "PASS",
+      "sha256": "391a3d7428b03ab7621745b927f105e4f9839cc3c3921634cfaa4cf4e70739e8"
+    },
+    {
+      "label": "checkpoint microlens_m5_pilot",
+      "path": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_m5_pilot.pt",
+      "status": "PASS",
+      "sha256": "5a714206d2d7668c09a8dd319b8b18a6a593751627737d4c40ed495850728aed"
+    },
+    {
+      "label": "checkpoint microlens_m6_pilot",
+      "path": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_m6_pilot.pt",
+      "status": "PASS",
+      "sha256": "db79a53a85de509b30fd92a6e84717737a128a73891b2e3805e741196e3259c0"
+    },
+    {
+      "label": "checkpoint microlens_m7_pilot",
+      "path": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_m7_pilot.pt",
+      "status": "PASS",
+      "sha256": "0b0af3e5ded480456b34203c6bd1d28234e2e22d01c71b1d907b3de84b2d0fd7"
+    },
+    {
+      "label": "checkpoint microlens_sasrec_pilot",
+      "path": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_sasrec_pilot.pt",
+      "status": "PASS",
+      "sha256": "6ae6ef9993c95e1cd97db8accefea77172624608fbce12eda5f019536b84e093"
+    },
+    {
+      "label": "checkpoint microlens_two_tower_pilot",
+      "path": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_two_tower_pilot.pt",
+      "status": "PASS",
+      "sha256": "93b26ad0c30c0189616010c7361058054952fb9df5c4a76319fa9b2dd475e5d2"
+    },
+    {
+      "label": "checkpoint microlens_vbpr_pilot",
+      "path": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_vbpr_pilot.pt",
+      "status": "PASS",
+      "sha256": "b9deff3ba51361e6625c6e96590a77955d3243b7bdd060f42c9fbeac341efb2e"
+    },
+    {
+      "label": "local features pixelrec_local_text_extraction",
+      "path": "/home/bjw-0/mosaic-rec-work/features/pixelrec50k/local_minilm_text.npy",
+      "status": "PASS",
+      "sha256": "9be4f7232b65064d7ee0544e49706ea381127120f1b6bd5493e6f24d25c8cbca"
+    },
+    {
+      "label": "publisher image NPY",
+      "path": "/home/bjw-0/mosaic-rec-work/features/microlens-100k/MicroLens-100k_image_features_CLIPRN50.npy",
+      "status": "PASS",
+      "sha256": "61798511c916a8e36cd47d15aea66519bd0b4e390b491f7abbb3aeb0fa1eb57a"
+    },
+    {
+      "label": "publisher image JSON",
+      "path": "/home/bjw-0/mosaic-rec-work/features/microlens-100k/MicroLens-100k_image_features_CLIPRN50.json",
+      "status": "PASS",
+      "sha256": "bd6df6e170af72afd8cb1b7d6107e67bbb9d6ecaecee14640c2a74a718a943b2"
+    },
+    {
+      "label": "publisher text NPY",
+      "path": "/home/bjw-0/mosaic-rec-work/features/microlens-100k/MicroLens-100k_title_en_text_features_BgeM3.npy",
+      "status": "PASS",
+      "sha256": "ce0625f211489d118937ea17b94c6eacd8afcbfe3be61ca3c669363d65bc4402"
+    },
+    {
+      "label": "publisher text JSON",
+      "path": "/home/bjw-0/mosaic-rec-work/features/microlens-100k/MicroLens-100k_title_en_text_features_BgeM3.json",
+      "status": "PASS",
+      "sha256": "d94a0c5d50e412a3ad3e4d0a9429c151c5c7cb6c1e07fc0c429729e520eded7e"
+    },
+    {
+      "label": "publisher video_secondary NPY",
+      "path": "/home/bjw-0/mosaic-rec-work/features/microlens-100k/MicroLens-100k_video_features_VideoMAE.npy",
+      "status": "PASS",
+      "sha256": "0217548e263a6253daf18874581db76d231f1843e6edc750b323d6c2a196cad8"
+    },
+    {
+      "label": "publisher video_secondary JSON",
+      "path": "/home/bjw-0/mosaic-rec-work/features/microlens-100k/MicroLens-100k_video_features_VideoMAE.json",
+      "status": "PASS",
+      "sha256": "e0d19a3b3f926f24a5316062a94453053dec2e0c086fc6e2dd4acd33f045b7cb"
+    }
+  ]
+}

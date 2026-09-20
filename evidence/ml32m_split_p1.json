@@ -1,0 +1,47 @@
+{
+  "stage_id": "A05",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "PASS",
+  "ended_utc": "2026-09-20T05:59:28.948920+00:00",
+  "dataset": "ml-32m",
+  "git_head": "946f2334b64da3751d271ed6f68d4513ba97926d",
+  "config_sha256": "e91660790891ea6a7d3feea078c947e09e444aa5f66cf0446e429a82f95285c0",
+  "source_sha256": "91159850e41ee59c86231165a688709647e2726cab2e7ba9faf04001bd5261ee",
+  "cold_cohort_count": 0,
+  "cold_cohort_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "cold_cohort_method": "SHA256(seed:item_id) < 5% of 2^256 on FIT-observed item IDs",
+  "outputs": {
+    "FIT_VISIBLE": {
+      "path": "/home/bjw-0/mosaic-rec-work/data/ml-32m/split_p1/FIT_VISIBLE.parquet",
+      "rows": 22400143,
+      "sha256": "3cd4a1717f16e18896c6effa0d397fa576ef8fb557fa260c83016bdae91b961b"
+    },
+    "FIT_WITHHELD_COLD": {
+      "path": "/home/bjw-0/mosaic-rec-work/data/ml-32m/split_p1/FIT_WITHHELD_COLD.parquet",
+      "rows": 0,
+      "sha256": "a181a4cdb82c463f9c6479431adb4c61ef61eb2f57aebbb7204e16cf495bb704"
+    },
+    "VALIDATION": {
+      "path": "/home/bjw-0/mosaic-rec-work/data/ml-32m/split_p1/VALIDATION.parquet",
+      "rows": 3200021,
+      "sha256": "0c0258033b93fe5bb113844157b287f765675042da3892d2cb4a8dea1409b30e"
+    },
+    "QUALIFICATION": {
+      "path": "/home/bjw-0/mosaic-rec-work/data/ml-32m/split_p1/QUALIFICATION.parquet",
+      "rows": 3200021,
+      "sha256": "9d97f30ff819c9dcd4d42dec50fba68b6c532f874c26fef3002874f6d49692f5"
+    },
+    "LOCKED_FINAL": {
+      "path": "/home/bjw-0/mosaic-rec-work/data/ml-32m/split_p1/LOCKED_FINAL.parquet",
+      "rows": 3200019,
+      "sha256": "c143cc43a53710d93f85a21b4c09e69016a1c6ec878607a8aeebdb6f3c148d87"
+    }
+  },
+  "source_rows": 32000204,
+  "warnings": [
+    "Materializing LOCKED_FINAL role does not authorize opening locked outcome metrics.",
+    "First-observed candidate availability is a proxy for item launch."
+  ],
+  "evidence_class": "derived_protocol_manifest"
+}

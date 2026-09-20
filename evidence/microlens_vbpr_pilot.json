@@ -1,0 +1,65 @@
+{
+  "stage_id": "C04",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "PILOT_PASS",
+  "ended_utc": "2026-09-20T06:05:49.599402+00:00",
+  "model": "VBPR",
+  "dataset": "microlens-100k",
+  "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "seed": 20260920,
+  "fit_samples": 481487,
+  "epochs": 5,
+  "training_log": [
+    {
+      "epoch": 1,
+      "fit_bpr_loss": 0.6892554248816315
+    },
+    {
+      "epoch": 2,
+      "fit_bpr_loss": 0.6185459197350525
+    },
+    {
+      "epoch": 3,
+      "fit_bpr_loss": 0.5285093252759616
+    },
+    {
+      "epoch": 4,
+      "fit_bpr_loss": 0.47104633453569517
+    },
+    {
+      "epoch": 5,
+      "fit_bpr_loss": 0.4255570926362883
+    }
+  ],
+  "train_seconds": 7.704041992999919,
+  "score_seconds": 10.49414195700001,
+  "peak_vram_bytes": 445375488,
+  "validation_slices": {
+    "all": {
+      "n": 41694,
+      "ndcg_at_20": 0.005549680529884916,
+      "recall_at_20": 0.014606418189667578,
+      "mrr_at_20": 0.0030834417337676154
+    },
+    "controlled_cold": {
+      "n": 918,
+      "ndcg_at_20": 0.000674135862903285,
+      "recall_at_20": 0.002178649237472767,
+      "mrr_at_20": 0.00026534830456399083
+    },
+    "warm_fit": {
+      "n": 20047,
+      "ndcg_at_20": 0.01102729422180857,
+      "recall_at_20": 0.028732478675113485,
+      "mrr_at_20": 0.006191248420961768
+    }
+  },
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_vbpr_pilot.pt",
+  "checkpoint_sha256": "b9deff3ba51361e6625c6e96590a77955d3243b7bdd060f42c9fbeac341efb2e",
+  "warnings": [
+    "Development pilot only; no equal-budget HPO, reference parity, or locked result.",
+    "Untimestamped historical content revisions are not ruled out."
+  ],
+  "evidence_class": "measured_development_pilot"
+}

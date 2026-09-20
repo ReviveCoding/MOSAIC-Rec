@@ -1,0 +1,24 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "scientific_state": "DEVELOPMENT",
+  "updated_utc": "2026-09-20T16:53:00Z",
+  "canonical_receipts_current": 41,
+  "recovery": {
+    "state": "AUDIT_PASS",
+    "artifact_hash_checks": 49,
+    "canonical_receipts": 38,
+    "locked_execution_receipts": 0,
+    "pixelrec_cover": "BLOCKED_EXTERNAL_GOOGLE_QUOTA_PARTIAL_PRESERVED",
+    "gpu_heavy_jobs": "HOLD_UNRELATED_CONTENTION"
+  },
+  "stages": {
+    "A00": "PASS", "A01": "PASS_WITH_MEDIA_HOLD", "A02": "PARTIAL_PIXEL_COVER_BLOCKED_EXTERNAL", "A03": "PASS", "A04": "PASS", "A05": "PASS", "A06": "PASS",
+    "B00": "PASS_TEXT_ONLY", "B01": "PASS_PUBLISHER_FEATURES", "C00": "PILOT_PASS", "C01": "PILOT_PASS", "C02": "PILOT_PASS", "C03": "PILOT_PARTIAL", "C04": "PILOT_PARTIAL", "C05": "IMPORT_SMOKE_PASS",
+    "D00": "PILOT_PASS", "D01": "PILOT_PASS", "D02": "PILOT_PASS", "D03": "PILOT_PASS", "D04": "PILOT_PASS", "D05": "PILOT_PASS", "D06": "PILOT_PASS", "D07": "PILOT_PASS", "D08": "PENDING",
+    "E00": "PENDING", "E01": "PENDING", "E02": "PENDING", "E03": "PENDING", "E04": "PENDING", "E05": "PENDING",
+    "F00": "PENDING", "F01": "PENDING", "F02": "PENDING", "F03": "PENDING", "F04": "PENDING", "F05": "PENDING",
+    "Gxx": "PENDING", "Hxx": "PENDING", "I00": "PENDING", "I01": "PENDING", "I02": "PENDING",
+    "J00": "PENDING", "J01": "PENDING", "J02": "PENDING", "J03": "PENDING", "J04": "PENDING", "J05": "PENDING",
+    "K00": "PENDING", "K01": "PENDING", "K02": "PENDING", "K03": "PENDING", "K04": "PENDING", "K05": "PENDING"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "stage_id": "A03",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "PILOT",
+  "status": "PASS",
+  "ended_utc": "2026-09-20T05:41:38.261313+00:00",
+  "dataset": "ml-32m",
+  "source_file": "ratings.csv",
+  "sha256": "91159850e41ee59c86231165a688709647e2726cab2e7ba9faf04001bd5261ee",
+  "schema": [
+    [
+      "userId",
+      "BIGINT",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "movieId",
+      "BIGINT",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "rating",
+      "DOUBLE",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "timestamp",
+      "BIGINT",
+      "YES",
+      null,
+      null,
+      null
+    ]
+  ],
+  "rows": 32000204,
+  "users": 200948,
+  "items": 84432,
+  "null_keys_or_timestamps": 0,
+  "min_timestamp": 789652004,
+  "max_timestamp": 1697164147,
+  "candidate_temporal_quantiles_unfrozen": [
+    1476244513,
+    1538309883,
+    1604391407
+  ],
+  "duplicate_user_item_timestamp_rows": 0,
+  "evidence_class": "measured_data_qa"
+}

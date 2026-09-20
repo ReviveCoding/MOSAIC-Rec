@@ -1,0 +1,50 @@
+[
+  {
+    "claim_id": "development_ladder_tradeoff",
+    "statement": "In a single-seed MicroLens development ladder, M4 had the highest controlled-cold validation NDCG@20 while M7 had the highest FIT-warm validation NDCG@20; neither variant led both slices.",
+    "evidence_class": "measured_development_pilot",
+    "receipt_id": "microlens_m4_pilot",
+    "status": "INTERNAL_PILOT",
+    "limitation": "Cross-references M0-M7 receipts; no equal HPO, seed qualification, paired intervals, or protected outcome access. This is not a promotion claim."
+  },
+  {
+    "claim_id": "pilot_microlens_gru4rec",
+    "statement": "A three-epoch CUDA GRU4Rec pilot measured validation NDCG@20 of 0.008925 on 41,694 FIT-history MicroLens users.",
+    "evidence_class": "measured_development_pilot",
+    "receipt_id": "microlens_gru4rec_pilot",
+    "status": "INTERNAL_PILOT",
+    "limitation": "No HPO, reference parity, seed qualification, or locked result; not a model-comparison or resume claim."
+  },
+  {
+    "claim_id": "core_promotion",
+    "statement": "MOSAIC improves controlled cold NDCG@20 while retaining warm quality.",
+    "evidence_class": "unexecuted",
+    "receipt_id": null,
+    "status": "UNSUPPORTED",
+    "limitation": "MOSAIC finalist, comparators, margins, locked results, and paired bootstrap are not available."
+  },
+  {
+    "claim_id": "reliability",
+    "statement": "MOSAIC has calibrated reliability-aware gate behavior.",
+    "evidence_class": "unexecuted",
+    "receipt_id": null,
+    "status": "UNSUPPORTED",
+    "limitation": "Intervention and directional gate tests are not complete; gate weights are not probabilities."
+  },
+  {
+    "claim_id": "production_impact",
+    "statement": "MOSAIC increases real platform engagement.",
+    "evidence_class": "unsupported",
+    "receipt_id": null,
+    "status": "UNSUPPORTED",
+    "limitation": "Public observational offline data cannot establish production effect."
+  },
+  {
+    "claim_id": "multi_gpu",
+    "statement": "MOSAIC scales across multiple GPUs.",
+    "evidence_class": "unexecuted",
+    "receipt_id": null,
+    "status": "UNSUPPORTED",
+    "limitation": "Only one physical GPU is available and no multi-GPU measurement exists."
+  }
+]

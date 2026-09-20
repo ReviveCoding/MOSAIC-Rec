@@ -1,0 +1,47 @@
+{
+  "stage_id": "A05",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "PASS",
+  "ended_utc": "2026-09-20T05:57:55.954038+00:00",
+  "dataset": "pixelrec50k",
+  "git_head": "946f2334b64da3751d271ed6f68d4513ba97926d",
+  "config_sha256": "e91660790891ea6a7d3feea078c947e09e444aa5f66cf0446e429a82f95285c0",
+  "source_sha256": "638b53ec100f760cb9bd540c361f6d6e3617c81b1c054ced63fffa41da909e4d",
+  "cold_cohort_count": 3109,
+  "cold_cohort_sha256": "a87d16eaff448727bb8d67c127a5acd3dff4cfa94218bb3cc151f51d99857142",
+  "cold_cohort_method": "SHA256(seed:item_id) < 5% of 2^256 on FIT-observed item IDs",
+  "outputs": {
+    "FIT_VISIBLE": {
+      "path": "/home/bjw-0/mosaic-rec-work/data/pixelrec50k/split_p1/FIT_VISIBLE.parquet",
+      "rows": 657160,
+      "sha256": "3b5809898a4044388592bba6625a61c13a403ad36d1ec90473549f3bf2383672"
+    },
+    "FIT_WITHHELD_COLD": {
+      "path": "/home/bjw-0/mosaic-rec-work/data/pixelrec50k/split_p1/FIT_WITHHELD_COLD.parquet",
+      "rows": 35486,
+      "sha256": "9a073af47948cab217ed66b8c91d66f3276bea9143a26efe748f5af8e8be9c0f"
+    },
+    "VALIDATION": {
+      "path": "/home/bjw-0/mosaic-rec-work/data/pixelrec50k/split_p1/VALIDATION.parquet",
+      "rows": 98950,
+      "sha256": "f6af73bda1bcba8594788b18184b2ae7ef6427151dde442ce7ad34c7758044ec"
+    },
+    "QUALIFICATION": {
+      "path": "/home/bjw-0/mosaic-rec-work/data/pixelrec50k/split_p1/QUALIFICATION.parquet",
+      "rows": 98949,
+      "sha256": "300e9c75ba6898a2e1a45e3aebc81e819791035949b49f71a3d77b91e96e519f"
+    },
+    "LOCKED_FINAL": {
+      "path": "/home/bjw-0/mosaic-rec-work/data/pixelrec50k/split_p1/LOCKED_FINAL.parquet",
+      "rows": 98949,
+      "sha256": "093072501b2a4b445b019767a41781fef0ef4bc27f2ac5774eac244448308bf2"
+    }
+  },
+  "source_rows": 989494,
+  "warnings": [
+    "Materializing LOCKED_FINAL role does not authorize opening locked outcome metrics.",
+    "First-observed candidate availability is a proxy for item launch."
+  ],
+  "evidence_class": "derived_protocol_manifest"
+}

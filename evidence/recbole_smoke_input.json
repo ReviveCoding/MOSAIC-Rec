@@ -1,0 +1,22 @@
+{
+  "stage_id": "C05",
+  "status": "REFERENCE_SMOKE_INPUT",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "data_root": "/home/bjw-0/mosaic-rec-work/data/recbole_smoke",
+  "dataset": "microlens_p1",
+  "outputs": {
+    "train": {
+      "rows": 481499,
+      "sha256": "6fbe8dc8e986c7dec6581b809ff8f1eebe5e0ba9de7ffa04105c2626393181e6"
+    },
+    "valid": {
+      "rows": 35970,
+      "sha256": "78548b353bea2c223af5a26d707b0ed7ec11f8af8ce57de6c3a8f2f20f2268c6"
+    },
+    "test": {
+      "rows": 35970,
+      "sha256": "8739649a614e2101b7736083c2826510aa19f0ce039ebe09a2b4cc8964bbbbd6"
+    }
+  },
+  "warning": "Validation is halved for reference runtime smoke only; no parity or scientific comparator metric is authorized."
+}

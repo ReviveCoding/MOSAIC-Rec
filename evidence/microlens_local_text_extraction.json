@@ -1,0 +1,32 @@
+{
+  "stage_id": "B00",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "PASS",
+  "ended_utc": "2026-09-20T06:13:43.351690+00:00",
+  "dataset": "microlens-100k",
+  "encoder": "sentence-transformers/all-MiniLM-L6-v2",
+  "encoder_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "encoder_license": "Apache-2.0",
+  "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "batch_size": 256,
+  "bf16_used": true,
+  "probe_min_fp32_bf16_cosine": 0.9999805688858032,
+  "items": 19738,
+  "missing_text_items": 72,
+  "feature_shape": [
+    19738,
+    384
+  ],
+  "seconds": 5.173902418000125,
+  "items_per_second": 3814.91539757902,
+  "peak_vram_bytes": 560463872,
+  "features_path": "/home/bjw-0/mosaic-rec-work/features/microlens-100k/local_minilm_text.npy",
+  "features_sha256": "bef764937518335e8b985d13077f8ccd2041b3dfc370f7c0e372f1a06376adf7",
+  "item_index_path": "/home/bjw-0/mosaic-rec-work/features/microlens-100k/local_minilm_item_ids.txt",
+  "warnings": [
+    "Encoder weights are frozen; this is local text extraction only.",
+    "Source text effective times are unknown; historical revision leakage cannot be ruled out."
+  ],
+  "evidence_class": "measured_cuda_feature_extraction"
+}

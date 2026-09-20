@@ -1,0 +1,67 @@
+{
+  "stage_id": "D05",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "PILOT_PASS",
+  "ended_utc": "2026-09-20T06:39:20.771597+00:00",
+  "model": "M5",
+  "dataset": "microlens-100k",
+  "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "seed": 20260920,
+  "fit_samples": 384814,
+  "epochs": 3,
+  "training_log": [
+    {
+      "epoch": 1,
+      "fit_loss": 0.47154053677792984
+    },
+    {
+      "epoch": 2,
+      "fit_loss": 0.3095253417646768
+    },
+    {
+      "epoch": 3,
+      "fit_loss": 0.27151851726453946
+    }
+  ],
+  "train_seconds": 97.69404813499978,
+  "score_seconds": 12.629457126000034,
+  "peak_vram_bytes": 473304064,
+  "validation_slices": {
+    "all": {
+      "n": 41694,
+      "ndcg_at_20": 0.016731546747791502,
+      "recall_at_20": 0.0393341967669209
+    },
+    "controlled_cold": {
+      "n": 918,
+      "ndcg_at_20": 0.005140015895025373,
+      "recall_at_20": 0.015250544662309368
+    },
+    "warm_fit": {
+      "n": 20047,
+      "ndcg_at_20": 0.029226829212349686,
+      "recall_at_20": 0.06370030428493041
+    }
+  },
+  "gate_weights_cold_mean": [
+    0.0,
+    0.3134550154209137,
+    0.5042677521705627,
+    0.18227744102478027
+  ],
+  "gate_weights_warm_gt20_mean": [
+    0.6889405846595764,
+    0.1179896742105484,
+    0.1814124882221222,
+    0.01165157649666071
+  ],
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_m5_pilot.pt",
+  "checkpoint_sha256": "5a714206d2d7668c09a8dd319b8b18a6a593751627737d4c40ed495850728aed",
+  "warnings": [
+    "Development pilot only; no HPO, qualification, or locked result.",
+    "Gate weights are relative fusion coefficients, not calibrated reliability probabilities.",
+    "Untimestamped historical content revisions remain a leakage limitation."
+  ],
+  "evidence_class": "measured_development_pilot"
+}

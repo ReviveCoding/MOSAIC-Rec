@@ -1,0 +1,49 @@
+{
+  "stage_id": "A03",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "PILOT",
+  "status": "PASS",
+  "ended_utc": "2026-09-20T05:41:24.356080+00:00",
+  "dataset": "microlens-100k",
+  "source_file": "pairs.csv",
+  "sha256": "cc5972c79e8a24c8c7c8e229ce48b0d56c3719f804debb84df7382293c56bd4e",
+  "schema": [
+    [
+      "user",
+      "BIGINT",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "item",
+      "BIGINT",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "timestamp",
+      "BIGINT",
+      "YES",
+      null,
+      null,
+      null
+    ]
+  ],
+  "rows": 719405,
+  "users": 100000,
+  "items": 19738,
+  "null_keys_or_timestamps": 0,
+  "min_timestamp": 1583378629552,
+  "max_timestamp": 1662984152842,
+  "candidate_temporal_quantiles_unfrozen": [
+    1660901369548,
+    1661519432678,
+    1662239644527
+  ],
+  "duplicate_user_item_timestamp_rows": 0,
+  "evidence_class": "measured_data_qa"
+}

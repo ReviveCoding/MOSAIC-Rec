@@ -1,0 +1,49 @@
+{
+  "stage_id": "A03",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "PILOT",
+  "status": "PASS",
+  "ended_utc": "2026-09-20T05:52:55.492959+00:00",
+  "dataset": "pixelrec50k",
+  "source_file": "interaction.csv",
+  "sha256": "638b53ec100f760cb9bd540c361f6d6e3617c81b1c054ced63fffa41da909e4d",
+  "schema": [
+    [
+      "item_id",
+      "VARCHAR",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "user_id",
+      "VARCHAR",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "timestamp",
+      "BIGINT",
+      "YES",
+      null,
+      null,
+      null
+    ]
+  ],
+  "rows": 989494,
+  "users": 50000,
+  "items": 82865,
+  "null_keys_or_timestamps": 0,
+  "min_timestamp": 1328292931,
+  "max_timestamp": 1656087360,
+  "candidate_temporal_quantiles_unfrozen": [
+    1630118460,
+    1636695517,
+    1643524851
+  ],
+  "duplicate_user_item_timestamp_rows": 0,
+  "evidence_class": "measured_data_qa"
+}

@@ -1,0 +1,47 @@
+{
+  "stage_id": "A05",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "PASS",
+  "ended_utc": "2026-09-20T05:57:55.125291+00:00",
+  "dataset": "microlens-100k",
+  "git_head": "946f2334b64da3751d271ed6f68d4513ba97926d",
+  "config_sha256": "e91660790891ea6a7d3feea078c947e09e444aa5f66cf0446e429a82f95285c0",
+  "source_sha256": "cc5972c79e8a24c8c7c8e229ce48b0d56c3719f804debb84df7382293c56bd4e",
+  "cold_cohort_count": 772,
+  "cold_cohort_sha256": "440e659b22c3f6f3743fb9fa32aa32a5af36afab884fb52b59a57441f3c64969",
+  "cold_cohort_method": "SHA256(seed:item_id) < 5% of 2^256 on FIT-observed item IDs",
+  "outputs": {
+    "FIT_VISIBLE": {
+      "path": "/home/bjw-0/mosaic-rec-work/data/microlens-100k/split_p1/FIT_VISIBLE.parquet",
+      "rows": 481499,
+      "sha256": "1571406f3bea51f96ee5839ccad858e4587d9b1aab5aafa296dde3854ce996e6"
+    },
+    "FIT_WITHHELD_COLD": {
+      "path": "/home/bjw-0/mosaic-rec-work/data/microlens-100k/split_p1/FIT_WITHHELD_COLD.parquet",
+      "rows": 22085,
+      "sha256": "f8c3ffb0b6c414a94b11bbce87aaac41c8b3662dcc4899e196b97985ee9388ad"
+    },
+    "VALIDATION": {
+      "path": "/home/bjw-0/mosaic-rec-work/data/microlens-100k/split_p1/VALIDATION.parquet",
+      "rows": 71940,
+      "sha256": "1328a9ff79bdc1afdd5961891835749b15e761b6263e926d2e74e6eccfbefd9c"
+    },
+    "QUALIFICATION": {
+      "path": "/home/bjw-0/mosaic-rec-work/data/microlens-100k/split_p1/QUALIFICATION.parquet",
+      "rows": 71941,
+      "sha256": "4dfaa84b391f523ec4ae553186ef3f8782c8cbaea09a5a07240332a468a2a1ad"
+    },
+    "LOCKED_FINAL": {
+      "path": "/home/bjw-0/mosaic-rec-work/data/microlens-100k/split_p1/LOCKED_FINAL.parquet",
+      "rows": 71940,
+      "sha256": "89eadf4f60fe807e367b4e9f6190315f901bc627696fbaab3537679c32772421"
+    }
+  },
+  "source_rows": 719405,
+  "warnings": [
+    "Materializing LOCKED_FINAL role does not authorize opening locked outcome metrics.",
+    "First-observed candidate availability is a proxy for item launch."
+  ],
+  "evidence_class": "derived_protocol_manifest"
+}

@@ -1,0 +1,27 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "seed": 20260920,
+  "cold_cohort_fraction": 0.05,
+  "candidate_availability": "first_observed_timestamp_le_event_timestamp",
+  "roles": ["FIT", "VALIDATION", "QUALIFICATION", "LOCKED_FINAL"],
+  "datasets": {
+    "microlens-100k": {
+      "fit_end": 1660907163789,
+      "validation_end": 1661520705715,
+      "qualification_end": 1662249111321,
+      "controlled_cold": true
+    },
+    "pixelrec50k": {
+      "fit_end": 1630111292,
+      "validation_end": 1636725361,
+      "qualification_end": 1643510843,
+      "controlled_cold": true
+    },
+    "ml-32m": {
+      "fit_end": 1476365256,
+      "validation_end": 1538551305,
+      "qualification_end": 1604605535,
+      "controlled_cold": false
+    }
+  }
+}

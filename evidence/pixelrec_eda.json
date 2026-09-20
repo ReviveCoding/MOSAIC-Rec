@@ -1,0 +1,68 @@
+{
+  "stage_id": "A04",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "PILOT",
+  "status": "PASS",
+  "ended_utc": "2026-09-20T05:53:03.335886+00:00",
+  "dataset": "pixelrec50k",
+  "source_file": "interaction.csv",
+  "exact_candidate_cutoffs_unfrozen": [
+    1630111292,
+    1636725361,
+    1643510843
+  ],
+  "roles_at_candidate_cutoffs": [
+    {
+      "role": "FIT",
+      "events": 692646,
+      "users": 48644,
+      "items": 60275
+    },
+    {
+      "role": "LOCKED_FINAL",
+      "events": 98949,
+      "users": 30768,
+      "items": 27654
+    },
+    {
+      "role": "QUALIFICATION",
+      "events": 98949,
+      "users": 32108,
+      "items": 23975
+    },
+    {
+      "role": "VALIDATION",
+      "events": 98950,
+      "users": 32695,
+      "items": 22267
+    }
+  ],
+  "fit_events_per_user_min_quantiles_max": [
+    1,
+    [
+      7,
+      11,
+      16,
+      37
+    ],
+    350
+  ],
+  "fit_item_support_1_2to5_6to20_gt20": [
+    10206,
+    19217,
+    20417,
+    10435
+  ],
+  "user_overlap_fit_with_validation_qualification_locked_then_no_fit_validation_locked": [
+    31979,
+    31006,
+    29502,
+    716,
+    1266
+  ],
+  "warnings": [
+    "Cutoffs are exploratory until split and leakage protocol freeze.",
+    "Zero-support items outside FIT are not included in FIT support counts."
+  ],
+  "evidence_class": "measured_eda"
+}
