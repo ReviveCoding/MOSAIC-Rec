@@ -63,6 +63,8 @@ The script refuses existing receipt/checkpoint paths and checks GPU occupancy be
 
 `src/mosaic_rec/statistics.py` implements paired user-cluster percentile intervals, cold item-cluster sensitivity, and Holm adjustment. `configs/statistics_development_p1.json` records the proposed design. It is **not** an E04 scientific freeze; no locked scores may be analyzed until the full qualification manifest is sealed.
 
+`src/mosaic_rec/interventions.py` defines a seeded item derangement for cached image-embedding mismatch. Its permutation has no fixed points and does not alter the vector multiset. It is a feature-level mismatch intervention, not a claim about raw-image blur, crop, or occlusion; those remain held by the license audit.
+
 ## Local demonstration API
 
 The optional FastAPI service is a **development checkpoint demonstration**. It uses the hash-verified M1 pilot checkpoint at the FIT-end snapshot and scores the available catalog on CUDA. It requires an otherwise free GPU and holds the exclusive project GPU lock for its lifetime; do not run it beside a trainer. In Ubuntu-22.04 WSL, from the repository root:
