@@ -47,6 +47,8 @@ wsl -d Ubuntu-22.04 -- /home/bjw-0/mosaic-rec-work/.venv/bin/python -m mosaic_re
 
 This accesses VALIDATION only. Do not inspect QUALIFICATION or LOCKED_FINAL outcome rows before the appropriate state transition. The current baseline status is in `reports/BASELINE_QUALIFICATION.md`; no public model comparison is authorized from these pilots.
 
+`scripts/run_mosaic_validation_replay.sh` is a read-only CUDA replay of the existing M1/M4/M6/M7 development checkpoints. It writes first-event per-user exact available-catalog outcomes to WSL scratch, checks aggregate agreement with the original receipts within 1e-6, and creates distinct D08 replay receipts. It never retrains and has no QUALIFICATION or LOCKED_FINAL input. Run it only after the GPU is free and the earlier reference-pilot queue is resolved.
+
 The declared MMRec BM3 and FREEDOM one-epoch reference runtime pilots use the isolated checkout in WSL scratch and the hash-qualified MicroLens publisher vectors. After checking that unrelated GPU compute processes have exited, run them sequentially:
 
 ```powershell

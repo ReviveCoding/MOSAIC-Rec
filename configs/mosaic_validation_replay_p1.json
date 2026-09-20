@@ -1,0 +1,10 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "role": "VALIDATION",
+  "models": ["M1", "M4", "M6", "M7"],
+  "input": "Existing hash-verified single-seed development checkpoints; no retraining",
+  "output": "Per-user first-event exact available-catalog NDCG@20 and rank in WSL scratch",
+  "consistency_gate": "Replay aggregate slices must match original development receipt within 1e-6",
+  "warning": "Development replay only. No finalist/comparator/margin freeze and no protected outcome access."
+}

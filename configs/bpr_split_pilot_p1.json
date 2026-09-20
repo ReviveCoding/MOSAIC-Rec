@@ -1,0 +1,14 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "model": "B2_BPR_MF_FIT_VISIBLE",
+  "seed": 20260920,
+  "embedding_dim": 64,
+  "epochs": 10,
+  "batch_size": 8192,
+  "learning_rate": 0.003,
+  "weight_decay": 0.0001,
+  "negative_pool": "FIT-visible items not interacted by this user during FIT",
+  "evaluation": "exact first VALIDATION event per FIT-history user, available catalog, FIT seen mask",
+  "warning": "Common-split runtime pilot only; no equal-budget HPO or independent seed qualification."
+}
