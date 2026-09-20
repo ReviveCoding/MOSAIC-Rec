@@ -50,12 +50,16 @@ def validate(evidence_dir: Path, warehouse: Path) -> dict[str, object]:
     warehouse_claims = {
         row[0]: row[1] for row in con.execute("SELECT claim_id, status FROM claims").fetchall()
     }
+    seen_claims: set[str] = set()
     for claim in claims:
         cid = claim["claim_id"]
+        if cid in seen_claims:
+            errors.append(f"duplicate claim ID: {cid}")
+        seen_claims.add(cid)
         if warehouse_claims.get(cid) != claim["status"]:
             errors.append(f"claim mismatch: {cid}")
-        if claim["status"] == "SUPPORTED" and claim.get("receipt_id") not in receipt_ids:
-            errors.append(f"supported claim lacks receipt: {cid}")
+        if claim["status"] in {"SUPPORTED", "INTERNAL_PILOT"} and claim.get("receipt_id") not in receipt_ids:
+            errors.append(f"measured claim lacks receipt: {cid}")
         if claim["status"] == "SUPPORTED" and claim.get("evidence_class") in {
             "unexecuted", "unsupported", "simulated", "projected",
         }:
@@ -85,6 +89,9 @@ def validate(evidence_dir: Path, warehouse: Path) -> dict[str, object]:
         "SELECT count(*) FROM runs WHERE state='LOCKED_EXECUTION'"
     ).fetchone()[0]
     counts = {name: con.execute(f"SELECT count(*) FROM {name}").fetchone()[0] for name in TABLES}
+    stage_status = json.loads((evidence_dir / "stage_status.json").read_text())
+    if stage_status.get("canonical_receipts_current") != counts["runs"]:
+        errors.append("stage_status canonical receipt count differs from warehouse")
     con.close()
     return {
         "status": "PASS" if not errors else "FAIL",
