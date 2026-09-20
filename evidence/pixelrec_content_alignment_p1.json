@@ -1,0 +1,37 @@
+{
+  "stage_id": "B01",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "PASS_ALIGNED_LOCAL_FEATURES",
+  "started_utc": "2026-09-20T18:55:54.511240+00:00",
+  "ended_utc": "2026-09-20T18:55:59.171034+00:00",
+  "dataset": "pixelrec50k",
+  "model": "CONTENT_ALIGNMENT",
+  "git_commit": "9acb4ef0767e27ba8c8857234d57bcd7f23be1de",
+  "items": 82865,
+  "image_dim": 1024,
+  "text_dim": 384,
+  "tag_categories": 109,
+  "empty_titles": 192,
+  "input_sha256": {
+    "publisher_image_item_ids": "ac84d699f63c4d11b5c2085047edab2fb128e0bd20a96b9a19d1506217add209",
+    "local_text_item_ids": "ac84d699f63c4d11b5c2085047edab2fb128e0bd20a96b9a19d1506217add209",
+    "publisher_image_features": "bb114e3d89e3983aa3798f72e0d3756f535c881366a8bacb65e44f70a9c301ae",
+    "local_text_features": "9be4f7232b65064d7ee0544e49706ea381127120f1b6bd5493e6f24d25c8cbca",
+    "item_metadata": "a073c2c65900f215a8137929b27dc57cf6f4f8fa11453a5c74fa8ff3a730a04e"
+  },
+  "output_sha256": {
+    "aligned_tag_ids": "20604aefc14632ce98340f4479c15d1c2daeb83b5bbd365e7c2be6b8628a97ca",
+    "aligned_text_present": "db393640223478b864e6045a8ef0586a4f1e68e3a93a7839a7578241fdfb6b36"
+  },
+  "outputs": {
+    "aligned_tag_ids": "/home/bjw-0/mosaic-rec-work/features/pixelrec50k/aligned_tag_ids.npy",
+    "aligned_text_present": "/home/bjw-0/mosaic-rec-work/features/pixelrec50k/aligned_text_present.npy"
+  },
+  "warnings": [
+    "Publisher image and locally extracted text embeddings have different encoder provenance.",
+    "Historical content effective times are unknown; no protected result or replication claim follows.",
+    "Engagement aggregate columns are excluded from metadata features."
+  ],
+  "evidence_class": "measured_content_alignment_qa"
+}

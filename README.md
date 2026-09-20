@@ -7,7 +7,7 @@ MOSAIC-Rec is a temporal, multimodal recommendation study with an explicit contr
 - MicroLens-100K, MovieLens 32M, and PixelRec50K interaction tracks have temporal FIT/VALIDATION/QUALIFICATION/LOCKED_FINAL split artifacts and passing mechanical leakage audits. MicroLens has 772 controlled-cold FIT-hidden items; PixelRec has 3,109.
 - The M0-M7 CUDA development ladder is complete on MicroLens. It shows a cold/warm tradeoff: M4 led the controlled-cold pilot slice while M7 led the FIT-warm pilot slice. Neither observation selects a finalist.
 - A FIT-only 7/30/90-day recent-popularity development search is recorded on all three tracks. RecBole SASRec/BERT4Rec CUDA reference runtime smokes completed; they use different internal splits and are not protocol parity.
-- The official PixelRec publisher image-feature file maps all 82,865 track items to finite vectors. Its raw cover archive is still an 11.47 GB preserved partial because Google Drive refused continuation on quota. The publisher-feature branch can proceed locally; raw-cover extraction cannot.
+- The official PixelRec publisher image-feature file maps all 82,865 track items to finite vectors. Its image index matches the local text index exactly; aligned tag and title-presence arrays passed a separate audit. Its raw cover archive is still an 11.47 GB preserved partial because Google Drive refused continuation on quota. The publisher-feature branch can proceed locally; raw-cover extraction cannot.
 - The canonical warehouse currently validates 50 stage receipts and **zero** locked-execution receipts. Check [`reports/PROGRESS.md`](reports/PROGRESS.md) for the latest live state and [`reports/RECOVERY_AUDIT.md`](reports/RECOVERY_AUDIT.md) for the post-reboot audit.
 
 ## Runtime and evidence

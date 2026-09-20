@@ -27,9 +27,11 @@ class MosaicSequence(nn.Module):
                  tags: torch.Tensor, text_present: torch.Tensor, n_tags: int) -> None:
         super().__init__()
         self.variant = variant
-        self.item = nn.Embedding(19739, 64, padding_idx=0)
-        self.text_projection = nn.Linear(1024, 64, bias=False)
-        self.image_projection = nn.Linear(1024, 64, bias=False)
+        if text.ndim != 2 or image.ndim != 2 or text.shape[0] != image.shape[0]:
+            raise ValueError("Text and image buffers must align by item row")
+        self.item = nn.Embedding(int(text.shape[0]) + 1, 64, padding_idx=0)
+        self.text_projection = nn.Linear(int(text.shape[1]), 64, bias=False)
+        self.image_projection = nn.Linear(int(image.shape[1]), 64, bias=False)
         self.tag_embedding = nn.Embedding(n_tags, 64)
         self.position = nn.Embedding(20, 64)
         self.global_logits = nn.Parameter(torch.zeros(4))

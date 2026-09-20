@@ -85,6 +85,13 @@ def main() -> None:
         if data.get("item_index_sha256"):
             check(f"publisher item index {path.stem}", Path(data["item_index_path"]),
                   data["item_index_sha256"])
+        if data.get("per_user_sha256"):
+            check(f"per-user predictions {path.stem}", Path(data["per_user_path"]),
+                  data["per_user_sha256"], data.get("per_user_rows"))
+        artifacts = data.get("artifacts", {})
+        if isinstance(artifacts, dict) and artifacts.get("item_graph_sha256"):
+            check(f"interrupted graph cache {path.stem}", Path(artifacts["item_graph_cache"]),
+                  artifacts["item_graph_sha256"])
 
     feature = json.loads((EVIDENCE / "microlens_feature_qa.json").read_text())["features"]
     directory = ROOT / "features/microlens-100k"
@@ -95,6 +102,27 @@ def main() -> None:
     ):
         check(f"publisher {key} NPY", directory / f"{prefix}.npy", feature[key]["npy_sha256"])
         check(f"publisher {key} JSON", directory / f"{prefix}.json", feature[key]["json_sha256"])
+
+    alignment_path = EVIDENCE / "pixelrec_content_alignment_p1.json"
+    if alignment_path.is_file():
+        alignment = json.loads(alignment_path.read_text())
+        pixel_features = ROOT / "features/pixelrec50k"
+        for key, filename in (
+            ("publisher_image_item_ids", "publisher_image_item_ids.txt"),
+            ("local_text_item_ids", "local_minilm_item_ids.txt"),
+            ("publisher_image_features", "publisher_image_features.npy"),
+            ("local_text_features", "local_minilm_text.npy"),
+        ):
+            check(f"PixelRec aligned input {key}", pixel_features / filename,
+                  alignment["input_sha256"][key])
+        check("PixelRec aligned metadata", pixel / "item_info.csv",
+              alignment["input_sha256"]["item_metadata"])
+        for key, filename in (
+            ("aligned_tag_ids", "aligned_tag_ids.npy"),
+            ("aligned_text_present", "aligned_text_present.npy"),
+        ):
+            check(f"PixelRec aligned output {key}", pixel_features / filename,
+                  alignment["output_sha256"][key])
 
     status = "PASS" if all(row["status"] == "PASS" for row in checks) else "FAIL"
     print(json.dumps({"status": status, "checks": checks}, indent=2))

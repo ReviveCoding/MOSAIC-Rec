@@ -24,6 +24,8 @@ wsl -d Ubuntu-22.04 -- /home/bjw-0/mosaic-rec-work/.venv/bin/python -m unittest 
 
 The MicroLens publisher vectors and local MiniLM text vectors are in WSL scratch. PixelRec raw covers are an incomplete `.part` due to the official Google Drive quota; preserve that file. The official publisher image-feature JSON is a separate input and must pass complete-file and item-ID qualification before modeling. The source and rights boundaries are in `reports/DATASET_LICENSE_AUDIT.md`. Do not put raw datasets, covers or feature vectors in Git.
 
+PixelRec's local image/text/metadata alignment can be reproduced only to new output paths; the existing derived arrays and B01 receipt must be preserved. The current `evidence/pixelrec_content_alignment_p1.json` records matching item order, dimensions, finiteness, 109 tag categories, 192 missing titles, and all source/output hashes. `scripts/recovery_integrity.py` verifies those arrays without loading protected outcome rows.
+
 ## Rebuild canonical evidence
 
 After adding or changing any **development** receipt, rebuild from receipts and validate:
