@@ -480,6 +480,10 @@ def main() -> None:
     parser.add_argument("--epochs", type=int, default=3)
     parser.add_argument("--seed", type=int, default=20260920)
     args = parser.parse_args()
+    if args.receipt.exists() or args.checkpoint.exists():
+        raise FileExistsError(
+            "Pilot output exists; preserve prior evidence and use new paths"
+        )
     result = run(
         args.variant,
         args.split_dir,

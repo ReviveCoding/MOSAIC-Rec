@@ -6,7 +6,7 @@ Protocol `mosaic-rec-2026-09-20-p1` remains in DEVELOPMENT. This is a live audit
 |---|---|---|
 | Future interaction leakage | Four roles and FIT-visible training artifacts are frozen; source-wide first-observed time is used only as an evaluation availability proxy. A pre-run review corrected the queued BPR sampler so its negative pool and user exclusions use only information available by each FIT event. | Mechanical pass; candidate-time interpretation limited; corrected BPR pilot pending |
 | Split contamination | Three-track A06 audits passed after the reboot integrity audit. | PASS mechanical |
-| Controlled-cold collaborative leakage | MicroLens 772 and PixelRec 3,109 selected item IDs have FIT collaboration hidden; model-visible inputs must be rechecked for every later adapter. | PASS existing adapters; ongoing |
+| Controlled-cold collaborative leakage | MicroLens 772 and PixelRec 3,109 selected item IDs have positive FIT collaboration hidden. A code review found the historical SASRec/GRU4Rec pilot negative sampler used source-wide item first-observed times, allowing possible negative updates on FIT-hidden cold IDs. Future sequence training now uses FIT_VISIBLE items only and asserts cold exclusion. | Historical sequence cold evidence unqualified; corrected code not yet rerun |
 | Candidate-time leakage | First observed interaction is not product launch. Full-source first-observed timestamps determine available candidates at an event. | Proxy limitation disclosed; further sensitivity pending |
 | Baseline undertraining | BM3 has one epoch; BERT4Rec only a reference runtime smoke; FREEDOM attempt 1 interrupted; fair HPO absent. | OPEN; no comparator freeze |
 | Unequal HPO | No equal-budget neural search has completed. | OPEN; no promotion claim |

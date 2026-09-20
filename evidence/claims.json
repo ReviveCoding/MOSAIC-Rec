@@ -13,7 +13,7 @@
     "evidence_class": "measured_development_pilot",
     "receipt_id": "microlens_gru4rec_pilot",
     "status": "INTERNAL_PILOT",
-    "limitation": "No HPO, reference parity, seed qualification, or locked result; not a model-comparison or resume claim."
+    "limitation": "No HPO, reference parity, seed qualification, or locked result. The historical pilot drew training negatives from source-wide first-observed items, so FIT-hidden cold IDs may have received negative updates; no cold-start or qualified comparator claim follows."
   },
   {
     "claim_id": "bm3_reference_pilot_cold_zero",

@@ -77,6 +77,18 @@ def load_rows(path: Path) -> list[tuple[int, int, int]]:
     return sorted((int(t), int(u), int(i)) for u, i, t in zip(users, items, stamps))
 
 
+def training_availability(
+    fit: list[tuple[int, int, int]], cold_items: set[int]
+) -> tuple[list[int], list[int]]:
+    first_fit: dict[int, int] = {}
+    for stamp, _, item in fit:
+        first_fit[item] = min(stamp, first_fit.get(item, stamp))
+    if cold_items.intersection(first_fit):
+        raise ValueError("Controlled-cold item has model-visible FIT support")
+    order = sorted(first_fit, key=lambda item: (first_fit[item], item))
+    return order, [first_fit[item] for item in order]
+
+
 def run(
     split_dir: Path,
     source_first_seen: Path,
@@ -99,8 +111,13 @@ def run(
             item, stamp = int(row["item"]), int(row["timestamp"])
             first_seen[item] = min(stamp, first_seen.get(item, stamp))
     catalog_size = max(first_seen)
-    available_order = sorted(first_seen, key=lambda i: (first_seen[i], i))
-    available_times = [first_seen[i] for i in available_order]
+    cold_items = {
+        int(item)
+        for item in (split_dir / "controlled_cold_item_ids.txt")
+        .read_text()
+        .splitlines()
+    }
+    available_order, available_times = training_availability(fit, cold_items)
     histories: dict[int, list[int]] = defaultdict(list)
     sequences: list[list[int]] = []
     lengths: list[int] = []
@@ -257,6 +274,7 @@ def run(
         "warnings": [
             "Pilot only: no fair HPO, reference parity, seed qualification, or locked result.",
             "ID-only model is not a valid sole cold comparator.",
+            "Training negatives use only model-visible FIT items available by the event time.",
         ],
         "evidence_class": "measured_development_pilot",
     }
@@ -275,6 +293,10 @@ def main() -> None:
         "--architecture", choices=["sasrec", "gru4rec"], default="sasrec"
     )
     args = parser.parse_args()
+    if args.receipt.exists() or args.checkpoint.exists():
+        raise FileExistsError(
+            "Pilot output exists; preserve prior evidence and use new paths"
+        )
     result = run(
         args.split_dir,
         args.source_first_seen,

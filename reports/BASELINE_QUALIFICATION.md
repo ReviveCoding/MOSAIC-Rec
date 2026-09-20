@@ -9,8 +9,8 @@ All numbers below are **VALIDATION development pilots** under protocol `mosaic-r
 | B2 BPR-MF | Earlier two-epoch CUDA pilot predates FIT-hidden cohort; a separate common FIT-visible 10-epoch CUDA pilot is declared with event-time-safe negative sampling and a known-answer leakage test | Learned IDs lack FIT-hidden support | Corrected common pilot execution, HPO and seed parity pending; old score is not comparable |
 | B3 LightGCN | Two-layer CUDA pilot | Zero controlled-cold hits | HPO, seeds and parity pending |
 | B4 Two-Tower content | CUDA pilot | Content can score FIT-hidden items | HPO, seeds and reference parity pending |
-| B5 GRU4Rec | CUDA pilot | ID-only cold limitation | HPO, seeds and parity pending |
-| B6 SASRec | CUDA pilot; isolated RecBole runtime smoke | ID-only cold limitation | RecBole uses internal FIT-only split; no common-protocol parity |
+| B5 GRU4Rec | CUDA pilot used a source-wide negative pool with possible FIT-hidden cold negative updates; future training code now guards the cold cohort | ID-only; historical cold evidence unqualified | Corrected common pilot, HPO, seeds and parity pending |
+| B6 SASRec | CUDA pilot had the same possible FIT-hidden cold negative updates; isolated RecBole runtime smoke uses a different internal split | ID-only; historical cold evidence unqualified | Corrected common pilot, HPO, seeds and parity pending |
 | B7 BERT4Rec | Isolated RecBole CUDA runtime smoke | ID-only cold limitation | Local common-protocol evaluator/training, HPO and parity pending |
 | B8 VBPR | CUDA pilot | Content can score FIT-hidden items | HPO, seeds and parity pending |
 | B9 BM3 | One-epoch MMRec architecture CUDA/common-validation pilot; overall NDCG@20 0.002922, controlled cold 0, FIT-warm 0.006078 | Reference inference scores graph/ID embeddings | Undertrained pilot only; HPO and seed parity pending; not sole cold comparator |
