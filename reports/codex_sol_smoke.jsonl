@@ -1,0 +1,8 @@
+Reading additional input from stdin...
+{"type":"thread.started","thread_id":"01a0bd4e-df87-7733-9575-05aa04323d35"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"I’ll run the requested version check once."}}
+{"type":"item.started","item":{"id":"item_1","type":"command_execution","command":"\"C:\\\\Program Files\\\\PowerShell\\\\7\\\\pwsh.exe\" -Command 'git --version'","aggregated_output":"","exit_code":null,"status":"in_progress"}}
+{"type":"item.completed","item":{"id":"item_1","type":"command_execution","command":"\"C:\\\\Program Files\\\\PowerShell\\\\7\\\\pwsh.exe\" -Command 'git --version'","aggregated_output":"git version 2.54.0.windows.1\n","exit_code":0,"status":"completed"}}
+{"type":"item.completed","item":{"id":"item_2","type":"agent_message","text":"TOOL_OK"}}
+{"type":"turn.completed","usage":{"input_tokens":29617,"cached_input_tokens":14592,"cache_write_input_tokens":0,"output_tokens":85,"reasoning_output_tokens":0}}

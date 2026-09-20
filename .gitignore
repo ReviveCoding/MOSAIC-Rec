@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Data / features
+data/raw/
+data/staged/
+data/processed/
+data/features/
+data/cache/
+data/images/
+data/videos/
+data/audio/
+
+# ML artifacts
+artifacts/checkpoints/
+artifacts/models/
+artifacts/cache/
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+*.lmdb
+
+# Services
+wandb/
+mlruns/
+
+# Local
+.local-work/
+tmp/
+scratch/
+*.tmp
+*.partial

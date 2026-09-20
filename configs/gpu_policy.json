@@ -1,0 +1,34 @@
+{
+  "gpu": {
+    "visible_devices": [
+      0
+    ],
+    "neural_training_requires_cuda": true,
+    "embedding_extraction_requires_cuda": true,
+    "full_catalog_scoring_uses_cuda": true,
+    "mixed_precision": "bf16_if_qualified",
+    "heavy_training_processes_per_gpu": 1,
+    "silent_cpu_fallback": false
+  },
+  "parallelism": {
+    "cpu_preprocessing_parallel": true,
+    "cpu_statistics_parallel": true,
+    "cpu_gpu_pipeline_overlap": true,
+    "pinned_memory": true,
+    "non_blocking_transfer": true,
+    "dataloader_workers": "auto_benchmark",
+    "prefetch": "benchmark_and_tune",
+    "concurrent_heavy_trainers": false
+  },
+  "storage": {
+    "repo_windows": "C:\\Users\\bjw-0\\Downloads\\MOSAIC-Rec",
+    "repo_wsl": "/mnt/c/Users/bjw-0/Downloads/MOSAIC-Rec",
+    "scratch_wsl": "/home/bjw-0/mosaic-rec-work",
+    "scratch_unc": "\\\\wsl.localhost\\Ubuntu-22.04\\home\\bjw-0\\mosaic-rec-work"
+  },
+  "claim_boundary": {
+    "physical_gpu_count": 1,
+    "multi_gpu_claim_requires_measurement": true,
+    "distributed_scaling_claim_allowed": false
+  }
+}

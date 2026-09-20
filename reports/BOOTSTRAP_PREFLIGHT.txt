@@ -1,0 +1,67 @@
+MOSAIC-Rec Bootstrap Preflight
+==============================
+
+Timestamp UTC : 2026-09-20T05:33:53.6513219Z
+PowerShell    : 7.6.6
+Codex         : codex-cli 0.153.4
+
+Model         : gpt-5.6-sol
+Reasoning     : medium
+Auto-review   : --approve-for-me
+Web search    : live
+Sandbox       : workspace-write via Auto-review
+Shell network : enabled through runtime config override
+
+Windows repo  : C:\Users\bjw-0\Downloads\MOSAIC-Rec
+WSL repo      : /mnt/c/Users/bjw-0/Downloads/MOSAIC-Rec
+WSL distro    : Ubuntu-22.04
+WSL HOME      : /home/bjw-0
+WSL scratch   : /home/bjw-0/mosaic-rec-work
+Scratch UNC   : \\wsl.localhost\Ubuntu-22.04\home\bjw-0\mosaic-rec-work
+
+GPU count     : 1
+
+GPU inventory:
+0, NVIDIA GeForce RTX 4090 Laptop GPU, 16376 MiB, 616.92
+
+Resource snapshot:
+=== DISK ===
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sdd       1007G  103G  854G  11% /
+C:\             952G  773G  180G  82% /mnt/c
+
+=== MEMORY ===
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi       645Mi        13Gi       3.0Mi       1.3Gi        14Gi
+Swap:          4.0Gi          0B       4.0Gi
+
+=== GPU ===
+Sun Sep 20 01:33:59 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 615.71.08              KMD Version: 616.92        CUDA UMD Version: 13.4     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 4090 ...    On  |   00000000:01:00.0 Off |                  N/A |
+| N/A   68C    P0             30W /  175W |       0MiB /  16376MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+
+Execution policy:
+- neural recommendation training requires CUDA when qualified
+- multimodal feature extraction requires CUDA
+- neural full-catalog scoring uses CUDA
+- one heavy trainer per physical GPU
+- CPU preprocessing/statistics may overlap with GPU work
+- no unsupported multi-GPU claim

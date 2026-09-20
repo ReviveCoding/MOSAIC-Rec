@@ -1,0 +1,18 @@
+{
+  "created_at_utc": "2026-09-20T05:33:53.4380364Z",
+  "powershell": "7.6.6",
+  "codex_version": "codex-cli 0.153.4",
+  "model": "gpt-5.6-sol",
+  "reasoning": "medium",
+  "approval_mode": "auto_review",
+  "distro": "Ubuntu-22.04",
+  "repo_windows": "C:\\Users\\bjw-0\\Downloads\\MOSAIC-Rec",
+  "repo_wsl": "/mnt/c/Users/bjw-0/Downloads/MOSAIC-Rec",
+  "wsl_home": "/home/bjw-0",
+  "scratch_wsl": "/home/bjw-0/mosaic-rec-work",
+  "scratch_windows": "\\\\wsl.localhost\\Ubuntu-22.04\\home\\bjw-0\\mosaic-rec-work",
+  "gpu_count": 1,
+  "gpu_inventory": [
+    "0, NVIDIA GeForce RTX 4090 Laptop GPU, 16376 MiB, 616.92"
+  ]
+}
