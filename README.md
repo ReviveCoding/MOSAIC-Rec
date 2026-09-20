@@ -19,3 +19,5 @@ The reproduction commands and protected-outcome rules are in [`docs/REPRODUCTION
 An optional FastAPI demonstration can load a declared, hash-verified development checkpoint on the RTX GPU and expose exact available-catalog recommendations plus model-state diagnostics. It is documented in the runbook and has not yet been profiled as a system result.
 
 This repository currently supports a development study and reproducibility audit. It does not establish production impact, reliability, external validity, or a winning MOSAIC model.
+
+The current [final execution status](reports/FINAL_STATUS.md) is **BLOCKED_EXTERNAL_GPU_CONTENTION**: unrelated serial jobs occupied the sole GPU during recovery. It is a blocked status report, not a completed scientific result. Protocol p1 remains in DEVELOPMENT and can resume when a sustained GPU window is available.
