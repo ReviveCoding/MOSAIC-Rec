@@ -1,6 +1,6 @@
 # Pre-freeze EDA (measured 2026-09-20)
 
-Source receipts: [MicroLens QA](../evidence/microlens_qa.json), [MovieLens QA](../evidence/ml32m_qa.json), [MicroLens EDA](../evidence/microlens_eda.json), [MovieLens EDA](../evidence/ml32m_eda.json). Exact cutoffs below are exploratory and **not frozen**.
+Source receipts: [MicroLens QA](../evidence/microlens_qa.json), [MovieLens QA](../evidence/ml32m_qa.json), [MicroLens EDA](../evidence/microlens_eda.json), [MovieLens EDA](../evidence/ml32m_eda.json). These descriptive counts were exploratory when measured; the exact four-role split cutoffs and FIT-hidden cohorts were subsequently frozen in the A05 split manifests before model development. Comparator, margin, and final-outcome definitions remain unfrozen.
 
 | Dataset | Events | Users | Items | FIT/validation/qualification/final candidate events | FIT users overlapping validation/final |
 |---|---:|---:|---:|---|---|

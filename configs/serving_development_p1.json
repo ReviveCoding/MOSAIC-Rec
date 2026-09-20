@@ -1,0 +1,16 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "evidence_class": "demonstration_only",
+  "model": "M1",
+  "variant": 1,
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_m1_pilot.pt",
+  "checkpoint_sha256": "b8fbce7c623a50a83a10df803d4eca827c9dd0b3eb29903b60e714d7780294b3",
+  "split_dir": "/home/bjw-0/mosaic-rec-work/data/microlens-100k/split_p1",
+  "source_csv": "/home/bjw-0/mosaic-rec-work/data/microlens-100k/pairs.csv",
+  "feature_dir": "/home/bjw-0/mosaic-rec-work/features/microlens-100k",
+  "tag_file": "/home/bjw-0/mosaic-rec-work/data/microlens-100k/tags_to_summary.csv",
+  "title_file": "/home/bjw-0/mosaic-rec-work/data/microlens-100k/title_en.csv",
+  "fit_end": 1660907163789,
+  "warning": "M1 is an unfrozen development checkpoint. This API is a local demonstration, not a production service or scientific result."
+}

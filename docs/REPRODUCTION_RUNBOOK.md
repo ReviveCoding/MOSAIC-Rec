@@ -56,3 +56,15 @@ wsl -d Ubuntu-22.04 -- bash scripts/run_mmrec_reference_pilots.sh
 The script refuses existing receipt/checkpoint paths and checks GPU occupancy before each job. It preserves separate logs and failure receipts. An epoch-one pilot is never a qualified comparator. Rebuild and validate the evidence warehouse after inspecting any new receipt.
 
 `src/mosaic_rec/statistics.py` implements paired user-cluster percentile intervals, cold item-cluster sensitivity, and Holm adjustment. `configs/statistics_development_p1.json` records the proposed design. It is **not** an E04 scientific freeze; no locked scores may be analyzed until the full qualification manifest is sealed.
+
+## Local demonstration API
+
+The optional FastAPI service is a **development checkpoint demonstration**. It uses the hash-verified M1 pilot checkpoint at the FIT-end snapshot and scores the available catalog on CUDA. It requires an otherwise free GPU and holds the exclusive project GPU lock for its lifetime; do not run it beside a trainer. In Ubuntu-22.04 WSL, from the repository root:
+
+```bash
+MOSAIC_SERVING_MANIFEST=configs/serving_development_p1.json \
+  /home/bjw-0/mosaic-rec-work/.venv/bin/uvicorn mosaic_rec.serving:app \
+  --host 127.0.0.1 --port 8000
+```
+
+`GET /health` reports the loaded model identity. `POST /recommend` accepts `{"user_id": 1, "k": 20}`. `POST /diagnostics` returns actual branch gate weights and score contributions from the same model state. An unconfigured service returns HTTP 503 for ranking, and a user without FIT history returns 404. The API does not simulate a production system or report scientific performance; no J04 latency result is claimed before a separate benchmark.

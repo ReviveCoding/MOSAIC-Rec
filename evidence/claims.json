@@ -16,6 +16,15 @@
     "limitation": "No HPO, reference parity, seed qualification, or locked result; not a model-comparison or resume claim."
   },
   {
+    "claim_id": "bm3_reference_pilot_cold_zero",
+    "statement": "The one-epoch MMRec BM3 architecture pilot scored zero controlled-cold NDCG@20 on 918 first-event MicroLens validation examples.",
+    "evidence_class": "measured_development_reference_pilot",
+    "receipt_id": "microlens_bm3_mmrec_reference_pilot",
+    "status": "INTERNAL_PILOT",
+    "limitation": "One epoch, one seed, no equal-budget HPO or baseline qualification. BM3 reference inference uses graph/ID embeddings; this is not a qualified cold comparator.",
+    "prohibited_stronger_formulation": "BM3 cannot handle cold items or MOSAIC outperforms a qualified BM3 baseline."
+  },
+  {
     "claim_id": "core_promotion",
     "statement": "MOSAIC improves controlled cold NDCG@20 while retaining warm quality.",
     "evidence_class": "unexecuted",
