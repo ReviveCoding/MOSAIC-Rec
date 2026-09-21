@@ -236,6 +236,9 @@ def run_trial(model: str, index: int, policy: dict[str, object]) -> dict[str, ob
     env = os.environ.copy()
     env["MOSAIC_HPO_LEARNING_RATE"] = str(rate)
     env["PYTHONUNBUFFERED"] = "1"
+    git_commit_at_start = subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
+    ).strip()
     started = now()
     start = time.perf_counter()
     args = command(model, raw, checkpoint, epochs, seed, trial_name)
@@ -283,9 +286,7 @@ def run_trial(model: str, index: int, policy: dict[str, object]) -> dict[str, ob
         "hpo_policy_sha256": digest(POLICY_PATH),
         "config_sha256": config_sha,
         "trial_config": trial_config,
-        "git_commit": subprocess.check_output(
-            ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
-        ).strip(),
+        "git_commit": git_commit_at_start,
         "raw_receipt": str(raw),
         "raw_receipt_sha256": digest(raw) if raw.exists() else None,
         "log": str(log),
