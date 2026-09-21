@@ -166,7 +166,7 @@ def build(evidence_dir: Path, output: Path, tables_dir: Path) -> dict:
                     ],
                 )
                 counts["metrics"] += 1
-        for name, metrics in data.get("validation_slices", {}).items():
+        for name, metrics in (data.get("validation_slices") or {}).items():
             con.execute(
                 "INSERT INTO slices VALUES (?, ?, ?, ?, ?)",
                 [

@@ -1,8 +1,8 @@
 # MOSAIC-Rec technical report
 
-Generated 2026-09-21T08:40:44.906922+00:00 from `evidence/warehouse.duckdb`.
+Generated 2026-09-21T09:10:50.615729+00:00 from `evidence/warehouse.duckdb`.
 Protocol: `mosaic-rec-2026-09-20-p1`; state: **DEVELOPMENT**.
-Canonical receipts: 73; locked-execution receipts: 0.
+Canonical receipts: 86; locked-execution receipts: 0.
 
 ## Scientific status
 

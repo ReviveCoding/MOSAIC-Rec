@@ -1,0 +1,188 @@
+{
+  "stage_id": "E00",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "HPO_TRIAL_PASS",
+  "started_utc": "2026-09-21T09:08:26.474241+00:00",
+  "ended_utc": "2026-09-21T09:09:02.707465+00:00",
+  "dataset": "microlens-100k",
+  "model": "B8_VBPR",
+  "seed": 20260920,
+  "epochs": 30,
+  "learning_rate": 0.003,
+  "hpo_trial_index": 3,
+  "hpo_policy_sha256": "d1de7bd6ef47f67a3b0df412215e61b0746d72063ae25d9d76032bfaa6b2684a",
+  "config_sha256": "e49fb75abf18fac7d57e834f9c6968941c5382f6eab1259ef7467097f2d03374",
+  "trial_config": {
+    "protocol_id": "mosaic-rec-2026-09-20-p1",
+    "model": "B8_VBPR",
+    "trial_index": 3,
+    "learning_rate": 0.003,
+    "seed": 20260920,
+    "epochs": 30,
+    "policy_sha256": "d1de7bd6ef47f67a3b0df412215e61b0746d72063ae25d9d76032bfaa6b2684a"
+  },
+  "git_commit": "8706f0f049322e04891f5c2b809cb2ea65140b2c",
+  "raw_receipt": "/home/bjw-0/mosaic-rec-work/hpo_raw/b8_vbpr_t3.json",
+  "raw_receipt_sha256": "ceb86ac8531caf4f950b9c27989d4362b3a3bf8ca619fb3b8e0f0bdae4289f01",
+  "log": "/home/bjw-0/mosaic-rec-work/logs/hpo_p1_b8_vbpr_t3.log",
+  "log_sha256": "ceb86ac8531caf4f950b9c27989d4362b3a3bf8ca619fb3b8e0f0bdae4289f01",
+  "returncode": 0,
+  "elapsed_wall_seconds": 36.232913637999445,
+  "train_seconds": 10.738234759999614,
+  "score_seconds": 8.371839270999772,
+  "peak_vram_bytes": 445884416,
+  "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "environment": null,
+  "input_sha256": null,
+  "validation_slices": {
+    "all": {
+      "n": 41694,
+      "ndcg_at_20": 0.016933453860799547,
+      "recall_at_20": 0.03731951839593227,
+      "mrr_at_20": 0.01132510574597646
+    },
+    "controlled_cold": {
+      "n": 918,
+      "ndcg_at_20": 0.00036310820624546115,
+      "recall_at_20": 0.0010893246187363835,
+      "mrr_at_20": 0.00015561780267662619
+    },
+    "warm_fit": {
+      "n": 20047,
+      "ndcg_at_20": 0.03482766054843603,
+      "recall_at_20": 0.07622088092981494,
+      "mrr_at_20": 0.023419712831777083
+    }
+  },
+  "ndcg_at_20": null,
+  "recall_at_20": null,
+  "training_log": [
+    {
+      "epoch": 1,
+      "fit_bpr_loss": 0.6551856379071469
+    },
+    {
+      "epoch": 2,
+      "fit_bpr_loss": 0.4887039770858913
+    },
+    {
+      "epoch": 3,
+      "fit_bpr_loss": 0.3812479667564966
+    },
+    {
+      "epoch": 4,
+      "fit_bpr_loss": 0.31183233282322775
+    },
+    {
+      "epoch": 5,
+      "fit_bpr_loss": 0.2558754234317337
+    },
+    {
+      "epoch": 6,
+      "fit_bpr_loss": 0.21099835450934598
+    },
+    {
+      "epoch": 7,
+      "fit_bpr_loss": 0.1750870444240625
+    },
+    {
+      "epoch": 8,
+      "fit_bpr_loss": 0.14783735326034142
+    },
+    {
+      "epoch": 9,
+      "fit_bpr_loss": 0.12672079706772507
+    },
+    {
+      "epoch": 10,
+      "fit_bpr_loss": 0.1109729016866785
+    },
+    {
+      "epoch": 11,
+      "fit_bpr_loss": 0.09759145073297525
+    },
+    {
+      "epoch": 12,
+      "fit_bpr_loss": 0.0875293133846276
+    },
+    {
+      "epoch": 13,
+      "fit_bpr_loss": 0.07843927073879713
+    },
+    {
+      "epoch": 14,
+      "fit_bpr_loss": 0.07133299431199479
+    },
+    {
+      "epoch": 15,
+      "fit_bpr_loss": 0.06523275738175181
+    },
+    {
+      "epoch": 16,
+      "fit_bpr_loss": 0.060578557908570654
+    },
+    {
+      "epoch": 17,
+      "fit_bpr_loss": 0.054896637121585996
+    },
+    {
+      "epoch": 18,
+      "fit_bpr_loss": 0.05095258638264977
+    },
+    {
+      "epoch": 19,
+      "fit_bpr_loss": 0.04746824218444234
+    },
+    {
+      "epoch": 20,
+      "fit_bpr_loss": 0.044376479546807734
+    },
+    {
+      "epoch": 21,
+      "fit_bpr_loss": 0.041611299682758014
+    },
+    {
+      "epoch": 22,
+      "fit_bpr_loss": 0.039087475572460534
+    },
+    {
+      "epoch": 23,
+      "fit_bpr_loss": 0.03678002774195308
+    },
+    {
+      "epoch": 24,
+      "fit_bpr_loss": 0.034865244481224474
+    },
+    {
+      "epoch": 25,
+      "fit_bpr_loss": 0.03308604638341405
+    },
+    {
+      "epoch": 26,
+      "fit_bpr_loss": 0.031632473398572336
+    },
+    {
+      "epoch": 27,
+      "fit_bpr_loss": 0.029817684025627737
+    },
+    {
+      "epoch": 28,
+      "fit_bpr_loss": 0.028211858438879935
+    },
+    {
+      "epoch": 29,
+      "fit_bpr_loss": 0.02731985505605898
+    },
+    {
+      "epoch": 30,
+      "fit_bpr_loss": 0.025834625817868648
+    }
+  ],
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/hpo_p1_b8_vbpr_t3.pt",
+  "checkpoint_sha256": "677cc0bad3d02b11f861470188b129ae37305c45082a471339af039974394228",
+  "warnings": [
+    "Development HPO trial only; no model qualification, finalist, or locked result."
+  ],
+  "evidence_class": "measured_development_hpo"
+}

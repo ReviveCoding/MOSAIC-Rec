@@ -2,8 +2,8 @@
   "protocol_id": "mosaic-rec-2026-09-20-p1",
   "scientific_state": "DEVELOPMENT",
   "execution_status": "ACTIVE_HPO_GPU_RESERVED",
-  "updated_utc": "2026-09-21T08:54:00Z",
-  "canonical_receipts_current": 79,
+  "updated_utc": "2026-09-21T09:13:00Z",
+  "canonical_receipts_current": 87,
   "baseline_b1": "VALIDATION_SELECTED_7_DAYS_THREE_TRACKS",
   "baseline_b9_bm3": "ONE_EPOCH_REFERENCE_PROTOCOL_PILOT_PASS_UNQUALIFIED",
   "baseline_b10_freedom": "ATTEMPT1_INTERRUPTED_CAUSE_UNPROVEN_ATTEMPT2_ONE_EPOCH_PILOT_PASS_UNQUALIFIED",
@@ -12,7 +12,7 @@
   "baseline_sequence_coldguard": "CORRECTED_SASREC_GRU4REC_PILOTS_PASS_UNQUALIFIED",
   "baseline_bert4rec_common": "LOCAL_COMMON_PROTOCOL_PILOT_PASS_UNQUALIFIED",
   "pixelrec_publisher_image_features": "PASS_LOCAL_ONLY",
-  "pixelrec_raw_cover_archive": "DOWNLOAD_SHA_AND_ID_MAPPING_PASS_CRC_RUNNING_FEATURE_RIGHTS_HOLD",
+  "pixelrec_raw_cover_archive": "RAW_ARCHIVE_INTEGRITY_PASS_FEATURE_RIGHTS_HOLD",
   "pixelrec_content_alignment": "PASS_82865_ITEMS_109_TAGS_LOCAL_ONLY",
   "pixelrec_fit_dense_adapter": "PASS_FIT_ONLY_PREPARATION_NOT_REPLICATION",
   "movielens_fit_dense_adapter": "PASS_FIT_ONLY_PREPARATION_NOT_REPLICATION",
@@ -25,7 +25,7 @@
     "gpu_heavy_jobs": "HOLD_UNRELATED_CONTENTION"
   },
   "stages": {
-    "A00": "PASS", "A01": "PASS_WITH_MEDIA_HOLD", "A02": "RAW_PIXEL_COVER_INTEGRITY_RUNNING_FEATURE_RIGHTS_HOLD", "A03": "PASS", "A04": "PASS", "A05": "PASS", "A06": "PASS",
+    "A00": "PASS", "A01": "PASS_WITH_MEDIA_HOLD", "A02": "PASS_RAW_ARCHIVE_FEATURE_RIGHTS_HOLD", "A03": "PASS", "A04": "PASS", "A05": "PASS", "A06": "PASS",
     "B00": "PASS_TEXT_ONLY", "B01": "PASS_PUBLISHER_FEATURES", "C00": "PILOT_PASS", "C01": "PILOT_PASS", "C02": "PILOT_PASS", "C03": "PILOT_PARTIAL", "C04": "PILOT_PARTIAL", "C05": "IMPORT_SMOKE_PASS",
     "D00": "PILOT_PASS", "D01": "PILOT_PASS", "D02": "PILOT_PASS", "D03": "PILOT_PASS", "D04": "PILOT_PASS", "D05": "PILOT_PASS", "D06": "PILOT_PASS", "D07": "PILOT_PASS", "D08": "VALIDATION_REPLAY_AND_THREE_SEED_STABILITY_PASS_FINALIST_PENDING",
     "E00": "IN_PROGRESS", "E01": "PENDING", "E02": "PENDING", "E03": "PENDING", "E04": "PENDING", "E05": "PENDING",

@@ -1,0 +1,33 @@
+{
+  "stage_id": "A02",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "RAW_ARCHIVE_INTEGRITY_PASS_FEATURE_RIGHTS_HOLD",
+  "started_utc": "2026-09-21T09:05:03.861258+00:00",
+  "ended_utc": "2026-09-21T09:05:22.362842+00:00",
+  "git_commit": "8706f0f049322e04891f5c2b809cb2ea65140b2c",
+  "dataset": "pixelrec50k",
+  "source_url": "https://drive.google.com/drive/folders/1bQPgM-6yAnzcD0jKBoUUheA9LL5xnCHG",
+  "source_file_id": "1VlQxEUoFntgQx0WnNcRsgJu_EtYEBzlS",
+  "archive_path": "/home/bjw-0/mosaic-rec-work/data/pixelrec50k/cover.7z",
+  "archive_bytes": 20988051113,
+  "archive_sha256": "a27ba156123a30555d563be820011c406b5817621f93b7d5dcedc9b090dfa5ee",
+  "metadata_sha256": "a073c2c65900f215a8137929b27dc57cf6f4f8fa11453a5c74fa8ff3a730a04e",
+  "archive_entries": 82866,
+  "image_items": 82865,
+  "metadata_items": 82865,
+  "missing_images": 0,
+  "extra_images": 0,
+  "crc_tool": "7-Zip 26.03 Linux x64 console",
+  "crc_tool_package_sha256": "dc99eff5008f1ab79bd7084c68513701547a808a89502bf4133683535ab3c695",
+  "crc_command": "7zz t -mmt=2 -bb0 cover.7z",
+  "crc_exit_code": 0,
+  "crc_log": "/home/bjw-0/mosaic-rec-work/logs/pixelrec_cover_7zz_crc_p1.log",
+  "crc_log_sha256": "0452e6ba089fc094650fbb1c77381a08285025a3c00ada5ab6e066d770e53a70",
+  "warnings": [
+    "Raw archive integrity only; no images were extracted or used for model features.",
+    "Local derived visual feature rights remain under a conservative hold.",
+    "Official source did not provide an independent publisher SHA-256 to compare with this local digest."
+  ],
+  "evidence_class": "measured_source_integrity"
+}

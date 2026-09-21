@@ -34,6 +34,15 @@
     "prohibited_stronger_formulation": "PixelRec multimodal replication passed or raw covers were independently encoded."
   },
   {
+    "claim_id": "pixelrec_raw_archive_integrity",
+    "statement": "The locally acquired official PixelRec cover archive passed full CRC and its 82,865 image names map one-to-one to all 82,865 metadata item IDs.",
+    "evidence_class": "measured_source_integrity",
+    "receipt_id": "pixelrec_cover_archive_integrity_p1",
+    "status": "SUPPORTED",
+    "limitation": "This validates a local raw archive and mapping only. The publisher did not provide an independent archive SHA-256; no image was extracted or used for features, and derived-feature rights remain held.",
+    "prohibited_stronger_formulation": "PixelRec raw images were independently encoded, visual robustness passed, or derived feature redistribution is permitted."
+  },
+  {
     "claim_id": "core_promotion",
     "statement": "MOSAIC improves controlled cold NDCG@20 while retaining warm quality.",
     "evidence_class": "unexecuted",
