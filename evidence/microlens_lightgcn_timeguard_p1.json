@@ -1,0 +1,67 @@
+{
+  "stage_id": "C01",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "PILOT_PASS",
+  "ended_utc": "2026-09-21T08:33:50.739981+00:00",
+  "model": "LIGHTGCN_2L_PILOT",
+  "dataset": "microlens-100k",
+  "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "seed": 20260920,
+  "fit_edges": 481499,
+  "graph_nnz": 962998,
+  "epochs": 50,
+  "training_log": [
+    {
+      "epoch": 1,
+      "fit_bpr_loss": 0.6929135322570801
+    },
+    {
+      "epoch": 10,
+      "fit_bpr_loss": 0.6874769330024719
+    },
+    {
+      "epoch": 20,
+      "fit_bpr_loss": 0.6627406477928162
+    },
+    {
+      "epoch": 30,
+      "fit_bpr_loss": 0.6051015257835388
+    },
+    {
+      "epoch": 40,
+      "fit_bpr_loss": 0.5126888751983643
+    },
+    {
+      "epoch": 50,
+      "fit_bpr_loss": 0.4023889899253845
+    }
+  ],
+  "train_seconds": 2.2609485690045403,
+  "score_seconds": 10.522881568002049,
+  "peak_vram_bytes": 1399022080,
+  "validation_slices": {
+    "all": {
+      "n": 41694,
+      "ndcg_at_20": 0.009049749476288144,
+      "recall_at_20": 0.02420012471818487
+    },
+    "controlled_cold": {
+      "n": 918,
+      "ndcg_at_20": 0.0,
+      "recall_at_20": 0.0
+    },
+    "warm_fit": {
+      "n": 20047,
+      "ndcg_at_20": 0.01882178154658342,
+      "recall_at_20": 0.05033172045692622
+    }
+  },
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_lightgcn_timeguard_p1.pt",
+  "checkpoint_sha256": "04acb5265d98fb0ff5ee58f3fd368a2a1cf490888ba250f5d9635a61d55d0c9d",
+  "warnings": [
+    "Development pilot only; no fair HPO, reference parity, or locked result.",
+    "ID-only graph model is not a sole cold comparator."
+  ],
+  "evidence_class": "measured_development_pilot"
+}

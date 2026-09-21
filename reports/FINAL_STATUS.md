@@ -1,5 +1,7 @@
 # MOSAIC-Rec final execution status
 
+**Historical status superseded 2026-09-21:** The user reserved the sole GPU for MOSAIC. Protocol p1 remains in DEVELOPMENT and execution resumed. The BLOCKED_EXTERNAL assessment below describes the prior GPU-contention window; commit `41d07d8` preserves it. This document will be regenerated from final canonical evidence after scientific closure.
+
 Generated 2026-09-20T21:49:48.547645+00:00 from canonical evidence.
 
 **Terminal decision for this execution window: BLOCKED_EXTERNAL (sole GPU occupied by unrelated jobs).** The scientific protocol remains in DEVELOPMENT and is **not closed**. No finalist, qualified comparator, margin, locked result, or promotion decision exists.

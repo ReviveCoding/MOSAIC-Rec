@@ -24,6 +24,8 @@ import scipy.sparse as sp
 import torch
 from torch.utils.data import DataLoader, TensorDataset
 
+from mosaic_rec.hpo_runtime import learning_rate
+
 
 class GPUContentionError(RuntimeError):
     """Another compute process was present before this pilot claimed CUDA."""
@@ -160,7 +162,7 @@ def run(
     torch.manual_seed(seed)
     loader_proxy = LoaderProxy(DatasetInfo(users_np, items_np, n_users, n_items))
     model = BM3(config, loader_proxy).to(device)
-    optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate(0.001))
     loader = DataLoader(
         TensorDataset(torch.from_numpy(users_np), torch.from_numpy(items_np)),
         batch_size=2048,

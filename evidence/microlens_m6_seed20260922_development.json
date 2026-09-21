@@ -1,0 +1,67 @@
+{
+  "stage_id": "D06",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "PILOT_PASS",
+  "ended_utc": "2026-09-21T08:27:16.871144+00:00",
+  "model": "M6",
+  "dataset": "microlens-100k",
+  "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "seed": 20260922,
+  "fit_samples": 384814,
+  "epochs": 3,
+  "training_log": [
+    {
+      "epoch": 1,
+      "fit_loss": 0.4518526704466994
+    },
+    {
+      "epoch": 2,
+      "fit_loss": 0.3111154885584601
+    },
+    {
+      "epoch": 3,
+      "fit_loss": 0.2713912852972815
+    }
+  ],
+  "train_seconds": 72.53366170099616,
+  "score_seconds": 13.255060211995442,
+  "peak_vram_bytes": 472671232,
+  "validation_slices": {
+    "all": {
+      "n": 41694,
+      "ndcg_at_20": 0.017908574627938743,
+      "recall_at_20": 0.042116371660190915
+    },
+    "controlled_cold": {
+      "n": 918,
+      "ndcg_at_20": 0.00622847564997919,
+      "recall_at_20": 0.017429193899782137
+    },
+    "warm_fit": {
+      "n": 20047,
+      "ndcg_at_20": 0.03129713724415305,
+      "recall_at_20": 0.067641043547663
+    }
+  },
+  "gate_weights_cold_mean": [
+    0.0,
+    0.3633333444595337,
+    0.49380382895469666,
+    0.14286573231220245
+  ],
+  "gate_weights_warm_gt20_mean": [
+    0.5696399807929993,
+    0.18007048964500427,
+    0.24170292913913727,
+    0.00858286302536726
+  ],
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_m6_seed20260922_development.pt",
+  "checkpoint_sha256": "96b2b5d62eeb5a3f13ad5ae352d24b6a16eb82afbae4c8dc97ceaed2a9ede78f",
+  "warnings": [
+    "Development pilot only; no HPO, qualification, or locked result.",
+    "Gate weights are relative fusion coefficients, not calibrated reliability probabilities.",
+    "Untimestamped historical content revisions remain a leakage limitation."
+  ],
+  "evidence_class": "measured_development_pilot"
+}

@@ -1,0 +1,27 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "created_before_hpo": true,
+  "fit_role": "FIT_VISIBLE",
+  "selection_role": "VALIDATION",
+  "protected_roles_excluded": ["QUALIFICATION", "LOCKED_FINAL"],
+  "candidate_semantics": "first validation event per user, temporal available full catalog, FIT-seen mask",
+  "hpo_seed": 20260923,
+  "trial_seed": 20260920,
+  "learning_rates": [0.0003, 0.001, 0.003],
+  "trials_per_model": 3,
+  "max_epochs_per_trial": 30,
+  "early_stopping": "none; identical fixed epoch cap for all comparable neural trials",
+  "gpu_time_budget_seconds_per_model": 7200,
+  "gpu_time_exceed_action": "HOLD and record, never CPU fallback or silent trial omission",
+  "precision": "BF16 autocast where existing model path qualified; FP32 accumulation and exact ranking",
+  "model_families": {
+    "id_and_graph": ["B2_BPR_MF", "B3_LIGHTGCN"],
+    "sequence": ["B5_GRU4REC", "B6_SASREC", "B7_BERT4REC"],
+    "inductive_content": ["B4_TWO_TOWER", "B8_VBPR"],
+    "multimodal_graph": ["B9_BM3", "B10_FREEDOM"],
+    "mosaic_shortlist": ["M1", "M4", "M6", "M7"]
+  },
+  "selection_rule": "Preserve all trial outcomes. Shortlist by validation NDCG@20 overall, controlled-cold and warm FIT separately; do not select a single finalist or comparator before seed qualification and QUALIFICATION evidence. Exclude an ID-only model as sole cold comparator.",
+  "failure_rule": "Record failure, OOM, elapsed GPU time, and reason under its distinct trial ID; no replacement trial without a protocol decision made before protected access."
+}

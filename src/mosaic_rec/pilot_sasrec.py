@@ -20,6 +20,8 @@ import torch
 from torch import nn
 from torch.utils.data import DataLoader, TensorDataset
 
+from mosaic_rec.hpo_runtime import learning_rate
+
 
 class SASRec(nn.Module):
     def __init__(self, catalog_size: int, length: int = 20, width: int = 64) -> None:
@@ -168,7 +170,9 @@ def run(
     model = (
         SASRec(catalog_size) if architecture == "sasrec" else GRU4Rec(catalog_size)
     ).to(device)
-    optimizer = torch.optim.AdamW(model.parameters(), lr=0.001, weight_decay=1e-4)
+    optimizer = torch.optim.AdamW(
+        model.parameters(), lr=learning_rate(0.001), weight_decay=1e-4
+    )
     log: list[dict] = []
     lock.parent.mkdir(parents=True, exist_ok=True)
     with lock.open("w") as lock_handle:

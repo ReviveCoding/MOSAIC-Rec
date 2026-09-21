@@ -1,5 +1,9 @@
 # MOSAIC-Rec execution ledger
 
+2026-09-21 HPO boundary: CUDA validation replay and three-seed M1/M4/M6/M7 development stability completed; canonical evidence validates 73 receipts and zero locked execution after the corrected LightGCN pilot. Current first incomplete scientific stage is E00 equal-budget HPO and baseline qualification. Execute `configs/hpo_development_p1.json` with `scripts/run_hpo_p1.py`, one model/trial at a time; inspect every trial receipt and rebuild the warehouse after each model. Preserve the active PixelRec cover continuation and keep raw visual feature use gated by license/integrity checks. E01-E05 and all locked stages remain pending.
+
+2026-09-21 resumption: sole RTX GPU reserved for MOSAIC. Continue protocol `mosaic-rec-2026-09-20-p1` in DEVELOPMENT. Current queue order is FREEDOM distinct attempt 2; rebuild and validate warehouse; M1/M4/M6/M7 CUDA validation replay with 1e-6 agreement gate; common FIT-visible BPR; corrected SASRec/GRU4Rec/BERT4Rec; additional-seed stability; qualified baseline HPO and seed qualification; frozen comparator/finalist/margin/analysis manifest; locked execution only after protocol guard. Inspect each job before the next. The prior BLOCKED_EXTERNAL commit/report remains historical evidence.
+
 Objective: execute the specified three-track study without opening protected outcomes before a valid freeze. Protocol identity: `mosaic-rec-2026-09-20-p1` (pilot, unsealed).
 
 ## Stage DAG and current stage

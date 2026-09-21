@@ -1,0 +1,40 @@
+{
+  "stage_id": "D08",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "VALIDATION_REPLAY_PASS",
+  "started_utc": "2026-09-21T08:07:00.267391+00:00",
+  "ended_utc": "2026-09-21T08:07:21.546464+00:00",
+  "dataset": "microlens-100k",
+  "model": "M7",
+  "seed": 20260920,
+  "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "git_commit": "41d07d800597d0767da8364c7649f69a34f4940b",
+  "config_sha256": "a910321ce03e1dc067b476cf1cede60125edfd3e1ed4e3d9aa6c99eb1437fb98",
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_m7_pilot.pt",
+  "checkpoint_sha256": "0b0af3e5ded480456b34203c6bd1d28234e2e22d01c71b1d907b3de84b2d0fd7",
+  "source_receipt": "microlens_m7_pilot",
+  "per_user_path": "/home/bjw-0/mosaic-rec-work/evidence/microlens_m7_validation_replay.parquet",
+  "per_user_sha256": "c4b5470d99330fb2949933176bc759def11075e6d1efd7a0a1f7f1c4752bd89d",
+  "per_user_rows": 41694,
+  "validation_slices": {
+    "all": {
+      "n": 41694,
+      "ndcg_at_20": 0.015414886144981788
+    },
+    "controlled_cold": {
+      "n": 918,
+      "ndcg_at_20": 0.0014846585333978847
+    },
+    "warm_fit": {
+      "n": 20047,
+      "ndcg_at_20": 0.030546209954489197
+    }
+  },
+  "score_seconds": 14.327542630999233,
+  "warnings": [
+    "Development validation replay only; not a finalist or locked result.",
+    "Timing requires a separate uncontended systems qualification."
+  ],
+  "evidence_class": "measured_development_replay"
+}

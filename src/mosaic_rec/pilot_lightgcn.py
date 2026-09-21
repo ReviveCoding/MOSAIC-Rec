@@ -7,9 +7,7 @@ import csv
 import fcntl
 import hashlib
 import json
-import random
 import time
-from collections import defaultdict
 from datetime import datetime, timezone
 from math import log2
 from pathlib import Path
@@ -17,6 +15,9 @@ from pathlib import Path
 import pyarrow.parquet as pq
 import torch
 from torch import nn
+
+from mosaic_rec.hpo_runtime import learning_rate
+from mosaic_rec.negative_sampling import time_safe_negatives
 
 
 class LightGCN(nn.Module):
@@ -82,22 +83,10 @@ def run(
     graph = build_graph(fit, n_users, n_items, device)
     torch.manual_seed(seed)
     model = LightGCN(n_users, n_items, graph).to(device)
-    optimizer = torch.optim.Adam(model.parameters(), lr=0.003)
-    seen: dict[int, set[int]] = defaultdict(set)
-    warm = set()
-    for _, user, item in fit:
-        seen[user].add(item)
-        warm.add(item)
-    warm_items = sorted(warm)
-    rng = random.Random(seed)
-    negative = []
-    for _, user, _ in fit:
-        item = rng.choice(warm_items)
-        while item in seen[user]:
-            item = rng.choice(warm_items)
-        negative.append(item)
-    users = torch.tensor([u for _, u, _ in fit], device=device)
-    positives = torch.tensor([i for _, _, i in fit], device=device)
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate(0.003))
+    sampled_users, sampled_items, negative, seen, warm = time_safe_negatives(fit, seed)
+    users = torch.tensor(sampled_users, device=device)
+    positives = torch.tensor(sampled_items, device=device)
     negatives = torch.tensor(negative, device=device)
     first_seen: dict[int, int] = {}
     with source.open(newline="") as handle:
@@ -133,7 +122,7 @@ def run(
                 model.users(users).square().sum()
                 + model.items(positives).square().sum()
                 + model.items(negatives).square().sum()
-            ) / (2 * len(fit))
+            ) / (2 * len(sampled_users))
             loss = bpr + 1e-4 * regularizer
             optimizer.zero_grad(set_to_none=True)
             loss.backward()

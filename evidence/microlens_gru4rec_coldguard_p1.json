@@ -1,0 +1,43 @@
+{
+  "stage_id": "C03",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "PILOT_PASS",
+  "ended_utc": "2026-09-21T08:12:02.400973+00:00",
+  "model": "GRU4REC_ID_PILOT",
+  "dataset": "microlens-100k",
+  "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "seed": 20260920,
+  "fit_samples": 384814,
+  "epochs": 3,
+  "training_log": [
+    {
+      "epoch": 1,
+      "fit_bpr_loss": 0.3926376023561595
+    },
+    {
+      "epoch": 2,
+      "fit_bpr_loss": 0.2882346375313197
+    },
+    {
+      "epoch": 3,
+      "fit_bpr_loss": 0.2555281046037754
+    }
+  ],
+  "train_seconds": 16.835611978000088,
+  "score_seconds": 11.277998431003653,
+  "peak_vram_bytes": 201289728,
+  "validation_users": 41694,
+  "ndcg_at_20": 0.010412516059514125,
+  "recall_at_20": 0.019115460258070704,
+  "mrr_at_20": 0.00803685581739599,
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_gru4rec_coldguard_p1.pt",
+  "checkpoint_sha256": "a65edce12f0709323168a0a6bc9af3b8488bae90ce62b25d90bc076721a5f44a",
+  "warnings": [
+    "Pilot only: no fair HPO, reference parity, seed qualification, or locked result.",
+    "ID-only model is not a valid sole cold comparator.",
+    "Training negatives use only model-visible FIT items available by the event time."
+  ],
+  "evidence_class": "measured_development_pilot",
+  "config_sha256": "b0d748f9bd6e12905405f4ea0c5f1d1ec3947aec320eaeb59198fa7fc68445f0"
+}

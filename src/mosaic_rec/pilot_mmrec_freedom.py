@@ -22,6 +22,7 @@ import scipy
 import torch
 from torch.utils.data import DataLoader, TensorDataset
 
+from mosaic_rec.hpo_runtime import learning_rate
 from mosaic_rec.pilot_mmrec_bm3 import DatasetInfo, LoaderProxy, patch_scipy_dok, rows
 
 
@@ -143,7 +144,7 @@ def run(
     loader_proxy = LoaderProxy(DatasetInfo(users_np, items_np, n_users, n_items))
     # Reference initialization constructs dense n_items^2 similarities on CUDA.
     model = PaddedFREEDOM(config, loader_proxy).to(device)
-    optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate(0.001))
     loader = DataLoader(
         TensorDataset(
             torch.from_numpy(users_np),

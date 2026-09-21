@@ -1,0 +1,66 @@
+{
+  "stage_id": "C04",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "REFERENCE_PROTOCOL_PILOT",
+  "started_utc": "2026-09-21T08:04:05.165550+00:00",
+  "ended_utc": "2026-09-21T08:04:37.078799+00:00",
+  "dataset": "microlens-100k",
+  "model": "B10_FREEDOM_MMREC_REFERENCE",
+  "reference_commit": "c68ee7c9b0de1ca7c5150258322edb4994be29d9",
+  "git_commit": "41d07d800597d0767da8364c7649f69a34f4940b",
+  "config_sha256": "306a5a0716015828eb385f4be049ab3b74dd45355ffa3cc7cab4ce94ab25de57",
+  "input_sha256": {
+    "fit_visible": "1571406f3bea51f96ee5839ccad858e4587d9b1aab5aafa296dde3854ce996e6",
+    "validation": "1328a9ff79bdc1afdd5961891835749b15e761b6263e926d2e74e6eccfbefd9c",
+    "vision": "d5ac75c413af0781f6e49e414f15495c82e835f6f7f2c3df26febfd8eeaf3237",
+    "text": "98b62102a54ae2d6e9755f7091541c4c9596119d6d742710ea988a8af19b28b9"
+  },
+  "environment": {
+    "torch": "2.14.0+cu130",
+    "scipy": "1.15.3"
+  },
+  "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "seed": 20260920,
+  "epochs": 1,
+  "training_log": [
+    {
+      "epoch": 1,
+      "fit_loss": 0.6706957607756583
+    }
+  ],
+  "train_seconds": 7.603895273998205,
+  "score_seconds": 7.395094181003515,
+  "peak_vram_bytes": 1894305792,
+  "validation_slices": {
+    "all": {
+      "n": 41694,
+      "ndcg_at_20": 0.009441758901231594,
+      "recall_at_20": 0.02760589053580851
+    },
+    "controlled_cold": {
+      "n": 918,
+      "ndcg_at_20": 0.0,
+      "recall_at_20": 0.0
+    },
+    "warm_fit": {
+      "n": 20047,
+      "ndcg_at_20": 0.016931140917426975,
+      "recall_at_20": 0.04748840225470145
+    }
+  },
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/microlens_freedom_mmrec_reference_attempt2.pt",
+  "checkpoint_sha256": "5ff6cbaaea0e5dd9400b05e789df3d7eb32831e89c520ad476350282b275ff85",
+  "item_graph_cache": "/home/bjw-0/mosaic-rec-work/references/mmrec_micro_p1_freedom_attempt2/mm_adj_freedomdsp_10_1.pt",
+  "item_graph_sha256": "ff008b888d4dc4c9f590392767b651469f14241afc6045ee6d8f4705ec774a91",
+  "warnings": [
+    "One-epoch reference runtime pilot; no equal-budget HPO or seed qualification.",
+    "Publisher content enters item kNN graph; cold capability requires measured validation.",
+    "FIT-only fixed negative pool and exact first-validation-event available-catalog scoring.",
+    "Reference SciPy DOK private _update restored by element assignment.",
+    "The item-zero adapter pad is excluded from real-item cosine kNN; an isolated pad self-edge is added."
+  ],
+  "evidence_class": "measured_development_reference_pilot",
+  "attempt": 2,
+  "attempt_manifest_sha256": "1418b47d0410f3bd83d1432f85fd881961cef23d0a4281dca0ca0e5190edea43"
+}

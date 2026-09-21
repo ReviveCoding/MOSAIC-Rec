@@ -21,6 +21,8 @@ import torch
 from torch import nn
 from torch.utils.data import DataLoader, TensorDataset
 
+from mosaic_rec.hpo_runtime import learning_rate
+
 
 class MosaicSequence(nn.Module):
     def __init__(
@@ -293,7 +295,9 @@ def run(
     content = load_content(feature_dir, tag_file, title_file, device)
     torch.manual_seed(seed)
     model = MosaicSequence(variant, *content).to(device)
-    optimizer = torch.optim.AdamW(model.parameters(), lr=0.001, weight_decay=1e-4)
+    optimizer = torch.optim.AdamW(
+        model.parameters(), lr=learning_rate(0.001), weight_decay=1e-4
+    )
     log = []
     lock.parent.mkdir(parents=True, exist_ok=True)
     with lock.open("w") as lock_handle:

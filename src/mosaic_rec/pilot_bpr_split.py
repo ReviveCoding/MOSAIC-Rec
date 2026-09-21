@@ -3,16 +3,13 @@
 from __future__ import annotations
 
 import argparse
-import bisect
 import csv
 import fcntl
 import hashlib
 import json
-import random
 import subprocess
 import time
 import traceback
-from collections import defaultdict
 from datetime import datetime, timezone
 from math import log2
 from pathlib import Path
@@ -21,6 +18,8 @@ import torch
 from torch import nn
 from torch.utils.data import DataLoader, TensorDataset
 
+from mosaic_rec.hpo_runtime import learning_rate
+from mosaic_rec.negative_sampling import time_safe_negatives
 from mosaic_rec.pilot_lightgcn import read_events
 
 
@@ -31,34 +30,6 @@ class BPRMF(nn.Module):
         self.items = nn.Embedding(n_items + 1, dim)
         nn.init.normal_(self.users.weight, std=0.02)
         nn.init.normal_(self.items.weight, std=0.02)
-
-
-def time_safe_negatives(
-    fit: list[tuple[int, int, int]], seed: int
-) -> tuple[list[int], list[int], list[int], dict[int, set[int]], set[int]]:
-    first_fit: dict[int, int] = {}
-    for stamp, _, item in fit:
-        first_fit[item] = min(stamp, first_fit.get(item, stamp))
-    warm = set(first_fit)
-    available = sorted(warm, key=lambda item: (first_fit[item], item))
-    available_times = [first_fit[item] for item in available]
-    seen: dict[int, set[int]] = defaultdict(set)
-    rng = random.Random(seed)
-    training_users, training_items, negatives = [], [], []
-    for stamp, user, item in fit:
-        limit = bisect.bisect_right(available_times, stamp)
-        excluded = seen[user] | {item}
-        if len(excluded) < limit:
-            negative = available[rng.randrange(limit)]
-            while negative in excluded:
-                negative = available[rng.randrange(limit)]
-            training_users.append(user)
-            training_items.append(item)
-            negatives.append(negative)
-        seen[user].add(item)
-    if not training_items:
-        raise ValueError("No time-eligible FIT negative samples")
-    return training_users, training_items, negatives, seen, warm
 
 
 def run(
@@ -95,7 +66,7 @@ def run(
     device = torch.device("cuda:0")
     torch.manual_seed(seed)
     model = BPRMF(n_users, n_items).to(device)
-    optimizer = torch.optim.Adam(model.parameters(), lr=0.003)
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate(0.003))
     loader = DataLoader(
         TensorDataset(
             torch.tensor(training_users, dtype=torch.long),

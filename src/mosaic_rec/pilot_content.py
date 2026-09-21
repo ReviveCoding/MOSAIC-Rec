@@ -20,6 +20,8 @@ import pyarrow.parquet as pq
 import torch
 from torch import nn
 
+from mosaic_rec.hpo_runtime import learning_rate
+
 
 class ContentBPR(nn.Module):
     def __init__(
@@ -158,7 +160,9 @@ def run(
     model = ContentBPR(
         max(user for _, user, _ in fit), 19738, n_tags, text, image, tags, mode
     ).to(device)
-    optimizer = torch.optim.AdamW(model.parameters(), lr=0.001, weight_decay=1e-4)
+    optimizer = torch.optim.AdamW(
+        model.parameters(), lr=learning_rate(0.001), weight_decay=1e-4
+    )
     user_tensor = torch.tensor(user_ids, device=device)
     pos_tensor = torch.tensor(positives, device=device)
     log = []

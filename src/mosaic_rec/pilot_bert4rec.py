@@ -20,6 +20,7 @@ import torch
 from torch import nn
 from torch.utils.data import DataLoader, TensorDataset
 
+from mosaic_rec.hpo_runtime import learning_rate
 from mosaic_rec.pilot_mosaic import events
 
 
@@ -123,7 +124,9 @@ def run(
     device = torch.device("cuda:0")
     torch.manual_seed(seed)
     model = BERT4Rec(catalog_size).to(device)
-    optimizer = torch.optim.AdamW(model.parameters(), lr=0.001, weight_decay=1e-4)
+    optimizer = torch.optim.AdamW(
+        model.parameters(), lr=learning_rate(0.001), weight_decay=1e-4
+    )
     class_lookup = torch.full((catalog_size + 2,), -1, dtype=torch.long, device=device)
     class_lookup[torch.tensor(train_ids, device=device)] = torch.arange(
         len(train_ids), device=device
