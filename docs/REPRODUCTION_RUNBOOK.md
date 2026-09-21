@@ -1,5 +1,17 @@
 # MOSAIC-Rec reproduction and recovery runbook
 
+## Current DEVELOPMENT HPO and PixelRec archive
+
+The predeclared HPO grid is `configs/hpo_development_p1.json`. Run one model or trial at a time in Ubuntu-22.04 after checking the sole GPU. The runner refuses existing trial outputs, applies the declared learning rate through `MOSAIC_HPO_LEARNING_RATE`, checks the measured receipt/checkpoint/metric before moving to another trial, and writes canonical companion receipts under `evidence/hpo_p1_*.json`:
+
+```powershell
+wsl -d Ubuntu-22.04 -- /home/bjw-0/mosaic-rec-work/.venv/bin/python scripts/run_hpo_p1.py --model B6_SASREC --trial-index 1
+wsl -d Ubuntu-22.04 -- /home/bjw-0/mosaic-rec-work/.venv/bin/python -m mosaic_rec.warehouse evidence evidence/warehouse.duckdb evidence/tables
+wsl -d Ubuntu-22.04 -- /home/bjw-0/mosaic-rec-work/.venv/bin/python -m mosaic_rec.validate_evidence evidence evidence/warehouse.duckdb
+```
+
+Run `scripts/summarize_hpo_p1.py` only after every declared model and trial has a terminal receipt. PixelRec raw `cover.7z` in WSL scratch was acquired from official Drive file `1VlQxEUoFntgQx0WnNcRsgJu_EtYEBzlS`; its local SHA-256 is `a27ba156123a30555d563be820011c406b5817621f93b7d5dcedc9b090dfa5ee`. The isolated, publisher-hash-verified 7-Zip 26.03 utility at `/home/bjw-0/mosaic-rec-work/tools/7zip-26.03/7zz` passed `t -mmt=2 -bb0` with 82,865 images matching metadata. `evidence/pixelrec_cover_archive_integrity_p1.json` records the result. Raw-cover feature extraction remains rights-held; use the already qualified publisher image-feature branch for feasible replication.
+
 This runbook reproduces **the current development evidence**, not a locked scientific conclusion. It uses the project paths in `configs/bootstrap.json`: PowerShell in `C:\Users\bjw-0\Downloads\MOSAIC-Rec`, Ubuntu-22.04 WSL for all scientific Python, and `/home/bjw-0/mosaic-rec-work` for raw data, features and checkpoints. The protocol is `mosaic-rec-2026-09-20-p1` in DEVELOPMENT.
 
 ## Before any neural job

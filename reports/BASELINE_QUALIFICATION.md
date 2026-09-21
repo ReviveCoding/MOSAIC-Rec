@@ -1,5 +1,11 @@
 # Baseline qualification ledger
 
+## Current status, 2026-09-21
+
+The one-seed, three-learning-rate, 30-epoch CUDA HPO grid is in progress under `configs/hpo_development_p1.json`. B2 BPR-MF, B3 LightGCN, B4 content Two-Tower, B5 corrected GRU4Rec, and B8 VBPR have all three terminal trial receipts. B6 corrected SASRec has all three terminal trial receipts; B7 BERT4Rec is active, while B9 BM3, B10 FREEDOM, and M1/M4/M6/M7 remain queued. Completed development grid heads by overall NDCG@20 are B2 .008909, B3 .009007, B4 .010669, B5 .014448, B6 .006839, and B8 .016933. The strongest observed controlled-cold NDCG@20 in the B4 and B8 grids is .004774 and .000363, respectively; ID-only models are not cold comparators. These are validation observations; no neural baseline is yet qualified by parity and independent seeds, and neither comparator is frozen. FREEDOM attempt 2 passed a distinct one-epoch CUDA runtime pilot with zero controlled-cold score; attempt 1 remains INTERRUPTED. The corrected BPR, LightGCN, SASRec, GRU4Rec, and local BERT4Rec pilots all completed before HPO. See the canonical HPO receipts and `reports/PROGRESS.md` for current trial status.
+
+## Historical pilot ledger before resumed HPO
+
 All numbers below are **VALIDATION development pilots** under protocol `mosaic-rec-2026-09-20-p1`. No baseline has passed equal-budget HPO, independent-seed qualification and common-protocol reference parity. Therefore neither `C_seq` nor `C_cold` is frozen.
 
 | Family | MicroLens status | Cold capability | Qualification gap |
@@ -21,3 +27,4 @@ The 7-day selected setting also measured PixelRec overall NDCG@20 0.002820 and M
 `configs/sequence_coldguard_pilot_p1.json` and `scripts/run_corrected_sequence_pilots.sh` declare distinct SASRec/GRU4Rec development reruns with FIT-only event-time negative eligibility, full past-history exclusion, cold-ID assertion, original seed, and separate receipt/checkpoint paths. They have not run while unrelated GPU work is active. Even if they pass, they remain one-seed pilots until HPO, parity and seed qualification close.
 
 Receipt identities are in `evidence/`; the canonical `metrics` table is the source for numerical reporting. Every baseline failure or underqualification remains visible and must not be used as a weak comparator by default.
+
