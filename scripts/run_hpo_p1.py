@@ -193,6 +193,17 @@ def run_trial(model: str, index: int, policy: dict[str, object]) -> dict[str, ob
         raise FileExistsError(
             f"Existing HPO trial artifact requires audit: {trial_name}"
         )
+    previous = [
+        ROOT / "evidence" / f"hpo_p1_{slug}_t{prior + 1}.json" for prior in range(index)
+    ]
+    if any(not path.is_file() for path in previous):
+        raise FileNotFoundError("Earlier declared HPO trial receipt is missing")
+    spent = sum(
+        json.loads(path.read_text())["elapsed_wall_seconds"] for path in previous
+    )
+    remaining = int(policy["gpu_time_budget_seconds_per_model"] - spent)
+    if remaining <= 0:
+        raise RuntimeError(f"Declared per-model GPU budget exhausted: {model}")
     for directory in (raw.parent, checkpoint.parent, log.parent):
         directory.mkdir(parents=True, exist_ok=True)
     gpu_available()
@@ -224,9 +235,7 @@ def run_trial(model: str, index: int, policy: dict[str, object]) -> dict[str, ob
             start_new_session=True,
         )
         try:
-            returncode = process.wait(
-                timeout=int(policy["gpu_time_budget_seconds_per_model"])
-            )
+            returncode = process.wait(timeout=remaining)
         except subprocess.TimeoutExpired:
             os.killpg(process.pid, signal.SIGTERM)
             process.wait(timeout=30)
@@ -267,6 +276,9 @@ def run_trial(model: str, index: int, policy: dict[str, object]) -> dict[str, ob
         "train_seconds": original.get("train_seconds"),
         "score_seconds": original.get("score_seconds"),
         "peak_vram_bytes": original.get("peak_vram_bytes"),
+        "device": original.get("device"),
+        "environment": original.get("environment"),
+        "input_sha256": original.get("input_sha256"),
         "validation_slices": original.get("validation_slices"),
         "ndcg_at_20": original.get("ndcg_at_20"),
         "recall_at_20": original.get("recall_at_20"),
