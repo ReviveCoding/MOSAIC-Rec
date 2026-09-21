@@ -2,7 +2,7 @@
 
 ## Current status, 2026-09-21
 
-The one-seed, three-learning-rate, 30-epoch CUDA HPO grid is in progress under `configs/hpo_development_p1.json`. B2 BPR-MF, B3 LightGCN, B4 content Two-Tower, B5 corrected GRU4Rec, and B8 VBPR have all three terminal trial receipts. B6 corrected SASRec has all three terminal trial receipts; B7 BERT4Rec now has three terminal CUDA trials; B9 BM3 has three terminal CUDA trials; B10 FREEDOM and M1/M4/M6/M7 remain queued. Completed development grid heads by overall NDCG@20 are B2 .008909, B3 .009007, B4 .010669, B5 .014448, B6 .006839, B7 .024235, B8 .016933, and B9 .012045. The strongest observed controlled-cold NDCG@20 in the B4 and B8 grids is .004774 and .000363, respectively; ID-only models are not cold comparators. These are validation observations; no neural baseline is yet qualified by parity and independent seeds, and neither comparator is frozen. FREEDOM attempt 2 passed a distinct one-epoch CUDA runtime pilot with zero controlled-cold score; attempt 1 remains INTERRUPTED. The corrected BPR, LightGCN, SASRec, GRU4Rec, and local BERT4Rec pilots all completed before HPO. See the canonical HPO receipts and `reports/PROGRESS.md` for current trial status.
+The one-seed, three-learning-rate, 30-epoch CUDA HPO grid is in progress under `configs/hpo_development_p1.json`. B2 BPR-MF, B3 LightGCN, B4 content Two-Tower, B5 corrected GRU4Rec, and B8 VBPR have all three terminal trial receipts. B6 corrected SASRec has all three terminal trial receipts; B7 BERT4Rec now has three terminal CUDA trials; B9 BM3 has three terminal CUDA trials; B10 FREEDOM has three terminal CUDA trials; M1/M4/M6/M7 remain queued. Completed development grid heads by overall NDCG@20 are B2 .008909, B3 .009007, B4 .010669, B5 .014448, B6 .006839, B7 .024235, B8 .016933, B9 .012045, and B10 .012046. The strongest observed controlled-cold NDCG@20 in the B4 and B8 grids is .004774 and .000363, respectively; ID-only models are not cold comparators. These are validation observations; no neural baseline is yet qualified by parity and independent seeds, and neither comparator is frozen. FREEDOM attempt 2 passed a distinct one-epoch CUDA runtime pilot with zero controlled-cold score; attempt 1 remains INTERRUPTED. The corrected BPR, LightGCN, SASRec, GRU4Rec, and local BERT4Rec pilots all completed before HPO. See the canonical HPO receipts and `reports/PROGRESS.md` for current trial status.
 
 ## Historical pilot ledger before resumed HPO
 
@@ -31,4 +31,8 @@ Receipt identities are in `evidence/`; the canonical `metrics` table is the sour
 
 Convergence watch (2026-09-21, DEVELOPMENT): BERT4Rec lr .003 FIT Cloze loss decreased from 8.59779 at epoch 1 to 6.46926 at epoch 20 and 6.24185 at epoch 30. This fixed-budget HPO result may still be undertrained; do not qualify C_seq from its one-seed grid alone. Complete parity and independent-seed/convergence review before freeze. GRU4Rec lr .001 FIT BPR loss fell from .39264 to .00130 at epoch 20 and .000319 at epoch 30; SASRec lr .001 from .41627 to .04994 and .01281. Training loss is diagnostic, not a protected outcome or a substitute for validation.
 
+
+
+
+FREEDOM convergence watch (2026-09-21, DEVELOPMENT): at lr .0003 FIT loss declined .69196 -> .20635 (epoch 20) -> .13971 (epoch 30); at lr .001, .67070 -> .03955 -> .01491. Its one-seed fixed-budget HPO grid is not convergence or reference/common-parity qualification. Preserve the measured small controlled-cold score at lr .001 (.000248 NDCG@20) without claiming robust cold support.
 

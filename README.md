@@ -8,7 +8,7 @@ MOSAIC-Rec is a temporal, multimodal recommendation study with an explicit contr
 - The M0-M7 CUDA development ladder is complete on MicroLens. It shows a cold/warm tradeoff: M4 led the controlled-cold pilot slice while M7 led the FIT-warm pilot slice. Neither observation selects a finalist.
 - A FIT-only 7/30/90-day recent-popularity development search is recorded on all three tracks. RecBole SASRec/BERT4Rec CUDA reference runtime smokes completed; they use different internal splits and are not protocol parity.
 - The official PixelRec publisher image-feature file maps all 82,865 track items to finite vectors. Its image index matches the local text index exactly; aligned tag and title-presence arrays passed a separate audit. Its raw cover archive was resumed and passed full 7-Zip CRC and exact 82,865-image identity checks. Local derived-feature use remains on a rights hold; publisher features remain available for replication.
-- The canonical warehouse currently validates 98 stage receipts and **zero** locked-execution receipts. FIT-only dense inputs for PixelRec and MovieLens external tracks are prepared in WSL scratch; neither is a replication result. The [technical report](reports/MOSAIC_REC_FINAL_TECHNICAL_REPORT.md) is a development draft generated from the warehouse. Check [`reports/PROGRESS.md`](reports/PROGRESS.md) for the latest live state and [`reports/RECOVERY_AUDIT.md`](reports/RECOVERY_AUDIT.md) for the post-reboot audit.
+- The canonical warehouse currently validates 101 stage receipts and **zero** locked-execution receipts. FIT-only dense inputs for PixelRec and MovieLens external tracks are prepared in WSL scratch; neither is a replication result. The [technical report](reports/MOSAIC_REC_FINAL_TECHNICAL_REPORT.md) is a development draft generated from the warehouse. Check [`reports/PROGRESS.md`](reports/PROGRESS.md) for the latest live state and [`reports/RECOVERY_AUDIT.md`](reports/RECOVERY_AUDIT.md) for the post-reboot audit.
 
 ## Runtime and evidence
 
@@ -21,6 +21,7 @@ An optional FastAPI demonstration can load a declared, hash-verified development
 This repository currently supports a development study and reproducibility audit. It does not establish production impact, reliability, external validity, or a winning MOSAIC model.
 
 The [final execution status](reports/FINAL_STATUS.md) is a preserved historical **BLOCKED_EXTERNAL** snapshot from the prior GPU-contention window, not current scientific closure. The GPU is reserved and execution has resumed under protocol p1 in DEVELOPMENT.
+
 
 
 
