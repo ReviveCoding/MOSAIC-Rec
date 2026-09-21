@@ -6,6 +6,7 @@ import argparse
 import fcntl
 import hashlib
 import json
+import math
 import os
 import signal
 import subprocess
@@ -35,6 +36,19 @@ def digest(path: Path) -> str:
 
 def now() -> str:
     return datetime.now(timezone.utc).isoformat()
+
+
+def valid_overall_metric(receipt: dict[str, object]) -> bool:
+    slices = receipt.get("validation_slices") or {}
+    if isinstance(slices, dict) and isinstance(slices.get("all"), dict):
+        row = slices["all"]
+        score, count = row.get("ndcg_at_20"), row.get("n")
+    else:
+        score, count = receipt.get("ndcg_at_20"), receipt.get("validation_users")
+    try:
+        return int(count) > 0 and math.isfinite(float(score)) and 0 <= float(score) <= 1
+    except (TypeError, ValueError):
+        return False
 
 
 def gpu_available() -> None:
@@ -247,6 +261,11 @@ def run_trial(model: str, index: int, policy: dict[str, object]) -> dict[str, ob
         and original.get("status")
         in {"PILOT_PASS", "LOCAL_COMMON_PROTOCOL_PILOT", "REFERENCE_PROTOCOL_PILOT"}
         and checkpoint.is_file()
+        and original.get("seed") == seed
+        and original.get("epochs") == epochs
+        and bool(original.get("device"))
+        and valid_overall_metric(original)
+        and original.get("checkpoint_sha256") == digest(checkpoint)
     )
     result: dict[str, object] = {
         "stage_id": "E00",
