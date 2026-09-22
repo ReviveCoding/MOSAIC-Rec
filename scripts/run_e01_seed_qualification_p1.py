@@ -93,6 +93,7 @@ def validate_existing(
     manifest_hash: str,
     config_id: str,
     seed: int,
+    attempt: int = 1,
 ) -> dict:
     result = json.loads(receipt_path.read_text())
 
@@ -101,6 +102,7 @@ def validate_existing(
         or result.get("config_id") != config_id
         or result.get("seed") != seed
         or result.get("e01_manifest_sha256") != manifest_hash
+        or int(result.get("attempt", 1)) != attempt
     ):
         raise ValueError(f"Existing E01 receipt identity mismatch: {receipt_path}")
 
@@ -110,11 +112,30 @@ def validate_existing(
     return result
 
 
+def infrastructure_retry_eligible(result: dict) -> bool:
+    """Permit only the audited CUDA_ERROR_UNKNOWN failure for attempt 2."""
+    raw_path = Path(str(result.get("raw_receipt") or ""))
+    if (
+        result.get("status") != "E01_SEED_FAIL"
+        or result.get("returncode") == 0
+        or result.get("checkpoint") is not None
+        or result.get("validation_slices") is not None
+        or not raw_path.is_file()
+    ):
+        return False
+    raw = json.loads(raw_path.read_text())
+    exception = str(raw.get("exception") or "")
+    return raw.get("status") == "FAIL_LOCAL_PILOT" and (
+        "CUDA_ERROR_UNKNOWN" in exception or "CUDA error: unknown error" in exception
+    )
+
+
 def run_one(
     candidate: dict,
     seed: int,
     manifest: dict,
     manifest_hash: str,
+    attempt: int = 1,
 ) -> dict:
     config_id = candidate["config_id"]
     model = candidate_model(config_id)
@@ -122,7 +143,10 @@ def run_one(
     source_path, source = validate_source(candidate)
 
     slug = config_id.lower()
-    run_id = f"e01_seedqual_p1_{slug}_seed{seed}"
+    base_run_id = f"e01_seedqual_p1_{slug}_seed{seed}"
+    if attempt not in {1, 2}:
+        raise ValueError("Only the original E01 attempt and audited attempt 2 exist")
+    run_id = base_run_id if attempt == 1 else f"{base_run_id}_attempt{attempt}"
 
     raw = RAW_DIR / f"{run_id}.json"
     checkpoint = CHECKPOINT_DIR / f"{run_id}.pt"
@@ -135,7 +159,32 @@ def run_one(
             manifest_hash,
             config_id,
             seed,
+            attempt,
         )
+        if attempt == 1 and result["status"] == "E01_SEED_FAIL":
+            retry = ROOT / "evidence" / f"{base_run_id}_attempt2.json"
+            if retry.is_file():
+                retry_result = validate_existing(
+                    retry, manifest_hash, config_id, seed, 2
+                )
+                if (
+                    retry_result.get("status") != "E01_SEED_PASS"
+                    or retry_result.get("retry_of_receipt")
+                    != str(receipt.relative_to(ROOT))
+                    or retry_result.get("retry_of_receipt_sha256") != digest(receipt)
+                ):
+                    raise ValueError(f"Invalid E01 infrastructure retry: {retry}")
+                print(
+                    json.dumps(
+                        {
+                            "run_id": retry.stem,
+                            "status": retry_result["status"],
+                            "action": "SKIP_EXISTING_INFRASTRUCTURE_RETRY",
+                        }
+                    ),
+                    flush=True,
+                )
+                return retry_result
         print(
             json.dumps(
                 {
@@ -147,6 +196,22 @@ def run_one(
             flush=True,
         )
         return result
+
+    retry_of_receipt = None
+    retry_of_receipt_sha256 = None
+    if attempt == 2:
+        base_receipt = ROOT / "evidence" / f"{base_run_id}.json"
+        if not base_receipt.is_file():
+            raise FileNotFoundError(
+                "Attempt 2 requires the preserved attempt-1 receipt"
+            )
+        base_result = validate_existing(base_receipt, manifest_hash, config_id, seed, 1)
+        if not infrastructure_retry_eligible(base_result):
+            raise ValueError(
+                "Attempt-1 evidence is not eligible for infrastructure retry"
+            )
+        retry_of_receipt = str(base_receipt.relative_to(ROOT))
+        retry_of_receipt_sha256 = digest(base_receipt)
 
     partials = [path for path in (raw, checkpoint, log) if path.exists()]
     if partials:
@@ -180,6 +245,9 @@ def run_one(
     timeout_seconds = 7200
 
     started = now()
+    runner_git_commit = subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
+    ).strip()
     start = time.perf_counter()
 
     with log.open("w") as stream:
@@ -232,6 +300,7 @@ def run_one(
         "config_id": config_id,
         "model": model,
         "seed": seed,
+        "attempt": attempt,
         "epochs": epochs,
         "learning_rate": learning_rate,
         "source_hpo_receipt": str(source_path.relative_to(ROOT)),
@@ -240,11 +309,14 @@ def run_one(
         "e01_manifest": str(MANIFEST.relative_to(ROOT)),
         "e01_manifest_sha256": manifest_hash,
         "source_hpo_closure_commit": manifest["source_hpo_closure_commit"],
-        "runner_git_commit": subprocess.check_output(
-            ["git", "rev-parse", "HEAD"],
-            cwd=ROOT,
-            text=True,
-        ).strip(),
+        "runner_git_commit": runner_git_commit,
+        "retry_of_receipt": retry_of_receipt,
+        "retry_of_receipt_sha256": retry_of_receipt_sha256,
+        "retry_reason": (
+            "transient_cuda_error_unknown_after_successful_cuda_requalification"
+            if attempt == 2
+            else None
+        ),
         "raw_receipt": str(raw),
         "raw_receipt_sha256": digest(raw) if raw.is_file() else None,
         "log": str(log),
@@ -307,6 +379,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--candidate")
     parser.add_argument("--seed", type=int)
+    parser.add_argument("--retry-attempt", type=int, choices=(2,))
     parser.add_argument(
         "--all",
         action="store_true",
@@ -347,7 +420,11 @@ def main() -> None:
     candidate_map = {item["config_id"]: item for item in candidates(manifest)}
 
     if args.all:
-        if args.candidate is not None or args.seed is not None:
+        if (
+            args.candidate is not None
+            or args.seed is not None
+            or args.retry_attempt is not None
+        ):
             raise ValueError("--all cannot be combined with --candidate/--seed")
 
         for candidate in candidates(manifest):
@@ -378,6 +455,7 @@ def main() -> None:
         args.seed,
         manifest,
         manifest_hash,
+        attempt=args.retry_attempt or 1,
     )
 
     if result["status"] != "E01_SEED_PASS":

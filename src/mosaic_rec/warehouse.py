@@ -102,7 +102,7 @@ def build(evidence_dir: Path, output: Path, tables_dir: Path) -> dict:
                     ],
                 )
                 counts["splits"] += 1
-        for epoch in data.get("training_log", []):
+        for epoch in data.get("training_log") or []:
             con.execute(
                 "INSERT INTO trials VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
                 [

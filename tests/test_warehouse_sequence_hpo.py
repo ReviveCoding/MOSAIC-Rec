@@ -20,6 +20,7 @@ def test_overall_only_sequence_hpo_receipt(tmp_path) -> None:
         "dataset": "microlens-100k",
         "model": "B5_GRU4REC",
         "evidence_class": "measured_development_hpo",
+        "training_log": None,
         "validation_slices": None,
         "validation_users": 41694,
         "ndcg_at_20": 0.013264202369016587,

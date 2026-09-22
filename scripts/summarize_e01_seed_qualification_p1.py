@@ -54,6 +54,25 @@ def stats(values: list[float]) -> dict:
     }
 
 
+def effective_receipt_path(base: Path) -> Path:
+    """Use a valid distinct attempt-2 pass after a preserved attempt-1 failure."""
+    receipt = json.loads(base.read_text())
+    if receipt.get("status") == "E01_SEED_PASS":
+        return base
+    retry = base.with_name(f"{base.stem}_attempt2.json")
+    if not retry.is_file():
+        return base
+    retried = json.loads(retry.read_text())
+    if (
+        retried.get("status") != "E01_SEED_PASS"
+        or retried.get("attempt") != 2
+        or retried.get("retry_of_receipt") != str(base.relative_to(ROOT))
+        or retried.get("retry_of_receipt_sha256") != digest(base)
+    ):
+        raise ValueError(f"Invalid E01 infrastructure retry: {retry}")
+    return retry
+
+
 def main() -> None:
     if OUTPUT.exists():
         raise FileExistsError(OUTPUT)
@@ -76,6 +95,8 @@ def main() -> None:
 
             if not path.is_file():
                 raise FileNotFoundError(path)
+
+            path = effective_receipt_path(path)
 
             receipt = json.loads(path.read_text())
 
