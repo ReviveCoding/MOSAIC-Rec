@@ -1,0 +1,188 @@
+{
+  "stage_id": "E01",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "E01_SEED_PASS",
+  "started_utc": "2026-09-22T21:22:57.956783+00:00",
+  "ended_utc": "2026-09-22T21:29:06.711919+00:00",
+  "dataset": "microlens-100k",
+  "config_id": "B7_BERT4REC_T3",
+  "model": "B7_BERT4REC",
+  "seed": 20260924,
+  "epochs": 30,
+  "learning_rate": 0.003,
+  "source_hpo_receipt": "evidence/hpo_p1_b7_bert4rec_t3.json",
+  "source_hpo_receipt_sha256": "e033e5f4135bcc39a66253c65989afebb7dc05fcea2ea81975b0269345f6b086",
+  "source_hpo_checkpoint_sha256": "8fce283a14de5802b2565539ebc4d95ef6dac5eeac941e37c2612935da208c2b",
+  "e01_manifest": "configs/e01_seed_qualification_p1.json",
+  "e01_manifest_sha256": "06ec4d211aa98538e362d22495224e70a9c222ca4f3c6c5256bc0e99ce0172ac",
+  "source_hpo_closure_commit": "7ba93c150cd1358cc8fbdcfae6be9f558af81a64",
+  "runner_git_commit": "58283231a9e9fc61c1a26672613bd46fb0f78728",
+  "raw_receipt": "/home/bjw-0/mosaic-rec-work/e01_raw/e01_seedqual_p1_b7_bert4rec_t3_seed20260924.json",
+  "raw_receipt_sha256": "e54f4e56aa07f687874621bf877c2436139d1f43b3cde6837efb0962b2a5d916",
+  "log": "/home/bjw-0/mosaic-rec-work/logs/e01_seedqual_p1_b7_bert4rec_t3_seed20260924.log",
+  "log_sha256": "9a658ebb806f43a37bf37d53031aebf4a76f18f5397ec5e0fb9384dc8c4a5c7a",
+  "returncode": 0,
+  "elapsed_wall_seconds": 340.4150914119964,
+  "train_seconds": 324.616368752002,
+  "score_seconds": 7.834755488001974,
+  "peak_vram_bytes": 306710016,
+  "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "environment": {
+    "torch": "2.14.0+cu130",
+    "cuda_runtime": "13.0"
+  },
+  "input_sha256": {
+    "fit_visible": "1571406f3bea51f96ee5839ccad858e4587d9b1aab5aafa296dde3854ce996e6",
+    "validation": "1328a9ff79bdc1afdd5961891835749b15e761b6263e926d2e74e6eccfbefd9c"
+  },
+  "validation_slices": {
+    "all": {
+      "n": 41694,
+      "ndcg_at_20": 0.024974103972992566,
+      "recall_at_20": 0.051566172590780446
+    },
+    "controlled_cold": {
+      "n": 918,
+      "ndcg_at_20": 0.0,
+      "recall_at_20": 0.0
+    },
+    "warm_fit": {
+      "n": 20047,
+      "ndcg_at_20": 0.051941452139968675,
+      "recall_at_20": 0.10724796727689928
+    }
+  },
+  "ndcg_at_20": null,
+  "recall_at_20": null,
+  "training_log": [
+    {
+      "epoch": 1,
+      "fit_cloze_loss": 8.60508734521415
+    },
+    {
+      "epoch": 2,
+      "fit_cloze_loss": 7.757052817798745
+    },
+    {
+      "epoch": 3,
+      "fit_cloze_loss": 7.423633080424622
+    },
+    {
+      "epoch": 4,
+      "fit_cloze_loss": 7.246667685410417
+    },
+    {
+      "epoch": 5,
+      "fit_cloze_loss": 7.116090040910249
+    },
+    {
+      "epoch": 6,
+      "fit_cloze_loss": 7.020438342654282
+    },
+    {
+      "epoch": 7,
+      "fit_cloze_loss": 6.941655198196215
+    },
+    {
+      "epoch": 8,
+      "fit_cloze_loss": 6.8854458340094755
+    },
+    {
+      "epoch": 9,
+      "fit_cloze_loss": 6.838604893405909
+    },
+    {
+      "epoch": 10,
+      "fit_cloze_loss": 6.7973142122703765
+    },
+    {
+      "epoch": 11,
+      "fit_cloze_loss": 6.761306099417568
+    },
+    {
+      "epoch": 12,
+      "fit_cloze_loss": 6.722093146204915
+    },
+    {
+      "epoch": 13,
+      "fit_cloze_loss": 6.682509465316627
+    },
+    {
+      "epoch": 14,
+      "fit_cloze_loss": 6.6445637373077915
+    },
+    {
+      "epoch": 15,
+      "fit_cloze_loss": 6.612587016868499
+    },
+    {
+      "epoch": 16,
+      "fit_cloze_loss": 6.579722470527597
+    },
+    {
+      "epoch": 17,
+      "fit_cloze_loss": 6.546440983561638
+    },
+    {
+      "epoch": 18,
+      "fit_cloze_loss": 6.514000930003198
+    },
+    {
+      "epoch": 19,
+      "fit_cloze_loss": 6.478124607634577
+    },
+    {
+      "epoch": 20,
+      "fit_cloze_loss": 6.452382445975945
+    },
+    {
+      "epoch": 21,
+      "fit_cloze_loss": 6.416459794439816
+    },
+    {
+      "epoch": 22,
+      "fit_cloze_loss": 6.3895210472698345
+    },
+    {
+      "epoch": 23,
+      "fit_cloze_loss": 6.3586676785615195
+    },
+    {
+      "epoch": 24,
+      "fit_cloze_loss": 6.335694322618002
+    },
+    {
+      "epoch": 25,
+      "fit_cloze_loss": 6.314540813973062
+    },
+    {
+      "epoch": 26,
+      "fit_cloze_loss": 6.287287028493752
+    },
+    {
+      "epoch": 27,
+      "fit_cloze_loss": 6.26762065506156
+    },
+    {
+      "epoch": 28,
+      "fit_cloze_loss": 6.251655333074858
+    },
+    {
+      "epoch": 29,
+      "fit_cloze_loss": 6.230492244203343
+    },
+    {
+      "epoch": 30,
+      "fit_cloze_loss": 6.214866926299312
+    }
+  ],
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/e01_seedqual_p1_b7_bert4rec_t3_seed20260924.pt",
+  "checkpoint_sha256": "8236329ae466a0fd8dd5d3594a1faf3949bc1036d3568e283e70499b9aeb215c",
+  "warnings": [
+    "Independent DEVELOPMENT seed qualification only.",
+    "QUALIFICATION and LOCKED_FINAL remain unopened.",
+    "No comparator or MOSAIC finalist is selected by this receipt."
+  ],
+  "evidence_class": "measured_development_seed_qualification"
+}
