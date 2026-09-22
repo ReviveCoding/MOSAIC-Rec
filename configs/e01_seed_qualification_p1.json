@@ -1,0 +1,110 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "stage_id": "E01",
+  "state": "DEVELOPMENT",
+  "created_before_execution": true,
+  "source_hpo_closure_commit": "7ba93c150cd1358cc8fbdcfae6be9f558af81a64",
+  "source_hpo_summary": "evidence/hpo_p1_grid_summary.json",
+  "source_hpo_summary_sha256": "bad1b35da3aa9d6bf7f2645322ea3aa686f6811faf22bed9e5c9774d05349c1e",
+  "training_role": "FIT_VISIBLE",
+  "evaluation_role": "VALIDATION",
+  "protected_roles_excluded": [
+    "QUALIFICATION",
+    "LOCKED_FINAL"
+  ],
+  "independent_seed_policy": {
+    "seeds": [
+      20260924,
+      20260925,
+      20260926
+    ],
+    "hpo_seed_20260920_is_excluded_from_qualification_statistics": true,
+    "prior_development_seeds_20260921_20260922_are_not_reused": true,
+    "replacement_seed_allowed": false
+  },
+  "sequence_candidate": {
+    "config_id": "B7_BERT4REC_T3",
+    "source_receipt": "evidence/hpo_p1_b7_bert4rec_t3.json",
+    "learning_rate": 0.003,
+    "epochs": 30,
+    "reason": "Highest primary overall validation NDCG@20 among declared sequence HPO candidates",
+    "common_slice_rescore_required_before_E02_freeze": true
+  },
+  "cold_baseline_candidate": {
+    "config_id": "B4_TWO_TOWER_T3",
+    "source_receipt": "evidence/hpo_p1_b4_two_tower_t3.json",
+    "learning_rate": 0.003,
+    "epochs": 30,
+    "reason": "Highest controlled-cold validation NDCG@20 among declared inductive-capable baselines"
+  },
+  "mosaic_candidates": [
+    {
+      "config_id": "M1_T1",
+      "source_receipt": "evidence/hpo_p1_m1_t1.json",
+      "variant": 1,
+      "learning_rate": 0.0003,
+      "epochs": 30
+    },
+    {
+      "config_id": "M1_T2",
+      "source_receipt": "evidence/hpo_p1_m1_t2.json",
+      "variant": 1,
+      "learning_rate": 0.001,
+      "epochs": 30
+    },
+    {
+      "config_id": "M4_T1",
+      "source_receipt": "evidence/hpo_p1_m4_t1.json",
+      "variant": 4,
+      "learning_rate": 0.0003,
+      "epochs": 30
+    },
+    {
+      "config_id": "M4_T3",
+      "source_receipt": "evidence/hpo_p1_m4_t3.json",
+      "variant": 4,
+      "learning_rate": 0.003,
+      "epochs": 30
+    },
+    {
+      "config_id": "M6_T3",
+      "source_receipt": "evidence/hpo_p1_m6_t3.json",
+      "variant": 6,
+      "learning_rate": 0.003,
+      "epochs": 30
+    }
+  ],
+  "mosaic_selection_rule": "Retain the validation Pareto-nondominated HPO configurations across\noverall NDCG@20, controlled-cold NDCG@20, and FIT-warm NDCG@20.\nDo not choose a MOSAIC finalist during E01.",
+  "sequence_audit_rule": "Before E02 comparator freeze, read-only re-score B5_GRU4REC_T2,\nB6_SASREC_T2, and B7_BERT4REC_T3 checkpoints using the same\nfull-catalog evaluator and the same all/controlled_cold/warm_fit\nslice definitions. Do not retrain these checkpoints for that audit.",
+  "qualification_statistics": {
+    "decision_seeds": [
+      20260924,
+      20260925,
+      20260926
+    ],
+    "report_mean": true,
+    "report_sample_sd": true,
+    "report_min": true,
+    "report_max": true,
+    "hpo_seed_used_only_as_development_reference": true,
+    "no_best_seed_selection": true
+  },
+  "execution_policy": {
+    "one_heavy_cuda_job_at_a_time": true,
+    "cpu_fallback_for_neural_training": false,
+    "preserve_all_seed_outcomes": true,
+    "infrastructure_retry_requires_distinct_attempt_identity": true,
+    "scientific_failure_is_not_replaced": true
+  },
+  "outputs": {
+    "receipt_prefix": "e01_seedqual_p1",
+    "summary": "evidence/e01_seed_qualification_p1.json",
+    "stage": "E01"
+  },
+  "warnings": [
+    "No QUALIFICATION data may be opened during E01.",
+    "No LOCKED_FINAL data may be opened during E01.",
+    "E01 does not freeze C_seq, C_cold, or the MOSAIC finalist.",
+    "HPO seed 20260920 must not be included in E01 independent-seed qualification statistics."
+  ]
+}
