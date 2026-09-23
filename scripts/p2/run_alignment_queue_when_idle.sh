@@ -5,14 +5,26 @@ repo=/mnt/c/Users/bjw-0/Downloads/MOSAIC-Rec
 scratch=/home/bjw-0/mosaic-rec-work/p2
 idle=0
 while [[ "$idle" -lt 6 ]]; do
-  activity=$(nvidia-smi \
+  if ! activity=$(nvidia-smi \
     --query-gpu=memory.used,utilization.gpu \
-    --format=csv,noheader,nounits | tr -d ' ')
+    --format=csv,noheader,nounits | tr -d ' '); then
+    idle=0
+    printf 'WAIT_GPU %s probe_failed=gpu_activity idle_checks=0/6\n' \
+      "$(date -u +%FT%TZ)"
+    sleep 5
+    continue
+  fi
   memory=${activity%,*}
   utilization=${activity#*,}
-  compute_pids=$(nvidia-smi \
+  if ! compute_pids=$(nvidia-smi \
     --query-compute-apps=pid \
-    --format=csv,noheader,nounits | sed '/^[[:space:]]*$/d' || true)
+    --format=csv,noheader,nounits | sed '/^[[:space:]]*$/d'); then
+    idle=0
+    printf 'WAIT_GPU %s probe_failed=compute_pids idle_checks=0/6\n' \
+      "$(date -u +%FT%TZ)"
+    sleep 5
+    continue
+  fi
   if [[ -z "$compute_pids" ]] \
     && [[ "$memory" -le 256 ]] \
     && [[ "$utilization" -le 5 ]]; then
