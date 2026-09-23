@@ -1,0 +1,16 @@
+{
+  "attempt_id": "P2-D01-R1-PILOT-ATTEMPT-1",
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-D01-PILOT",
+  "status": "BLOCKED_EXTERNAL_GPU_CONTENTION",
+  "git_commit": "4815b46",
+  "blocking_pid": 126553,
+  "blocking_process": "/home/bjw-0/.cache/act-agent-v1/venv/bin/python -m act_agent.training.sft_v2 --seed 11 --steps 120",
+  "observed_gpu_memory_mib": 7560,
+  "observed_gpu_utilization_percent": 53,
+  "p2_lock_acquired": false,
+  "model_loaded": false,
+  "output_created": false,
+  "protected_model_outcomes_accessed": false,
+  "resolution": "continue CPU-only p2 work and retry under a distinct attempt after a sustained idle GPU window"
+}

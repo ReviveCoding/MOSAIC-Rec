@@ -15,3 +15,7 @@ Independent path: amendment 001 selects the already authorized local MiniLM embe
 ## Resource note
 
 The WSL filesystem has adequate capacity. The Windows volume is 94% used, so large p2 artifacts must remain under `/home/bjw-0/mosaic-rec-work/p2`.
+
+## ACTIVE TRANSIENT — unrelated ACT-Agent CUDA trainer
+
+R1 attempt 1 was blocked before model loading when the 30-second idle guard observed PID 126553 running ACT-Agent SFT with approximately 7.6 GiB VRAM and 53% GPU utilization. No p2 output was created. CPU-only p2 work continues; the next R1 attempt requires a new sustained idle window.
