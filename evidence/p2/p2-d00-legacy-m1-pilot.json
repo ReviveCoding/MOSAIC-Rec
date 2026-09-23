@@ -1,0 +1,68 @@
+{
+  "best_epoch": 3,
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/checkpoints/legacy_m1_pilot.pt",
+  "checkpoint_sha256": "f18208d36438d2928b3f8dce49427dc8a821d2494255ae07f818e44e40a99938",
+  "config_sha256": "9380ba55607f4dada90969db704c1cddb7f82ec3ffbafac6c4ccb21b4c956f27",
+  "epochs_completed": 3,
+  "evidence_class": "p2_measured_development_legacy_pilot",
+  "family": "LEGACY_M1",
+  "git_commit": "42101f08d0254ee3d677f81f46ccc24e1235ccba",
+  "gpu_qualification": {
+    "bf16_supported": true,
+    "cuda_runtime": "13.0",
+    "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+    "tensor_result": 5590357.0,
+    "torch": "2.14.0+cu130",
+    "vram_bytes": 17170956288
+  },
+  "model_id": "LEGACY_M1_T2_PIXELREC_PILOT",
+  "peak_vram_bytes": 980176384,
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "seed": 20260929,
+  "stage_id": "P2-D00-LEGACY-PILOT",
+  "status": "PASS",
+  "stopping_reason": "scheduled_epochs_complete",
+  "train_seconds": 165.92219896900133,
+  "training_examples": 611178,
+  "training_log": [
+    {
+      "epoch": 1,
+      "loss": 0.3474589800086567
+    },
+    {
+      "epoch": 2,
+      "loss": 0.20972034168935674
+    },
+    {
+      "epoch": 3,
+      "loss": 0.16837567774993634
+    }
+  ],
+  "trial_id": "",
+  "validation": {
+    "output": "/home/bjw-0/mosaic-rec-work/p2/development/legacy_m1_pilot_validation.parquet",
+    "output_sha256": "a4228cb91be588483b8644a321682cf3783f785d08eaf0f0dc87550f6c546ffe",
+    "role": "VALIDATION",
+    "rows": 27918,
+    "seconds": 29.00502948400026,
+    "slices": {
+      "all": {
+        "n": 27918,
+        "ndcg_at_20": 0.005990598424425162
+      },
+      "controlled_zero": {
+        "n": 458,
+        "ndcg_at_20": 0.005334111164672065
+      },
+      "natural_zero": {
+        "n": 17866,
+        "ndcg_at_20": 0.009024613953473289
+      },
+      "warm": {
+        "n": 3808,
+        "ndcg_at_20": 0.0008058694871134669
+      }
+    },
+    "users_per_second": 962.5226266627569
+  }
+}

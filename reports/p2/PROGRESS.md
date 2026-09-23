@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-Crash recovery complete. P2-D03 R3 and P2-D04 R4 are complete. Three additional baseline pilots passed; VBPR attempt 1 OOMed during exact scoring and its audited attempt 2 is next, followed by legacy M1.
+Crash recovery and the development model ladder are complete. The preregistered score-alignment comparison is next, followed by the frozen equal-budget HPO queue.
 
 ## Completed
 
@@ -48,10 +48,13 @@ Crash recovery complete. P2-D03 R3 and P2-D04 R4 are complete. Three additional 
 - VBPR attempt 1 completed training and wrote checkpoint SHA-256 `def78b03de2ba34aad4b136cd5b777273a1ef0d3569c11b8700d1eaf74122062`, then OOMed before any scored output or metric while the evaluator unnecessarily materialized a 128 x catalog x 1024 image tensor. The log is preserved at SHA-256 `fefd39820f381f1c1ce9bb974fe7cb7d5391b67a528f635a2977e247ed835560`.
 - Validated an algebraically equivalent bounded-memory VBPR scorer that projects the image catalog once, then uses matrix multiplication. Attempt 2 has a distinct config, log, checkpoint, output, and receipt identity; attempt-1 artifacts remain untouched.
 - Rebuilt the p2-only warehouse at this recovery boundary: 34 receipts, 44 valid metric rows, zero p1 receipts, zero QUALIFICATION access, zero LOCKED_FINAL access, validation PASS.
+- VBPR attempt 2 completed on CUDA with exact validation NDCG@20 0.000478 overall, 0 controlled zero, 0.000559 natural zero, and 0.000395 warm. Its distinct checkpoint and output independently match SHA-256 `abc7595d0ba0b06bf86a7f03b32dac938789f4ecaac1e706ee989a6c07c61b7b` and `6049421b5ffb3592f29ba00b2b3c137a2b10d94ad3dfb32daf436122c4009bb1`.
+- Legacy M1 completed on CUDA with exact validation NDCG@20 0.005991 overall, 0.005334 controlled zero, 0.009025 natural zero, and 0.000806 warm. This preserves the intended development tradeoff: stronger cold behavior with severe warm loss.
+- Rebuilt the p2-only warehouse after the remaining pilots: 36 receipts, 52 valid metric rows, zero p1 receipts, zero QUALIFICATION access, zero LOCKED_FINAL access, validation PASS.
 
 ## Active next action
 
-Run the distinct VBPR attempt 2 through the crash-safe queue, then run legacy M1; inspect and canonicalize each terminal result.
+Run the nine already materialized score-alignment candidates serially on VALIDATION, summarize with the frozen alignment objective, and canonicalize the terminal results.
 
 ## Protected access counters
 

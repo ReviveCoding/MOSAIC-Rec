@@ -36,4 +36,4 @@ R4 attempt 2 later reached the outer idle threshold after ACT-Agent completed tr
 
 The final evaluation exited, and R4 attempt 3 completed under the p2 lock. The transient CUDA contention is resolved at this boundary; the historical prestart receipts remain canonical evidence.
 
-VBPR pilot attempt 1 exhausted VRAM during exact scoring after creating a checkpoint because the implementation expanded a batch x catalog x image-feature tensor. It produced no scored output or metric. The checkpoint and log are preserved, and a bounded-memory algebraically equivalent scorer has passed targeted tests. A distinct attempt 2 is pending; this does not block the completed BPR-MF, LightGCN, or SASRec results.
+VBPR pilot attempt 1 exhausted VRAM during exact scoring after creating a checkpoint because the implementation expanded a batch x catalog x image-feature tensor. It produced no scored output or metric. The checkpoint and log remain preserved. Distinct attempt 2 completed with the bounded-memory algebraically equivalent scorer, so this blocker is resolved.
