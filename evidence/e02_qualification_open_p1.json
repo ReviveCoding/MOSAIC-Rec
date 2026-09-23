@@ -1,0 +1,30 @@
+{
+  "stage_id": "E02_QUALIFICATION_OPEN",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "QUALIFICATION",
+  "status": "QUALIFICATION_ACCESS_AUTHORIZED",
+  "ended_utc": "2026-09-23T01:55:52.4474304Z",
+  "git_commit_before_transition": "21d8714dae73debdb7641c21539725f0381d8619",
+  "manifest": "configs/qualification_selection_p1.json",
+  "manifest_sha256": "77a827f87e15eea3b30f699527eaca91928ce55bf6a91fd07cd079762736b900",
+  "qualification_sha256": "4dfaa84b391f523ec4ae553186ef3f8782c8cbaea09a5a07240332a468a2a1ad",
+  "canonical_receipts_before_transition": 141,
+  "locked_execution_receipts_before_transition": 0,
+  "preconditions": {
+    "e00_terminal": true,
+    "e01_terminal": true,
+    "sequence_common_slice_rescore_pass": true,
+    "candidate_checkpoint_hashes_frozen": true,
+    "selection_rules_frozen": true,
+    "metric_and_slice_semantics_frozen": true,
+    "qualification_data_identity_matched": true,
+    "worktree_clean_before_transition": true
+  },
+  "authorized_role": "QUALIFICATION",
+  "prohibited_role": "LOCKED_FINAL",
+  "warnings": [
+    "QUALIFICATION may select and freeze identities; it is not locked final evidence.",
+    "LOCKED_FINAL remains prohibited until E05 and the FROZEN protocol guard pass."
+  ],
+  "evidence_class": "derived_protocol_state_transition"
+}
