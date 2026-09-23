@@ -58,10 +58,11 @@ def main() -> None:
             receipt = ROOT / checkpoint["receipt"]
             if digest(receipt) != checkpoint["receipt_sha256"]:
                 raise ValueError(f"Frozen checkpoint receipt mismatch: {receipt}")
-    locked_path = Path(
-        "/home/bjw-0/mosaic-rec-work/data/microlens-100k/split_p1/LOCKED_FINAL.parquet"
-    )
-    if digest(locked_path) != e05["data"]["locked_final_sha256"]:
+    split_receipt = json.loads((ROOT / "evidence/microlens_split_p1.json").read_text())
+    if (
+        split_receipt["outputs"]["LOCKED_FINAL"]["sha256"]
+        != e05["data"]["locked_final_sha256"]
+    ):
         raise ValueError("LOCKED_FINAL identity differs from the frozen split receipt")
     warehouse = ROOT / "evidence/warehouse.duckdb"
     with duckdb.connect(str(warehouse), read_only=True) as connection:
@@ -96,7 +97,7 @@ def main() -> None:
         "locked_final_sha256": e05["data"]["locked_final_sha256"],
         "worktree_clean": True,
         "warnings": [
-            "This guard hashes LOCKED_FINAL bytes for identity only; it does not deserialize or score protected rows.",
+            "This guard compares the preexisting A05 LOCKED_FINAL identity receipt; it does not open protected rows.",
             "Scientific identities are immutable under p1 after locked outcome access.",
         ],
         "evidence_class": "derived_protocol_state_transition",
