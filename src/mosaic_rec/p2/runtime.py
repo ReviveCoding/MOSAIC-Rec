@@ -218,6 +218,86 @@ def exact_score(
     }
 
 
+def exact_metric_summary(
+    *,
+    queries: dict[str, list[Any]],
+    histories: dict[str, list[int]],
+    item_ids: list[str],
+    first_seen: torch.Tensor,
+    score_batch: Callable[[list[str]], torch.Tensor],
+    combine_scores: Callable[[torch.Tensor], torch.Tensor] | None = None,
+    batch_size: int,
+) -> dict[str, dict[str, float | int | None]]:
+    """Exact full-catalog NDCG summary without persisting development top-k rows."""
+    device = first_seen.device
+    item_to_index = {item: index for index, item in enumerate(item_ids)}
+    sums = defaultdict(float)
+    counts = defaultdict(int)
+    catalog_tie = (
+        torch.arange(len(item_ids), device=device, dtype=torch.float64) * 1e-12
+    )
+    with torch.inference_mode():
+        for offset in range(0, len(queries["user_id"]), batch_size):
+            users = queries["user_id"][offset : offset + batch_size]
+            scores = score_batch(users).float().to(torch.float64)
+            stamps = torch.tensor(
+                queries["query_timestamp"][offset : offset + len(users)],
+                device=device,
+            )
+            unavailable = first_seen[None, :] > stamps[:, None]
+            if scores.ndim == 3:
+                scores.masked_fill_(unavailable[:, None, :], -torch.inf)
+            else:
+                scores.masked_fill_(unavailable, -torch.inf)
+            targets = [
+                item_to_index[item]
+                for item in queries["target_item_id"][offset : offset + len(users)]
+            ]
+            for row, user in enumerate(users):
+                target_model_id = targets[row] + 1
+                masked = [
+                    item - 1 for item in histories[user] if item != target_model_id
+                ]
+                if masked:
+                    indices = torch.tensor(masked, device=device)
+                    if scores.ndim == 3:
+                        scores[row, :, indices] = -torch.inf
+                    else:
+                        scores[row, indices] = -torch.inf
+            if combine_scores is not None:
+                scores = combine_scores(scores)
+            if scores.ndim != 2:
+                raise RuntimeError("Exact metric summary requires combined item scores")
+            scores -= catalog_tie[None, :]
+            target_tensor = torch.tensor(targets, device=device)
+            target_scores = scores[
+                torch.arange(len(users), device=device), target_tensor
+            ]
+            ranks = ((scores > target_scores[:, None]).sum(dim=1) + 1).cpu().tolist()
+            for local, rank in enumerate(ranks):
+                global_row = offset + local
+                labels = ["all"]
+                if queries["is_controlled_zero"][global_row]:
+                    labels.append("controlled_zero")
+                if queries["is_natural_zero"][global_row]:
+                    labels.append("natural_zero")
+                if queries["is_warm"][global_row]:
+                    labels.append("warm")
+                ndcg = 1.0 / math.log2(rank + 1) if rank <= 20 else 0.0
+                for label in labels:
+                    sums[label] += ndcg
+                    counts[label] += 1
+    if device.type == "cuda":
+        torch.cuda.synchronize()
+    return {
+        label: {
+            "n": counts[label],
+            "ndcg_at_20": sums[label] / counts[label] if counts[label] else None,
+        }
+        for label in ("all", "controlled_zero", "natural_zero", "warm")
+    }
+
+
 def train_sequence(
     *,
     repo: Path,
