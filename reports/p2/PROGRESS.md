@@ -36,10 +36,11 @@ Crash recovery complete; resume at P2-D03 R3 attempt 2 using the committed queue
 - Reverified all corrected C_seq, C_cold, R1, and R2 hashes and Parquet schemas. The canonical warehouse passes with 25 p2 receipts, 24 metric rows, zero p1 receipts, and zero protected access.
 - The reboot audit found no R3, R4, HPO, temporary, or queue artifact. The R3 attempt-1 receipt remains a prestart contention event with no scientific output. The stale lock text names completed R2 PID 137697, while an actual `flock` probe was available.
 - After reboot the RTX 4090 Laptop GPU showed 0 MiB, 0% utilization, no CUDA process, and passed the real torch CUDA/BF16 tensor qualification.
+- R3 attempt 2 completed the queue idle window, but ACT-Agent launched CUDA PID 2404 during the runner's independent idle guard. The p2 guard failed closed before lock acquisition/model loading; only the 760-byte prestart log exists and is hashed. Any retry will use attempt 3 paths.
 
 ## Active next action
 
-Execute R3 attempt 2 from `scripts/p2/run_gate_queue.sh` without changing `configs/p2/router_ladder.json`, then inspect R3 before R4 and continue to the frozen HPO plan.
+Wait for the unrelated CUDA trainer to exit, then execute R3 attempt 3 from `scripts/p2/run_gate_queue.sh` without changing `configs/p2/router_ladder.json`; inspect R3 before R4.
 
 ## Protected access counters
 
@@ -50,4 +51,4 @@ Execute R3 attempt 2 from `scripts/p2/run_gate_queue.sh` without changing `confi
 
 - Raw-cover extraction and modification remain on rights hold.
 - Official publisher text-feature download is quota-blocked. Amendment 001 selects the already authorized local MiniLM embedding derived from official title/tag/description fields; its p2 copy and alignment qualification passed.
-- No active GPU blocker after reboot. An ACT-Agent control process exists without a CUDA child; the p2 fail-closed queue must still require its sustained idle checks before R3.
+- ACT-Agent CUDA PID 2404 is the current transient blocker. It must exit before R3 attempt 3; no unrelated process will be killed.

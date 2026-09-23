@@ -21,3 +21,5 @@ The WSL filesystem has adequate capacity. The Windows volume is 94% used, so lar
 R1 attempt 1 was blocked before model loading when the 30-second idle guard observed PID 126553 running ACT-Agent SFT with approximately 7.6 GiB VRAM and 53% GPU utilization. No p2 output was created. CPU-only p2 work continues; the next R1 attempt requires a new sustained idle window.
 
 R3 attempt 1 was likewise blocked before lock acquisition by ACT-Agent PID 137901. After the reboot, neither CUDA process exists, the GPU is idle, and the actual p2 `flock` is available. These receipts remain historical external-prestart evidence; there is no current GPU blocker as of the 2026-09-23 recovery audit.
+
+After that audit, R3 attempt 2's outer queue observed an idle window, but ACT-Agent launched PID 2404 during the runner's second idle guard. The runner failed closed before acquiring the lock or loading R3. Its log is preserved and hashed; the next permitted identity is attempt 3.
