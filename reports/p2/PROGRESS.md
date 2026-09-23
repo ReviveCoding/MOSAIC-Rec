@@ -23,9 +23,8 @@ P2-D01 R1 hard zero-support router pilot after completed expert pilots.
 - Excluded all seven engagement aggregates from the permitted metadata inputs.
 - Built FIT-only item and user context tables and hashed earliest eligible role query manifests.
 - Confirmed zero candidate-time violations across 27,918 validation, 26,900 qualification, and 25,367 locked query rows.
-- Completed the BERT4Rec CUDA pilot: warm NDCG@20 0.013161; both zero-support slices 0.
-- Completed the multimodal Two-Tower CUDA pilot: controlled-zero NDCG@20 0.000845 and warm 0.001637.
-- Persisted both exact validation top-100 artifacts and checkpoint hashes.
+- Preserved the first BERT4Rec and Two-Tower attempts but invalidated their validation metrics after detecting incomplete FIT-history masking for 905 users.
+- Corrected the shared loader to retain complete FIT histories for candidate masking while keeping last-50 neural inputs.
 - Completed exact CPU global and 30-day recent popularity baselines; the optimized scorer preserved exact ranks and top-100 lists.
 - R1 attempt 1 was blocked before model loading by an unrelated ACT-Agent CUDA trainer; no p2 router artifact exists yet.
 - Built the p2-only canonical warehouse: 18 p2 receipts, 16 metric rows, zero p1 canonical receipts, and zero protected access.

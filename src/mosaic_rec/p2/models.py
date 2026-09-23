@@ -139,3 +139,85 @@ class ContextRouterGate(nn.Module):
     def forward(self, features: torch.Tensor) -> torch.Tensor:
         weight = torch.sigmoid(self.network(features).squeeze(-1))
         return torch.where(features[..., 0].eq(0), torch.zeros_like(weight), weight)
+
+
+class BPRMF(nn.Module):
+    def __init__(self, users: int, items: int, width: int = 64) -> None:
+        super().__init__()
+        self.user = nn.Embedding(users, width)
+        self.item = nn.Embedding(items, width)
+        nn.init.normal_(self.user.weight, std=0.02)
+        nn.init.normal_(self.item.weight, std=0.02)
+
+    def scores(self, users: torch.Tensor, items: torch.Tensor) -> torch.Tensor:
+        return (self.user(users)[..., None, :] * self.item(items)).sum(dim=-1)
+
+
+class SASRecExpert(nn.Module):
+    def __init__(
+        self,
+        catalog_size: int,
+        *,
+        width: int = 64,
+        length: int = 50,
+        layers: int = 2,
+        heads: int = 4,
+        dropout: float = 0.2,
+    ) -> None:
+        super().__init__()
+        self.length = length
+        self.item = nn.Embedding(catalog_size + 1, width, padding_idx=0)
+        self.position = nn.Embedding(length, width)
+        layer = nn.TransformerEncoderLayer(
+            d_model=width,
+            nhead=heads,
+            dim_feedforward=2 * width,
+            dropout=dropout,
+            batch_first=True,
+            norm_first=True,
+        )
+        self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
+        self.norm = nn.LayerNorm(width)
+        nn.init.normal_(self.item.weight, std=0.02)
+        with torch.no_grad():
+            self.item.weight[0].zero_()
+
+    def forward(self, sequence: torch.Tensor) -> torch.Tensor:
+        positions = torch.arange(sequence.shape[1], device=sequence.device)
+        values = self.item(sequence) + self.position(positions)[None, :, :]
+        causal = torch.triu(
+            torch.ones(
+                sequence.shape[1],
+                sequence.shape[1],
+                device=sequence.device,
+                dtype=torch.bool,
+            ),
+            diagonal=1,
+        )
+        encoded = self.encoder(values, mask=causal, src_key_padding_mask=sequence.eq(0))
+        return self.norm(encoded)
+
+    def query(self, sequence: torch.Tensor, lengths: torch.Tensor) -> torch.Tensor:
+        encoded = self(sequence)
+        positions = lengths.clamp_min(1) - 1
+        return encoded[torch.arange(len(sequence), device=sequence.device), positions]
+
+
+class VBPR(nn.Module):
+    def __init__(
+        self, users: int, items: int, image_features: torch.Tensor, width: int = 64
+    ) -> None:
+        super().__init__()
+        self.register_buffer("image_features", image_features, persistent=False)
+        self.user_id = nn.Embedding(users, width)
+        self.item_id = nn.Embedding(items, width)
+        self.user_visual = nn.Embedding(users, width)
+        self.image_projection = nn.Linear(image_features.shape[1], width, bias=False)
+        for embedding in (self.user_id, self.item_id, self.user_visual):
+            nn.init.normal_(embedding.weight, std=0.02)
+
+    def scores(self, users: torch.Tensor, items: torch.Tensor) -> torch.Tensor:
+        id_score = (self.user_id(users)[..., None, :] * self.item_id(items)).sum(dim=-1)
+        visual = self.image_projection(self.image_features[items])
+        visual_score = (self.user_visual(users)[..., None, :] * visual).sum(dim=-1)
+        return id_score + visual_score

@@ -1,0 +1,22 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-C03-C04-PILOT-AUDIT",
+  "status": "INVALID_DEVELOPMENT_SCORING",
+  "git_commit_discovered_at": "89c2ea4",
+  "affected_receipts": [
+    "p2-c03-cseq-bert4rec-pilot.json",
+    "p2-c04-ccold-two-tower-pilot.json"
+  ],
+  "affected_outputs": [
+    "/home/bjw-0/mosaic-rec-work/p2/development/cseq_bert4rec_pilot_validation.parquet",
+    "/home/bjw-0/mosaic-rec-work/p2/development/ccold_two_tower_pilot_validation.parquet"
+  ],
+  "defect": "candidate masking used the model's last-50 neural input history instead of the complete FIT_VISIBLE history",
+  "validation_users_with_fit_history_gt_50": 905,
+  "maximum_fit_history_length": 340,
+  "training_disposition": "rerun under distinct attempt identities because the sequence FIT softmax class set may also omit items occurring only before the last-50 window",
+  "artifact_disposition": "preserve prior receipts, checkpoints, and outputs; exclude their metrics from selection",
+  "qualification_access_count": 0,
+  "locked_final_access_count": 0,
+  "scientific_impact": "none beyond DEVELOPMENT; no protected role was opened"
+}

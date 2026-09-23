@@ -56,6 +56,10 @@ Checked 2026-09-23:
 - These are DEVELOPMENT pilots, not frozen comparator results. The unfavorable low scores and expert specialization are preserved.
 - The old shared p1 lock named absent PID 79333 and was treated as stale without deletion. p2 uses `/home/bjw-0/mosaic-rec-work/p2/locks/heavy_gpu.lock`; both pilots held it exclusively.
 
+### Candidate-mask audit correction
+
+The first C_seq and C_cold scoring attempts are invalid for model selection. The shared loader retained only the last 50 FIT events and the evaluator therefore failed to mask earlier FIT-history items for 905 validation users; maximum history was 340. The artifacts and receipts remain preserved. The loader now retains full FIT histories for masking while neural tensors still use the declared last-50 window. Both pilots require distinct reruns before their metrics are used.
+
 ## 2026-09-23 — classic validation baselines
 
 - The first exact CPU popularity attempt was interrupted after 264 seconds before output because its zero-score ranking loop scaled poorly. The failed attempt is preserved.

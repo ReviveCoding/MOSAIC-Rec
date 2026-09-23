@@ -3,12 +3,15 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pyarrow as pa
+import pyarrow.parquet as pq
 import pytest
 
 from mosaic_rec.p2 import PROTOCOL_ID
 from mosaic_rec.p2.contracts import assert_outcome_access, load_stage_status
 from mosaic_rec.p2.data import controlled_zero_selected
 from mosaic_rec.p2.features import _copy_new
+from mosaic_rec.p2.runtime import load_histories
 
 
 def test_protocol_identity_and_protected_roles() -> None:
@@ -57,3 +60,19 @@ def test_candidate_semantics_amendment_keeps_target() -> None:
     )
     assert amendment["candidate_mask"]["same_for_all_models"] is True
     assert "except the target item" in amendment["candidate_mask"]["history"]
+
+
+def test_history_loader_retains_full_fit_history_for_masking(tmp_path: Path) -> None:
+    path = tmp_path / "fit.parquet"
+    pq.write_table(
+        pa.table(
+            {
+                "user_id": ["u1"] * 60,
+                "item_id": [f"i{index}" for index in range(60)],
+                "timestamp": list(range(60)),
+            }
+        ),
+        path,
+    )
+    histories = load_histories(path, {f"i{index}": index for index in range(60)}, 50)
+    assert len(histories["u1"]) == 60

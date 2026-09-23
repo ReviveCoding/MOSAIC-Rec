@@ -34,7 +34,10 @@ def load_histories(
     histories: dict[str, list[int]] = defaultdict(list)
     for index in order:
         histories[users[index]].append(item_to_index[items[index]] + 1)
-    return {user: values[-max_length:] for user, values in histories.items()}
+    # Keep the full FIT history for candidate masking. Model callers slice to
+    # max_length only when constructing their neural input tensors.
+    _ = max_length
+    return dict(histories)
 
 
 def sequence_tensor(

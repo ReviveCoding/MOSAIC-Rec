@@ -3,10 +3,13 @@ from __future__ import annotations
 import torch
 
 from mosaic_rec.p2.models import (
+    BPRMF,
+    VBPR,
     BERT4RecExpert,
     ContentTwoTower,
     ContextRouterGate,
     MonotonicSupportGate,
+    SASRecExpert,
     cloze_batch,
 )
 from mosaic_rec.p2.router import hard_zero_combine
@@ -61,3 +64,15 @@ def test_router_gates_enforce_zero_support_content_only() -> None:
         assert torch.all((weights[:, 1:] > 0) & (weights[:, 1:] < 1))
     monotonic_weights = monotonic(features)
     assert torch.all(monotonic_weights[:, 2] >= monotonic_weights[:, 1])
+
+
+def test_additional_baseline_shapes() -> None:
+    mf = BPRMF(3, 5, width=4)
+    users = torch.tensor([0, 1])
+    items = torch.tensor([[0, 1], [2, 3]])
+    assert mf.scores(users, items).shape == (2, 2)
+    sas = SASRecExpert(5, width=4, length=3, layers=1, heads=2, dropout=0)
+    sequence = torch.tensor([[1, 2, 0], [2, 3, 4]])
+    assert sas.query(sequence, torch.tensor([2, 3])).shape == (2, 4)
+    vbpr = VBPR(3, 5, torch.randn(5, 6), width=4)
+    assert vbpr.scores(users, items).shape == (2, 2)
