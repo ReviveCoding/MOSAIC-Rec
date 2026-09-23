@@ -1,0 +1,62 @@
+{
+  "config_sha256": "f043389a9f9887a9dda3e996004385299152d49ed692486a3d553f06f3adfab8",
+  "evidence_class": "p2_measured_development_classic_baselines",
+  "git_commit": "b1fedfb76d603449815eef33227661f2d1e39619",
+  "models": [
+    {
+      "model_id": "GLOBAL_POPULARITY",
+      "output": "/home/bjw-0/mosaic-rec-work/p2/development/classic/global_popularity_validation.parquet",
+      "output_sha256": "2fe5a1535782ec2ea03489093e0d2cc46dd17f7beb49ead8a498d83602d2a66c",
+      "rows": 27918,
+      "seconds": 12.688436879994697,
+      "slices": {
+        "all": {
+          "n": 27918,
+          "ndcg_at_20": 6.695049596337504e-05
+        },
+        "controlled_zero": {
+          "n": 458,
+          "ndcg_at_20": 0.0
+        },
+        "natural_zero": {
+          "n": 17866,
+          "ndcg_at_20": 0.0
+        },
+        "warm": {
+          "n": 3808,
+          "ndcg_at_20": 0.0004908413724541765
+        }
+      },
+      "users_per_second": 2200.2710234557803
+    },
+    {
+      "model_id": "RECENT_POPULARITY_30D",
+      "output": "/home/bjw-0/mosaic-rec-work/p2/development/classic/recent_popularity_30d_validation.parquet",
+      "output_sha256": "fedd7685f94f3ad8aac3bab79127a3db11157a11b22932c2c4c013cee77801b6",
+      "rows": 27918,
+      "seconds": 14.250923662009882,
+      "slices": {
+        "all": {
+          "n": 27918,
+          "ndcg_at_20": 0.0004522375162033378
+        },
+        "controlled_zero": {
+          "n": 458,
+          "ndcg_at_20": 0.0
+        },
+        "natural_zero": {
+          "n": 17866,
+          "ndcg_at_20": 0.0
+        },
+        "warm": {
+          "n": 3808,
+          "ndcg_at_20": 0.003315537546576887
+        }
+      },
+      "users_per_second": 1959.0309135136142
+    }
+  ],
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-C00",
+  "status": "PASS_DEVELOPMENT"
+}

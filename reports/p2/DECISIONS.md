@@ -55,3 +55,9 @@ Checked 2026-09-23:
 - `CCOLD_TWO_TOWER_PILOT` trained for three CUDA epochs on authorized image/text/tag inputs. NDCG@20 was 0.001292 overall, 0.000845 controlled zero, 0.001374 natural zero, and 0.001637 warm.
 - These are DEVELOPMENT pilots, not frozen comparator results. The unfavorable low scores and expert specialization are preserved.
 - The old shared p1 lock named absent PID 79333 and was treated as stale without deletion. p2 uses `/home/bjw-0/mosaic-rec-work/p2/locks/heavy_gpu.lock`; both pilots held it exclusively.
+
+## 2026-09-23 — classic validation baselines
+
+- The first exact CPU popularity attempt was interrupted after 264 seconds before output because its zero-score ranking loop scaled poorly. The failed attempt is preserved.
+- An exact offline timestamp sweep with a Fenwick prefix counter reduced attempt 2 to 12.7 seconds for global popularity and 14.3 seconds for recent popularity.
+- Global popularity NDCG@20 was 0.000067 overall and 0.000491 warm. Recent 30-day popularity was 0.000452 overall and 0.003316 warm. Both scored zero on controlled and natural zero-support targets.

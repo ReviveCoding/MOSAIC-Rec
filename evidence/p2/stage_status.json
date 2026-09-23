@@ -15,10 +15,10 @@
     "P2-B00": {"status": "PASS", "summary": "authorized image/text feature bytes copied to p2 paths under new identities"},
     "P2-B01": {"status": "PASS", "summary": "82865 image/text rows align; all vectors finite; 108 permitted tag categories"},
     "P2-B02": {"status": "PASS", "summary": "FIT-only item/user contexts and earliest eligible role queries hashed; candidate-time violations zero"},
-    "P2-C00": {"status": "IN_PROGRESS", "summary": "classical baselines remain pending"},
+    "P2-C00": {"status": "PASS_DEVELOPMENT", "summary": "global and 30-day recent popularity exact validation baselines completed"},
     "P2-C03": {"status": "PILOT_PASS", "summary": "BERT4Rec CUDA pilot completed; warm NDCG@20 0.013161 and zero-support NDCG@20 0"},
     "P2-C04": {"status": "PILOT_PASS", "summary": "Two-Tower CUDA pilot completed; controlled-zero NDCG@20 0.000845"},
-    "P2-D01": {"status": "IN_PROGRESS", "summary": "R1 hard zero-support router implementation validated; exact validation run pending"}
+    "P2-D01": {"status": "WAITING_GPU", "summary": "attempt 1 blocked before loading by unrelated ACT-Agent CUDA PID 126553; R1 output absent"}
   },
   "p1_canonical_receipts_included": 0,
   "warnings": [

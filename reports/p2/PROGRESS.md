@@ -26,10 +26,12 @@ P2-D01 R1 hard zero-support router pilot after completed expert pilots.
 - Completed the BERT4Rec CUDA pilot: warm NDCG@20 0.013161; both zero-support slices 0.
 - Completed the multimodal Two-Tower CUDA pilot: controlled-zero NDCG@20 0.000845 and warm 0.001637.
 - Persisted both exact validation top-100 artifacts and checkpoint hashes.
+- Completed exact CPU global and 30-day recent popularity baselines; the optimized scorer preserved exact ranks and top-100 lists.
+- R1 attempt 1 was blocked before model loading by an unrelated ACT-Agent CUDA trainer; no p2 router artifact exists yet.
 
 ## Active next action
 
-Run the committed R1 hard zero-support router with per-query standardized expert logits, inspect zero-support and warm behavior, then implement the remaining router ladder and equal-budget HPO.
+While ACT-Agent occupies the GPU, build and validate the p2-only canonical warehouse and remaining router/baseline code. Retry R1 only after a sustained idle window.
 
 ## Protected access counters
 
