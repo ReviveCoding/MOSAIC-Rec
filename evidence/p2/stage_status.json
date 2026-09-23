@@ -1,7 +1,7 @@
 {
   "protocol_id": "mosaic-rec-2026-09-23-p2",
   "scientific_state": "DEVELOPMENT",
-  "updated_utc": "2026-09-23T16:44:00Z",
+  "updated_utc": "2026-09-23T17:57:00Z",
   "qualification_access_count": 0,
   "locked_final_access_count": 0,
   "stages": {
@@ -21,7 +21,7 @@
     "P2-D01": {"status": "PASS_DEVELOPMENT", "summary": "R1 preserved warm quality but scored zero on controlled-zero validation under standardized alignment"},
     "P2-D02": {"status": "PASS_DEVELOPMENT", "summary": "R2 achieved 0.014892 warm NDCG@20 but zero controlled-zero NDCG@20"},
     "P2-D03": {"status": "PASS_DEVELOPMENT", "summary": "attempt 3 completed on CUDA after the sustained idle gate; exact validation NDCG@20 was 0.001939 overall, 0 controlled zero, 0.000131 natural zero, and 0.013539 warm"},
-    "P2-D04": {"status": "WAITING_GPU", "summary": "attempt 1 is preserved as prestart-only; attempt 2 is queued without p2 artifacts behind ACT-Agent step-30 evaluation PID 17045 and has not acquired the GPU lock"}
+    "P2-D04": {"status": "WAITING_GPU", "summary": "attempts 1 and 2 are preserved as prestart-only; final ACT-Agent step-120 evaluation PID 26411 appeared during attempt 2's nested idle guard, with no p2 model or metric artifact"}
   },
   "p1_canonical_receipts_included": 0,
   "warnings": [

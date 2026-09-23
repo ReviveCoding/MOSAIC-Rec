@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-Crash recovery complete. P2-D03 R3 attempt 3 completed under the exclusive GPU lock; P2-D04 R4 attempt 1 is preserved as a prestart contention event and attempt 2 is queued without lock ownership.
+Crash recovery complete. P2-D03 R3 attempt 3 completed under the exclusive GPU lock; P2-D04 R4 attempts 1 and 2 are preserved as prestart contention events and attempt 3 is next.
 
 ## Completed
 
@@ -40,10 +40,11 @@ Crash recovery complete. P2-D03 R3 attempt 3 completed under the exclusive GPU l
 - R3 attempt 3 waited through ACT-Agent's follow-on evaluation, acquired the p2 lock only after six idle checks, and completed on the RTX 4090 Laptop GPU. Exact VALIDATION NDCG@20 was 0.001939 overall, 0 controlled zero, 0.000131 natural zero, and 0.013539 warm. The unfavorable zero-support result is preserved; checkpoint and output hashes independently match the receipt.
 - Rebuilt the p2-only warehouse after R3: 27 receipts, 28 valid metric rows, zero p1 receipts, zero QUALIFICATION access, zero LOCKED_FINAL access, validation PASS.
 - R4 attempt 1 passed its outer idle window, then failed closed before lock acquisition when ACT-Agent CUDA PID 14599 launched. Its 761-byte log is preserved at SHA-256 `a0721489efe9fb32606950cbe61c6e920f554053cdae464cf176d02d2eb4e66c`; no checkpoint, scored output, terminal model receipt, or scientific metric exists.
+- R4 attempt 2 likewise reached six outer idle checks after ACT-Agent training step 120, but the final evaluation PID 26411 appeared during the nested guard. Its 761-byte log is preserved at SHA-256 `a1fd0dd39768b62c96ee8e40b7d2e91e0efa39600e0827f72fdfea0bc3656225`; it created no scientific artifact.
 
 ## Active next action
 
-The committed R4 attempt 2 queue is waiting on distinct paths. Inspect and canonicalize R4 after the first safe sustained idle window, before baseline pilots.
+Queue R4 attempt 3 on distinct paths after preserving attempt 2. Inspect and canonicalize R4 after the final ACT evaluation exits, before baseline pilots.
 
 ## Protected access counters
 
@@ -54,4 +55,4 @@ The committed R4 attempt 2 queue is waiting on distinct paths. Inspect and canon
 
 - Raw-cover extraction and modification remain on rights hold.
 - Official publisher text-feature download is quota-blocked. Amendment 001 selects the already authorized local MiniLM embedding derived from official title/tag/description fields; its p2 copy and alignment qualification passed.
-- ACT-Agent training PID 14599 transitioned into step-30 evaluation PID 17045. R4 attempt 2 remains outside the p2 lock with no log, checkpoint, output, receipt, or metric until that CUDA process exits and a fresh sustained idle window passes.
+- ACT-Agent final step-120 evaluation PID 26411 is the current transient blocker. No unrelated process will be killed; R4 attempt 3 must remain outside the p2 lock until a fresh sustained idle window passes.

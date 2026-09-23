@@ -31,3 +31,5 @@ The follow-on evaluation exited at 2026-09-23 15:59 UTC. R3 attempt 3 subsequent
 R4 attempt 1 passed the outer idle checks, but ACT-Agent launched CUDA PID 14599 during the independent inner idle guard. The guard failed closed before lock acquisition, CUDA qualification, model loading, or metrics. The log and failure receipt are preserved; R4 may resume only as attempt 2 on distinct paths.
 
 R4 attempt 2 is now queued on those distinct paths without lock ownership. ACT-Agent step-30 evaluation PID 17045 currently owns CUDA; the queue has produced no p2 artifact and continues to wait.
+
+R4 attempt 2 later reached the outer idle threshold after ACT-Agent completed training step 120, but final evaluation PID 26411 appeared during the nested guard. Attempt 2 failed closed before lock acquisition or model load and is preserved. The next identity is attempt 3.

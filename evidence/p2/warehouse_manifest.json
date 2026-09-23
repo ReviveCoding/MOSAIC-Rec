@@ -1,7 +1,7 @@
 {
   "metric_count": 28,
   "protocol_id": "mosaic-rec-2026-09-23-p2",
-  "receipt_count": 28,
+  "receipt_count": 29,
   "tables": {
     "metrics": {
       "path": "evidence/p2/tables/metrics.parquet",
@@ -10,8 +10,8 @@
     },
     "receipts": {
       "path": "evidence/p2/tables/receipts.parquet",
-      "rows": 28,
-      "sha256": "0722c9ed8077352cc21a55cc953dd02953d4706de4990d99cb53ea58a8074e82"
+      "rows": 29,
+      "sha256": "ab66c505dde51b99c5f0b87ff8ea72d7284548a5f20b61b4647e228237d73335"
     }
   },
   "validation": {
@@ -21,9 +21,9 @@
     "payloads_mentioning_p1_provenance": 0,
     "protocol_id": "mosaic-rec-2026-09-23-p2",
     "qualification_access_count": 0,
-    "receipt_count": 28,
+    "receipt_count": 29,
     "status": "PASS"
   },
   "warehouse": "evidence/p2/warehouse.duckdb",
-  "warehouse_sha256": "503bea272b22cd85d7a8dd9101e7bfb6082451dab6c4ffdd4205cac4bd2ea127"
+  "warehouse_sha256": "a43016eea538d0f432a6176570ac615d18f37f70a20fdb05867cb25c84c2c02a"
 }
