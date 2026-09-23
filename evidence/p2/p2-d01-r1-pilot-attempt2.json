@@ -1,0 +1,47 @@
+{
+  "alignment": "per_query_standardized_logits",
+  "config_sha256": "7ababb96eba319217d37620cfaece37287034c0638f535deb314c7339329b5d2",
+  "content_checkpoint_sha256": "b2e7f47471f0a97d63117f401e33ec82dc3029546c86a022903201d35c53d862",
+  "evidence_class": "p2_measured_development_router_pilot",
+  "git_commit": "562fd4ca2208ddb99964959cd3928cbd338bf563",
+  "gpu_qualification": {
+    "bf16_supported": true,
+    "cuda_runtime": "13.0",
+    "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+    "tensor_result": 5590357.0,
+    "torch": "2.14.0+cu130",
+    "vram_bytes": 17170956288
+  },
+  "model_id": "R1_HARD_ZERO_SUPPORT_PILOT",
+  "pilot_config_sha256": "f21a8e4249bc2250d6d485f29348ae9c02b0d9b770eb546ae0b914fcad30604a",
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "sequence_checkpoint_sha256": "23bd4d04ab000fdd307544b96b7b325a17fbf4f836159ebb120883163831e082",
+  "stage_id": "P2-D01-PILOT",
+  "status": "PASS",
+  "validation": {
+    "output": "/home/bjw-0/mosaic-rec-work/p2/development/r1_hard_router_pilot_attempt2_validation.parquet",
+    "output_sha256": "59c361abce40476242040e844af2af2d776a1d7850bda3f0a0864ac88e744e1a",
+    "role": "VALIDATION",
+    "rows": 27918,
+    "seconds": 15.866428380992147,
+    "slices": {
+      "all": {
+        "n": 27918,
+        "ndcg_at_20": 0.0019386536712776804
+      },
+      "controlled_zero": {
+        "n": 458,
+        "ndcg_at_20": 0.0
+      },
+      "natural_zero": {
+        "n": 17866,
+        "ndcg_at_20": 0.00013052520101316536
+      },
+      "warm": {
+        "n": 3808,
+        "ndcg_at_20": 0.013538855315142446
+      }
+    },
+    "users_per_second": 1759.5638839525186
+  }
+}

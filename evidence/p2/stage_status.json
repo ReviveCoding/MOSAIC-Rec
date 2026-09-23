@@ -18,7 +18,7 @@
     "P2-C00": {"status": "PASS_DEVELOPMENT", "summary": "global and 30-day recent popularity exact validation baselines completed"},
     "P2-C03": {"status": "PASS_DEVELOPMENT", "summary": "corrected attempt 2 masks complete FIT history; checkpoint and exact validation output independently rehashed"},
     "P2-C04": {"status": "PASS_DEVELOPMENT", "summary": "corrected attempt 2 masks complete FIT history; checkpoint and exact validation output independently rehashed"},
-    "P2-D01": {"status": "READY", "summary": "corrected experts passed; R1 attempt 1 remains preserved as blocked before model loading"}
+    "P2-D01": {"status": "PASS_DEVELOPMENT", "summary": "R1 preserved warm quality but scored zero on controlled-zero validation under standardized alignment"}
   },
   "p1_canonical_receipts_included": 0,
   "warnings": [

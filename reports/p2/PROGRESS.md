@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-P2-D01 R1 hard zero-support router using the corrected expert identities.
+P2-D02-D04 learned router ladder using the corrected expert identities.
 
 ## Completed
 
@@ -30,10 +30,11 @@ P2-D01 R1 hard zero-support router using the corrected expert identities.
 - Added CUDA pilot implementations for BPR-MF, LightGCN, SASRec, and VBPR; corrected the shared zero-based item indexing contract before executing them.
 - Rebuilt the p2-only canonical warehouse with invalidation-aware selection semantics: 19 p2 receipts, 8 valid metric rows, zero p1 canonical receipts, and zero protected access. The two invalid expert receipts remain stored but their 8 metric rows are excluded.
 - Completed and independently rehashed corrected attempt-2 expert runs after a sustained idle GPU window. C_seq validation NDCG@20 is 0.001864 overall and 0.013602 warm; C_cold is 0.001312 overall, 0.000940 controlled zero, 0.001411 natural zero, and 0.001570 warm.
+- R1 hard routing preserved warm quality at 0.013539 but scored zero on controlled zero under per-query standardized alignment. This unfavorable development result is retained and motivates the preregistered alignment comparison.
 
 ## Active next action
 
-Commit and canonicalize the corrected expert boundary, then execute R1-R4 and remaining baseline pilots serially, inspecting each receipt before the next heavy job.
+Execute R2-R4 and remaining baseline pilots serially, inspecting and canonicalizing each boundary before HPO.
 
 ## Protected access counters
 
