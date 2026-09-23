@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-Crash recovery and the development model ladder are complete. The preregistered score-alignment comparison is next, followed by the frozen equal-budget HPO queue.
+Crash recovery and the development model ladder are complete. Two preregistered score-alignment candidates passed; the third is waiting for unrelated ACT-Agent CUDA work to exit before audited launch attempt 2.
 
 ## Completed
 
@@ -51,10 +51,12 @@ Crash recovery and the development model ladder are complete. The preregistered 
 - VBPR attempt 2 completed on CUDA with exact validation NDCG@20 0.000478 overall, 0 controlled zero, 0.000559 natural zero, and 0.000395 warm. Its distinct checkpoint and output independently match SHA-256 `abc7595d0ba0b06bf86a7f03b32dac938789f4ecaac1e706ee989a6c07c61b7b` and `6049421b5ffb3592f29ba00b2b3c137a2b10d94ad3dfb32daf436122c4009bb1`.
 - Legacy M1 completed on CUDA with exact validation NDCG@20 0.005991 overall, 0.005334 controlled zero, 0.009025 natural zero, and 0.000806 warm. This preserves the intended development tradeoff: stronger cold behavior with severe warm loss.
 - Rebuilt the p2-only warehouse after the remaining pilots: 36 receipts, 52 valid metric rows, zero p1 receipts, zero QUALIFICATION access, zero LOCKED_FINAL access, validation PASS.
+- Alignment candidates `ALIGN_STD` and `ALIGN_RANK` completed. `ALIGN_RANK` recovered controlled-zero NDCG@20 to 0.000845 with warm NDCG@20 0.012780; this remains DEVELOPMENT selection evidence.
+- `ALIGN_TEMP_0.5_0.5` launch attempt 1 failed closed before lock acquisition or model loading when unrelated ACT-Agent CUDA PID 38158 appeared. Its 775-byte log is preserved at SHA-256 `cd3ede7462f713cef893b40357f3018d0f676a39c2166b26ac698a92f1e1f6e3`; no alignment output or metric exists.
 
 ## Active next action
 
-Run the nine already materialized score-alignment candidates serially on VALIDATION, summarize with the frozen alignment objective, and canonicalize the terminal results.
+Wait without lock ownership for CUDA PID 38158 to exit, then resume the unchanged alignment queue at `ALIGN_TEMP_0.5_0.5` launch attempt 2. Completed candidates will hash-validate and skip.
 
 ## Protected access counters
 

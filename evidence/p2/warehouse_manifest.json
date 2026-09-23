@@ -1,29 +1,29 @@
 {
-  "metric_count": 52,
+  "metric_count": 60,
   "protocol_id": "mosaic-rec-2026-09-23-p2",
-  "receipt_count": 36,
+  "receipt_count": 39,
   "tables": {
     "metrics": {
       "path": "evidence/p2/tables/metrics.parquet",
-      "rows": 52,
-      "sha256": "32d86ee5f2b48252eaf0c8c9fa8707d9d4761231205541d806ae067e189aeacb"
+      "rows": 60,
+      "sha256": "28b27f27100270a62d472f3adada7763f446ad18ba254c1a0876dfc028badcfc"
     },
     "receipts": {
       "path": "evidence/p2/tables/receipts.parquet",
-      "rows": 36,
-      "sha256": "da28d703f175ddfefa5455abd404543b9a10089c21d4aec6d5e700169ddc8d5f"
+      "rows": 39,
+      "sha256": "9352b38dd25585690c0d77caf73c731194afcd64c7d49ba3ef1af0b4ca766af7"
     }
   },
   "validation": {
     "locked_final_access_count": 0,
-    "metric_count": 52,
+    "metric_count": 60,
     "p1_canonical_receipts": 0,
     "payloads_mentioning_p1_provenance": 0,
     "protocol_id": "mosaic-rec-2026-09-23-p2",
     "qualification_access_count": 0,
-    "receipt_count": 36,
+    "receipt_count": 39,
     "status": "PASS"
   },
   "warehouse": "evidence/p2/warehouse.duckdb",
-  "warehouse_sha256": "a3629c3fa901a1728763180363ee18c8af73fb02f0d10dffed0ecd37b408f3f8"
+  "warehouse_sha256": "e3b41c4470824edbd4a46dfdfab66a9952c6d4b705939549e4d670c20990147f"
 }

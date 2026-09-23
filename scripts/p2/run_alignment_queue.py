@@ -11,6 +11,8 @@ from pathlib import Path
 
 from mosaic_rec.p2.contracts import sha256_file
 
+AUDITED_LAUNCH_ATTEMPTS = {"ALIGN_TEMP_0.5_0.5": 2}
+
 
 def main() -> None:
     parser = argparse.ArgumentParser()
@@ -38,7 +40,9 @@ def main() -> None:
         stem = alignment_id.lower()
         output = scratch / f"alignment/{stem}_validation.parquet"
         receipt = repo / f"evidence/p2/p2-b03-{stem}.json"
-        log = scratch / f"alignment/logs/{stem}.log"
+        launch_attempt = AUDITED_LAUNCH_ATTEMPTS.get(alignment_id, 1)
+        log_suffix = "" if launch_attempt == 1 else f"_attempt{launch_attempt}"
+        log = scratch / f"alignment/logs/{stem}{log_suffix}.log"
         if receipt.exists():
             payload = json.loads(receipt.read_text())
             if payload.get("status") != "PASS":

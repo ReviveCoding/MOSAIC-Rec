@@ -37,3 +37,5 @@ R4 attempt 2 later reached the outer idle threshold after ACT-Agent completed tr
 The final evaluation exited, and R4 attempt 3 completed under the p2 lock. The transient CUDA contention is resolved at this boundary; the historical prestart receipts remain canonical evidence.
 
 VBPR pilot attempt 1 exhausted VRAM during exact scoring after creating a checkpoint because the implementation expanded a batch x catalog x image-feature tensor. It produced no scored output or metric. The checkpoint and log remain preserved. Distinct attempt 2 completed with the bounded-memory algebraically equivalent scorer, so this blocker is resolved.
+
+Unrelated ACT-Agent CUDA PID 38158 started after two alignment candidates completed and blocked `ALIGN_TEMP_0.5_0.5` launch attempt 1 during the inner sustained-idle guard. The p2 lock is free, and no p2 model or output was created by that launch. Resume uses a distinct attempt-2 log only after the unrelated CUDA process exits.

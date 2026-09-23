@@ -1,0 +1,23 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-B03-ALIGNMENT-DEVELOPMENT",
+  "alignment_id": "ALIGN_TEMP_0.5_0.5",
+  "attempt_id": "ALIGN_TEMP_0.5_0.5-LAUNCH-ATTEMPT-1",
+  "status": "BLOCKED_EXTERNAL_PRESTART",
+  "failure_class": "gpu_contention_during_inner_idle_guard",
+  "git_commit": "78a19a5e927dff0a7fbdc04bfaaaafcf54b665e0",
+  "config_sha256": "76f035a48545b65963c29befcdea29dc92e63cfe4cc02be0ccbb620e705815b8",
+  "unrelated_cuda_pid": 38158,
+  "unrelated_process": "act_agent.training.sft_v2 seed11 steps120 accumulation4 rank16",
+  "project_gpu_lock_acquired": false,
+  "model_loaded": false,
+  "output_created": false,
+  "scientific_metric_created": false,
+  "terminal_alignment_receipt_created": false,
+  "log": "/home/bjw-0/mosaic-rec-work/p2/alignment/logs/align_temp_0.5_0.5.log",
+  "log_sha256": "cd3ede7462f713cef893b40357f3018d0f676a39c2166b26ac698a92f1e1f6e3",
+  "protected_model_outcomes_accessed": false,
+  "qualification_access_count": 0,
+  "locked_final_access_count": 0,
+  "disposition": "Preserve the attempt-1 log. Retry the unchanged frozen alignment candidate only under launch-attempt-2 log identity after a sustained idle GPU window."
+}

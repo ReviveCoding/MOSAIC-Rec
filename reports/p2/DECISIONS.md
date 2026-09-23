@@ -115,3 +115,8 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 - Any retry uses attempt-2 config and separate log/checkpoint/output/receipt paths. The frozen HPO search space remains unchanged, and both protected-access counters remain zero.
 - Attempt 2 passed with peak allocated VRAM 810,937,344 bytes and exact overall NDCG@20 `0.0004777958439066055`. The outcome remains DEVELOPMENT evidence and does not erase the attempt-1 OOM.
 - Legacy M1 produced controlled-zero NDCG@20 `0.005334111164672065` but warm NDCG@20 `0.0008058694871134669`. Preserve this cold/warm tradeoff and proceed to the preregistered alignment study without model reselection.
+
+## 2026-09-23 — alignment queue external contention
+
+- Preserve `ALIGN_STD` and `ALIGN_RANK` as completed DEVELOPMENT outcomes. `ALIGN_TEMP_0.5_0.5` launch attempt 1 is only a prestart external-contention event: it acquired no p2 lock, loaded no model, and created no score or metric.
+- Resume the same frozen alignment identity under a distinct launch-attempt-2 log after a sustained idle window. No alignment method, temperature, objective, tie rule, or protected role changes.
