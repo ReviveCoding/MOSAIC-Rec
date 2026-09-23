@@ -25,12 +25,41 @@ def compute_pids() -> list[str]:
     return [line.strip() for line in output.splitlines() if line.strip()]
 
 
-def sustained_idle(seconds: int = 30, interval: int = 5) -> None:
+def gpu_activity() -> tuple[int, int]:
+    """Return allocated MiB and utilization; WSL may hide compute PIDs."""
+    output = subprocess.check_output(
+        [
+            "nvidia-smi",
+            "--query-gpu=memory.used,utilization.gpu",
+            "--format=csv,noheader,nounits",
+        ],
+        text=True,
+    ).strip()
+    rows = [row.strip() for row in output.splitlines() if row.strip()]
+    if len(rows) != 1:
+        raise RuntimeError(f"Expected one physical GPU, observed {len(rows)}")
+    memory, utilization = (int(value.strip()) for value in rows[0].split(","))
+    return memory, utilization
+
+
+def sustained_idle(
+    seconds: int = 30,
+    interval: int = 5,
+    *,
+    maximum_memory_mib: int = 256,
+    maximum_utilization_percent: int = 5,
+) -> None:
     checks = max(2, seconds // interval + 1)
     for index in range(checks):
         pids = [pid for pid in compute_pids() if pid != str(os.getpid())]
         if pids:
             raise RuntimeError(f"Unrelated CUDA compute PIDs are active: {pids}")
+        memory, utilization = gpu_activity()
+        if memory > maximum_memory_mib or utilization > maximum_utilization_percent:
+            raise RuntimeError(
+                "GPU is materially active even though WSL exposed no compute PID: "
+                f"memory_used_mib={memory}, utilization_percent={utilization}"
+            )
         if index + 1 < checks:
             time.sleep(interval)
 
