@@ -24,7 +24,11 @@ def _receipt_files(repo: Path) -> list[Path]:
     )
 
 
-def _metric_rows(path: Path, receipt: dict[str, Any]) -> list[dict[str, Any]]:
+def _metric_rows(
+    path: Path, receipt: dict[str, Any], *, valid_for_selection: bool
+) -> list[dict[str, Any]]:
+    if not valid_for_selection:
+        return []
     rows: list[dict[str, Any]] = []
     candidates: list[tuple[str, dict[str, Any]]] = []
     validation = receipt.get("validation")
@@ -56,12 +60,21 @@ def _metric_rows(path: Path, receipt: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 def build(repo: Path, warehouse: Path, table_dir: Path) -> dict[str, Any]:
+    source_payloads = [
+        (path, json.loads(path.read_text())) for path in _receipt_files(repo)
+    ]
+    invalidated_by: dict[str, str] = {}
+    for source_path, payload in source_payloads:
+        if str(payload.get("status", "")).startswith("INVALID"):
+            for affected in payload.get("affected_receipts", []):
+                invalidated_by[str(affected)] = source_path.name
     receipts: list[dict[str, Any]] = []
     metrics: list[dict[str, Any]] = []
-    for path in _receipt_files(repo):
-        payload = json.loads(path.read_text())
+    for path, payload in source_payloads:
         if payload.get("protocol_id") != PROTOCOL_ID:
             raise RuntimeError(f"Non-p2 receipt in p2 namespace: {path}")
+        invalidator = invalidated_by.get(path.name, "")
+        valid_for_selection = not invalidator
         receipts.append(
             {
                 "receipt": path.name,
@@ -71,10 +84,14 @@ def build(repo: Path, warehouse: Path, table_dir: Path) -> dict[str, Any]:
                 "status": str(payload.get("status", "")),
                 "git_commit": str(payload.get("git_commit", "")),
                 "evidence_class": str(payload.get("evidence_class", "")),
+                "valid_for_selection": valid_for_selection,
+                "invalidated_by": invalidator,
                 "payload_json": json.dumps(payload, sort_keys=True),
             }
         )
-        metrics.extend(_metric_rows(path, payload))
+        metrics.extend(
+            _metric_rows(path, payload, valid_for_selection=valid_for_selection)
+        )
     table_dir.mkdir(parents=True, exist_ok=True)
     receipt_schema = pa.schema(
         [
@@ -85,6 +102,8 @@ def build(repo: Path, warehouse: Path, table_dir: Path) -> dict[str, Any]:
             ("status", pa.string()),
             ("git_commit", pa.string()),
             ("evidence_class", pa.string()),
+            ("valid_for_selection", pa.bool_()),
+            ("invalidated_by", pa.string()),
             ("payload_json", pa.string()),
         ]
     )

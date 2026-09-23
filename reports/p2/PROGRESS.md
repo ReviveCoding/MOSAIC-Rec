@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-P2-D01 R1 hard zero-support router pilot after completed expert pilots.
+P2-C03/C04 corrected expert reruns, waiting for an uncontended GPU window.
 
 ## Completed
 
@@ -27,11 +27,12 @@ P2-D01 R1 hard zero-support router pilot after completed expert pilots.
 - Corrected the shared loader to retain complete FIT histories for candidate masking while keeping last-50 neural inputs.
 - Completed exact CPU global and 30-day recent popularity baselines; the optimized scorer preserved exact ranks and top-100 lists.
 - R1 attempt 1 was blocked before model loading by an unrelated ACT-Agent CUDA trainer; no p2 router artifact exists yet.
-- Built the p2-only canonical warehouse: 18 p2 receipts, 16 metric rows, zero p1 canonical receipts, and zero protected access.
+- Added CUDA pilot implementations for BPR-MF, LightGCN, SASRec, and VBPR; corrected the shared zero-based item indexing contract before executing them.
+- Rebuilt the p2-only canonical warehouse with invalidation-aware selection semantics: 19 p2 receipts, 8 valid metric rows, zero p1 canonical receipts, and zero protected access. The two invalid expert receipts remain stored but their 8 metric rows are excluded.
 
 ## Active next action
 
-While ACT-Agent occupies the GPU, build and validate the p2-only canonical warehouse and remaining router/baseline code. Retry R1 only after a sustained idle window.
+While unrelated GPU utilization remains material, complete CPU-side orchestration and validation. When the GPU is idle, rerun C_seq and C_cold under distinct attempt identities, then execute R1-R4 and the remaining baseline pilots serially.
 
 ## Protected access counters
 
@@ -41,5 +42,5 @@ While ACT-Agent occupies the GPU, build and validate the p2-only canonical wareh
 ## Current blockers
 
 - Raw-cover extraction and modification remain on rights hold.
-- Official publisher text-feature download is quota-blocked. Amendment 001 selects the already authorized local MiniLM embedding derived from official title/tag/description fields; p2 copy/alignment qualification is pending.
-- An old shared p1 advisory lock names PID 79333, which is absent; p2 will use its own lock after documenting stale-lock handling. No p2 heavy job has started.
+- Official publisher text-feature download is quota-blocked. Amendment 001 selects the already authorized local MiniLM embedding derived from official title/tag/description fields; its p2 copy and alignment qualification passed.
+- An unrelated ACT-Agent control process remains alive and the sole GPU showed 4.4 GB allocated with 19-83% utilization over the latest sustained sample. The p2 advisory lock itself has no active owner.

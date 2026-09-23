@@ -65,3 +65,8 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 - The first exact CPU popularity attempt was interrupted after 264 seconds before output because its zero-score ranking loop scaled poorly. The failed attempt is preserved.
 - An exact offline timestamp sweep with a Fenwick prefix counter reduced attempt 2 to 12.7 seconds for global popularity and 14.3 seconds for recent popularity.
 - Global popularity NDCG@20 was 0.000067 overall and 0.000491 warm. Recent 30-day popularity was 0.000452 overall and 0.003316 warm. Both scored zero on controlled and natural zero-support targets.
+
+## 2026-09-23 — canonical invalidation semantics
+
+- The p2 warehouse retains invalidated receipts for audit history and marks them `valid_for_selection=false` with the invalidating receipt identity.
+- Metric rows from invalidated receipts are excluded from the canonical metrics table. This prevents the defective first expert scores from entering development selection while preserving their full raw receipt payloads.
