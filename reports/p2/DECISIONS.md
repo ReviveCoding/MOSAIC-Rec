@@ -76,3 +76,9 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 - Corrected C_seq and C_cold reruns use distinct `*_PILOT_A2` model identities, checkpoints, outputs, and receipts. They do not overwrite the invalid first attempts.
 - A PowerShell-to-Bash quoting failure was preserved as `FAILED_INFRASTRUCTURE_PRESTART`; it acquired no lock and created no model artifact.
 - The router ladder now points only to the independently rehashed attempt-2 checkpoints.
+
+## 2026-09-23 — equal-budget HPO manifest
+
+- Froze three trials and ten scheduled epochs for each neural family under selection seed 20260930; failed scientific trials consume their budget and are not replaced.
+- Expert and baseline families select by validation overall NDCG@20 with predeclared warm, cold, and identity tie breaks.
+- Router families use a predeclared worst-gate development score relative to the corrected content and sequence experts, so overall quality cannot hide failure on either side of the cold/warm tradeoff.

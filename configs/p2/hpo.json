@@ -1,0 +1,81 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-E00",
+  "status": "FROZEN_BEFORE_HPO",
+  "selection_seed": 20260930,
+  "trials_per_family": 3,
+  "epochs_per_trial": 10,
+  "maximum_epochs": 30,
+  "early_stopping_patience": 5,
+  "maximum_gpu_hours_per_trial": 2.0,
+  "role": "VALIDATION",
+  "common": {
+    "width": 64,
+    "max_length": 50,
+    "weight_decay": 0.0001,
+    "exact_validation_scoring": true,
+    "score_batch_size": 128,
+    "bf16": true
+  },
+  "families": {
+    "CSEQ_BERT4REC": [
+      {"trial_id": "CSEQ_T1", "learning_rate": 0.0003, "dropout": 0.2},
+      {"trial_id": "CSEQ_T2", "learning_rate": 0.001, "dropout": 0.2},
+      {"trial_id": "CSEQ_T3", "learning_rate": 0.003, "dropout": 0.2}
+    ],
+    "CCOLD_TWO_TOWER": [
+      {"trial_id": "CCOLD_T1", "learning_rate": 0.0003},
+      {"trial_id": "CCOLD_T2", "learning_rate": 0.001},
+      {"trial_id": "CCOLD_T3", "learning_rate": 0.003}
+    ],
+    "LEGACY_M1": [
+      {"trial_id": "LEGACY_T1", "learning_rate": 0.0003},
+      {"trial_id": "LEGACY_T2", "learning_rate": 0.001},
+      {"trial_id": "LEGACY_T3", "learning_rate": 0.003}
+    ],
+    "BPR_MF": [
+      {"trial_id": "BPR_T1", "learning_rate": 0.0003},
+      {"trial_id": "BPR_T2", "learning_rate": 0.001},
+      {"trial_id": "BPR_T3", "learning_rate": 0.003}
+    ],
+    "LIGHTGCN": [
+      {"trial_id": "LIGHTGCN_T1", "learning_rate": 0.0003},
+      {"trial_id": "LIGHTGCN_T2", "learning_rate": 0.001},
+      {"trial_id": "LIGHTGCN_T3", "learning_rate": 0.003}
+    ],
+    "SASREC": [
+      {"trial_id": "SASREC_T1", "learning_rate": 0.0003},
+      {"trial_id": "SASREC_T2", "learning_rate": 0.001},
+      {"trial_id": "SASREC_T3", "learning_rate": 0.003}
+    ],
+    "VBPR": [
+      {"trial_id": "VBPR_T1", "learning_rate": 0.0003},
+      {"trial_id": "VBPR_T2", "learning_rate": 0.001},
+      {"trial_id": "VBPR_T3", "learning_rate": 0.003}
+    ],
+    "R2": [
+      {"trial_id": "R2_T1", "learning_rate": 0.0003},
+      {"trial_id": "R2_T2", "learning_rate": 0.001},
+      {"trial_id": "R2_T3", "learning_rate": 0.003}
+    ],
+    "R3": [
+      {"trial_id": "R3_T1", "learning_rate": 0.0003, "hidden": 16},
+      {"trial_id": "R3_T2", "learning_rate": 0.001, "hidden": 32},
+      {"trial_id": "R3_T3", "learning_rate": 0.003, "hidden": 64}
+    ],
+    "R4": [
+      {"trial_id": "R4_T1", "learning_rate": 0.001, "hidden": 32, "distillation_weight": 0.25},
+      {"trial_id": "R4_T2", "learning_rate": 0.001, "hidden": 32, "distillation_weight": 0.5},
+      {"trial_id": "R4_T3", "learning_rate": 0.001, "hidden": 32, "distillation_weight": 1.0}
+    ]
+  },
+  "family_selection": {
+    "experts_and_baselines": "maximum VALIDATION overall NDCG@20; tie warm, then controlled zero, then trial_id ascending",
+    "routers": "maximize min(controlled_zero/router C_cold ratio minus 1, warm delta/C_seq warm plus 0.10); tie overall NDCG@20 then trial_id ascending",
+    "zero_denominator_rule": "if C_cold controlled-zero NDCG@20 is zero, use absolute router-minus-C_cold controlled-zero delta",
+    "failed_trials": "retained and counted in the fixed budget; no replacement for scientific failure"
+  },
+  "independent_seeds": [20261001, 20261002, 20261003],
+  "selection_seed_excluded_from_independent_statistics": true,
+  "protected_roles_opened": []
+}
