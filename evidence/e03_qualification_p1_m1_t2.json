@@ -1,0 +1,64 @@
+{
+  "stage_id": "E03",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "QUALIFICATION",
+  "status": "QUALIFICATION_SCORE_PASS",
+  "started_utc": "2026-09-23T02:00:25.186986+00:00",
+  "ended_utc": "2026-09-23T02:00:36.498992+00:00",
+  "dataset": "microlens-100k",
+  "role": "QUALIFICATION",
+  "model": "M1_T2",
+  "architecture": "mosaic",
+  "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "ensemble_seeds": [
+    20260924,
+    20260925,
+    20260926
+  ],
+  "ensemble_size": 3,
+  "validation_slices": {
+    "all": {
+      "n": 40296,
+      "ndcg_at_20": 0.021250152208148514,
+      "recall_at_20": 0.049161207067699025,
+      "mrr_at_20": 0.013651991692072414
+    },
+    "controlled_cold": {
+      "n": 461,
+      "ndcg_at_20": 0.007555429428996437,
+      "recall_at_20": 0.021691973969631236,
+      "mrr_at_20": 0.0036178571970329016
+    },
+    "warm_fit": {
+      "n": 9289,
+      "ndcg_at_20": 0.01470065168038116,
+      "recall_at_20": 0.02648293680697599,
+      "mrr_at_20": 0.011539390478355704
+    }
+  },
+  "score_seconds": 6.708214193989988,
+  "peak_vram_bytes": 348099584,
+  "checkpoint_sha256": [
+    "6eb68d9ccabb168cca2552325a377ed1c4b07d2138504f7889e94e93cd563de6",
+    "c4c50cb97e9a0bda90038f3bea6c82c47202d5a4712b5ce67cee8f85bb9a21bc",
+    "a59794926179f66c08a6c38fd9340a5546ca128179099b45298c7e4c829ca3cf"
+  ],
+  "checkpoint_unchanged": true,
+  "manifest": "configs/qualification_selection_p1.json",
+  "manifest_sha256": "77a827f87e15eea3b30f699527eaca91928ce55bf6a91fd07cd079762736b900",
+  "input_sha256": {
+    "fit_visible": "1571406f3bea51f96ee5839ccad858e4587d9b1aab5aafa296dde3854ce996e6",
+    "qualification": "4dfaa84b391f523ec4ae553186ef3f8782c8cbaea09a5a07240332a468a2a1ad",
+    "controlled_cold_ids": "440e659b22c3f6f3743fb9fa32aa32a5af36afab884fb52b59a57441f3c64969"
+  },
+  "per_user_path": "/home/bjw-0/mosaic-rec-work/qualification/e03_m1_t2_per_user.parquet",
+  "per_user_sha256": "ada36ce6fd3cd33bf3406e61aa89220cb06be215aa767dfe71e1dfcdbe71d9a1",
+  "per_user_rows": 40296,
+  "git_commit": "a7b4409af9377a92027eb8cee4632b6414a0ba8f",
+  "warnings": [
+    "QUALIFICATION evidence may select/freeze identities but is not a locked result.",
+    "LOCKED_FINAL was not accessed.",
+    "First-observed item time is a candidate-availability proxy, not launch time."
+  ],
+  "evidence_class": "measured_qualification_exact_full_catalog"
+}

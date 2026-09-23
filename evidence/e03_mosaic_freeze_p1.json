@@ -1,0 +1,65 @@
+{
+  "stage_id": "E03",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "QUALIFICATION",
+  "status": "MOSAIC_FINALIST_FROZEN",
+  "ended_utc": "2026-09-23T02:04:56.943740+00:00",
+  "git_commit": "a7b4409af9377a92027eb8cee4632b6414a0ba8f",
+  "manifest_sha256": "77a827f87e15eea3b30f699527eaca91928ce55bf6a91fd07cd079762736b900",
+  "selection_rule": "minimize the worse of controlled_cold and warm_fit ordinal ranks by qualification NDCG@20; tie-break by higher all NDCG@20, then lexicographic config_id",
+  "rank_table": [
+    {
+      "config_id": "M1_T1",
+      "controlled_cold_ndcg_at_20": 0.008692068809832388,
+      "controlled_cold_rank": 2,
+      "warm_fit_ndcg_at_20": 0.010007330642454985,
+      "warm_fit_rank": 4,
+      "worst_rank": 4,
+      "all_ndcg_at_20": 0.021876985527999823
+    },
+    {
+      "config_id": "M1_T2",
+      "controlled_cold_ndcg_at_20": 0.007555429428996437,
+      "controlled_cold_rank": 3,
+      "warm_fit_ndcg_at_20": 0.01470065168038116,
+      "warm_fit_rank": 3,
+      "worst_rank": 3,
+      "all_ndcg_at_20": 0.021250152208148514
+    },
+    {
+      "config_id": "M4_T1",
+      "controlled_cold_ndcg_at_20": 0.0037918838360169885,
+      "controlled_cold_rank": 4,
+      "warm_fit_ndcg_at_20": 0.01793142831449764,
+      "warm_fit_rank": 2,
+      "worst_rank": 4,
+      "all_ndcg_at_20": 0.016193177850297894
+    },
+    {
+      "config_id": "M4_T3",
+      "controlled_cold_ndcg_at_20": 0.021174582695906958,
+      "controlled_cold_rank": 1,
+      "warm_fit_ndcg_at_20": 0.005608891279262601,
+      "warm_fit_rank": 5,
+      "worst_rank": 5,
+      "all_ndcg_at_20": 0.021724589273097093
+    },
+    {
+      "config_id": "M6_T3",
+      "controlled_cold_ndcg_at_20": 0.0,
+      "controlled_cold_rank": 5,
+      "warm_fit_ndcg_at_20": 0.021592886101447425,
+      "warm_fit_rank": 1,
+      "worst_rank": 5,
+      "all_ndcg_at_20": 0.005217401801953306
+    }
+  ],
+  "finalist": "M1_T2",
+  "finalist_qualification_receipt": "evidence/e03_qualification_p1_m1_t2.json",
+  "finalist_qualification_receipt_sha256": "8caf9a032e43fcf5c2c484c54531190c28b55b4585f126635ff795e672eca069",
+  "warnings": [
+    "M4_T3 cold strength and warm degradation are preserved in the rank table.",
+    "Finalist identity cannot change after this freeze under p1."
+  ],
+  "evidence_class": "derived_qualification_freeze"
+}

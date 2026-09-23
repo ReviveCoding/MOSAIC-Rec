@@ -1,0 +1,58 @@
+{
+  "stage_id": "E04",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "QUALIFICATION",
+  "status": "MARGIN_STATISTICS_ROBUSTNESS_ABLATION_FROZEN",
+  "ended_utc": "2026-09-23T02:04:56.943740+00:00",
+  "git_commit": "a7b4409af9377a92027eb8cee4632b6414a0ba8f",
+  "manifest_sha256": "77a827f87e15eea3b30f699527eaca91928ce55bf6a91fd07cd079762736b900",
+  "warm_noninferiority_margin": 0.0030883869550329584,
+  "margin_derivation": {
+    "formula": "0.10 * C_seq qualification warm_fit NDCG@20",
+    "C_seq_warm_fit_ndcg_at_20": 0.030883869550329582
+  },
+  "statistics": {
+    "primary_bootstrap": "paired_user_cluster",
+    "cold_sensitivity_bootstrap": "item_cluster",
+    "bootstrap_draws": 10000,
+    "secondary_family_control": "Holm",
+    "support_bins": {
+      "cold": 0,
+      "emerging": [
+        1,
+        5
+      ],
+      "sparse": [
+        6,
+        20
+      ],
+      "warm_min": 21
+    }
+  },
+  "robustness_family": [
+    "image_missing",
+    "text_missing",
+    "metadata_missing",
+    "image_embedding_corruption",
+    "mismatched_image",
+    "text_truncation",
+    "collaborative_support_reduction",
+    "temporal_shift",
+    "long_tail"
+  ],
+  "confirmatory_ablation_family": [
+    "no_sequence",
+    "no_collaborative",
+    "no_text",
+    "no_image",
+    "no_metadata",
+    "no_adaptive_gate",
+    "no_behavioral_dropout",
+    "no_modality_dropout",
+    "no_consistency_signal",
+    "unconstrained_vs_monotonic_gate",
+    "no_auxiliary_alignment",
+    "retrieval_only_vs_reranking"
+  ],
+  "evidence_class": "derived_qualification_freeze"
+}

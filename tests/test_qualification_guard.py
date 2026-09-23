@@ -39,6 +39,6 @@ def test_candidate_identity_must_be_unique() -> None:
         candidate_from_manifest(frozen, "ABSENT")
 
 
-def test_qualification_guard_is_closed_during_development() -> None:
-    with pytest.raises(RuntimeError, match="not open"):
+def test_qualification_guard_closes_after_e05_freeze() -> None:
+    with pytest.raises(RuntimeError, match="closed after E05"):
         qualification_state_guard(ROOT, manifest())

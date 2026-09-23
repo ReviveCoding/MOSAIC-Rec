@@ -1,0 +1,208 @@
+{
+  "stage_id": "E05",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "FROZEN",
+  "status": "FREEZE_MANIFEST_COMPLETE",
+  "ended_utc": "2026-09-23T02:04:56.943740+00:00",
+  "git_commit": "a7b4409af9377a92027eb8cee4632b6414a0ba8f",
+  "qualification_manifest": "configs/qualification_selection_p1.json",
+  "qualification_manifest_sha256": "77a827f87e15eea3b30f699527eaca91928ce55bf6a91fd07cd079762736b900",
+  "source_freeze_receipts": {
+    "E02": {
+      "path": "evidence/e02_comparator_freeze_p1.json",
+      "sha256": "b47e4f8058684f7e742d08ca0f4f2a3790fac9de1d9cc66b7e52b6784449c13d"
+    },
+    "E03": {
+      "path": "evidence/e03_mosaic_freeze_p1.json",
+      "sha256": "6e0f2d3b3bb8557f3d15b4190d9a0d65aceac94ebe3e8b6ad6ff87aeedff8272"
+    },
+    "E04": {
+      "path": "evidence/e04_scientific_freeze_p1.json",
+      "sha256": "425333a0a9a9f927d91de8f3b1bc8fff45b41ceda28caf88b1cf52bb82f34a76"
+    }
+  },
+  "C_seq": "B7_BERT4REC_T3",
+  "C_cold": "B4_TWO_TOWER_T3",
+  "MOSAIC_finalist": "M1_T2",
+  "frozen_candidates": {
+    "B7_BERT4REC_T3": {
+      "config_id": "B7_BERT4REC_T3",
+      "architecture": "bert4rec",
+      "variant": null,
+      "learning_rate": 0.003,
+      "epochs": 30,
+      "checkpoints": [
+        {
+          "seed": 20260924,
+          "receipt": "evidence/e01_seedqual_p1_b7_bert4rec_t3_seed20260924.json",
+          "receipt_sha256": "1ddb8be33142e069e0502c3ab70080dd6f5053bfd975719f06701badbaa48f20",
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/e01_seedqual_p1_b7_bert4rec_t3_seed20260924.pt",
+          "checkpoint_sha256": "8236329ae466a0fd8dd5d3594a1faf3949bc1036d3568e283e70499b9aeb215c"
+        },
+        {
+          "seed": 20260925,
+          "receipt": "evidence/e01_seedqual_p1_b7_bert4rec_t3_seed20260925_attempt2.json",
+          "receipt_sha256": "950245e60938afb6b004234fb091d16159bb93214d45ea28c016f32278fcdb4c",
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/e01_seedqual_p1_b7_bert4rec_t3_seed20260925_attempt2.pt",
+          "checkpoint_sha256": "e3261df4b90cff27ccd5f514bed7f52606a5d43ea375739b9b8625153933d997"
+        },
+        {
+          "seed": 20260926,
+          "receipt": "evidence/e01_seedqual_p1_b7_bert4rec_t3_seed20260926.json",
+          "receipt_sha256": "1fbb4df98c5437938b6390987ad38df6c18fabb9c9f351886da0b17560eca673",
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/e01_seedqual_p1_b7_bert4rec_t3_seed20260926.pt",
+          "checkpoint_sha256": "96ee5422b8f1119f72643b5e50d7f783bcb3a42cd5c9ac61b5d9470eb08b49bc"
+        }
+      ]
+    },
+    "B4_TWO_TOWER_T3": {
+      "config_id": "B4_TWO_TOWER_T3",
+      "architecture": "two_tower_content",
+      "variant": null,
+      "learning_rate": 0.003,
+      "epochs": 30,
+      "checkpoints": [
+        {
+          "seed": 20260924,
+          "receipt": "evidence/e01_seedqual_p1_b4_two_tower_t3_seed20260924.json",
+          "receipt_sha256": "251d95647355e232e20313a45063c452a3cde6f4689cbd0215e101c8650ba32e",
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/e01_seedqual_p1_b4_two_tower_t3_seed20260924.pt",
+          "checkpoint_sha256": "edd98df4458ed123771d92866df7e2df19fc44f4cfa77fad9a58d1b9a36832f3"
+        },
+        {
+          "seed": 20260925,
+          "receipt": "evidence/e01_seedqual_p1_b4_two_tower_t3_seed20260925.json",
+          "receipt_sha256": "5dbfeb619dbf231937c3dbe50c3e86b9f2c731a0fc5cebb161051c1819ce8101",
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/e01_seedqual_p1_b4_two_tower_t3_seed20260925.pt",
+          "checkpoint_sha256": "abee24a2c3f34c25101411788aa02a68b7434a0abea6cda067856de50d93c53f"
+        },
+        {
+          "seed": 20260926,
+          "receipt": "evidence/e01_seedqual_p1_b4_two_tower_t3_seed20260926.json",
+          "receipt_sha256": "de52899318d599b2053fabd1bd25d1ca360c06dd598d4ce5efbd380de437afb4",
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/e01_seedqual_p1_b4_two_tower_t3_seed20260926.pt",
+          "checkpoint_sha256": "97a62b9fb45e835a546558b63ffc1e277cf7d32715dd388b86ae8dbb40aa4304"
+        }
+      ]
+    },
+    "M1_T2": {
+      "config_id": "M1_T2",
+      "architecture": "mosaic",
+      "variant": 1,
+      "learning_rate": 0.001,
+      "epochs": 30,
+      "checkpoints": [
+        {
+          "seed": 20260924,
+          "receipt": "evidence/e01_seedqual_p1_m1_t2_seed20260924.json",
+          "receipt_sha256": "df79c3af932feec7a39128a7642103678685a28b2bf641ec0ec07d893148d61a",
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/e01_seedqual_p1_m1_t2_seed20260924.pt",
+          "checkpoint_sha256": "6eb68d9ccabb168cca2552325a377ed1c4b07d2138504f7889e94e93cd563de6"
+        },
+        {
+          "seed": 20260925,
+          "receipt": "evidence/e01_seedqual_p1_m1_t2_seed20260925.json",
+          "receipt_sha256": "f864d4de9c48ddda91204268ad16e68350b8fbed8aa1339e0623584bab7c39ea",
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/e01_seedqual_p1_m1_t2_seed20260925.pt",
+          "checkpoint_sha256": "c4c50cb97e9a0bda90038f3bea6c82c47202d5a4712b5ce67cee8f85bb9a21bc"
+        },
+        {
+          "seed": 20260926,
+          "receipt": "evidence/e01_seedqual_p1_m1_t2_seed20260926.json",
+          "receipt_sha256": "113c8ba4215559f20029a2a80b267355e8aa48a712076a24b24a8965674957e3",
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/e01_seedqual_p1_m1_t2_seed20260926.pt",
+          "checkpoint_sha256": "a59794926179f66c08a6c38fd9340a5546ca128179099b45298c7e4c829ca3cf"
+        }
+      ]
+    }
+  },
+  "frozen_seeds": [
+    20260924,
+    20260925,
+    20260926
+  ],
+  "data": {
+    "fit_visible": {
+      "path": "/home/bjw-0/mosaic-rec-work/data/microlens-100k/split_p1/FIT_VISIBLE.parquet",
+      "rows": 481499,
+      "sha256": "1571406f3bea51f96ee5839ccad858e4587d9b1aab5aafa296dde3854ce996e6"
+    },
+    "controlled_cold_ids": {
+      "path": "/home/bjw-0/mosaic-rec-work/data/microlens-100k/split_p1/controlled_cold_item_ids.txt",
+      "sha256": "440e659b22c3f6f3743fb9fa32aa32a5af36afab884fb52b59a57441f3c64969",
+      "count": 772
+    },
+    "locked_final_sha256": "89eadf4f60fe807e367b4e9f6190315f901bc627696fbaab3537679c32772421"
+  },
+  "evaluation": {
+    "ranking": "exact_full_catalog_cuda",
+    "ensemble": "arithmetic_mean_of_three_seed_checkpoint_scores_before_ranking",
+    "query": "first_QUALIFICATION_event_per_user_with_FIT_VISIBLE_history",
+    "history": "FIT_VISIBLE_only",
+    "seen_exclusion": "all_user_FIT_VISIBLE_items",
+    "candidate_availability": "source_first_observed_timestamp_lte_query_timestamp",
+    "tie_break": "ascending_item_id_via_negative_1e-12_item_index_offset",
+    "primary_metric": "ndcg_at_20",
+    "secondary_metrics": [
+      "recall_at_20",
+      "mrr_at_20"
+    ],
+    "slices": [
+      "all",
+      "controlled_cold",
+      "warm_fit"
+    ],
+    "per_user_rows_required": true,
+    "cuda_required": true
+  },
+  "warm_noninferiority_margin": 0.0030883869550329584,
+  "statistics": {
+    "primary_bootstrap": "paired_user_cluster",
+    "cold_sensitivity_bootstrap": "item_cluster",
+    "bootstrap_draws": 10000,
+    "secondary_family_control": "Holm",
+    "support_bins": {
+      "cold": 0,
+      "emerging": [
+        1,
+        5
+      ],
+      "sparse": [
+        6,
+        20
+      ],
+      "warm_min": 21
+    }
+  },
+  "robustness_family": [
+    "image_missing",
+    "text_missing",
+    "metadata_missing",
+    "image_embedding_corruption",
+    "mismatched_image",
+    "text_truncation",
+    "collaborative_support_reduction",
+    "temporal_shift",
+    "long_tail"
+  ],
+  "confirmatory_ablation_family": [
+    "no_sequence",
+    "no_collaborative",
+    "no_text",
+    "no_image",
+    "no_metadata",
+    "no_adaptive_gate",
+    "no_behavioral_dropout",
+    "no_modality_dropout",
+    "no_consistency_signal",
+    "unconstrained_vs_monotonic_gate",
+    "no_auxiliary_alignment",
+    "retrieval_only_vs_reranking"
+  ],
+  "locked_access": "PROHIBITED_UNTIL_THIS_RECEIPT_IS_COMMITTED_AND_PROTOCOL_GUARD_PASSES",
+  "warnings": [
+    "Qualification metrics are selection evidence, not locked outcomes.",
+    "Any scientific mutation after locked access requires a new protocol identity."
+  ],
+  "evidence_class": "derived_frozen_protocol_manifest"
+}

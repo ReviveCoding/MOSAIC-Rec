@@ -1,0 +1,64 @@
+{
+  "stage_id": "E02",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "QUALIFICATION",
+  "status": "COMPARATORS_FROZEN",
+  "ended_utc": "2026-09-23T02:04:56.943740+00:00",
+  "git_commit": "a7b4409af9377a92027eb8cee4632b6414a0ba8f",
+  "manifest_sha256": "77a827f87e15eea3b30f699527eaca91928ce55bf6a91fd07cd079762736b900",
+  "C_seq": {
+    "config_id": "B7_BERT4REC_T3",
+    "qualification_receipt": "evidence/e02_qualification_p1_b7_bert4rec_t3.json",
+    "qualification_receipt_sha256": "9c2926963d8506d9ed6bdc79eed0312dc600508b2c21630cccea5e03d2ce85e4",
+    "qualification_slices": {
+      "all": {
+        "n": 40296,
+        "ndcg_at_20": 0.007119323611599451,
+        "recall_at_20": 0.016304347826086956,
+        "mrr_at_20": 0.0045816208678202885
+      },
+      "controlled_cold": {
+        "n": 461,
+        "ndcg_at_20": 0.0,
+        "recall_at_20": 0.0,
+        "mrr_at_20": 0.0
+      },
+      "warm_fit": {
+        "n": 9289,
+        "ndcg_at_20": 0.030883869550329582,
+        "recall_at_20": 0.07072881903326515,
+        "mrr_at_20": 0.01987522817199767
+      }
+    }
+  },
+  "C_cold": {
+    "config_id": "B4_TWO_TOWER_T3",
+    "qualification_receipt": "evidence/e02_qualification_p1_b4_two_tower_t3.json",
+    "qualification_receipt_sha256": "2f636e34e2c99a81e2173af2a45162aacfcc769e729b915c19bfd6d81ffa6891",
+    "qualification_slices": {
+      "all": {
+        "n": 40296,
+        "ndcg_at_20": 0.00855330302630826,
+        "recall_at_20": 0.0237740718681755,
+        "mrr_at_20": 0.004411774136613337
+      },
+      "controlled_cold": {
+        "n": 461,
+        "ndcg_at_20": 0.0028950732267817698,
+        "recall_at_20": 0.008676789587852495,
+        "mrr_at_20": 0.001442801689690604
+      },
+      "warm_fit": {
+        "n": 9289,
+        "ndcg_at_20": 0.006898977053604482,
+        "recall_at_20": 0.01916245020992572,
+        "mrr_at_20": 0.003589195091378006
+      }
+    }
+  },
+  "warnings": [
+    "B7 is ID-only and is not the cold comparator.",
+    "Comparator identities cannot change after this freeze under p1."
+  ],
+  "evidence_class": "derived_qualification_freeze"
+}
