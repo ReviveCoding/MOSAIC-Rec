@@ -21,8 +21,9 @@ from mosaic_rec.p2.models import (
     ContextRouterGate,
     MonotonicSupportGate,
 )
-from mosaic_rec.p2.router import _standardize
+from mosaic_rec.p2.router import align_expert_scores
 from mosaic_rec.p2.runtime import (
+    exact_metric_summary,
     exact_score,
     load_catalog,
     load_histories,
@@ -128,6 +129,7 @@ def train_and_score_gate(
     output: Path,
     receipt: Path,
     gpu_qualification: dict[str, object],
+    hpo_policy: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     ladder = json.loads(ladder_path.read_text())
     pilot = json.loads(pilot_path.read_text())
@@ -237,70 +239,6 @@ def train_and_score_gate(
         lr=float(common["learning_rate"]),
         weight_decay=float(common["weight_decay"]),
     )
-    log = []
-    started = time.perf_counter()
-    torch.cuda.reset_peak_memory_stats()
-    for epoch in range(int(common["epochs"])):
-        gate.train()
-        total = 0.0
-        seen = 0
-        for history, target, negative, stamp, user_feature in loader:
-            history = history.to(device, non_blocking=True)
-            target = target.to(device, non_blocking=True)
-            negative = negative.to(device, non_blocking=True)
-            stamp = stamp.to(device, non_blocking=True)
-            user_feature = user_feature.to(device, non_blocking=True)
-            candidates = torch.cat([target[:, None], negative], dim=1)
-            lengths = history.ne(0).sum(dim=1)
-            with torch.no_grad(), torch.autocast("cuda", dtype=torch.bfloat16):
-                with_mask = history.clone()
-                positions = lengths
-                with_mask[torch.arange(len(history), device=device), positions] = (
-                    sequence.mask_id
-                )
-                sequence_state = sequence.query(with_mask, lengths + 1)
-                sequence_scores = (
-                    sequence_state[:, None, :] * sequence.item(candidates)
-                ).sum(dim=-1)
-                content_state = content.user_vectors(history)
-                content_scores = (
-                    content_state[:, None, :] * content.item_vectors(candidates)
-                ).sum(dim=-1)
-                aligned = _standardize(
-                    torch.stack([sequence_scores, content_scores], dim=1).float()
-                )
-            features = _gate_features(
-                candidate_ids=candidates,
-                query_timestamps=stamp,
-                user_features=user_feature,
-                support=support,
-                first_seen=first_seen,
-                image_present=image_present,
-                text_present=text_present,
-            )
-            weight = gate(features)
-            combined = weight * aligned[:, 0, :] + (1 - weight) * aligned[:, 1, :]
-            ranking_loss = torch.nn.functional.softplus(
-                -(combined[:, :1] - combined[:, 1:])
-            ).mean()
-            distillation = (combined[:, 0] - aligned[:, 0, 0]).square().mean()
-            loss = (
-                ranking_loss + float(model_config["distillation_weight"]) * distillation
-            )
-            optimizer.zero_grad(set_to_none=True)
-            loss.backward()
-            optimizer.step()
-            total += float(loss.detach()) * len(history)
-            seen += len(history)
-        log.append({"epoch": epoch + 1, "loss": total / seen})
-    torch.cuda.synchronize()
-    train_seconds = time.perf_counter() - started
-    checkpoint.parent.mkdir(parents=True, exist_ok=True)
-    torch.save(
-        {"model": gate.state_dict(), "router": router_name, "config": model_config},
-        checkpoint,
-    )
-
     sequence_catalog_ids = torch.arange(1, len(item_ids) + 1, device=device)
     sequence_catalog = sequence.item(sequence_catalog_ids).detach().clone()
     fit_classes = torch.tensor(
@@ -373,10 +311,117 @@ def train_and_score_gate(
     def combine(scores: torch.Tensor) -> torch.Tensor:
         if pending_weight is None:
             raise RuntimeError("Gate weights unavailable")
-        aligned = _standardize(scores)
+        aligned = align_expert_scores(
+            scores,
+            str(common.get("alignment", "per_query_standardized_logits")),
+            temperatures=tuple(common.get("temperatures", [1.0, 1.0])),
+        )
         return (
             pending_weight * aligned[:, 0, :] + (1 - pending_weight) * aligned[:, 1, :]
         )
+
+    log = []
+    best_metric = -float("inf")
+    best_epoch = 0
+    best_state: dict[str, torch.Tensor] | None = None
+    stale_epochs = 0
+    stopping_reason = "scheduled_epochs_complete"
+    started = time.perf_counter()
+    torch.cuda.reset_peak_memory_stats()
+    for epoch in range(int(common["epochs"])):
+        gate.train()
+        total = 0.0
+        seen = 0
+        for history, target, negative, stamp, user_feature in loader:
+            history = history.to(device, non_blocking=True)
+            target = target.to(device, non_blocking=True)
+            negative = negative.to(device, non_blocking=True)
+            stamp = stamp.to(device, non_blocking=True)
+            user_feature = user_feature.to(device, non_blocking=True)
+            candidates = torch.cat([target[:, None], negative], dim=1)
+            lengths = history.ne(0).sum(dim=1)
+            with torch.no_grad(), torch.autocast("cuda", dtype=torch.bfloat16):
+                with_mask = history.clone()
+                positions = lengths
+                with_mask[torch.arange(len(history), device=device), positions] = (
+                    sequence.mask_id
+                )
+                sequence_state = sequence.query(with_mask, lengths + 1)
+                sequence_scores = (
+                    sequence_state[:, None, :] * sequence.item(candidates)
+                ).sum(dim=-1)
+                content_state = content.user_vectors(history)
+                content_scores = (
+                    content_state[:, None, :] * content.item_vectors(candidates)
+                ).sum(dim=-1)
+                aligned = align_expert_scores(
+                    torch.stack([sequence_scores, content_scores], dim=1).float(),
+                    str(common.get("alignment", "per_query_standardized_logits")),
+                    temperatures=tuple(common.get("temperatures", [1.0, 1.0])),
+                )
+            features = _gate_features(
+                candidate_ids=candidates,
+                query_timestamps=stamp,
+                user_features=user_feature,
+                support=support,
+                first_seen=first_seen,
+                image_present=image_present,
+                text_present=text_present,
+            )
+            weight = gate(features)
+            combined = weight * aligned[:, 0, :] + (1 - weight) * aligned[:, 1, :]
+            ranking_loss = torch.nn.functional.softplus(
+                -(combined[:, :1] - combined[:, 1:])
+            ).mean()
+            distillation = (combined[:, 0] - aligned[:, 0, 0]).square().mean()
+            loss = (
+                ranking_loss + float(model_config["distillation_weight"]) * distillation
+            )
+            optimizer.zero_grad(set_to_none=True)
+            loss.backward()
+            optimizer.step()
+            total += float(loss.detach()) * len(history)
+            seen += len(history)
+        log.append({"epoch": epoch + 1, "loss": total / seen})
+        if hpo_policy is not None:
+            gate.eval()
+            summary = exact_metric_summary(
+                queries=queries,
+                histories=histories,
+                item_ids=item_ids,
+                first_seen=first_seen,
+                score_batch=score_batch,
+                combine_scores=combine,
+                batch_size=int(common["score_batch_size"]),
+            )
+            metric = float(summary["all"]["ndcg_at_20"] or 0.0)
+            log[-1]["validation_ndcg_at_20"] = metric
+            if metric > best_metric:
+                best_metric = metric
+                best_epoch = epoch + 1
+                stale_epochs = 0
+                best_state = {
+                    key: value.detach().cpu().clone()
+                    for key, value in gate.state_dict().items()
+                }
+            else:
+                stale_epochs += 1
+            if stale_epochs >= int(hpo_policy["early_stopping_patience"]):
+                stopping_reason = "early_stopping_patience"
+                break
+            elapsed_hours = (time.perf_counter() - started) / 3600.0
+            if elapsed_hours >= float(hpo_policy["maximum_gpu_hours_per_trial"]):
+                stopping_reason = "gpu_hour_ceiling"
+                break
+    torch.cuda.synchronize()
+    train_seconds = time.perf_counter() - started
+    if best_state is not None:
+        gate.load_state_dict(best_state)
+    checkpoint.parent.mkdir(parents=True, exist_ok=True)
+    torch.save(
+        {"model": gate.state_dict(), "router": router_name, "config": model_config},
+        checkpoint,
+    )
 
     gate.eval()
     scoring = exact_score(
@@ -397,9 +442,12 @@ def train_and_score_gate(
         "status": "PASS",
         "router": router_name,
         "model_id": model_config["model_id"],
+        "trial_id": str(ladder.get("trial_id", "")),
+        "family": str(ladder.get("family", router_name)),
         "git_commit": subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=repo, text=True
         ).strip(),
+        "config_sha256": sha256_file(ladder_path),
         "ladder_config_sha256": sha256_file(ladder_path),
         "pilot_config_sha256": sha256_file(pilot_path),
         "sequence_checkpoint_sha256": sha256_file(
@@ -411,6 +459,9 @@ def train_and_score_gate(
         "seed": seed,
         "training_examples": len(training),
         "training_log": log,
+        "epochs_completed": len(log),
+        "best_epoch": best_epoch if hpo_policy is not None else len(log),
+        "stopping_reason": stopping_reason,
         "train_seconds": train_seconds,
         "peak_vram_bytes": torch.cuda.max_memory_allocated(),
         "gpu_qualification": gpu_qualification,
