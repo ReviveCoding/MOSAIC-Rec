@@ -1,0 +1,18 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-B03-SCORE-ALIGNMENT",
+  "status": "FROZEN_BEFORE_ALIGNMENT_COMPARISON",
+  "source": "configs/p2/alignment_development.json",
+  "evaluation_router": "R1 hard zero-support router",
+  "cold_unit": "R1 controlled-zero NDCG@20 divided by C_cold controlled-zero NDCG@20; use absolute delta if denominator is zero",
+  "warm_margin": "0.10 * C_seq VALIDATION warm NDCG@20",
+  "warm_unit": "1 + (R1 warm NDCG@20 - C_seq warm NDCG@20) / warm_margin",
+  "selection_score": "mean(cold_unit, warm_unit)",
+  "tie_break": [
+    "temperature_scaling",
+    "per_query_standardized_logits",
+    "rank_percentile_normalization",
+    "alignment_id ascending"
+  ],
+  "protected_roles_opened": []
+}

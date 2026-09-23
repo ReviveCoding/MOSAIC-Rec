@@ -1,0 +1,56 @@
+{
+  "implementation_sha256": "01fe96372dda927660e079b99d76b947499035a5bcb59ac0010c8147e8166caa",
+  "protected_roles_opened": [],
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "source_alignment_sha256": "2d1b35a82175378607adb83f34b1a0c6fc389fde273e9cc974d2d108800875d3",
+  "stage_id": "P2-B03-ALIGNMENT-MATERIALIZATION",
+  "status": "PASS",
+  "trial_count": 9,
+  "trials": [
+    {
+      "alignment_id": "ALIGN_STD",
+      "path": "configs/p2/alignment_trials/align_std.json",
+      "sha256": "86b59e80227f8b27879ba48f01f23199cbbdd1dc46e2f0bec860f77053ca85db"
+    },
+    {
+      "alignment_id": "ALIGN_RANK",
+      "path": "configs/p2/alignment_trials/align_rank.json",
+      "sha256": "bb4b92c6485b708f0500443278400b93a8684771e2246ced1e0da1326f0e086d"
+    },
+    {
+      "alignment_id": "ALIGN_TEMP_0.5_0.5",
+      "path": "configs/p2/alignment_trials/align_temp_0.5_0.5.json",
+      "sha256": "76f035a48545b65963c29befcdea29dc92e63cfe4cc02be0ccbb620e705815b8"
+    },
+    {
+      "alignment_id": "ALIGN_TEMP_0.5_1.0",
+      "path": "configs/p2/alignment_trials/align_temp_0.5_1.0.json",
+      "sha256": "d8664d4ece07da0cae349471a644562e8c861322e48275410c1279dfcb615577"
+    },
+    {
+      "alignment_id": "ALIGN_TEMP_1.0_0.5",
+      "path": "configs/p2/alignment_trials/align_temp_1.0_0.5.json",
+      "sha256": "ee1d9c07a5b22ae145161f86f5b68e7ec466c84b916566b5c06e991fb5deac3b"
+    },
+    {
+      "alignment_id": "ALIGN_TEMP_1.0_1.0",
+      "path": "configs/p2/alignment_trials/align_temp_1.0_1.0.json",
+      "sha256": "7f2674d474f529d8ec881dda9387c7d9857cdc56e6c984c9c8bc9896c0655b75"
+    },
+    {
+      "alignment_id": "ALIGN_TEMP_1.0_2.0",
+      "path": "configs/p2/alignment_trials/align_temp_1.0_2.0.json",
+      "sha256": "30379dc821b2dd6be6611a843da7ae33797265f3c3ceacaf8091db3556a9a29a"
+    },
+    {
+      "alignment_id": "ALIGN_TEMP_2.0_1.0",
+      "path": "configs/p2/alignment_trials/align_temp_2.0_1.0.json",
+      "sha256": "c3e6df30b6f4982db5a13e2f517db07450524d4148f8c67104718289ef3719ad"
+    },
+    {
+      "alignment_id": "ALIGN_TEMP_2.0_2.0",
+      "path": "configs/p2/alignment_trials/align_temp_2.0_2.0.json",
+      "sha256": "b315930e66b98e93f7197069926bb05e9d2ebb5ea9a9a2cec7dbee954340bf07"
+    }
+  ]
+}

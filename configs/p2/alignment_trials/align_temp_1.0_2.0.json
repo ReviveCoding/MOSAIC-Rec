@@ -1,0 +1,29 @@
+{
+  "alignment_id": "ALIGN_TEMP_1.0_2.0",
+  "evidence_class": "p2_measured_development_score_alignment",
+  "experts": {
+    "content_checkpoint": "/home/bjw-0/mosaic-rec-work/p2/checkpoints/ccold_two_tower_pilot_attempt2.pt",
+    "sequence_checkpoint": "/home/bjw-0/mosaic-rec-work/p2/checkpoints/cseq_bert4rec_pilot_attempt2.pt"
+  },
+  "implementation_sha256": "01fe96372dda927660e079b99d76b947499035a5bcb59ac0010c8147e8166caa",
+  "protected_roles_opened": [],
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "router": {
+    "alignment": "temperature_scaling",
+    "definition": "content expert for candidate FIT support zero; sequence expert otherwise",
+    "model_id": "R1_ALIGN_TEMP_1.0_2.0",
+    "standardization_population": "time-available candidates after FIT-history masking",
+    "temperatures": [
+      1.0,
+      2.0
+    ],
+    "zero_variance_scale": 1.0
+  },
+  "scoring": {
+    "batch_size": 96,
+    "exact_full_catalog": true,
+    "top_k": 100
+  },
+  "source_alignment_sha256": "2d1b35a82175378607adb83f34b1a0c6fc389fde273e9cc974d2d108800875d3",
+  "stage_id": "P2-B03-SCORE-ALIGNMENT"
+}

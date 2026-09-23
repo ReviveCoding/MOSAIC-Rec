@@ -212,7 +212,7 @@ def score_r1(
     )
     result = {
         "protocol_id": PROTOCOL_ID,
-        "stage_id": "P2-D01-PILOT",
+        "stage_id": str(config.get("stage_id", "P2-D01-PILOT")),
         "status": "PASS",
         "model_id": config["router"]["model_id"],
         "git_commit": subprocess.check_output(
@@ -225,7 +225,9 @@ def score_r1(
         "alignment": config["router"]["alignment"],
         "gpu_qualification": gpu_qualification,
         "validation": scoring,
-        "evidence_class": "p2_measured_development_router_pilot",
+        "evidence_class": str(
+            config.get("evidence_class", "p2_measured_development_router_pilot")
+        ),
     }
     write_json_new(receipt, result)
     return result

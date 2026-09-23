@@ -96,3 +96,9 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 - R3 attempt 2 remains a prestart infrastructure event. R3 attempt 3 waited without lock ownership while ACT-Agent completed training and evaluation, then passed both sustained idle checks and ran under the exclusive p2 lock.
 - R3 attempt 3 used the unchanged preregistered configuration and preserved an unfavorable controlled-zero NDCG@20 of zero. Its overall and warm scores exactly match R1 at the reported precision; this is development evidence and is not a promotion result.
 - The checkpoint SHA-256 is `d644f4d746ff86a99bc25c98a847f974e31700a0c620c19135fa466b5363eca6`, scored output SHA-256 is `445aa2cd8f30778d14b2f37a9c6bce74d75a3bc4b3db1056d9ac335542515b66`, and log SHA-256 is `dfb314371bd8d8172e83fbb8ba3d2dda0cb6a7e46ddf243b2e75a0787ef9f4e4`.
+
+## 2026-09-23 — score-alignment implementation clarification 001
+
+- Before running the preregistered comparative alignment candidates, fixed the evaluation model as the R1 hard zero-support router. This isolates the expert cross-scale transformation from learned-gate fitting.
+- Made the already preregistered unit scaling executable: controlled-zero performance is divided by C_cold controlled-zero VALIDATION NDCG@20, while warm performance is expressed relative to C_seq with one unit equal to the default 10% warm margin. Their arithmetic mean is the frozen alignment selection score.
+- Materialized all nine candidates already listed in `configs/p2/alignment_development.json` under distinct hashed config identities. No candidate, temperature, role, metric, population, or tie rule was added after outcome access; QUALIFICATION and LOCKED_FINAL remain unopened.
