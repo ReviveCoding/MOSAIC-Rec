@@ -8,6 +8,7 @@ from mosaic_rec.p2.models import (
     BERT4RecExpert,
     ContentTwoTower,
     ContextRouterGate,
+    LightGCN,
     MonotonicSupportGate,
     SASRecExpert,
     cloze_batch,
@@ -76,3 +77,9 @@ def test_additional_baseline_shapes() -> None:
     assert sas.query(sequence, torch.tensor([2, 3])).shape == (2, 4)
     vbpr = VBPR(3, 5, torch.randn(5, 6), width=4)
     assert vbpr.scores(users, items).shape == (2, 2)
+    graph = LightGCN(2, 3, width=4, layers=1)
+    indices = torch.tensor([[0, 2, 1, 3], [2, 0, 3, 1]])
+    adjacency = torch.sparse_coo_tensor(indices, torch.ones(4), (5, 5)).coalesce()
+    user_vectors, item_vectors = graph(adjacency)
+    assert user_vectors.shape == (2, 4)
+    assert item_vectors.shape == (3, 4)

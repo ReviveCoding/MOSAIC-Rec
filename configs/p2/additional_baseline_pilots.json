@@ -14,6 +14,7 @@
   },
   "models": {
     "BPR_MF": {"model_id": "BPR_MF_PILOT", "stage_id": "P2-C00-BPR-PILOT"},
+    "LIGHTGCN": {"model_id": "LIGHTGCN_PILOT", "stage_id": "P2-C01-LIGHTGCN-PILOT", "layers": 2},
     "SASREC": {"model_id": "SASREC_PILOT", "stage_id": "P2-C03-SASREC-PILOT", "layers": 2, "heads": 4, "dropout": 0.2},
     "VBPR": {"model_id": "VBPR_PILOT", "stage_id": "P2-C04-VBPR-PILOT"}
   },

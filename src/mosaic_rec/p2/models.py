@@ -221,3 +221,24 @@ class VBPR(nn.Module):
         visual = self.image_projection(self.image_features[items])
         visual_score = (self.user_visual(users)[..., None, :] * visual).sum(dim=-1)
         return id_score + visual_score
+
+
+class LightGCN(nn.Module):
+    def __init__(
+        self, users: int, items: int, width: int = 64, layers: int = 2
+    ) -> None:
+        super().__init__()
+        self.users = users
+        self.items = items
+        self.layers = layers
+        self.embedding = nn.Embedding(users + items, width)
+        nn.init.normal_(self.embedding.weight, std=0.02)
+
+    def forward(self, adjacency: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        values = self.embedding.weight
+        levels = [values]
+        for _ in range(self.layers):
+            values = torch.sparse.mm(adjacency, values)
+            levels.append(values)
+        combined = torch.stack(levels).mean(dim=0)
+        return combined[: self.users], combined[self.users :]

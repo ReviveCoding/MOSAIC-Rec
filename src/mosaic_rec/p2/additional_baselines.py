@@ -15,7 +15,7 @@ from torch.utils.data import DataLoader, TensorDataset
 
 from mosaic_rec.p2 import PROTOCOL_ID
 from mosaic_rec.p2.contracts import sha256_file, write_json_new
-from mosaic_rec.p2.models import BPRMF, VBPR, SASRecExpert
+from mosaic_rec.p2.models import BPRMF, VBPR, LightGCN, SASRecExpert
 from mosaic_rec.p2.runtime import (
     exact_score,
     load_catalog,
@@ -122,10 +122,39 @@ def run_baseline(
     user_indices = torch.tensor([user_to_index[user] for user in users])
     device = torch.device("cuda:0")
     width = int(common["width"])
+    adjacency: torch.Tensor | None = None
     if baseline == "BPR_MF":
         model: torch.nn.Module = BPRMF(len(user_to_index), len(item_ids), width).to(
             device
         )
+    elif baseline == "LIGHTGCN":
+        model = LightGCN(
+            len(user_to_index),
+            len(item_ids),
+            width,
+            layers=int(model_config["layers"]),
+        ).to(device)
+        fit_table = pq.read_table(fit_path, columns=["user_id", "item_id"])
+        edge_users = torch.tensor(
+            [user_to_index[user] for user in fit_table.column("user_id").to_pylist()],
+            device=device,
+        )
+        edge_items = torch.tensor(
+            [item_to_index[item] for item in fit_table.column("item_id").to_pylist()],
+            device=device,
+        )
+        item_nodes = edge_items + len(user_to_index)
+        source = torch.cat([edge_users, item_nodes])
+        target_nodes = torch.cat([item_nodes, edge_users])
+        node_count = len(user_to_index) + len(item_ids)
+        degree = torch.bincount(source, minlength=node_count).float().clamp_min(1)
+        weights = degree[source].rsqrt() * degree[target_nodes].rsqrt()
+        adjacency = torch.sparse_coo_tensor(
+            torch.stack([source, target_nodes]),
+            weights,
+            (node_count, node_count),
+            device=device,
+        ).coalesce()
     elif baseline == "VBPR":
         image = torch.tensor(np.asarray(image_np), device=device)
         model = VBPR(len(user_to_index), len(item_ids), image, width).to(device)
@@ -164,7 +193,27 @@ def run_baseline(
         model.train()
         total = 0.0
         seen = 0
-        for user_index, history, target, negative in loader:
+        if baseline == "LIGHTGCN":
+            assert adjacency is not None
+            user_all, item_all = model(adjacency)
+            all_users = user_indices.to(device)
+            all_targets = targets.to(device) - 1
+            all_negatives = negatives.to(device) - 1
+            positive = (user_all[all_users] * item_all[all_targets]).sum(dim=-1)
+            negative_score = (
+                user_all[all_users, None, :] * item_all[all_negatives]
+            ).sum(dim=-1)
+            loss = torch.nn.functional.softplus(
+                -(positive[:, None] - negative_score)
+            ).mean()
+            optimizer.zero_grad(set_to_none=True)
+            loss.backward()
+            optimizer.step()
+            total = float(loss.detach()) * len(all_users)
+            seen = len(all_users)
+        for user_index, history, target, negative in (
+            [] if baseline == "LIGHTGCN" else loader
+        ):
             user_index = user_index.to(device, non_blocking=True)
             history = history.to(device, non_blocking=True)
             target = target.to(device, non_blocking=True)
@@ -178,8 +227,12 @@ def run_baseline(
                         logits.float(), class_lookup[target]
                     )
                 else:
-                    positive = model.scores(user_index, target[:, None]).squeeze(1)
-                    negative_score = model.scores(user_index, negative)
+                    # MF and VBPR use zero-based catalog indices. Training rows
+                    # use one-based model IDs so that zero remains sequence padding.
+                    item_target = target - 1
+                    item_negative = negative - 1
+                    positive = model.scores(user_index, item_target[:, None]).squeeze(1)
+                    negative_score = model.scores(user_index, item_negative)
                     loss = torch.nn.functional.softplus(
                         -(positive[:, None] - negative_score)
                     ).mean()
@@ -225,6 +278,19 @@ def run_baseline(
                 [user_to_index[user] for user in batch_users], device=device
             )
             return model.user(indices) @ catalog.T
+
+    elif baseline == "LIGHTGCN":
+        assert adjacency is not None
+        with torch.inference_mode():
+            user_catalog, item_catalog = model(adjacency)
+            item_catalog = item_catalog.clone()
+            item_catalog[torch.tensor(fit_support == 0, device=device)] = 0
+
+        def score_batch(batch_users: list[str]) -> torch.Tensor:
+            indices = torch.tensor(
+                [user_to_index[user] for user in batch_users], device=device
+            )
+            return user_catalog[indices] @ item_catalog.T
 
     else:
         catalog_ids = torch.arange(len(item_ids), device=device)

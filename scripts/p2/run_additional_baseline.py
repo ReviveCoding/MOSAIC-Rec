@@ -13,7 +13,7 @@ from mosaic_rec.p2.gpu import heavy_gpu_lock
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("baseline", choices=["BPR_MF", "SASREC", "VBPR"])
+    parser.add_argument("baseline", choices=["BPR_MF", "LIGHTGCN", "SASREC", "VBPR"])
     parser.add_argument("--repo", type=Path, required=True)
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--fit", type=Path, required=True)
