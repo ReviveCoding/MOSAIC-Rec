@@ -3,7 +3,7 @@
   "scientific_state": "FROZEN",
   "execution_status": "READY_FOR_GUARDED_LOCKED_EXECUTION_AMENDMENT1",
   "updated_utc": "2026-09-23T02:22:37Z",
-  "canonical_receipts_current": 156,
+  "canonical_receipts_current": 157,
   "baseline_b1": "VALIDATION_SELECTED_7_DAYS_THREE_TRACKS",
   "baseline_b9_bm3": "ONE_EPOCH_REFERENCE_PROTOCOL_PILOT_PASS_UNQUALIFIED",
   "baseline_b10_freedom": "ATTEMPT1_INTERRUPTED_CAUSE_UNPROVEN_ATTEMPT2_ONE_EPOCH_PILOT_PASS_UNQUALIFIED",

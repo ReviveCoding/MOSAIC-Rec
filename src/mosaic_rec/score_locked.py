@@ -50,7 +50,7 @@ def locked_state_guard(
         raise ValueError("Protocol identity mismatch")
     if status["scientific_state"] != "FROZEN":
         raise RuntimeError("FROZEN state guard is not open")
-    if status["stages"]["E05"] != "FROZEN_GUARD_PASS":
+    if status["stages"]["E05"] != "FROZEN_AMENDMENT1_GUARD_PASS":
         raise RuntimeError("E05 FROZEN guard has not passed")
     guard = json.loads(
         (root / "evidence/e05_frozen_guard_p1_amendment1.json").read_text()

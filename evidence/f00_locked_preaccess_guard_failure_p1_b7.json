@@ -1,0 +1,17 @@
+{
+  "stage_id": "F00_PREACCESS_GUARD",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "FROZEN",
+  "status": "PREACCESS_GUARD_FAIL",
+  "ended_utc": "2026-09-23T02:25:00Z",
+  "model": "B7_BERT4REC_T3",
+  "failure_class": "implementation_guard_token",
+  "exception": "RuntimeError: E05 FROZEN guard has not passed",
+  "cause": "The locked scorer expected the original FROZEN_GUARD_PASS stage token after amendment 1 had correctly changed the canonical token to FROZEN_AMENDMENT1_GUARD_PASS.",
+  "protected_rows_opened": false,
+  "locked_receipt_created": false,
+  "per_user_output_created": false,
+  "scientific_identities_changed": false,
+  "recovery": "Correct only the guard token, commit and revalidate, then retry the identical frozen job because no output path exists.",
+  "evidence_class": "measured_preaccess_implementation_failure"
+}
