@@ -29,3 +29,5 @@ R3 attempt 3 is queued through the committed crash-safe wrapper. ACT-Agent train
 The follow-on evaluation exited at 2026-09-23 15:59 UTC. R3 attempt 3 subsequently completed under the p2 lock, so this transient blocker is resolved and retained here as recovery history.
 
 R4 attempt 1 passed the outer idle checks, but ACT-Agent launched CUDA PID 14599 during the independent inner idle guard. The guard failed closed before lock acquisition, CUDA qualification, model loading, or metrics. The log and failure receipt are preserved; R4 may resume only as attempt 2 on distinct paths.
+
+R4 attempt 2 is now queued on those distinct paths without lock ownership. ACT-Agent step-30 evaluation PID 17045 currently owns CUDA; the queue has produced no p2 artifact and continues to wait.

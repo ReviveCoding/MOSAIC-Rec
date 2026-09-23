@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-Crash recovery complete. P2-D03 R3 attempt 3 completed under the exclusive GPU lock; P2-D04 R4 attempt 1 is preserved as a prestart contention event and attempt 2 is next.
+Crash recovery complete. P2-D03 R3 attempt 3 completed under the exclusive GPU lock; P2-D04 R4 attempt 1 is preserved as a prestart contention event and attempt 2 is queued without lock ownership.
 
 ## Completed
 
@@ -43,7 +43,7 @@ Crash recovery complete. P2-D03 R3 attempt 3 completed under the exclusive GPU l
 
 ## Active next action
 
-Queue P2-D04 R4 attempt 2 on distinct paths with the unchanged preregistered ladder. Inspect and canonicalize it before baseline pilots.
+The committed R4 attempt 2 queue is waiting on distinct paths. Inspect and canonicalize R4 after the first safe sustained idle window, before baseline pilots.
 
 ## Protected access counters
 
@@ -54,4 +54,4 @@ Queue P2-D04 R4 attempt 2 on distinct paths with the unchanged preregistered lad
 
 - Raw-cover extraction and modification remain on rights hold.
 - Official publisher text-feature download is quota-blocked. Amendment 001 selects the already authorized local MiniLM embedding derived from official title/tag/description fields; its p2 copy and alignment qualification passed.
-- ACT-Agent CUDA PID 14599 is the current transient blocker. R4 attempt 2 must remain outside the p2 lock until that process exits and a fresh sustained idle window passes.
+- ACT-Agent training PID 14599 transitioned into step-30 evaluation PID 17045. R4 attempt 2 remains outside the p2 lock with no log, checkpoint, output, receipt, or metric until that CUDA process exits and a fresh sustained idle window passes.
