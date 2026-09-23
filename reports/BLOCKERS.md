@@ -11,3 +11,5 @@
 - MicroLens raw-cover blur/crop/occlusion robustness needs a source-specific permission decision. The official portal lists a cover archive but its nearby declaration restricts modification of video content and does not explicitly clarify cover transformations. Hold raw-cover perturbation; embedding-level missingness/mismatch remains feasible with its own labels.
 
 - Historical LightGCN pilot used future FIT item availability and full FIT user history in training negative selection. Its score remains preserved but baseline qualification needs a corrected rerun and fair HPO; code was repaired in DEVELOPMENT before protected access.
+
+- Post-lock adversarial audit found that E04/E05 froze robustness and ablation family names but not all intervention intensities, scopes, directional statistics, ablation implementations, or multiplicity mappings. Confirmatory Gxx/Hxx execution is `INVALID_UNDERSPECIFIED` under p1. Do not define these after protected access. Development ladder evidence remains exploratory, and reliability language is prohibited.

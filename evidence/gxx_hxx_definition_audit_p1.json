@@ -1,0 +1,65 @@
+{
+  "stage_id": "Gxx_Hxx",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "ANALYSIS",
+  "status": "INVALID_UNDERSPECIFIED_CONFIRMATORY_DEFINITIONS",
+  "ended_utc": "2026-09-23T02:40:00Z",
+  "locked_execution_receipts": 3,
+  "robustness": {
+    "status": "INVALID_UNDERSPECIFIED",
+    "frozen_family": [
+      "image_missing",
+      "text_missing",
+      "metadata_missing",
+      "image_embedding_corruption",
+      "mismatched_image",
+      "text_truncation",
+      "collaborative_support_reduction",
+      "temporal_shift",
+      "long_tail"
+    ],
+    "missing_prelock_details": [
+      "intervention scope over histories versus candidates",
+      "corruption intensity and distribution",
+      "text truncation length",
+      "support reduction schedule",
+      "temporal-shift interval mapping",
+      "gate response statistic and directional thresholds"
+    ],
+    "historical_development_manifest": "configs/robustness_development_p1.json",
+    "historical_manifest_was_frozen_in_e05": false
+  },
+  "ablations": {
+    "status": "INVALID_UNDERSPECIFIED",
+    "frozen_family": [
+      "no_sequence",
+      "no_collaborative",
+      "no_text",
+      "no_image",
+      "no_metadata",
+      "no_adaptive_gate",
+      "no_behavioral_dropout",
+      "no_modality_dropout",
+      "no_consistency_signal",
+      "unconstrained_vs_monotonic_gate",
+      "no_auxiliary_alignment",
+      "retrieval_only_vs_reranking"
+    ],
+    "missing_prelock_details": [
+      "applicability map for the M1 finalist",
+      "per-removal architecture and loss definitions",
+      "retraining output identities",
+      "comparison and multiplicity mapping"
+    ],
+    "historical_development_manifest": "configs/ablation_development_p1.json",
+    "historical_manifest_was_frozen_in_e05": false
+  },
+  "decision": "Do not invent post-lock definitions or present exploratory interventions as confirmatory robustness/ablation evidence.",
+  "terminology": "adaptive multimodal fusion",
+  "prohibited_claim": "reliability-aware",
+  "warnings": [
+    "This is a scientific protocol failure, not an infrastructure failure.",
+    "The existing M0-M7 development ladder remains valid exploratory component evidence and preserves negative findings."
+  ],
+  "evidence_class": "derived_postlock_adversarial_audit"
+}

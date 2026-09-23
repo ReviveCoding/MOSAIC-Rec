@@ -1,0 +1,14 @@
+{
+  "stage_id": "J00_SYSTEMS_ATTEMPT2",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "ANALYSIS",
+  "status": "ORCHESTRATION_FAIL_PRESERVED",
+  "git_commit": "d73cf8c559613f19e9fbb958ad8d4c58d3bac7ae",
+  "failure_class": "implementation_lock_reentrancy",
+  "command": "flock -n gpu.lock -c 'python scripts/benchmark_systems_p1.py'",
+  "output_created": false,
+  "failure": "The orchestration shell held the advisory GPU lock, so the FastAPI backend correctly failed its own nonblocking lock acquisition.",
+  "repair": "Verify lock availability before launch, release the probe, then let the serving backend acquire and own the lock.",
+  "scientific_impact": "none",
+  "evidence_class": "technical_failure"
+}

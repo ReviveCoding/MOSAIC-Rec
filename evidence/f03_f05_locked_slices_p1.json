@@ -1,0 +1,162 @@
+{
+  "stage_id": "F03_F05",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "ANALYSIS",
+  "status": "LOCKED_SLICE_ANALYSIS_PASS",
+  "ended_utc": "2026-09-23T02:36:17.874627+00:00",
+  "git_commit": "d73cf8c559613f19e9fbb958ad8d4c58d3bac7ae",
+  "dataset": "microlens-100k",
+  "support_bin_identity": {
+    "cold": 0,
+    "emerging": [
+      1,
+      5
+    ],
+    "sparse": [
+      6,
+      20
+    ],
+    "warm_min": 21
+  },
+  "history_quartile_boundaries": [
+    2,
+    4,
+    5
+  ],
+  "models": {
+    "C_seq": {
+      "support_bins": {
+        "cold_0": {
+          "n": 33303,
+          "ndcg_at_20": 0.0
+        },
+        "emerging_1_5": {
+          "n": 462,
+          "ndcg_at_20": 0.0011523987203977063
+        },
+        "sparse_6_20": {
+          "n": 1137,
+          "ndcg_at_20": 0.00547243345189294
+        },
+        "warm_gt_20": {
+          "n": 3978,
+          "ndcg_at_20": 0.03624742509053777
+        }
+      },
+      "user_history_quartiles_descriptive": {
+        "q1_lte_2": {
+          "n": 10370,
+          "ndcg_at_20": 0.0029483641810483466
+        },
+        "q2_3_4": {
+          "n": 15782,
+          "ndcg_at_20": 0.003969958972489914
+        },
+        "q3_5_5": {
+          "n": 4209,
+          "ndcg_at_20": 0.004902764847717645
+        },
+        "q4_gt_5": {
+          "n": 8519,
+          "ndcg_at_20": 0.004352935291517143
+        }
+      }
+    },
+    "C_cold": {
+      "support_bins": {
+        "cold_0": {
+          "n": 33303,
+          "ndcg_at_20": 0.007096654836220526
+        },
+        "emerging_1_5": {
+          "n": 462,
+          "ndcg_at_20": 0.004564566098257642
+        },
+        "sparse_6_20": {
+          "n": 1137,
+          "ndcg_at_20": 0.0043082251165013855
+        },
+        "warm_gt_20": {
+          "n": 3978,
+          "ndcg_at_20": 0.011713572431028373
+        }
+      },
+      "user_history_quartiles_descriptive": {
+        "q1_lte_2": {
+          "n": 10370,
+          "ndcg_at_20": 0.005206094629158622
+        },
+        "q2_3_4": {
+          "n": 15782,
+          "ndcg_at_20": 0.006576421498831717
+        },
+        "q3_5_5": {
+          "n": 4209,
+          "ndcg_at_20": 0.010564352358847983
+        },
+        "q4_gt_5": {
+          "n": 8519,
+          "ndcg_at_20": 0.010294884864281246
+        }
+      }
+    },
+    "MOSAIC": {
+      "support_bins": {
+        "cold_0": {
+          "n": 33303,
+          "ndcg_at_20": 0.012690752222869186
+        },
+        "emerging_1_5": {
+          "n": 462,
+          "ndcg_at_20": 0.0
+        },
+        "sparse_6_20": {
+          "n": 1137,
+          "ndcg_at_20": 0.0
+        },
+        "warm_gt_20": {
+          "n": 3978,
+          "ndcg_at_20": 0.004833133732296251
+        }
+      },
+      "user_history_quartiles_descriptive": {
+        "q1_lte_2": {
+          "n": 10370,
+          "ndcg_at_20": 0.007212017814365371
+        },
+        "q2_3_4": {
+          "n": 15782,
+          "ndcg_at_20": 0.009621444436912983
+        },
+        "q3_5_5": {
+          "n": 4209,
+          "ndcg_at_20": 0.015718489895225358
+        },
+        "q4_gt_5": {
+          "n": 8519,
+          "ndcg_at_20": 0.017498878091085093
+        }
+      }
+    }
+  },
+  "source_receipts": {
+    "C_seq": {
+      "path": "evidence/f00_locked_p1_b7_bert4rec_t3.json",
+      "sha256": "29cd4fe2bef248854c297965bc069f28ea5b35f74907d681081f02f1e3ae344b"
+    },
+    "C_cold": {
+      "path": "evidence/f00_locked_p1_b4_two_tower_t3.json",
+      "sha256": "13d09e595abdd0d21c49cc3a0de077512c3600b591abf8fa575508220039f660"
+    },
+    "MOSAIC": {
+      "path": "evidence/f00_locked_p1_m1_t2.json",
+      "sha256": "c39082fc7515c0a305d9c8b1a365c9ce85c32ea4d207d66686d319b775b17a24"
+    }
+  },
+  "warnings": [
+    "Support bins are frozen confirmatory slices.",
+    "User-history quartiles are post-lock descriptive slices and support no confirmatory claim.",
+    "FIT interaction count is a support/popularity proxy, not exposure or causal popularity."
+  ],
+  "evidence_class": "derived_locked_slice_analysis"
+}

@@ -1,0 +1,81 @@
+{
+  "stage_id": "J00_J04",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "ANALYSIS",
+  "status": "SYSTEMS_STUDY_PARTIAL_PASS",
+  "ended_utc": "2026-09-23T02:50:58.885193+00:00",
+  "git_commit": "d73cf8c559613f19e9fbb958ad8d4c58d3bac7ae",
+  "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "feature_extraction": {
+    "microlens_text_items_per_second": 3814.91539757902,
+    "microlens_peak_vram_bytes": 560463872,
+    "pixelrec_text_items_per_second": 2407.2556728217223,
+    "pixelrec_peak_vram_bytes": 975859200
+  },
+  "training": {
+    "model": "M1_T2_seed20260924",
+    "fit_samples": 384814,
+    "epochs": 30,
+    "train_seconds": 495.6664123130031,
+    "sample_epochs_per_second": 23290.704621538764,
+    "peak_vram_bytes": 449560064
+  },
+  "exact_full_catalog": {
+    "C_seq": {
+      "users": 38880,
+      "seconds": 6.5602383829973405,
+      "users_per_second": 5926.6139018314025,
+      "peak_vram_bytes": 186316288
+    },
+    "C_cold": {
+      "users": 38880,
+      "seconds": 4.591102357997443,
+      "users_per_second": 8468.554383736015,
+      "peak_vram_bytes": 424649728
+    },
+    "MOSAIC": {
+      "users": 38880,
+      "seconds": 6.283455758006312,
+      "users_per_second": 6187.67784756971,
+      "peak_vram_bytes": 348099584
+    }
+  },
+  "torch_compile": {
+    "status": "PASS",
+    "batch_size": 64,
+    "compile_cold_seconds": 1.812351150001632,
+    "eager_steady_seconds_per_batch": 0.002807313299854286,
+    "compiled_steady_seconds_per_batch": 0.0026895946997683496,
+    "speedup": 1.0437681558846303,
+    "max_abs_parity": 4.76837158203125e-07,
+    "peak_vram_bytes": 189437440,
+    "break_even_batches": 15395.622685612874,
+    "adopt": true
+  },
+  "api": {
+    "manifest": "configs/serving_development_p1.json",
+    "manifest_sha256": "54bbd8376155271b6b43c9f27944c6241892ec56a9cace49928a673a3af9ff24",
+    "evidence_class": "development_demonstration_only",
+    "backend_startup_seconds": 3.34578455099836,
+    "api_startup_seconds": 3.34578455099836,
+    "recommend_requests": 100,
+    "recommend_p50_ms": 4.489948500122409,
+    "recommend_p95_ms": 5.2662849535408895,
+    "recommend_mean_ms": 4.555966670595808,
+    "sequential_throughput_requests_per_second": 219.4401459092066,
+    "diagnostic_requests": 30,
+    "diagnostic_p50_ms": 12.310224010434467,
+    "diagnostic_p95_ms": 14.820810948731374,
+    "errors": 0
+  },
+  "ann": {
+    "status": "HOLD_NOT_EXECUTED",
+    "reason": "No ANN index family or accuracy/latency operating point was frozen; exact ranking remains the scientific path."
+  },
+  "warnings": [
+    "API evidence uses the declared development demo checkpoint, not the frozen three-seed scientific ensemble.",
+    "Single-process sequential request throughput is a local demonstration, not production capacity.",
+    "Timing from E01 and locked scoring is factual workload evidence, not a cross-model hardware-normalized comparison."
+  ],
+  "evidence_class": "measured_local_systems_partial"
+}

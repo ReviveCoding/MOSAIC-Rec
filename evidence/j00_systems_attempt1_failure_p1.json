@@ -1,0 +1,14 @@
+{
+  "stage_id": "J00_SYSTEMS_ATTEMPT1",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "ANALYSIS",
+  "status": "IMPLEMENTATION_FAIL_PRESERVED",
+  "git_commit": "d73cf8c559613f19e9fbb958ad8d4c58d3bac7ae",
+  "failure_class": "implementation_process_isolation",
+  "command": "python scripts/benchmark_systems_p1.py",
+  "output_created": false,
+  "failure": "The same Python process retained its CUDA compute context after the torch.compile measurement. The serving GPU exclusivity guard then correctly rejected that process as an existing compute PID.",
+  "repair": "Run torch.compile and API measurements in separate serial processes. No scientific identity, model, checkpoint, metric, or protected result changes.",
+  "scientific_impact": "none",
+  "evidence_class": "technical_failure"
+}

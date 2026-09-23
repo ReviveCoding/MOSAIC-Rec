@@ -186,7 +186,7 @@ def build(evidence_dir: Path, output: Path, tables_dir: Path) -> dict:
                             rid,
                             data.get("dataset"),
                             data.get("model"),
-                            "VALIDATION",
+                            data.get("role", "VALIDATION"),
                             name,
                             metric,
                             metrics[metric],
@@ -225,6 +225,83 @@ def build(evidence_dir: Path, output: Path, tables_dir: Path) -> dict:
                         ],
                     )
                     counts["gate_weights"] += 1
+        if data.get("stage_id") == "F00_F02_STATISTICS":
+            comparisons = {
+                "cold_superiority_user": data["cold_superiority"][
+                    "paired_user_cluster"
+                ],
+                "cold_superiority_item_sensitivity": data["cold_superiority"][
+                    "cold_item_cluster_sensitivity"
+                ],
+                "warm_noninferiority_user": data["warm_noninferiority"][
+                    "paired_user_cluster"
+                ],
+                "overall_vs_C_seq_user": data["overall_vs_C_seq"],
+            }
+            for comparison, interval in comparisons.items():
+                con.execute(
+                    "INSERT INTO bootstrap VALUES (?, ?, ?, ?, ?, ?)",
+                    [
+                        rid,
+                        comparison,
+                        "ndcg_at_20_difference",
+                        interval["lower"],
+                        interval["upper"],
+                        interval["draws"],
+                    ],
+                )
+                counts["bootstrap"] += 1
+        if data.get("stage_id") == "F03_F05":
+            for model, model_slices in data["models"].items():
+                for family in (
+                    "support_bins",
+                    "user_history_quartiles_descriptive",
+                ):
+                    for name, metric_values in model_slices[family].items():
+                        slice_name = f"{family}:{name}"
+                        con.execute(
+                            "INSERT INTO slices VALUES (?, ?, ?, ?, ?)",
+                            [
+                                rid,
+                                data.get("dataset"),
+                                model,
+                                slice_name,
+                                metric_values["n"],
+                            ],
+                        )
+                        con.execute(
+                            "INSERT INTO metrics VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                            [
+                                rid,
+                                data.get("dataset"),
+                                model,
+                                "LOCKED_FINAL",
+                                slice_name,
+                                "ndcg_at_20",
+                                metric_values["ndcg_at_20"],
+                                metric_values["n"],
+                            ],
+                        )
+                        counts["slices"] += 1
+                        counts["metrics"] += 1
+        if data.get("stage_id") == "J00_J04":
+            latency_values = {
+                "api_startup_seconds": (data["api"]["api_startup_seconds"], "seconds"),
+                "recommend_p50_ms": (data["api"]["recommend_p50_ms"], "milliseconds"),
+                "recommend_p95_ms": (data["api"]["recommend_p95_ms"], "milliseconds"),
+                "recommend_throughput": (
+                    data["api"]["sequential_throughput_requests_per_second"],
+                    "requests_per_second",
+                ),
+                "diagnostic_p50_ms": (data["api"]["diagnostic_p50_ms"], "milliseconds"),
+                "diagnostic_p95_ms": (data["api"]["diagnostic_p95_ms"], "milliseconds"),
+            }
+            for workload, (value, unit) in latency_values.items():
+                con.execute(
+                    "INSERT INTO latency VALUES (?, ?, ?, ?, ?)",
+                    [rid, workload, workload, value, unit],
+                )
+                counts["latency"] += 1
     claims_file = evidence_dir / "claims.json"
     if claims_file.exists():
         for claim in json.loads(claims_file.read_text()):

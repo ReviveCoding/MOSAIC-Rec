@@ -1,0 +1,22 @@
+{
+  "stage_id": "J00_COMPILE",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "ANALYSIS",
+  "status": "TORCH_COMPILE_MEASURED",
+  "ended_utc": "2026-09-23T02:49:46.822620+00:00",
+  "git_commit": "d73cf8c559613f19e9fbb958ad8d4c58d3bac7ae",
+  "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "measurement": {
+    "status": "PASS",
+    "batch_size": 64,
+    "compile_cold_seconds": 1.812351150001632,
+    "eager_steady_seconds_per_batch": 0.002807313299854286,
+    "compiled_steady_seconds_per_batch": 0.0026895946997683496,
+    "speedup": 1.0437681558846303,
+    "max_abs_parity": 4.76837158203125e-07,
+    "peak_vram_bytes": 189437440,
+    "break_even_batches": 15395.622685612874,
+    "adopt": true
+  },
+  "evidence_class": "measured_local_systems"
+}

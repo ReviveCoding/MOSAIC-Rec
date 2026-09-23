@@ -1,62 +1,99 @@
 [
   {
     "claim_id": "development_ladder_tradeoff",
-    "statement": "In a single-seed MicroLens development ladder, M4 had the highest controlled-cold validation NDCG@20 while M7 had the highest FIT-warm validation NDCG@20; neither variant led both slices.",
-    "evidence_class": "measured_development_pilot",
+    "statement": "MicroLens development evidence showed a persistent cold/warm tradeoff across MOSAIC variants.",
+    "evidence_class": "measured_development_seed_stability",
     "receipt_id": "microlens_m4_pilot",
     "status": "INTERNAL_PILOT",
-    "limitation": "Cross-references M0-M7 receipts; no equal HPO, seed qualification, paired intervals, or protected outcome access. This is not a promotion claim."
-  },
-  {
-    "claim_id": "pilot_microlens_gru4rec",
-    "statement": "A three-epoch CUDA GRU4Rec pilot measured validation NDCG@20 of 0.008925 on 41,694 FIT-history MicroLens users.",
-    "evidence_class": "measured_development_pilot",
-    "receipt_id": "microlens_gru4rec_pilot",
-    "status": "INTERNAL_PILOT",
-    "limitation": "No HPO, reference parity, seed qualification, or locked result. The historical pilot drew training negatives from source-wide first-observed items, so FIT-hidden cold IDs may have received negative updates; no cold-start or qualified comparator claim follows."
-  },
-  {
-    "claim_id": "bm3_reference_pilot_cold_zero",
-    "statement": "The one-epoch MMRec BM3 architecture pilot scored zero controlled-cold NDCG@20 on 918 first-event MicroLens validation examples.",
-    "evidence_class": "measured_development_reference_pilot",
-    "receipt_id": "microlens_bm3_mmrec_reference_pilot",
-    "status": "INTERNAL_PILOT",
-    "limitation": "One epoch, one seed, no equal-budget HPO or baseline qualification. BM3 reference inference uses graph/ID embeddings; this is not a qualified cold comparator.",
-    "prohibited_stronger_formulation": "BM3 cannot handle cold items or MOSAIC outperforms a qualified BM3 baseline."
+    "limitation": "Exploratory DEVELOPMENT evidence; it is not a promotion claim.",
+    "prohibited_stronger_formulation": "The tradeoff proves a universal cold-start law."
   },
   {
     "claim_id": "pixelrec_local_content_alignment",
-    "statement": "The local PixelRec50K publisher image and MiniLM text feature indices align on all 82,865 track items, with finite vectors and mapped tag/title-presence fields.",
+    "statement": "The local PixelRec50K publisher image and MiniLM text feature indices align on all 82,865 track items, with finite vectors and mapped metadata.",
     "evidence_class": "measured_content_alignment_qa",
     "receipt_id": "pixelrec_content_alignment_p1",
     "status": "SUPPORTED",
-    "limitation": "This is local feature QA, not image-encoder parity, historical content-time validity, a model result, or permission to redistribute derived vectors.",
-    "prohibited_stronger_formulation": "PixelRec multimodal replication passed or raw covers were independently encoded."
+    "limitation": "Local feature QA only; no external model replication or redistribution permission follows.",
+    "prohibited_stronger_formulation": "PixelRec multimodal replication passed."
   },
   {
     "claim_id": "pixelrec_raw_archive_integrity",
-    "statement": "The locally acquired official PixelRec cover archive passed full CRC and its 82,865 image names map one-to-one to all 82,865 metadata item IDs.",
+    "statement": "The official PixelRec cover archive passed full CRC and all 82,865 image names mapped one-to-one to metadata item IDs.",
     "evidence_class": "measured_source_integrity",
     "receipt_id": "pixelrec_cover_archive_integrity_p1",
     "status": "SUPPORTED",
-    "limitation": "This validates a local raw archive and mapping only. The publisher did not provide an independent archive SHA-256; no image was extracted or used for features, and derived-feature rights remain held.",
-    "prohibited_stronger_formulation": "PixelRec raw images were independently encoded, visual robustness passed, or derived feature redistribution is permitted."
+    "limitation": "No image was independently encoded; derived-feature rights remain held.",
+    "prohibited_stronger_formulation": "Raw-cover transformations or feature redistribution are authorized."
+  },
+  {
+    "claim_id": "locked_cold_point_improvement",
+    "statement": "On MicroLens LOCKED_FINAL, M1_T2 exceeded B4_TWO_TOWER_T3 controlled-cold NDCG@20 by 0.008940 in the point estimate.",
+    "evidence_class": "derived_locked_confirmatory_inference",
+    "receipt_id": "f00_locked_statistics_p1",
+    "status": "SUPPORTED",
+    "limitation": "The paired 95% interval [-0.000194, 0.019205] crossed zero, so the frozen cold superiority gate failed.",
+    "prohibited_stronger_formulation": "MOSAIC established controlled-cold superiority."
+  },
+  {
+    "claim_id": "locked_warm_noninferiority_failed",
+    "statement": "On MicroLens LOCKED_FINAL, M1_T2 was 0.023619 NDCG@20 below B7_BERT4REC_T3 on FIT-warm items and failed the frozen noninferiority gate.",
+    "evidence_class": "derived_locked_confirmatory_inference",
+    "receipt_id": "f00_locked_statistics_p1",
+    "status": "SUPPORTED",
+    "limitation": "Applies to the frozen p1 data, candidates, ensemble, and offline metric.",
+    "prohibited_stronger_formulation": "MOSAIC retained warm recommendation quality."
+  },
+  {
+    "claim_id": "locked_overall_secondary",
+    "statement": "M1_T2 improved overall MicroLens LOCKED_FINAL NDCG@20 over B7_BERT4REC_T3 by 0.007482, with paired 95% interval [0.006634, 0.008332].",
+    "evidence_class": "derived_locked_secondary_inference",
+    "receipt_id": "f00_locked_statistics_p1",
+    "status": "SUPPORTED",
+    "limitation": "Secondary evidence cannot replace the failed co-primary cold and warm gates.",
+    "prohibited_stronger_formulation": "MOSAIC passed the primary promotion criterion."
+  },
+  {
+    "claim_id": "terminal_decision",
+    "statement": "Protocol mosaic-rec-2026-09-20-p1 supports RETAIN_BASELINE because both frozen co-primary promotion gates failed.",
+    "evidence_class": "derived_locked_confirmatory_inference",
+    "receipt_id": "f00_locked_statistics_p1",
+    "status": "SUPPORTED",
+    "limitation": "This decision is specific to p1 and does not establish that multimodal recommendation cannot help in other protocols.",
+    "prohibited_stronger_formulation": "MOSAIC is universally ineffective."
+  },
+  {
+    "claim_id": "systems_local_measurement",
+    "statement": "The local development API completed 100 sequential recommendation requests without error at 4.49 ms median latency on the RTX 4090 Laptop GPU.",
+    "evidence_class": "measured_local_systems_partial",
+    "receipt_id": "j00_j04_systems_p1",
+    "status": "SUPPORTED",
+    "limitation": "Single-process local demonstration using a development checkpoint; no production capacity or SLA claim.",
+    "prohibited_stronger_formulation": "The service is production ready."
   },
   {
     "claim_id": "core_promotion",
-    "statement": "MOSAIC improves controlled cold NDCG@20 while retaining warm quality.",
-    "evidence_class": "unexecuted",
-    "receipt_id": null,
+    "statement": "MOSAIC improves controlled-cold NDCG@20 while retaining warm quality.",
+    "evidence_class": "derived_locked_confirmatory_inference",
+    "receipt_id": "f00_locked_statistics_p1",
     "status": "UNSUPPORTED",
-    "limitation": "MOSAIC finalist, comparators, margins, locked results, and paired bootstrap are not available."
+    "limitation": "Cold superiority and warm noninferiority both failed their frozen gates."
   },
   {
     "claim_id": "reliability",
     "statement": "MOSAIC has calibrated reliability-aware gate behavior.",
+    "evidence_class": "invalid_underspecified_confirmatory_protocol",
+    "receipt_id": "gxx_hxx_definition_audit_p1",
+    "status": "UNSUPPORTED",
+    "limitation": "Confirmatory robustness definitions were underspecified before protected access; gate weights are not calibrated probabilities."
+  },
+  {
+    "claim_id": "external_replication",
+    "statement": "The locked MicroLens result replicated on MovieLens 32M or PixelRec50K.",
     "evidence_class": "unexecuted",
     "receipt_id": null,
     "status": "UNSUPPORTED",
-    "limitation": "Intervention and directional gate tests are not complete; gate weights are not probabilities."
+    "limitation": "Only FIT input preparation and development popularity pilots exist; no frozen transfer model result was executed."
   },
   {
     "claim_id": "production_impact",
@@ -72,6 +109,6 @@
     "evidence_class": "unexecuted",
     "receipt_id": null,
     "status": "UNSUPPORTED",
-    "limitation": "Only one physical GPU is available and no multi-GPU measurement exists."
+    "limitation": "Only one physical GPU was available and no multi-GPU measurement exists."
   }
 ]

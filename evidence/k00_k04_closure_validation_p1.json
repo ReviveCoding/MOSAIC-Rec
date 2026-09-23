@@ -1,0 +1,30 @@
+{
+  "stage_id": "K00_K04",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "ANALYSIS",
+  "status": "CLOSURE_VALIDATION_PASS_WITH_DECLARED_INVALID_STAGES",
+  "ended_utc": "2026-09-23T03:08:00Z",
+  "git_commit": "d73cf8c559613f19e9fbb958ad8d4c58d3bac7ae",
+  "tests": {
+    "command": "PYTHONPATH=src python -m pytest -q",
+    "passed": 36,
+    "failed": 0,
+    "warnings": 6
+  },
+  "quality": {
+    "ruff_format": "PASS_77_FILES",
+    "ruff_check": "PASS"
+  },
+  "scientific_dispositions": {
+    "primary_decision": "RETAIN_BASELINE",
+    "robustness": "INVALID_UNDERSPECIFIED_CONFIRMATORY_DEFINITIONS",
+    "ablations": "INVALID_UNDERSPECIFIED_CONFIRMATORY_DEFINITIONS",
+    "replication": "LOCAL_VALIDITY_ONLY_REPLICATION_NOT_EXECUTED",
+    "systems": "SYSTEMS_STUDY_PARTIAL_PASS"
+  },
+  "warnings": [
+    "A technically complete project may retain its baseline.",
+    "Invalid and held stages remain visible and are not counted as passes."
+  ],
+  "evidence_class": "derived_reproducibility_audit"
+}

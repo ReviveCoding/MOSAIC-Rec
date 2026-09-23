@@ -1,0 +1,38 @@
+{
+  "stage_id": "I00_I02",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "ANALYSIS",
+  "status": "LOCAL_VALIDITY_ONLY_REPLICATION_NOT_EXECUTED",
+  "ended_utc": "2026-09-23T03:00:00Z",
+  "locked_execution_receipts": 3,
+  "movielens": {
+    "status": "HOLD_NO_FROZEN_TRANSFER_PROTOCOL",
+    "fit_input_receipt": "movielens_fit_dense_adapter_p1",
+    "available_evidence": "FIT-only dense behavioral input and development popularity validation",
+    "missing_prelock_details": [
+      "fixed transferred model and seed ensemble",
+      "external role access sequence",
+      "external evaluation population for users without FIT history",
+      "resource cap and failure rule"
+    ]
+  },
+  "pixelrec": {
+    "status": "HOLD_NO_FROZEN_TRANSFER_PROTOCOL",
+    "fit_input_receipt": "pixelrec_fit_dense_adapter_p1",
+    "available_evidence": "FIT-only dense input, publisher image features, local text features, and content alignment QA",
+    "missing_prelock_details": [
+      "fixed transferred model and comparator implementations",
+      "external seed ensemble and training budget",
+      "external metric/statistical decision rule",
+      "publisher feature provenance comparability rule"
+    ],
+    "rights_limitation": "Raw-cover local encoder extraction and perturbations remain held; publisher features are local-only."
+  },
+  "decision": "Do not choose a post-lock external protocol after observing the MicroLens result. Report p1 as LOCAL_VALIDITY_ONLY and design a separately preregistered replication protocol next.",
+  "warnings": [
+    "FIT input preparation is not model replication.",
+    "Development popularity pilots do not replicate the selected neural comparison.",
+    "No external outcome was tuned until it agreed."
+  ],
+  "evidence_class": "derived_postlock_replication_audit"
+}

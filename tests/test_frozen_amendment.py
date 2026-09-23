@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 from pathlib import Path
 
 from mosaic_rec.score_locked import locked_state_guard
@@ -26,7 +27,19 @@ def test_prelocked_amendment_changes_only_locked_query_contract() -> None:
     }
 
 
-def test_locked_scorer_accepts_only_guarded_amendment() -> None:
-    path = ROOT / "evidence/e05_freeze_manifest_p1_amendment1.json"
+def test_locked_scorer_accepts_only_guarded_amendment(tmp_path: Path) -> None:
+    evidence = tmp_path / "evidence"
+    evidence.mkdir()
+    names = (
+        "e05_freeze_manifest_p1_amendment1.json",
+        "e05_frozen_guard_p1_amendment1.json",
+    )
+    for name in names:
+        shutil.copy2(ROOT / "evidence" / name, evidence / name)
+    status = json.loads((ROOT / "evidence/stage_status.json").read_text())
+    status["scientific_state"] = "FROZEN"
+    status["stages"]["E05"] = "FROZEN_AMENDMENT1_GUARD_PASS"
+    (evidence / "stage_status.json").write_text(json.dumps(status))
+    path = evidence / "e05_freeze_manifest_p1_amendment1.json"
     frozen = json.loads(path.read_text())
-    locked_state_guard(ROOT, frozen, path)
+    locked_state_guard(tmp_path, frozen, path)
