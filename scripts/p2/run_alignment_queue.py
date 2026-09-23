@@ -7,14 +7,28 @@ import json
 import os
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 from mosaic_rec.p2.contracts import sha256_file
+from mosaic_rec.p2.gpu import sustained_idle
 
 AUDITED_LAUNCH_ATTEMPTS = {
     "ALIGN_TEMP_0.5_0.5": 3,
     "ALIGN_TEMP_1.0_0.5": 2,
 }
+
+
+def wait_for_sustained_idle(alignment_id: str) -> None:
+    """Wait without lock ownership; the child repeats this check under flock."""
+    while True:
+        try:
+            sustained_idle()
+        except RuntimeError as exc:
+            print(f"WAIT_GPU {alignment_id}: {exc}", flush=True)
+            time.sleep(5)
+            continue
+        return
 
 
 def main() -> None:
@@ -73,6 +87,7 @@ def main() -> None:
             "--lock",
             str(args.lock),
         ]
+        wait_for_sustained_idle(alignment_id)
         print(f"START {alignment_id}", flush=True)
         with log.open("xb") as handle:
             completed = subprocess.run(
