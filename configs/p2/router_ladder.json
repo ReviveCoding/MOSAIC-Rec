@@ -1,0 +1,35 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage": "P2-D02-D04-PILOT",
+  "seed": 20260929,
+  "common": {
+    "batch_size": 256,
+    "score_batch_size": 32,
+    "negatives_per_user": 10,
+    "epochs": 10,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "alignment": "per_query_standardized_logits",
+    "feature_order": [
+      "log1p_fit_support",
+      "log1p_item_age_days",
+      "log1p_user_history_length",
+      "log1p_user_recency_days",
+      "log1p_median_history_popularity",
+      "history_tail_share",
+      "image_present",
+      "text_present"
+    ],
+    "feature_scaling": "log features divided by 10; shares and indicators unscaled"
+  },
+  "models": {
+    "R2": {"model_id": "R2_MONOTONIC_SUPPORT_PILOT", "gate": "monotonic", "hidden": 0, "distillation_weight": 0.0},
+    "R3": {"model_id": "R3_CONTEXT_AWARE_PILOT", "gate": "context_mlp", "hidden": 32, "distillation_weight": 0.0},
+    "R4": {"model_id": "R4_WARM_PRESERVING_PILOT", "gate": "context_mlp", "hidden": 32, "distillation_weight": 0.5}
+  },
+  "experts": {
+    "sequence_checkpoint": "/home/bjw-0/mosaic-rec-work/p2/checkpoints/cseq_bert4rec_pilot.pt",
+    "content_checkpoint": "/home/bjw-0/mosaic-rec-work/p2/checkpoints/ccold_two_tower_pilot.pt"
+  },
+  "protected_roles_opened": []
+}

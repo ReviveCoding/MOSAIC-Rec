@@ -2,7 +2,13 @@ from __future__ import annotations
 
 import torch
 
-from mosaic_rec.p2.models import BERT4RecExpert, ContentTwoTower, cloze_batch
+from mosaic_rec.p2.models import (
+    BERT4RecExpert,
+    ContentTwoTower,
+    ContextRouterGate,
+    MonotonicSupportGate,
+    cloze_batch,
+)
 from mosaic_rec.p2.router import hard_zero_combine
 
 
@@ -42,3 +48,16 @@ def test_hard_zero_router_uses_content_only_at_zero_support() -> None:
     )
     assert combined[0, 1] == sequence_only[0, 1]
     assert combined[0, 0] != sequence_only[0, 0]
+
+
+def test_router_gates_enforce_zero_support_content_only() -> None:
+    features = torch.zeros(2, 3, 8)
+    features[:, 1:, 0] = torch.tensor([0.2, 0.8])
+    monotonic = MonotonicSupportGate()
+    context = ContextRouterGate(hidden=4)
+    for gate in (monotonic, context):
+        weights = gate(features)
+        assert torch.equal(weights[:, 0], torch.zeros(2))
+        assert torch.all((weights[:, 1:] > 0) & (weights[:, 1:] < 1))
+    monotonic_weights = monotonic(features)
+    assert torch.all(monotonic_weights[:, 2] >= monotonic_weights[:, 1])

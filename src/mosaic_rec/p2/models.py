@@ -111,3 +111,31 @@ class ContentTwoTower(nn.Module):
         summed = (values * mask[..., None]).sum(dim=1)
         counts = mask.sum(dim=1, keepdim=True).clamp_min(1)
         return torch.nn.functional.normalize(self.user_norm(summed / counts), dim=-1)
+
+
+class MonotonicSupportGate(nn.Module):
+    def __init__(self) -> None:
+        super().__init__()
+        self.intercept = nn.Parameter(torch.tensor(0.0))
+        self.raw_slope = nn.Parameter(torch.tensor(0.0))
+
+    def forward(self, features: torch.Tensor) -> torch.Tensor:
+        support_log = features[..., 0]
+        weight = torch.sigmoid(
+            self.intercept + torch.nn.functional.softplus(self.raw_slope) * support_log
+        )
+        return torch.where(support_log.eq(0), torch.zeros_like(weight), weight)
+
+
+class ContextRouterGate(nn.Module):
+    def __init__(self, feature_count: int = 8, hidden: int = 32) -> None:
+        super().__init__()
+        self.network = nn.Sequential(
+            nn.Linear(feature_count, hidden),
+            nn.GELU(),
+            nn.Linear(hidden, 1),
+        )
+
+    def forward(self, features: torch.Tensor) -> torch.Tensor:
+        weight = torch.sigmoid(self.network(features).squeeze(-1))
+        return torch.where(features[..., 0].eq(0), torch.zeros_like(weight), weight)
