@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-Crash recovery and the development model ladder are complete. Two preregistered score-alignment candidates passed; the third is waiting for unrelated ACT-Agent CUDA work to exit before audited launch attempt 2.
+Crash recovery and the development model ladder are complete. Two preregistered score-alignment candidates passed; the third is waiting for unrelated ACT-Agent CUDA work to exit before audited launch attempt 3.
 
 ## Completed
 
@@ -53,10 +53,11 @@ Crash recovery and the development model ladder are complete. Two preregistered 
 - Rebuilt the p2-only warehouse after the remaining pilots: 36 receipts, 52 valid metric rows, zero p1 receipts, zero QUALIFICATION access, zero LOCKED_FINAL access, validation PASS.
 - Alignment candidates `ALIGN_STD` and `ALIGN_RANK` completed. `ALIGN_RANK` recovered controlled-zero NDCG@20 to 0.000845 with warm NDCG@20 0.012780; this remains DEVELOPMENT selection evidence.
 - `ALIGN_TEMP_0.5_0.5` launch attempt 1 failed closed before lock acquisition or model loading when unrelated ACT-Agent CUDA PID 38158 appeared. Its 775-byte log is preserved at SHA-256 `cd3ede7462f713cef893b40357f3018d0f676a39c2166b26ac698a92f1e1f6e3`; no alignment output or metric exists.
+- The committed wait wrapper later reached launch attempt 2, which failed in the inner idle guard on unrelated ACT-Agent evaluation PID 53602. The OS flock was acquired transiently and released on the prestart exception before CUDA qualification or owner-record writing. No model, scoring output, or metric was created; the 775-byte log is preserved at SHA-256 `43c75c9aeac1968bf0ca5696987637472bbf9fa6863973d79e8867deb669a601`.
 
 ## Active next action
 
-Wait without lock ownership for CUDA PID 38158 to exit, then resume the unchanged alignment queue at `ALIGN_TEMP_0.5_0.5` launch attempt 2. Completed candidates will hash-validate and skip.
+Wait without lock ownership for CUDA PID 53602 and every other unrelated compute PID to exit, then resume the unchanged alignment queue at `ALIGN_TEMP_0.5_0.5` launch attempt 3. Completed candidates will hash-validate and skip.
 
 ## Protected access counters
 

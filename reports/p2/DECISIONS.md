@@ -120,3 +120,4 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 
 - Preserve `ALIGN_STD` and `ALIGN_RANK` as completed DEVELOPMENT outcomes. `ALIGN_TEMP_0.5_0.5` launch attempt 1 is only a prestart external-contention event: it acquired no p2 lock, loaded no model, and created no score or metric.
 - Resume the same frozen alignment identity under a distinct launch-attempt-2 log after a sustained idle window. No alignment method, temperature, objective, tie rule, or protected role changes.
+- Launch attempt 2 was also blocked during the inner idle check, this time by ACT-Agent evaluation PID 53602. Source review confirms the flock is acquired before `sustained_idle`; it was automatically released on the exception, before CUDA qualification and before the owner record or model loading. Preserve that sequence and resume only under launch-attempt-3 logging.
