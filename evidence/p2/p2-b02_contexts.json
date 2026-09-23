@@ -1,0 +1,66 @@
+{
+  "candidate_amendment_sha256": "6ca3f4d2f48e2fe50cd22625fa08c4314727f0d9d1c65f993cf1a30a650ae9d7",
+  "candidate_availability": "first_observed_timestamp <= query_timestamp",
+  "data_manifest_sha256": "ab890fd66badecce45b9055e2cd6bbaa418b000fb1c03d66931f7220b0a057da",
+  "evidence_class": "p2_common_candidate_and_context_contract",
+  "feature_manifest_sha256": "7269a405077c8b9b2959d667ef5934e2874ce11dde29aa5527fa34690f678930",
+  "git_commit": "0e19422f886e0ee60b31661f525a2f67b2322bc8",
+  "history_mask": "FIT_VISIBLE history except target",
+  "outputs": {
+    "LOCKED_FINAL": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/contexts/pixelrec50k/LOCKED_FINAL_QUERIES.parquet",
+      "sha256": "9b4e38219bcbddd832464ecc4840270ec0ddb4fb17d93975c99a4ba715df7bd7"
+    },
+    "QUALIFICATION": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/contexts/pixelrec50k/QUALIFICATION_QUERIES.parquet",
+      "sha256": "5461488de23a9d2a608f79afd3dce89262ba172b54becbe058fe9a08fde6a93a"
+    },
+    "VALIDATION": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/contexts/pixelrec50k/VALIDATION_QUERIES.parquet",
+      "sha256": "bd79d70daaa01c34d10972fd4c74e65a7d23be78589ad4339d83ba151e1ee112"
+    },
+    "item_context": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/contexts/pixelrec50k/item_context.parquet",
+      "sha256": "eef882bc8fa1b0848f506ec5b6615884262878939ad73fc21ecde4c697c4339f"
+    },
+    "user_context": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/contexts/pixelrec50k/user_context.parquet",
+      "sha256": "bcdd87f274feb46f0bf8ca12cda13ba999f6aed40eb14fb6690d813d8785744d"
+    }
+  },
+  "protected_model_outcomes_accessed": false,
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "query_counts": {
+    "LOCKED_FINAL": {
+      "candidate_time_violations": 0,
+      "controlled_zero": 295,
+      "natural_zero": 19792,
+      "queries": 25367,
+      "users": 25367,
+      "warm": 2100
+    },
+    "QUALIFICATION": {
+      "candidate_time_violations": 0,
+      "controlled_zero": 264,
+      "natural_zero": 21648,
+      "queries": 26900,
+      "users": 26900,
+      "warm": 2057
+    },
+    "VALIDATION": {
+      "candidate_time_violations": 0,
+      "controlled_zero": 458,
+      "natural_zero": 17866,
+      "queries": 27918,
+      "users": 27918,
+      "warm": 3808
+    }
+  },
+  "query_policy": "earliest eligible event per user per role",
+  "stage_id": "P2-B02",
+  "status": "PASS",
+  "warnings": [
+    "QUALIFICATION and LOCKED_FINAL query rows are protocol inputs, not model outcomes.",
+    "First-observed item time is an availability proxy."
+  ]
+}

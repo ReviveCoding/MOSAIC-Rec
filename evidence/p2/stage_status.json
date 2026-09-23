@@ -14,7 +14,8 @@
     "P2-A06": {"status": "PASS", "summary": "mechanical temporal and zero-support leakage checks passed"},
     "P2-B00": {"status": "PASS", "summary": "authorized image/text feature bytes copied to p2 paths under new identities"},
     "P2-B01": {"status": "PASS", "summary": "82865 image/text rows align; all vectors finite; 108 permitted tag categories"},
-    "P2-B02": {"status": "IN_PROGRESS", "summary": "common query, context, and candidate semantics materialization pending"}
+    "P2-B02": {"status": "PASS", "summary": "FIT-only item/user contexts and earliest eligible role queries hashed; candidate-time violations zero"},
+    "P2-C00": {"status": "IN_PROGRESS", "summary": "classic and expert baseline implementation begins after GPU/lock preflight"}
   },
   "p1_canonical_receipts_included": 0,
   "warnings": [

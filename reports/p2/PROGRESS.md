@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-P2-B02 common query, context, and candidate semantics materialization.
+P2-C00-C04 baseline and expert development pilots.
 
 ## Completed
 
@@ -21,10 +21,12 @@ P2-B02 common query, context, and candidate semantics materialization.
 - Preserved two failed preparation attempts rather than overwriting them.
 - Created p2-owned feature paths for 82,865 items and verified aligned indices, expected image/text dimensions, and finite values.
 - Excluded all seven engagement aggregates from the permitted metadata inputs.
+- Built FIT-only item and user context tables and hashed earliest eligible role query manifests.
+- Confirmed zero candidate-time violations across 27,918 validation, 26,900 qualification, and 25,367 locked query rows.
 
 ## Active next action
 
-Build deterministic FIT-only item/user context tables and first eligible query manifests for all roles, verify the candidate-time contract, then start baseline pilots.
+Implement common p2 expert/scoring code, run validation-only CUDA pilots for the sequence and content experts, then run R1 before more complex routers.
 
 ## Protected access counters
 

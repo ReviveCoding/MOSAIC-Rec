@@ -1,0 +1,24 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "amendment_id": "P2-AMENDMENT-002",
+  "timing": "before any p2 model execution or VALIDATION metric access",
+  "scientific_semantics_changed": false,
+  "reason": "make candidate masking and FIT-history tail-preference definitions executable",
+  "candidate_mask": {
+    "available": "first_observed_interaction_timestamp <= query_timestamp",
+    "history": "mask every FIT_VISIBLE item previously interacted with by the user except the target item",
+    "target": "target must remain in the candidate set, including repeat interactions",
+    "same_for_all_models": true
+  },
+  "user_tail_preference": {
+    "item_universe": "items with positive FIT_VISIBLE support",
+    "tail_definition": "bottom 20 percent by FIT_VISIBLE interaction count using item_id ascending as tie-break",
+    "user_feature": "share of the user's FIT_VISIBLE interactions assigned to this positive-support tail"
+  },
+  "target_popularity": {
+    "item_universe": "complete 82865-item catalog including zero-support items",
+    "tie_break": "item_id ascending",
+    "zero_support_reported_separately": true
+  },
+  "protected_access_counts": {"QUALIFICATION": 0, "LOCKED_FINAL": 0}
+}

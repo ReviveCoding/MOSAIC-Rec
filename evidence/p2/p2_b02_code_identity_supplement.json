@@ -1,0 +1,12 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "receipt_type": "CODE_IDENTITY_SUPPLEMENT",
+  "applies_to": ["P2-B02"],
+  "base_git_commit": "0e19422f886e0ee60b31661f525a2f67b2322bc8",
+  "executed_source_sha256": {
+    "src/mosaic_rec/p2/contexts.py": "57ba8cc81cb923d1a4beab612e3c6393723b7e4809a82cc8f8c9b86727a4eddb",
+    "scripts/p2/build_contexts.py": "2f46844775f94f4369e384fe8e235288f152df79f28d37919b77550be513f29f"
+  },
+  "candidate_amendment_sha256": "6ca3f4d2f48e2fe50cd22625fa08c4314727f0d9d1c65f993cf1a30a650ae9d7",
+  "protected_model_outcomes_accessed": false
+}

@@ -40,3 +40,11 @@ Checked 2026-09-23:
 - The official publisher text-vector file advertised 9,290,203,646 bytes but Google Drive returned a quota-exceeded response. The response is preserved and hashed.
 - Selected the existing authorized local MiniLM representation derived solely from official `title`, `tag`, and `description` attributes. Engagement aggregates remain excluded.
 - This resolves an explicitly open source identity before any model execution and does not change the preregistered text modality, hypothesis, role, metric, or gate semantics.
+
+## 2026-09-23 — common candidate contract
+
+- Candidate availability requires first-observed time at or before the query.
+- All models mask the user's FIT-visible history except the target item, so repeat targets remain rankable.
+- User tail preference uses the bottom 20% among positive-support FIT items; target popularity uses the complete catalog with zero support reported separately.
+- Earliest eligible per-user query manifests contain 27,918 VALIDATION, 26,900 QUALIFICATION, and 25,367 LOCKED_FINAL users. These are protocol inputs, not accessed model outcomes.
+- Candidate-time violations are zero in all three manifests.

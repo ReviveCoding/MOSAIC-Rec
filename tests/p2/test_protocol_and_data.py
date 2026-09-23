@@ -48,3 +48,12 @@ def test_feature_copy_refuses_overwrite(tmp_path: Path) -> None:
     assert target.read_bytes() == b"feature"
     with pytest.raises(FileExistsError):
         _copy_new(source, target)
+
+
+def test_candidate_semantics_amendment_keeps_target() -> None:
+    repo = Path(__file__).resolve().parents[2]
+    amendment = json.loads(
+        (repo / "configs/p2/amendment_002_candidate_semantics.json").read_text()
+    )
+    assert amendment["candidate_mask"]["same_for_all_models"] is True
+    assert "except the target item" in amendment["candidate_mask"]["history"]
