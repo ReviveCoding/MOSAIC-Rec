@@ -90,3 +90,9 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 - R3 attempt 1 remains `BLOCKED_EXTERNAL_PRESTART`: it acquired no p2 lock and created no checkpoint, log, scored output, or metric receipt. No R3 attempt-2 artifact survived the reboot.
 - The lock file's released R2 PID is historical text. A nonblocking `flock` probe passed; the GPU had no CUDA process and requalified successfully.
 - Exact scientific resume point is P2-D03 R3 attempt 2 with the committed router ladder and queue. QUALIFICATION and LOCKED_FINAL counters remain zero.
+
+## 2026-09-23 — R3 recovery result
+
+- R3 attempt 2 remains a prestart infrastructure event. R3 attempt 3 waited without lock ownership while ACT-Agent completed training and evaluation, then passed both sustained idle checks and ran under the exclusive p2 lock.
+- R3 attempt 3 used the unchanged preregistered configuration and preserved an unfavorable controlled-zero NDCG@20 of zero. Its overall and warm scores exactly match R1 at the reported precision; this is development evidence and is not a promotion result.
+- The checkpoint SHA-256 is `d644f4d746ff86a99bc25c98a847f974e31700a0c620c19135fa466b5363eca6`, scored output SHA-256 is `445aa2cd8f30778d14b2f37a9c6bce74d75a3bc4b3db1056d9ac335542515b66`, and log SHA-256 is `dfb314371bd8d8172e83fbb8ba3d2dda0cb6a7e46ddf243b2e75a0787ef9f4e4`.

@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-Crash recovery complete. P2-D03 R3 attempt 3 is queued behind an unrelated ACT-Agent evaluation and will use the unchanged router configuration after a sustained idle window.
+Crash recovery complete. P2-D03 R3 attempt 3 completed under the exclusive GPU lock; P2-D04 R4 is the next scientific job.
 
 ## Completed
 
@@ -37,10 +37,12 @@ Crash recovery complete. P2-D03 R3 attempt 3 is queued behind an unrelated ACT-A
 - The reboot audit found no R3, R4, HPO, temporary, or queue artifact. The R3 attempt-1 receipt remains a prestart contention event with no scientific output. The stale lock text names completed R2 PID 137697, while an actual `flock` probe was available.
 - After reboot the RTX 4090 Laptop GPU showed 0 MiB, 0% utilization, no CUDA process, and passed the real torch CUDA/BF16 tensor qualification.
 - R3 attempt 2 completed the queue idle window, but ACT-Agent launched CUDA PID 2404 during the runner's independent idle guard. The p2 guard failed closed before lock acquisition/model loading; only the 760-byte prestart log exists and is hashed. Any retry will use attempt 3 paths.
+- R3 attempt 3 waited through ACT-Agent's follow-on evaluation, acquired the p2 lock only after six idle checks, and completed on the RTX 4090 Laptop GPU. Exact VALIDATION NDCG@20 was 0.001939 overall, 0 controlled zero, 0.000131 natural zero, and 0.013539 warm. The unfavorable zero-support result is preserved; checkpoint and output hashes independently match the receipt.
+- Rebuilt the p2-only warehouse after R3: 27 receipts, 28 valid metric rows, zero p1 receipts, zero QUALIFICATION access, zero LOCKED_FINAL access, validation PASS.
 
 ## Active next action
 
-The committed `scripts/p2/run_gate_queue.sh R3 attempt3` process is waiting without holding the GPU lock. Inspect R3 after it acquires the first safe sustained idle window and completes, before starting R4.
+Execute P2-D04 R4 attempt 1 with the unchanged preregistered ladder after a fresh GPU/process/lock check; inspect and canonicalize it before baseline pilots.
 
 ## Protected access counters
 
@@ -51,4 +53,4 @@ The committed `scripts/p2/run_gate_queue.sh R3 attempt3` process is waiting with
 
 - Raw-cover extraction and modification remain on rights hold.
 - Official publisher text-feature download is quota-blocked. Amendment 001 selects the already authorized local MiniLM embedding derived from official title/tag/description fields; its p2 copy and alignment qualification passed.
-- ACT-Agent training PID 2404 exited, but its follow-on evaluation PID 9045 acquired CUDA before the six-check idle requirement completed. R3 attempt 3 remains queued without a p2 checkpoint, output, log, receipt, or lock ownership; no unrelated process will be killed.
+- No active GPU contention remains from the completed ACT-Agent evaluation at the R3 boundary; every subsequent heavy job must repeat the live process and lock checks.

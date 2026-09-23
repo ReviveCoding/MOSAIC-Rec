@@ -1,0 +1,95 @@
+{
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/checkpoints/r3_context_aware_pilot_attempt3.pt",
+  "checkpoint_sha256": "d644f4d746ff86a99bc25c98a847f974e31700a0c620c19135fa466b5363eca6",
+  "content_checkpoint_sha256": "b2e7f47471f0a97d63117f401e33ec82dc3029546c86a022903201d35c53d862",
+  "evidence_class": "p2_measured_development_router_pilot",
+  "git_commit": "40963741fdbe723ba6774f346bde9ebe1931e8c5",
+  "gpu_qualification": {
+    "bf16_supported": true,
+    "cuda_runtime": "13.0",
+    "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+    "tensor_result": 5590357.0,
+    "torch": "2.14.0+cu130",
+    "vram_bytes": 17170956288
+  },
+  "ladder_config_sha256": "c1972c47faeff54c252d47d43891076240fd3ba5a11ec7075005d81331ff298d",
+  "model_id": "R3_CONTEXT_AWARE_PILOT",
+  "peak_vram_bytes": 1045253632,
+  "pilot_config_sha256": "f21a8e4249bc2250d6d485f29348ae9c02b0d9b770eb546ae0b914fcad30604a",
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "router": "R3",
+  "seed": 20260929,
+  "sequence_checkpoint_sha256": "23bd4d04ab000fdd307544b96b7b325a17fbf4f836159ebb120883163831e082",
+  "stage_id": "P2-D03-PILOT",
+  "status": "PASS",
+  "train_seconds": 34.63148876900004,
+  "training_examples": 47898,
+  "training_log": [
+    {
+      "epoch": 1,
+      "loss": 0.21824130855130175
+    },
+    {
+      "epoch": 2,
+      "loss": 0.1891308585649652
+    },
+    {
+      "epoch": 3,
+      "loss": 0.1871236889840138
+    },
+    {
+      "epoch": 4,
+      "loss": 0.18671785577739064
+    },
+    {
+      "epoch": 5,
+      "loss": 0.18657436297840205
+    },
+    {
+      "epoch": 6,
+      "loss": 0.18650789262407325
+    },
+    {
+      "epoch": 7,
+      "loss": 0.18647165107930636
+    },
+    {
+      "epoch": 8,
+      "loss": 0.18644989171233814
+    },
+    {
+      "epoch": 9,
+      "loss": 0.18643581242774185
+    },
+    {
+      "epoch": 10,
+      "loss": 0.18642621887238411
+    }
+  ],
+  "validation": {
+    "output": "/home/bjw-0/mosaic-rec-work/p2/development/r3_context_aware_pilot_attempt3_validation.parquet",
+    "output_sha256": "445aa2cd8f30778d14b2f37a9c6bce74d75a3bc4b3db1056d9ac335542515b66",
+    "role": "VALIDATION",
+    "rows": 27918,
+    "seconds": 24.128596693000418,
+    "slices": {
+      "all": {
+        "n": 27918,
+        "ndcg_at_20": 0.0019386536712776804
+      },
+      "controlled_zero": {
+        "n": 458,
+        "ndcg_at_20": 0.0
+      },
+      "natural_zero": {
+        "n": 17866,
+        "ndcg_at_20": 0.00013052520101316536
+      },
+      "warm": {
+        "n": 3808,
+        "ndcg_at_20": 0.013538855315142446
+      }
+    },
+    "users_per_second": 1157.0502104955517
+  }
+}

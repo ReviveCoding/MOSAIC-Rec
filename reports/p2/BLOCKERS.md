@@ -25,3 +25,5 @@ R3 attempt 1 was likewise blocked before lock acquisition by ACT-Agent PID 13790
 After that audit, R3 attempt 2's outer queue observed an idle window, but ACT-Agent launched PID 2404 during the runner's second idle guard. The runner failed closed before acquiring the lock or loading R3. Its log is preserved and hashed; the next permitted identity is attempt 3.
 
 R3 attempt 3 is queued through the committed crash-safe wrapper. ACT-Agent training PID 2404 released CUDA, but follow-on evaluation PID 9045 acquired CUDA before the required six-check idle window completed. The queue has created no R3 scientific artifact and does not hold the p2 GPU lock while waiting.
+
+The follow-on evaluation exited at 2026-09-23 15:59 UTC. R3 attempt 3 subsequently completed under the p2 lock, so this transient blocker is resolved and retained here as recovery history.
