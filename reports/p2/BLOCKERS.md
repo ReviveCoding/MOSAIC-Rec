@@ -33,3 +33,5 @@ R4 attempt 1 passed the outer idle checks, but ACT-Agent launched CUDA PID 14599
 R4 attempt 2 is now queued on those distinct paths without lock ownership. ACT-Agent step-30 evaluation PID 17045 currently owns CUDA; the queue has produced no p2 artifact and continues to wait.
 
 R4 attempt 2 later reached the outer idle threshold after ACT-Agent completed training step 120, but final evaluation PID 26411 appeared during the nested guard. Attempt 2 failed closed before lock acquisition or model load and is preserved. The next identity is attempt 3.
+
+The final evaluation exited, and R4 attempt 3 completed under the p2 lock. The transient CUDA contention is resolved at this boundary; the historical prestart receipts remain canonical evidence.

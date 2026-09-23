@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-Crash recovery complete. P2-D03 R3 attempt 3 completed under the exclusive GPU lock; P2-D04 R4 attempts 1 and 2 are preserved as prestart contention events and attempt 3 is next.
+Crash recovery complete. P2-D03 R3 and P2-D04 R4 are complete; the remaining additional and legacy development baseline pilots are next.
 
 ## Completed
 
@@ -41,10 +41,13 @@ Crash recovery complete. P2-D03 R3 attempt 3 completed under the exclusive GPU l
 - Rebuilt the p2-only warehouse after R3: 27 receipts, 28 valid metric rows, zero p1 receipts, zero QUALIFICATION access, zero LOCKED_FINAL access, validation PASS.
 - R4 attempt 1 passed its outer idle window, then failed closed before lock acquisition when ACT-Agent CUDA PID 14599 launched. Its 761-byte log is preserved at SHA-256 `a0721489efe9fb32606950cbe61c6e920f554053cdae464cf176d02d2eb4e66c`; no checkpoint, scored output, terminal model receipt, or scientific metric exists.
 - R4 attempt 2 likewise reached six outer idle checks after ACT-Agent training step 120, but the final evaluation PID 26411 appeared during the nested guard. Its 761-byte log is preserved at SHA-256 `a1fd0dd39768b62c96ee8e40b7d2e91e0efa39600e0827f72fdfea0bc3656225`; it created no scientific artifact.
+- R4 attempt 3 completed under the p2 lock after ACT-Agent's final evaluation exited. Exact VALIDATION NDCG@20 was 0.001938 overall, 0 controlled zero, 0.000131 natural zero, and 0.013537 warm. The warm-preservation term did not recover zero-support quality under the standardized alignment pilot; this negative result is preserved.
+- Independently rehashed R4 checkpoint `5474235bbd2b05db6849f905eca77e7f003b9955e9a371c13394394b946869a1`, output `23a6f1b15d8fdfb5f148a7f3cada78ecc94048b32d2f16df8075ee718eed457c`, and log `806a79a93c46561136235a4faf35435943a8b83d3a7e1aea59793d4f7e04135e`.
+- Rebuilt the p2-only warehouse after R4: 30 receipts, 32 valid metric rows, zero p1 receipts, zero QUALIFICATION access, zero LOCKED_FINAL access, validation PASS.
 
 ## Active next action
 
-Queue R4 attempt 3 on distinct paths after preserving attempt 2. Inspect and canonicalize R4 after the final ACT evaluation exits, before baseline pilots.
+Run the crash-safe serial development queue for BPR-MF, LightGCN, SASRec, VBPR, and legacy M1; inspect and canonicalize each terminal result.
 
 ## Protected access counters
 
@@ -55,4 +58,4 @@ Queue R4 attempt 3 on distinct paths after preserving attempt 2. Inspect and can
 
 - Raw-cover extraction and modification remain on rights hold.
 - Official publisher text-feature download is quota-blocked. Amendment 001 selects the already authorized local MiniLM embedding derived from official title/tag/description fields; its p2 copy and alignment qualification passed.
-- ACT-Agent final step-120 evaluation PID 26411 is the current transient blocker. No unrelated process will be killed; R4 attempt 3 must remain outside the p2 lock until a fresh sustained idle window passes.
+- The external ACT-Agent training/evaluation cycle is complete at the R4 boundary. Every subsequent CUDA job still repeats the live process, sustained-idle, and lock checks.

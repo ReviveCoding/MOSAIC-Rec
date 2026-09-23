@@ -102,3 +102,8 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 - Before running the preregistered comparative alignment candidates, fixed the evaluation model as the R1 hard zero-support router. This isolates the expert cross-scale transformation from learned-gate fitting.
 - Made the already preregistered unit scaling executable: controlled-zero performance is divided by C_cold controlled-zero VALIDATION NDCG@20, while warm performance is expressed relative to C_seq with one unit equal to the default 10% warm margin. Their arithmetic mean is the frozen alignment selection score.
 - Materialized all nine candidates already listed in `configs/p2/alignment_development.json` under distinct hashed config identities. No candidate, temperature, role, metric, population, or tie rule was added after outcome access; QUALIFICATION and LOCKED_FINAL remain unopened.
+
+## 2026-09-23 — R4 development result
+
+- Preserved R4 attempts 1 and 2 as external prestart contention events. Attempt 3 used the unchanged ladder and completed only after the final unrelated evaluation exited.
+- The R4 warm-preservation objective produced warm NDCG@20 `0.013536823102781708` and controlled-zero NDCG@20 `0`. This did not improve the standardized-alignment cold failure seen for R1 and R3; the result remains eligible only as DEVELOPMENT evidence.

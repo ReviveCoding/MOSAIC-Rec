@@ -1,0 +1,101 @@
+{
+  "best_epoch": 10,
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/checkpoints/r4_warm_preserving_pilot_attempt3.pt",
+  "checkpoint_sha256": "5474235bbd2b05db6849f905eca77e7f003b9955e9a371c13394394b946869a1",
+  "config_sha256": "c1972c47faeff54c252d47d43891076240fd3ba5a11ec7075005d81331ff298d",
+  "content_checkpoint_sha256": "b2e7f47471f0a97d63117f401e33ec82dc3029546c86a022903201d35c53d862",
+  "epochs_completed": 10,
+  "evidence_class": "p2_measured_development_router_pilot",
+  "family": "R4",
+  "git_commit": "9945c531085152fecd196f66a79d9eae93c314cc",
+  "gpu_qualification": {
+    "bf16_supported": true,
+    "cuda_runtime": "13.0",
+    "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+    "tensor_result": 5590357.0,
+    "torch": "2.14.0+cu130",
+    "vram_bytes": 17170956288
+  },
+  "ladder_config_sha256": "c1972c47faeff54c252d47d43891076240fd3ba5a11ec7075005d81331ff298d",
+  "model_id": "R4_WARM_PRESERVING_PILOT",
+  "peak_vram_bytes": 1044080128,
+  "pilot_config_sha256": "f21a8e4249bc2250d6d485f29348ae9c02b0d9b770eb546ae0b914fcad30604a",
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "router": "R4",
+  "seed": 20260929,
+  "sequence_checkpoint_sha256": "23bd4d04ab000fdd307544b96b7b325a17fbf4f836159ebb120883163831e082",
+  "stage_id": "P2-D04-PILOT",
+  "status": "PASS",
+  "stopping_reason": "scheduled_epochs_complete",
+  "train_seconds": 48.13939026099979,
+  "training_examples": 47898,
+  "training_log": [
+    {
+      "epoch": 1,
+      "loss": 0.29150605810298824
+    },
+    {
+      "epoch": 2,
+      "loss": 0.19278368442632185
+    },
+    {
+      "epoch": 3,
+      "loss": 0.1884191534323475
+    },
+    {
+      "epoch": 4,
+      "loss": 0.1874290826666693
+    },
+    {
+      "epoch": 5,
+      "loss": 0.187026670673699
+    },
+    {
+      "epoch": 6,
+      "loss": 0.1868196916662829
+    },
+    {
+      "epoch": 7,
+      "loss": 0.18669758076306708
+    },
+    {
+      "epoch": 8,
+      "loss": 0.18661976702064256
+    },
+    {
+      "epoch": 9,
+      "loss": 0.18656704949421238
+    },
+    {
+      "epoch": 10,
+      "loss": 0.18652982463955736
+    }
+  ],
+  "trial_id": "",
+  "validation": {
+    "output": "/home/bjw-0/mosaic-rec-work/p2/development/r4_warm_preserving_pilot_attempt3_validation.parquet",
+    "output_sha256": "23a6f1b15d8fdfb5f148a7f3cada78ecc94048b32d2f16df8075ee718eed457c",
+    "role": "VALIDATION",
+    "rows": 27918,
+    "seconds": 28.84759888699955,
+    "slices": {
+      "all": {
+        "n": 27918,
+        "ndcg_at_20": 0.001938376478618117
+      },
+      "controlled_zero": {
+        "n": 458,
+        "ndcg_at_20": 0.0
+      },
+      "natural_zero": {
+        "n": 17866,
+        "ndcg_at_20": 0.00013052520101316536
+      },
+      "warm": {
+        "n": 3808,
+        "ndcg_at_20": 0.013536823102781708
+      }
+    },
+    "users_per_second": 967.7754313306114
+  }
+}
