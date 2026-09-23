@@ -1,0 +1,65 @@
+{
+  "stage_id": "F00_F02",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "LOCKED_EXECUTION",
+  "status": "LOCKED_SCORE_PASS",
+  "started_utc": "2026-09-23T02:29:05.575062+00:00",
+  "ended_utc": "2026-09-23T02:29:15.544853+00:00",
+  "dataset": "microlens-100k",
+  "role": "LOCKED_FINAL",
+  "model": "B7_BERT4REC_T3",
+  "architecture": "bert4rec",
+  "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "ensemble_seeds": [
+    20260924,
+    20260925,
+    20260926
+  ],
+  "ensemble_size": 3,
+  "validation_slices": {
+    "all": {
+      "n": 38880,
+      "ndcg_at_20": 0.0038823771104368582,
+      "recall_at_20": 0.009259259259259259,
+      "mrr_at_20": 0.0024179650879690095
+    },
+    "controlled_cold": {
+      "n": 334,
+      "ndcg_at_20": 0.0,
+      "recall_at_20": 0.0,
+      "mrr_at_20": 0.0
+    },
+    "warm_fit": {
+      "n": 5577,
+      "ndcg_at_20": 0.027065953389597462,
+      "recall_at_20": 0.064550833781603,
+      "mrr_at_20": 0.016856819548186314
+    }
+  },
+  "score_seconds": 6.5602383829973405,
+  "peak_vram_bytes": 186316288,
+  "checkpoint_sha256": [
+    "8236329ae466a0fd8dd5d3594a1faf3949bc1036d3568e283e70499b9aeb215c",
+    "e3261df4b90cff27ccd5f514bed7f52606a5d43ea375739b9b8625153933d997",
+    "96ee5422b8f1119f72643b5e50d7f783bcb3a42cd5c9ac61b5d9470eb08b49bc"
+  ],
+  "checkpoint_unchanged": true,
+  "manifest": "evidence/e05_freeze_manifest_p1_amendment1.json",
+  "manifest_sha256": "99ddc01542078676e9c09809411cdbb68bcae2c8ada19b8498f766f8b5e185c8",
+  "qualification_manifest_sha256": "77a827f87e15eea3b30f699527eaca91928ce55bf6a91fd07cd079762736b900",
+  "input_sha256": {
+    "fit_visible": "1571406f3bea51f96ee5839ccad858e4587d9b1aab5aafa296dde3854ce996e6",
+    "locked_final": "89eadf4f60fe807e367b4e9f6190315f901bc627696fbaab3537679c32772421",
+    "controlled_cold_ids": "440e659b22c3f6f3743fb9fa32aa32a5af36afab884fb52b59a57441f3c64969"
+  },
+  "per_user_path": "/home/bjw-0/mosaic-rec-work/locked/f00_b7_bert4rec_t3_per_user.parquet",
+  "per_user_sha256": "3fc67193e6aa2b1d427bd2ef220743ae5a0ed132442bda21bc16772521660351",
+  "per_user_rows": 38880,
+  "git_commit": "245d7fb96829fb8c055817e4c340c416d5978e84",
+  "warnings": [
+    "This is protected locked evidence under immutable p1 identities.",
+    "No tuning, selection, or threshold changes are permitted from this outcome.",
+    "First-observed item time is a candidate-availability proxy, not launch time."
+  ],
+  "evidence_class": "measured_locked_exact_full_catalog"
+}

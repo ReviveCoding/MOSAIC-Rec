@@ -75,3 +75,5 @@
 2026-09-23: Accept E05 amendment 1 guard at Git 8a12f90. Locked execution is now authorized only through amendment SHA-256 99ddc015..., with original E05 and its guard retained as superseded pre-locked history. No scientific identity changed and p1 remains the active protocol.
 
 2026-09-23: Classify the first B7 locked command as a pre-access implementation guard failure, not a locked scientific result. It failed before reading the protected file and left no output paths. A same-identity retry is permitted after changing only the expected stage token from the superseded original guard to amendment 1's committed guard.
+
+2026-09-23: Apply the frozen locked gates without reinterpretation. The M1_T2 cold point estimate exceeds B4_T3, but its paired lower bound is not above zero. Its warm deficit to B7_T3 is far larger than the frozen noninferiority margin. Therefore CORE_PROMOTE fails and the evidence-supported preliminary terminal decision is RETAIN_BASELINE. Preserve the positive overall difference and the cold point improvement as secondary observations; neither can replace the failed co-primary gates.

@@ -1,0 +1,65 @@
+{
+  "stage_id": "F00_F02",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "LOCKED_EXECUTION",
+  "status": "LOCKED_SCORE_PASS",
+  "started_utc": "2026-09-23T02:30:05.403399+00:00",
+  "ended_utc": "2026-09-23T02:30:19.361490+00:00",
+  "dataset": "microlens-100k",
+  "role": "LOCKED_FINAL",
+  "model": "M1_T2",
+  "architecture": "mosaic",
+  "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "ensemble_seeds": [
+    20260924,
+    20260925,
+    20260926
+  ],
+  "ensemble_size": 3,
+  "validation_slices": {
+    "all": {
+      "n": 38880,
+      "ndcg_at_20": 0.011364874672461077,
+      "recall_at_20": 0.02962962962962963,
+      "mrr_at_20": 0.006439265189393587
+    },
+    "controlled_cold": {
+      "n": 334,
+      "ndcg_at_20": 0.012936316317332013,
+      "recall_at_20": 0.029940119760479042,
+      "mrr_at_20": 0.007996918251409269
+    },
+    "warm_fit": {
+      "n": 5577,
+      "ndcg_at_20": 0.003447410074784739,
+      "recall_at_20": 0.009682625067240451,
+      "mrr_at_20": 0.0017616649602786821
+    }
+  },
+  "score_seconds": 6.283455758006312,
+  "peak_vram_bytes": 348099584,
+  "checkpoint_sha256": [
+    "6eb68d9ccabb168cca2552325a377ed1c4b07d2138504f7889e94e93cd563de6",
+    "c4c50cb97e9a0bda90038f3bea6c82c47202d5a4712b5ce67cee8f85bb9a21bc",
+    "a59794926179f66c08a6c38fd9340a5546ca128179099b45298c7e4c829ca3cf"
+  ],
+  "checkpoint_unchanged": true,
+  "manifest": "evidence/e05_freeze_manifest_p1_amendment1.json",
+  "manifest_sha256": "99ddc01542078676e9c09809411cdbb68bcae2c8ada19b8498f766f8b5e185c8",
+  "qualification_manifest_sha256": "77a827f87e15eea3b30f699527eaca91928ce55bf6a91fd07cd079762736b900",
+  "input_sha256": {
+    "fit_visible": "1571406f3bea51f96ee5839ccad858e4587d9b1aab5aafa296dde3854ce996e6",
+    "locked_final": "89eadf4f60fe807e367b4e9f6190315f901bc627696fbaab3537679c32772421",
+    "controlled_cold_ids": "440e659b22c3f6f3743fb9fa32aa32a5af36afab884fb52b59a57441f3c64969"
+  },
+  "per_user_path": "/home/bjw-0/mosaic-rec-work/locked/f00_m1_t2_per_user.parquet",
+  "per_user_sha256": "9c6afb6ec3224d31e384cd06c7c0e8e0dbe195160b03a01416e355c60fc31443",
+  "per_user_rows": 38880,
+  "git_commit": "245d7fb96829fb8c055817e4c340c416d5978e84",
+  "warnings": [
+    "This is protected locked evidence under immutable p1 identities.",
+    "No tuning, selection, or threshold changes are permitted from this outcome.",
+    "First-observed item time is a candidate-availability proxy, not launch time."
+  ],
+  "evidence_class": "measured_locked_exact_full_catalog"
+}

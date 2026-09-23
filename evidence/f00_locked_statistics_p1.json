@@ -1,0 +1,86 @@
+{
+  "stage_id": "F00_F02_STATISTICS",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "ANALYSIS",
+  "status": "LOCKED_PRIMARY_INFERENCE_PASS",
+  "ended_utc": "2026-09-23T02:32:10.230259+00:00",
+  "git_commit": "245d7fb96829fb8c055817e4c340c416d5978e84",
+  "frozen_manifest": "evidence/e05_freeze_manifest_p1_amendment1.json",
+  "frozen_manifest_sha256": "99ddc01542078676e9c09809411cdbb68bcae2c8ada19b8498f766f8b5e185c8",
+  "models": {
+    "C_seq": "B7_BERT4REC_T3",
+    "C_cold": "B4_TWO_TOWER_T3",
+    "MOSAIC_finalist": "M1_T2"
+  },
+  "source_receipts": {
+    "C_seq": {
+      "path": "evidence/f00_locked_p1_b7_bert4rec_t3.json",
+      "sha256": "29cd4fe2bef248854c297965bc069f28ea5b35f74907d681081f02f1e3ae344b",
+      "per_user_sha256": "3fc67193e6aa2b1d427bd2ef220743ae5a0ed132442bda21bc16772521660351"
+    },
+    "C_cold": {
+      "path": "evidence/f00_locked_p1_b4_two_tower_t3.json",
+      "sha256": "13d09e595abdd0d21c49cc3a0de077512c3600b591abf8fa575508220039f660",
+      "per_user_sha256": "f8c4635152304005aef4212ef45c048159a30919b4aae853b91884f0ed651a90"
+    },
+    "MOSAIC": {
+      "path": "evidence/f00_locked_p1_m1_t2.json",
+      "sha256": "c39082fc7515c0a305d9c8b1a365c9ce85c32ea4d207d66686d319b775b17a24",
+      "per_user_sha256": "9c6afb6ec3224d31e384cd06c7c0e8e0dbe195160b03a01416e355c60fc31443"
+    }
+  },
+  "bootstrap_seed": 20260920,
+  "bootstrap_draws": 10000,
+  "cold_superiority": {
+    "paired_user_cluster": {
+      "point": 0.008940180998471626,
+      "lower": -0.00019356963835903362,
+      "upper": 0.019205181813317165,
+      "draws": 10000,
+      "clusters": 334,
+      "cluster_kind": "user",
+      "seed": 20260920
+    },
+    "cold_item_cluster_sensitivity": {
+      "point": 0.008940180998471626,
+      "lower": -0.001984504070165865,
+      "upper": 0.024193975460071945,
+      "draws": 10000,
+      "clusters": 137,
+      "cluster_kind": "item",
+      "seed": 20260920
+    },
+    "gate": "lower_95_percent_bound_gt_0",
+    "pass": false
+  },
+  "warm_noninferiority": {
+    "paired_user_cluster": {
+      "point": -0.023618543314812765,
+      "lower": -0.02687356050190214,
+      "upper": -0.02041686170440107,
+      "draws": 10000,
+      "clusters": 5577,
+      "cluster_kind": "user",
+      "seed": 20260920
+    },
+    "margin": 0.0030883869550329584,
+    "gate": "lower_95_percent_bound_gt_negative_margin",
+    "pass": false
+  },
+  "overall_vs_C_seq": {
+    "point": 0.007482497562024221,
+    "lower": 0.006633816252785459,
+    "upper": 0.00833221425825043,
+    "draws": 10000,
+    "clusters": 38880,
+    "cluster_kind": "user",
+    "seed": 20260920
+  },
+  "co_primary_gate_pass": false,
+  "terminal_decision": "RETAIN_BASELINE",
+  "warnings": [
+    "Offline unobserved items are treated as nonrelevant for ranking metrics, not proven negatives.",
+    "The cold item-cluster interval is sensitivity evidence; paired user clustering is primary."
+  ],
+  "evidence_class": "derived_locked_confirmatory_inference"
+}
