@@ -1,7 +1,7 @@
 {
   "protocol_id": "mosaic-rec-2026-09-23-p2",
   "scientific_state": "DEVELOPMENT",
-  "updated_utc": "2026-09-23T05:26:13.6012376Z",
+  "updated_utc": "2026-09-23T08:12:45Z",
   "qualification_access_count": 0,
   "locked_final_access_count": 0,
   "stages": {
@@ -16,9 +16,9 @@
     "P2-B01": {"status": "PASS", "summary": "82865 image/text rows align; all vectors finite; 108 permitted tag categories"},
     "P2-B02": {"status": "PASS", "summary": "FIT-only item/user contexts and earliest eligible role queries hashed; candidate-time violations zero"},
     "P2-C00": {"status": "PASS_DEVELOPMENT", "summary": "global and 30-day recent popularity exact validation baselines completed"},
-    "P2-C03": {"status": "INVALID_PENDING_RERUN", "summary": "attempt 1 preserved; 905 users had incomplete FIT-history masking"},
-    "P2-C04": {"status": "INVALID_PENDING_RERUN", "summary": "attempt 1 preserved; 905 users had incomplete FIT-history masking"},
-    "P2-D01": {"status": "WAITING_GPU", "summary": "attempt 1 blocked before loading by unrelated ACT-Agent CUDA PID 126553; R1 output absent"}
+    "P2-C03": {"status": "PASS_DEVELOPMENT", "summary": "corrected attempt 2 masks complete FIT history; checkpoint and exact validation output independently rehashed"},
+    "P2-C04": {"status": "PASS_DEVELOPMENT", "summary": "corrected attempt 2 masks complete FIT history; checkpoint and exact validation output independently rehashed"},
+    "P2-D01": {"status": "READY", "summary": "corrected experts passed; R1 attempt 1 remains preserved as blocked before model loading"}
   },
   "p1_canonical_receipts_included": 0,
   "warnings": [

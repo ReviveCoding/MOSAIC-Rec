@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-P2-C03/C04 corrected expert reruns, waiting for an uncontended GPU window.
+P2-D01 R1 hard zero-support router using the corrected expert identities.
 
 ## Completed
 
@@ -29,10 +29,11 @@ P2-C03/C04 corrected expert reruns, waiting for an uncontended GPU window.
 - R1 attempt 1 was blocked before model loading by an unrelated ACT-Agent CUDA trainer; no p2 router artifact exists yet.
 - Added CUDA pilot implementations for BPR-MF, LightGCN, SASRec, and VBPR; corrected the shared zero-based item indexing contract before executing them.
 - Rebuilt the p2-only canonical warehouse with invalidation-aware selection semantics: 19 p2 receipts, 8 valid metric rows, zero p1 canonical receipts, and zero protected access. The two invalid expert receipts remain stored but their 8 metric rows are excluded.
+- Completed and independently rehashed corrected attempt-2 expert runs after a sustained idle GPU window. C_seq validation NDCG@20 is 0.001864 overall and 0.013602 warm; C_cold is 0.001312 overall, 0.000940 controlled zero, 0.001411 natural zero, and 0.001570 warm.
 
 ## Active next action
 
-While unrelated GPU utilization remains material, complete CPU-side orchestration and validation. When the GPU is idle, rerun C_seq and C_cold under distinct attempt identities, then execute R1-R4 and the remaining baseline pilots serially.
+Commit and canonicalize the corrected expert boundary, then execute R1-R4 and remaining baseline pilots serially, inspecting each receipt before the next heavy job.
 
 ## Protected access counters
 
@@ -43,4 +44,4 @@ While unrelated GPU utilization remains material, complete CPU-side orchestratio
 
 - Raw-cover extraction and modification remain on rights hold.
 - Official publisher text-feature download is quota-blocked. Amendment 001 selects the already authorized local MiniLM embedding derived from official title/tag/description fields; its p2 copy and alignment qualification passed.
-- An unrelated ACT-Agent control process remains alive and the sole GPU showed 4.4 GB allocated with 19-83% utilization over the latest sustained sample. The p2 advisory lock itself has no active owner.
+- ACT-Agent released the GPU. The queue required six consecutive idle checks before each corrected expert and the p2 advisory lock qualified CUDA for both runs.

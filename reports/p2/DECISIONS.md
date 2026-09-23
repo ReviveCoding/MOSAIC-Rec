@@ -70,3 +70,9 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 
 - The p2 warehouse retains invalidated receipts for audit history and marks them `valid_for_selection=false` with the invalidating receipt identity.
 - Metric rows from invalidated receipts are excluded from the canonical metrics table. This prevents the defective first expert scores from entering development selection while preserving their full raw receipt payloads.
+
+## 2026-09-23 — corrected expert identities
+
+- Corrected C_seq and C_cold reruns use distinct `*_PILOT_A2` model identities, checkpoints, outputs, and receipts. They do not overwrite the invalid first attempts.
+- A PowerShell-to-Bash quoting failure was preserved as `FAILED_INFRASTRUCTURE_PRESTART`; it acquired no lock and created no model artifact.
+- The router ladder now points only to the independently rehashed attempt-2 checkpoints.

@@ -28,8 +28,8 @@
     "R4": {"model_id": "R4_WARM_PRESERVING_PILOT", "gate": "context_mlp", "hidden": 32, "distillation_weight": 0.5}
   },
   "experts": {
-    "sequence_checkpoint": "/home/bjw-0/mosaic-rec-work/p2/checkpoints/cseq_bert4rec_pilot.pt",
-    "content_checkpoint": "/home/bjw-0/mosaic-rec-work/p2/checkpoints/ccold_two_tower_pilot.pt"
+    "sequence_checkpoint": "/home/bjw-0/mosaic-rec-work/p2/checkpoints/cseq_bert4rec_pilot_attempt2.pt",
+    "content_checkpoint": "/home/bjw-0/mosaic-rec-work/p2/checkpoints/ccold_two_tower_pilot_attempt2.pt"
   },
   "protected_roles_opened": []
 }

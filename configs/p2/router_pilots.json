@@ -10,8 +10,8 @@
     "zero_variance_scale": 1.0
   },
   "experts": {
-    "sequence_checkpoint": "/home/bjw-0/mosaic-rec-work/p2/checkpoints/cseq_bert4rec_pilot.pt",
-    "content_checkpoint": "/home/bjw-0/mosaic-rec-work/p2/checkpoints/ccold_two_tower_pilot.pt"
+    "sequence_checkpoint": "/home/bjw-0/mosaic-rec-work/p2/checkpoints/cseq_bert4rec_pilot_attempt2.pt",
+    "content_checkpoint": "/home/bjw-0/mosaic-rec-work/p2/checkpoints/ccold_two_tower_pilot_attempt2.pt"
   },
   "scoring": {"batch_size": 96, "top_k": 100, "exact_full_catalog": true},
   "evidence_class": "DEVELOPMENT_PILOT",
