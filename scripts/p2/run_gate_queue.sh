@@ -25,8 +25,9 @@ while [[ "$idle" -lt 6 ]]; do
     --format=csv,noheader,nounits | tr -d ' ')
   memory=${activity%,*}
   utilization=${activity#*,}
-  if ! pgrep -f 'act_agent\.training|act_agent\.evaluation|ContextWeave' >/dev/null \
-    && [[ "$memory" -le 256 ]] \
+  # CPU-only preprocessing may overlap p2. The inner Python lock repeats a
+  # compute-PID, memory, and utilization qualification before CUDA model load.
+  if [[ "$memory" -le 256 ]] \
     && [[ "$utilization" -le 5 ]]; then
     idle=$((idle + 1))
   else
