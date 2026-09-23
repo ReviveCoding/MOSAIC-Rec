@@ -1,0 +1,17 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-D03-PILOT",
+  "attempt_id": "r3-context-pilot-attempt1",
+  "status": "BLOCKED_EXTERNAL_PRESTART",
+  "failure_class": "gpu_contention",
+  "unrelated_cuda_pid": 137901,
+  "unrelated_process": "act_agent.training.sft_v2 seed11 steps120",
+  "gpu_lock_acquired": false,
+  "model_loaded": false,
+  "checkpoint_created": false,
+  "output_created": false,
+  "terminal_model_receipt_created": false,
+  "disposition": "retry under attempt2 only after sustained idle window",
+  "qualification_access_count": 0,
+  "locked_final_access_count": 0
+}
