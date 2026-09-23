@@ -1,0 +1,186 @@
+{
+  "stage_id": "E01",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "E01_SEED_PASS",
+  "started_utc": "2026-09-22T22:39:24.767285+00:00",
+  "ended_utc": "2026-09-22T22:52:29.229132+00:00",
+  "dataset": "microlens-100k",
+  "config_id": "M1_T1",
+  "model": "M1",
+  "seed": 20260924,
+  "attempt": 1,
+  "epochs": 30,
+  "learning_rate": 0.0003,
+  "source_hpo_receipt": "evidence/hpo_p1_m1_t1.json",
+  "source_hpo_receipt_sha256": "20ef1d1c49dd8b80486d147584631facb00a2d0ed056e3c0b1dac8ec7a929555",
+  "source_hpo_checkpoint_sha256": "7e26b6c95a43357ec732532f97237d0c30fac3206999b73bc15dd1a3ccbc65e4",
+  "e01_manifest": "configs/e01_seed_qualification_p1.json",
+  "e01_manifest_sha256": "06ec4d211aa98538e362d22495224e70a9c222ca4f3c6c5256bc0e99ce0172ac",
+  "source_hpo_closure_commit": "7ba93c150cd1358cc8fbdcfae6be9f558af81a64",
+  "runner_git_commit": "5f8ecd32d2e8744d40c55f588942cf822f79517e",
+  "retry_of_receipt": null,
+  "retry_of_receipt_sha256": null,
+  "retry_reason": null,
+  "raw_receipt": "/home/bjw-0/mosaic-rec-work/e01_raw/e01_seedqual_p1_m1_t1_seed20260924.json",
+  "raw_receipt_sha256": "90ecb095b481519ae9b519943f3d622c96f2b2c00becfa92c8f4e9f81f361379",
+  "log": "/home/bjw-0/mosaic-rec-work/logs/e01_seedqual_p1_m1_t1_seed20260924.log",
+  "log_sha256": "a52ca1253bfb619defa29a583e7824e936c7349eff3ad04d0875e5a623ba712d",
+  "returncode": 0,
+  "elapsed_wall_seconds": 716.135268760001,
+  "train_seconds": 686.9078919560052,
+  "score_seconds": 12.768121838002116,
+  "peak_vram_bytes": 449560064,
+  "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "environment": null,
+  "input_sha256": null,
+  "validation_slices": {
+    "all": {
+      "n": 41694,
+      "ndcg_at_20": 0.024998062928172155,
+      "recall_at_20": 0.06279080922914568
+    },
+    "controlled_cold": {
+      "n": 918,
+      "ndcg_at_20": 0.019753831887124523,
+      "recall_at_20": 0.04357298474945534
+    },
+    "warm_fit": {
+      "n": 20047,
+      "ndcg_at_20": 0.026553958612152352,
+      "recall_at_20": 0.058712026737167654
+    }
+  },
+  "ndcg_at_20": null,
+  "recall_at_20": null,
+  "training_log": [
+    {
+      "epoch": 1,
+      "fit_loss": 0.5748857684506298
+    },
+    {
+      "epoch": 2,
+      "fit_loss": 0.42234960922306075
+    },
+    {
+      "epoch": 3,
+      "fit_loss": 0.3509357541270899
+    },
+    {
+      "epoch": 4,
+      "fit_loss": 0.3019952932708466
+    },
+    {
+      "epoch": 5,
+      "fit_loss": 0.27092909705974255
+    },
+    {
+      "epoch": 6,
+      "fit_loss": 0.24847042099812147
+    },
+    {
+      "epoch": 7,
+      "fit_loss": 0.23251649057962662
+    },
+    {
+      "epoch": 8,
+      "fit_loss": 0.21986463499065992
+    },
+    {
+      "epoch": 9,
+      "fit_loss": 0.20988902649372176
+    },
+    {
+      "epoch": 10,
+      "fit_loss": 0.20188671984375006
+    },
+    {
+      "epoch": 11,
+      "fit_loss": 0.1940959108515869
+    },
+    {
+      "epoch": 12,
+      "fit_loss": 0.1862571886997044
+    },
+    {
+      "epoch": 13,
+      "fit_loss": 0.18056706440540332
+    },
+    {
+      "epoch": 14,
+      "fit_loss": 0.17392292214893634
+    },
+    {
+      "epoch": 15,
+      "fit_loss": 0.16795218969661596
+    },
+    {
+      "epoch": 16,
+      "fit_loss": 0.16187725366802203
+    },
+    {
+      "epoch": 17,
+      "fit_loss": 0.15671352574831754
+    },
+    {
+      "epoch": 18,
+      "fit_loss": 0.15070430739830493
+    },
+    {
+      "epoch": 19,
+      "fit_loss": 0.1458160053517069
+    },
+    {
+      "epoch": 20,
+      "fit_loss": 0.14008059971151432
+    },
+    {
+      "epoch": 21,
+      "fit_loss": 0.1355769793696616
+    },
+    {
+      "epoch": 22,
+      "fit_loss": 0.13045502916290772
+    },
+    {
+      "epoch": 23,
+      "fit_loss": 0.12603461486813686
+    },
+    {
+      "epoch": 24,
+      "fit_loss": 0.12155929966095408
+    },
+    {
+      "epoch": 25,
+      "fit_loss": 0.11737663625551432
+    },
+    {
+      "epoch": 26,
+      "fit_loss": 0.11340623874426628
+    },
+    {
+      "epoch": 27,
+      "fit_loss": 0.1093347102554738
+    },
+    {
+      "epoch": 28,
+      "fit_loss": 0.10591435125871657
+    },
+    {
+      "epoch": 29,
+      "fit_loss": 0.10192725079369708
+    },
+    {
+      "epoch": 30,
+      "fit_loss": 0.09824769540145009
+    }
+  ],
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/e01_seedqual_p1_m1_t1_seed20260924.pt",
+  "checkpoint_sha256": "07d8d529d1e71231efdf26aebc98dfaea5a7d5ad0f21dd36ed207c9bb80619d0",
+  "warnings": [
+    "Independent DEVELOPMENT seed qualification only.",
+    "QUALIFICATION and LOCKED_FINAL remain unopened.",
+    "No comparator or MOSAIC finalist is selected by this receipt."
+  ],
+  "evidence_class": "measured_development_seed_qualification"
+}
