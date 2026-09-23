@@ -56,10 +56,11 @@ Crash recovery and the development model ladder are complete. Four preregistered
 - The committed wait wrapper later reached launch attempt 2, which failed in the inner idle guard on unrelated ACT-Agent evaluation PID 53602. The OS flock was acquired transiently and released on the prestart exception before CUDA qualification or owner-record writing. No model, scoring output, or metric was created; the 775-byte log is preserved at SHA-256 `43c75c9aeac1968bf0ca5696987637472bbf9fa6863973d79e8867deb669a601`.
 - After PID 53602 exited, launch attempt 3 completed `ALIGN_TEMP_0.5_0.5`; `ALIGN_TEMP_0.5_1.0` also completed. Both produced overall/warm NDCG@20 0.001864/0.013602 and controlled-zero NDCG@20 0.
 - The next candidate, `ALIGN_TEMP_1.0_0.5`, was blocked before CUDA qualification by new ACT-Agent turn-14 evaluation PID 58174. Its attempt-1 log is preserved at SHA-256 `30acb827575ab5df3a9c59f9f1f01ff86270961703df5d800a0206a2112c7894`; no output or metric exists.
+- PID 58174 later exited, but ACT-Agent launched Qwen3-4B control turn-14 evaluation PID 61711 before the six-check idle window completed. The hardened waiter reset without launching attempt 2, acquiring the p2 lock, or creating an artifact. Per-candidate no-lock idle checks and transient `nvidia-smi` retry handling are committed.
 
 ## Active next action
 
-Wait without lock ownership for CUDA PID 58174 and every other unrelated compute PID to exit, then resume the unchanged alignment queue at `ALIGN_TEMP_1.0_0.5` launch attempt 2. All four completed candidates will hash-validate and skip.
+The active crash-safe waiter is waiting without lock ownership for CUDA PID 61711 and every other unrelated compute PID to exit, then will resume the unchanged alignment queue at `ALIGN_TEMP_1.0_0.5` launch attempt 2. All four completed candidates hash-validate and skip.
 
 ## Protected access counters
 
