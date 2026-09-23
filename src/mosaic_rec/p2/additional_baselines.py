@@ -17,6 +17,7 @@ from mosaic_rec.p2 import PROTOCOL_ID
 from mosaic_rec.p2.contracts import sha256_file, write_json_new
 from mosaic_rec.p2.models import BPRMF, VBPR, LightGCN, SASRecExpert
 from mosaic_rec.p2.runtime import (
+    exact_metric_summary,
     exact_score,
     load_catalog,
     sequence_tensor,
@@ -95,6 +96,7 @@ def run_baseline(
     output: Path,
     receipt: Path,
     gpu_qualification: dict[str, object],
+    hpo_policy: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     config = json.loads(config_path.read_text())
     if config["protocol_id"] != PROTOCOL_ID:
@@ -186,7 +188,70 @@ def run_baseline(
     fit_classes = torch.tensor(np.flatnonzero(fit_support > 0) + 1, device=device)
     class_lookup = torch.full((len(item_ids) + 1,), -1, dtype=torch.long, device=device)
     class_lookup[fit_classes] = torch.arange(len(fit_classes), device=device)
+    queries = validation_queries(query_path)
+    first_seen = torch.tensor(first_seen_np, device=device)
+
+    def build_score_batch():
+        model.eval()
+        if baseline == "SASREC":
+            catalog = (
+                model.item(torch.arange(1, len(item_ids) + 1, device=device))
+                .detach()
+                .clone()
+            )
+            catalog[torch.tensor(fit_support == 0, device=device)] = 0
+
+            def score_batch(batch_users: list[str]) -> torch.Tensor:
+                tensor, lengths = sequence_tensor(
+                    [all_histories[user] for user in batch_users],
+                    int(common["max_length"]),
+                )
+                with torch.autocast("cuda", dtype=torch.bfloat16):
+                    state = model.query(tensor.to(device), lengths.to(device))
+                    return state @ catalog.T
+
+        elif baseline == "BPR_MF":
+            catalog = model.item.weight.detach().clone()
+            catalog[torch.tensor(fit_support == 0, device=device)] = 0
+
+            def score_batch(batch_users: list[str]) -> torch.Tensor:
+                indices = torch.tensor(
+                    [user_to_index[user] for user in batch_users], device=device
+                )
+                return model.user(indices) @ catalog.T
+
+        elif baseline == "LIGHTGCN":
+            assert adjacency is not None
+            with torch.inference_mode():
+                user_catalog, item_catalog = model(adjacency)
+                item_catalog = item_catalog.clone()
+                item_catalog[torch.tensor(fit_support == 0, device=device)] = 0
+
+            def score_batch(batch_users: list[str]) -> torch.Tensor:
+                indices = torch.tensor(
+                    [user_to_index[user] for user in batch_users], device=device
+                )
+                return user_catalog[indices] @ item_catalog.T
+
+        else:
+            catalog_ids = torch.arange(len(item_ids), device=device)
+
+            def score_batch(batch_users: list[str]) -> torch.Tensor:
+                indices = torch.tensor(
+                    [user_to_index[user] for user in batch_users], device=device
+                )
+                return model.scores(
+                    indices, catalog_ids[None, :].expand(len(indices), -1)
+                )
+
+        return score_batch
+
     log = []
+    best_metric = -float("inf")
+    best_epoch = 0
+    best_state: dict[str, torch.Tensor] | None = None
+    stale_epochs = 0
+    stopping_reason = "scheduled_epochs_complete"
     torch.cuda.reset_peak_memory_stats()
     started = time.perf_counter()
     for epoch in range(int(common["epochs"])):
@@ -242,64 +307,45 @@ def run_baseline(
             total += float(loss.detach()) * len(history)
             seen += len(history)
         log.append({"epoch": epoch + 1, "loss": total / seen})
+        if hpo_policy is not None:
+            score_batch = build_score_batch()
+            summary = exact_metric_summary(
+                queries=queries,
+                histories=all_histories,
+                item_ids=item_ids,
+                first_seen=first_seen,
+                score_batch=score_batch,
+                batch_size=int(common["score_batch_size"]),
+            )
+            metric = float(summary["all"]["ndcg_at_20"] or 0.0)
+            log[-1]["validation_ndcg_at_20"] = metric
+            if metric > best_metric:
+                best_metric = metric
+                best_epoch = epoch + 1
+                stale_epochs = 0
+                best_state = {
+                    key: value.detach().cpu().clone()
+                    for key, value in model.state_dict().items()
+                }
+            else:
+                stale_epochs += 1
+            if stale_epochs >= int(hpo_policy["early_stopping_patience"]):
+                stopping_reason = "early_stopping_patience"
+                break
+            elapsed_hours = (time.perf_counter() - started) / 3600.0
+            if elapsed_hours >= float(hpo_policy["maximum_gpu_hours_per_trial"]):
+                stopping_reason = "gpu_hour_ceiling"
+                break
     torch.cuda.synchronize()
     train_seconds = time.perf_counter() - started
+    if best_state is not None:
+        model.load_state_dict(best_state)
     checkpoint.parent.mkdir(parents=True, exist_ok=True)
     torch.save(
         {"model": model.state_dict(), "baseline": baseline, "config": model_config},
         checkpoint,
     )
-    model.eval()
-    queries = validation_queries(query_path)
-    first_seen = torch.tensor(first_seen_np, device=device)
-    if baseline == "SASREC":
-        catalog = (
-            model.item(torch.arange(1, len(item_ids) + 1, device=device))
-            .detach()
-            .clone()
-        )
-        unseen = torch.tensor(fit_support == 0, device=device)
-        catalog[unseen] = 0
-
-        def score_batch(batch_users: list[str]) -> torch.Tensor:
-            tensor, lengths = sequence_tensor(
-                [all_histories[user] for user in batch_users], int(common["max_length"])
-            )
-            with torch.autocast("cuda", dtype=torch.bfloat16):
-                state = model.query(tensor.to(device), lengths.to(device))
-                return state @ catalog.T
-
-    elif baseline == "BPR_MF":
-        catalog = model.item.weight.detach().clone()
-        catalog[torch.tensor(fit_support == 0, device=device)] = 0
-
-        def score_batch(batch_users: list[str]) -> torch.Tensor:
-            indices = torch.tensor(
-                [user_to_index[user] for user in batch_users], device=device
-            )
-            return model.user(indices) @ catalog.T
-
-    elif baseline == "LIGHTGCN":
-        assert adjacency is not None
-        with torch.inference_mode():
-            user_catalog, item_catalog = model(adjacency)
-            item_catalog = item_catalog.clone()
-            item_catalog[torch.tensor(fit_support == 0, device=device)] = 0
-
-        def score_batch(batch_users: list[str]) -> torch.Tensor:
-            indices = torch.tensor(
-                [user_to_index[user] for user in batch_users], device=device
-            )
-            return user_catalog[indices] @ item_catalog.T
-
-    else:
-        catalog_ids = torch.arange(len(item_ids), device=device)
-
-        def score_batch(batch_users: list[str]) -> torch.Tensor:
-            indices = torch.tensor(
-                [user_to_index[user] for user in batch_users], device=device
-            )
-            return model.scores(indices, catalog_ids[None, :].expand(len(indices), -1))
+    score_batch = build_score_batch()
 
     scoring = exact_score(
         model_id=model_config["model_id"],
@@ -327,6 +373,9 @@ def run_baseline(
         "seed": seed,
         "training_examples": len(users),
         "training_log": log,
+        "epochs_completed": len(log),
+        "best_epoch": best_epoch if hpo_policy is not None else len(log),
+        "stopping_reason": stopping_reason,
         "train_seconds": train_seconds,
         "peak_vram_bytes": torch.cuda.max_memory_allocated(),
         "gpu_qualification": gpu_qualification,
