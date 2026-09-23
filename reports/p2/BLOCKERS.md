@@ -23,3 +23,5 @@ R1 attempt 1 was blocked before model loading when the 30-second idle guard obse
 R3 attempt 1 was likewise blocked before lock acquisition by ACT-Agent PID 137901. After the reboot, neither CUDA process exists, the GPU is idle, and the actual p2 `flock` is available. These receipts remain historical external-prestart evidence; there is no current GPU blocker as of the 2026-09-23 recovery audit.
 
 After that audit, R3 attempt 2's outer queue observed an idle window, but ACT-Agent launched PID 2404 during the runner's second idle guard. The runner failed closed before acquiring the lock or loading R3. Its log is preserved and hashed; the next permitted identity is attempt 3.
+
+R3 attempt 3 is queued through the committed crash-safe wrapper. ACT-Agent training PID 2404 released CUDA, but follow-on evaluation PID 9045 acquired CUDA before the required six-check idle window completed. The queue has created no R3 scientific artifact and does not hold the p2 GPU lock while waiting.

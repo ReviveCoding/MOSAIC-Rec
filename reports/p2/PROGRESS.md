@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-Crash recovery complete; resume at P2-D03 R3 attempt 2 using the committed queue and unchanged router configuration.
+Crash recovery complete. P2-D03 R3 attempt 3 is queued behind an unrelated ACT-Agent evaluation and will use the unchanged router configuration after a sustained idle window.
 
 ## Completed
 
@@ -40,7 +40,7 @@ Crash recovery complete; resume at P2-D03 R3 attempt 2 using the committed queue
 
 ## Active next action
 
-Wait for the unrelated CUDA trainer to exit, then execute R3 attempt 3 from `scripts/p2/run_gate_queue.sh` without changing `configs/p2/router_ladder.json`; inspect R3 before R4.
+The committed `scripts/p2/run_gate_queue.sh R3 attempt3` process is waiting without holding the GPU lock. Inspect R3 after it acquires the first safe sustained idle window and completes, before starting R4.
 
 ## Protected access counters
 
@@ -51,4 +51,4 @@ Wait for the unrelated CUDA trainer to exit, then execute R3 attempt 3 from `scr
 
 - Raw-cover extraction and modification remain on rights hold.
 - Official publisher text-feature download is quota-blocked. Amendment 001 selects the already authorized local MiniLM embedding derived from official title/tag/description fields; its p2 copy and alignment qualification passed.
-- ACT-Agent CUDA PID 2404 is the current transient blocker. It must exit before R3 attempt 3; no unrelated process will be killed.
+- ACT-Agent training PID 2404 exited, but its follow-on evaluation PID 9045 acquired CUDA before the six-check idle requirement completed. R3 attempt 3 remains queued without a p2 checkpoint, output, log, receipt, or lock ownership; no unrelated process will be killed.

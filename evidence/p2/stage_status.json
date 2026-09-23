@@ -1,7 +1,7 @@
 {
   "protocol_id": "mosaic-rec-2026-09-23-p2",
   "scientific_state": "DEVELOPMENT",
-  "updated_utc": "2026-09-23T15:07:00Z",
+  "updated_utc": "2026-09-23T15:45:00Z",
   "qualification_access_count": 0,
   "locked_final_access_count": 0,
   "stages": {
@@ -20,7 +20,7 @@
     "P2-C04": {"status": "PASS_DEVELOPMENT", "summary": "corrected attempt 2 masks complete FIT history; checkpoint and exact validation output independently rehashed"},
     "P2-D01": {"status": "PASS_DEVELOPMENT", "summary": "R1 preserved warm quality but scored zero on controlled-zero validation under standardized alignment"},
     "P2-D02": {"status": "PASS_DEVELOPMENT", "summary": "R2 achieved 0.014892 warm NDCG@20 but zero controlled-zero NDCG@20"},
-    "P2-D03": {"status": "WAITING_GPU", "summary": "attempt 2 preserved as prestart-only after ACT-Agent CUDA PID 2404 appeared during the nested idle guard; no checkpoint/output/metrics"}
+    "P2-D03": {"status": "WAITING_GPU", "summary": "attempt 2 remains preserved as prestart-only; attempt 3 is queued without p2 artifacts behind ACT-Agent evaluation PID 9045 and has not acquired the GPU lock"}
   },
   "p1_canonical_receipts_included": 0,
   "warnings": [
