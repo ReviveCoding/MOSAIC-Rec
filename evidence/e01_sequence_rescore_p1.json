@@ -1,0 +1,48 @@
+{
+  "stage_id": "E01_SEQUENCE_RESCORE_SUMMARY",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "SEQUENCE_COMMON_SLICE_RESCORE_PASS",
+  "ended_utc": "2026-09-23T01:42:29.482114+00:00",
+  "git_commit": "e7b30bc66b0ff494f9374f5a5f35043d7409c1f5",
+  "dataset": "microlens-100k",
+  "role": "VALIDATION",
+  "agreement_tolerance": 1e-6,
+  "checkpoint_unchanged": true,
+  "protected_roles_opened": [],
+  "models": [
+    {
+      "model": "B5_GRU4REC_T2",
+      "receipt": "evidence/e01_sequence_rescore_p1_b5_gru4rec_t2.json",
+      "receipt_sha256": "d62b8c16cddfa876db2744efe5f28ffddd6f41bb28a58c1fe99b71bdc6a0b851",
+      "all_ndcg_at_20": 0.014447785675265796,
+      "controlled_cold_ndcg_at_20": 0.0,
+      "warm_fit_ndcg_at_20": 0.03004868438891266,
+      "overall_agreement_absolute": 0.0
+    },
+    {
+      "model": "B6_SASREC_T2",
+      "receipt": "evidence/e01_sequence_rescore_p1_b6_sasrec_t2.json",
+      "receipt_sha256": "9567e5469232369b283cab00cfa5f269133c0facbdbe41855a3598ae868af3a6",
+      "all_ndcg_at_20": 0.00683874953024608,
+      "controlled_cold_ndcg_at_20": 0.0,
+      "warm_fit_ndcg_at_20": 0.014223316352276154,
+      "overall_agreement_absolute": 0.0
+    },
+    {
+      "model": "B7_BERT4REC_T3",
+      "receipt": "evidence/e01_sequence_rescore_p1_b7_bert4rec_t3.json",
+      "receipt_sha256": "b2596ea54ef05872d95eeb90595f4173cffe03f8138dabf470e771dbcb6afb0a",
+      "all_ndcg_at_20": 0.024234579591784138,
+      "controlled_cold_ndcg_at_20": 0.0,
+      "warm_fit_ndcg_at_20": 0.05040338013168293,
+      "overall_agreement_absolute": 0.0
+    }
+  ],
+  "conclusion": "B7_BERT4REC_T3 is strongest on the common all and warm_fit slices. All three ID-only sequence checkpoints score zero on controlled_cold and remain ineligible as the sole cold comparator.",
+  "warnings": [
+    "Read-only DEVELOPMENT audit; no comparator was frozen.",
+    "QUALIFICATION and LOCKED_FINAL remained unopened."
+  ],
+  "evidence_class": "derived_development_validation_rescore"
+}

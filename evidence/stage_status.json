@@ -1,9 +1,9 @@
 {
   "protocol_id": "mosaic-rec-2026-09-20-p1",
   "scientific_state": "DEVELOPMENT",
-  "execution_status": "ACTIVE_E01_SEQUENCE_RESCORE_GPU_RESERVED",
-  "updated_utc": "2026-09-23T01:35:00Z",
-  "canonical_receipts_current": 137,
+  "execution_status": "ACTIVE_E02_QUALIFICATION_FREEZE_PREPARATION",
+  "updated_utc": "2026-09-23T01:42:29Z",
+  "canonical_receipts_current": 141,
   "baseline_b1": "VALIDATION_SELECTED_7_DAYS_THREE_TRACKS",
   "baseline_b9_bm3": "ONE_EPOCH_REFERENCE_PROTOCOL_PILOT_PASS_UNQUALIFIED",
   "baseline_b10_freedom": "ATTEMPT1_INTERRUPTED_CAUSE_UNPROVEN_ATTEMPT2_ONE_EPOCH_PILOT_PASS_UNQUALIFIED",

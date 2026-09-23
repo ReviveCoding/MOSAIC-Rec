@@ -1,0 +1,52 @@
+{
+  "stage_id": "E01_SEQUENCE_RESCORE",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "DEVELOPMENT",
+  "status": "READ_ONLY_RESCORE_PASS",
+  "ended_utc": "2026-09-23T01:42:29.482114+00:00",
+  "dataset": "microlens-100k",
+  "model": "B7_BERT4REC_T3",
+  "source_model": "B7_BERT4REC",
+  "source_hpo_trial_index": 3,
+  "architecture": "bert4rec",
+  "seed": 20260920,
+  "epochs": 30,
+  "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "validation_slices": {
+    "all": {
+      "n": 41694,
+      "ndcg_at_20": 0.024234579591784138,
+      "recall_at_20": 0.0503189907420732
+    },
+    "controlled_cold": {
+      "n": 918,
+      "ndcg_at_20": 0.0,
+      "recall_at_20": 0.0
+    },
+    "warm_fit": {
+      "n": 20047,
+      "ndcg_at_20": 0.05040338013168293,
+      "recall_at_20": 0.10465406295206266
+    }
+  },
+  "score_seconds": 5.176485789997969,
+  "peak_vram_bytes": 73800704,
+  "source_receipt": "evidence/hpo_p1_b7_bert4rec_t3.json",
+  "source_receipt_sha256": "e033e5f4135bcc39a66253c65989afebb7dc05fcea2ea81975b0269345f6b086",
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/checkpoints/hpo_p1_b7_bert4rec_t3.pt",
+  "checkpoint_sha256": "8fce283a14de5802b2565539ebc4d95ef6dac5eeac941e37c2612935da208c2b",
+  "checkpoint_unchanged": true,
+  "overall_agreement_absolute": 0.0,
+  "agreement_tolerance": 1e-06,
+  "input_sha256": {
+    "fit_visible": "1571406f3bea51f96ee5839ccad858e4587d9b1aab5aafa296dde3854ce996e6",
+    "validation": "1328a9ff79bdc1afdd5961891835749b15e761b6263e926d2e74e6eccfbefd9c",
+    "controlled_cold_ids": "440e659b22c3f6f3743fb9fa32aa32a5af36afab884fb52b59a57441f3c64969"
+  },
+  "git_commit": "e7b30bc66b0ff494f9374f5a5f35043d7409c1f5",
+  "warnings": [
+    "Read-only DEVELOPMENT re-scoring; this is not comparator selection.",
+    "QUALIFICATION and LOCKED_FINAL were not accessed."
+  ],
+  "evidence_class": "measured_development_validation_rescore"
+}
