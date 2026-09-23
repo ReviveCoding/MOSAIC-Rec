@@ -1,0 +1,19 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage": "P2-D01-PILOT",
+  "seed": 20260929,
+  "router": {
+    "model_id": "R1_HARD_ZERO_SUPPORT_PILOT",
+    "definition": "content expert for candidate FIT support zero; sequence expert otherwise",
+    "alignment": "per_query_standardized_logits",
+    "standardization_population": "time-available candidates after FIT-history masking",
+    "zero_variance_scale": 1.0
+  },
+  "experts": {
+    "sequence_checkpoint": "/home/bjw-0/mosaic-rec-work/p2/checkpoints/cseq_bert4rec_pilot.pt",
+    "content_checkpoint": "/home/bjw-0/mosaic-rec-work/p2/checkpoints/ccold_two_tower_pilot.pt"
+  },
+  "scoring": {"batch_size": 96, "top_k": 100, "exact_full_catalog": true},
+  "evidence_class": "DEVELOPMENT_PILOT",
+  "protected_roles_opened": []
+}

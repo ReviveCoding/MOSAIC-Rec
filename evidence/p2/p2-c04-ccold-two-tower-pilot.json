@@ -1,0 +1,63 @@
+{
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/checkpoints/ccold_two_tower_pilot.pt",
+  "checkpoint_sha256": "a8657b9b017988daba59763c7058e8e3521016bb6caef0923c04dec4bab3a753",
+  "config_sha256": "d1f50ea44a0e1ec20574a44fb8907040d9ecb2e7b119c04562343ef541c971e8",
+  "evidence_class": "p2_measured_development_pilot",
+  "git_commit": "ee41ea2132b8a11299539a0b0f68176bb6ec35df",
+  "gpu_qualification": {
+    "bf16_supported": true,
+    "cuda_runtime": "13.0",
+    "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+    "tensor_result": 5590357.0,
+    "torch": "2.14.0+cu130",
+    "vram_bytes": 17170956288
+  },
+  "model_id": "CCOLD_TWO_TOWER_PILOT",
+  "peak_vram_bytes": 743056384,
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "seed": 20260929,
+  "stage_id": "P2-C04-PILOT",
+  "status": "PASS",
+  "train_seconds": 14.650267621997045,
+  "training_examples": 47898,
+  "training_log": [
+    {
+      "epoch": 1,
+      "loss": 0.6007090047523868
+    },
+    {
+      "epoch": 2,
+      "loss": 0.5675155451100745
+    },
+    {
+      "epoch": 3,
+      "loss": 0.5557242861878793
+    }
+  ],
+  "validation": {
+    "output": "/home/bjw-0/mosaic-rec-work/p2/development/ccold_two_tower_pilot_validation.parquet",
+    "output_sha256": "6ad51b1aa4f35048a8a84ef4a1691f1397992ea653b57c1f73bace4a98c2517d",
+    "role": "VALIDATION",
+    "rows": 27918,
+    "seconds": 14.07456409400038,
+    "slices": {
+      "all": {
+        "n": 27918,
+        "ndcg_at_20": 0.0012920191501571239
+      },
+      "controlled_zero": {
+        "n": 458,
+        "ndcg_at_20": 0.0008446567843548943
+      },
+      "natural_zero": {
+        "n": 17866,
+        "ndcg_at_20": 0.0013736259514868022
+      },
+      "warm": {
+        "n": 3808,
+        "ndcg_at_20": 0.00163698451098622
+      }
+    },
+    "users_per_second": 1983.577915382009
+  }
+}

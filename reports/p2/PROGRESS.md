@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-P2-C00-C04 baseline and expert development pilots.
+P2-D01 R1 hard zero-support router pilot after completed expert pilots.
 
 ## Completed
 
@@ -23,10 +23,13 @@ P2-C00-C04 baseline and expert development pilots.
 - Excluded all seven engagement aggregates from the permitted metadata inputs.
 - Built FIT-only item and user context tables and hashed earliest eligible role query manifests.
 - Confirmed zero candidate-time violations across 27,918 validation, 26,900 qualification, and 25,367 locked query rows.
+- Completed the BERT4Rec CUDA pilot: warm NDCG@20 0.013161; both zero-support slices 0.
+- Completed the multimodal Two-Tower CUDA pilot: controlled-zero NDCG@20 0.000845 and warm 0.001637.
+- Persisted both exact validation top-100 artifacts and checkpoint hashes.
 
 ## Active next action
 
-Implement common p2 expert/scoring code, run validation-only CUDA pilots for the sequence and content experts, then run R1 before more complex routers.
+Run the committed R1 hard zero-support router with per-query standardized expert logits, inspect zero-support and warm behavior, then implement the remaining router ladder and equal-budget HPO.
 
 ## Protected access counters
 

@@ -75,6 +75,7 @@ def exact_score(
     item_ids: list[str],
     first_seen: torch.Tensor,
     score_batch: Callable[[list[str]], torch.Tensor],
+    combine_scores: Callable[[torch.Tensor], torch.Tensor] | None = None,
     output: Path,
     batch_size: int,
     top_k: int = 100,
@@ -118,7 +119,11 @@ def exact_score(
                 queries["query_timestamp"][offset : offset + len(users)],
                 device=device,
             )
-            scores.masked_fill_(first_seen[None, :] > stamps[:, None], -torch.inf)
+            availability_mask = first_seen[None, :] > stamps[:, None]
+            if scores.ndim == 3:
+                scores.masked_fill_(availability_mask[:, None, :], -torch.inf)
+            else:
+                scores.masked_fill_(availability_mask, -torch.inf)
             targets = [
                 item_to_index[item]
                 for item in queries["target_item_id"][offset : offset + len(users)]
@@ -128,7 +133,15 @@ def exact_score(
                 target_model_id = targets[row] + 1
                 masked = [item - 1 for item in history if item != target_model_id]
                 if masked:
-                    scores[row, torch.tensor(masked, device=device)] = -torch.inf
+                    indices = torch.tensor(masked, device=device)
+                    if scores.ndim == 3:
+                        scores[row, :, indices] = -torch.inf
+                    else:
+                        scores[row, indices] = -torch.inf
+            if combine_scores is not None:
+                scores = combine_scores(scores)
+            if scores.ndim != 2:
+                raise RuntimeError("Exact scorer requires one combined score per item")
             scores -= catalog_tie[None, :]
             target_tensor = torch.tensor(targets, device=device)
             target_scores = scores[

@@ -48,3 +48,10 @@ Checked 2026-09-23:
 - User tail preference uses the bottom 20% among positive-support FIT items; target popularity uses the complete catalog with zero support reported separately.
 - Earliest eligible per-user query manifests contain 27,918 VALIDATION, 26,900 QUALIFICATION, and 25,367 LOCKED_FINAL users. These are protocol inputs, not accessed model outcomes.
 - Candidate-time violations are zero in all three manifests.
+
+## 2026-09-23 — first expert pilots
+
+- `CSEQ_BERT4REC_PILOT` trained for three CUDA epochs and scored all 27,918 validation users against the exact time-available catalog. NDCG@20 was 0.001803 overall, 0.013161 warm, and zero on controlled and natural zero-support targets.
+- `CCOLD_TWO_TOWER_PILOT` trained for three CUDA epochs on authorized image/text/tag inputs. NDCG@20 was 0.001292 overall, 0.000845 controlled zero, 0.001374 natural zero, and 0.001637 warm.
+- These are DEVELOPMENT pilots, not frozen comparator results. The unfavorable low scores and expert specialization are preserved.
+- The old shared p1 lock named absent PID 79333 and was treated as stale without deletion. p2 uses `/home/bjw-0/mosaic-rec-work/p2/locks/heavy_gpu.lock`; both pilots held it exclusively.

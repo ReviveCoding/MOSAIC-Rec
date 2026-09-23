@@ -3,6 +3,7 @@ from __future__ import annotations
 import torch
 
 from mosaic_rec.p2.models import BERT4RecExpert, ContentTwoTower, cloze_batch
+from mosaic_rec.p2.router import hard_zero_combine
 
 
 def test_bert4rec_cloze_and_query_shapes() -> None:
@@ -27,3 +28,17 @@ def test_content_tower_padding_is_zero_and_outputs_are_finite() -> None:
     users = model.user_vectors(torch.tensor([[1, 2, 0], [3, 4, 1]]))
     assert users.shape == (2, 4)
     assert torch.isfinite(users).all()
+
+
+def test_hard_zero_router_uses_content_only_at_zero_support() -> None:
+    expert_scores = torch.tensor(
+        [[[1.0, 2.0, 3.0], [3.0, 1.0, 2.0]]], dtype=torch.float64
+    )
+    support = torch.tensor([0, 1, 0])
+    combined = hard_zero_combine(expert_scores, support)
+    assert combined.shape == (1, 3)
+    sequence_only = hard_zero_combine(
+        torch.stack([expert_scores[:, 0], expert_scores[:, 0]], dim=1), support
+    )
+    assert combined[0, 1] == sequence_only[0, 1]
+    assert combined[0, 0] != sequence_only[0, 0]
