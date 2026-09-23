@@ -8,6 +8,7 @@ from mosaic_rec.p2.models import (
     BERT4RecExpert,
     ContentTwoTower,
     ContextRouterGate,
+    LegacyM1,
     LightGCN,
     MonotonicSupportGate,
     SASRecExpert,
@@ -83,3 +84,25 @@ def test_additional_baseline_shapes() -> None:
     user_vectors, item_vectors = graph(adjacency)
     assert user_vectors.shape == (2, 4)
     assert item_vectors.shape == (3, 4)
+
+
+def test_legacy_m1_removes_collaborative_branch_at_zero_support() -> None:
+    model = LegacyM1(
+        torch.randn(3, 6),
+        torch.randn(3, 5),
+        torch.tensor([1, 2, 1]),
+        torch.tensor([True, True, True]),
+        torch.tensor([True, True, True]),
+        width=4,
+        length=3,
+        tag_count=2,
+        layers=1,
+        heads=2,
+        dropout=0,
+    )
+    items = torch.tensor([[1, 2, 0]])
+    fused = model.fuse(items, torch.tensor([[0, 3, 0]]))
+    assert fused.shape == (1, 3, 4)
+    assert torch.equal(fused[0, 2], torch.zeros(4))
+    state = model.user_state(items, torch.tensor([[0, 3, 0]]), torch.tensor([2]))
+    assert state.shape == (1, 4)

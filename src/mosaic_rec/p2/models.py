@@ -242,3 +242,94 @@ class LightGCN(nn.Module):
             levels.append(values)
         combined = torch.stack(levels).mean(dim=0)
         return combined[: self.users], combined[self.users :]
+
+
+class LegacyM1(nn.Module):
+    """p1 M1 fixed-fusion architecture adapted to the p2 catalog."""
+
+    def __init__(
+        self,
+        image: torch.Tensor,
+        text: torch.Tensor,
+        tag_ids: torch.Tensor,
+        image_present: torch.Tensor,
+        text_present: torch.Tensor,
+        *,
+        width: int = 64,
+        length: int = 50,
+        tag_count: int = 108,
+        layers: int = 2,
+        heads: int = 4,
+        dropout: float = 0.2,
+    ) -> None:
+        super().__init__()
+        self.length = length
+        self.item = nn.Embedding(len(image) + 1, width, padding_idx=0)
+        self.image_projection = nn.Linear(image.shape[1], width, bias=False)
+        self.text_projection = nn.Linear(text.shape[1], width, bias=False)
+        self.tag_embedding = nn.Embedding(tag_count + 1, width, padding_idx=0)
+        self.position = nn.Embedding(length, width)
+        self.register_buffer("image_features", image, persistent=False)
+        self.register_buffer("text_features", text, persistent=False)
+        self.register_buffer("tag_ids", tag_ids, persistent=False)
+        self.register_buffer("image_present", image_present, persistent=False)
+        self.register_buffer("text_present", text_present, persistent=False)
+        layer = nn.TransformerEncoderLayer(
+            d_model=width,
+            nhead=heads,
+            dim_feedforward=2 * width,
+            dropout=dropout,
+            batch_first=True,
+            norm_first=True,
+        )
+        self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
+        self.norm = nn.LayerNorm(width)
+        nn.init.normal_(self.item.weight, std=0.02)
+        with torch.no_grad():
+            self.item.weight[0].zero_()
+
+    def fuse(self, model_item_ids: torch.Tensor, support: torch.Tensor) -> torch.Tensor:
+        active = model_item_ids.ne(0)
+        indices = (model_item_ids - 1).clamp_min(0)
+        branches = torch.stack(
+            [
+                self.item(model_item_ids),
+                self.text_projection(self.text_features[indices]),
+                self.image_projection(self.image_features[indices]),
+                self.tag_embedding(self.tag_ids[indices]),
+            ],
+            dim=-2,
+        )
+        available = torch.stack(
+            [
+                active & support.gt(0),
+                active & self.text_present[indices],
+                active & self.image_present[indices],
+                active,
+            ],
+            dim=-1,
+        )
+        weights = available.float() / available.sum(dim=-1, keepdim=True).clamp_min(1)
+        return (
+            (branches * weights[..., None])
+            .sum(dim=-2)
+            .masked_fill(~active[..., None], 0)
+        )
+
+    def user_state(
+        self, sequence: torch.Tensor, support: torch.Tensor, lengths: torch.Tensor
+    ) -> torch.Tensor:
+        positions = torch.arange(sequence.shape[1], device=sequence.device)
+        values = self.fuse(sequence, support) + self.position(positions)[None, :, :]
+        causal = torch.triu(
+            torch.ones(
+                sequence.shape[1],
+                sequence.shape[1],
+                dtype=torch.bool,
+                device=sequence.device,
+            ),
+            diagonal=1,
+        )
+        encoded = self.encoder(values, mask=causal, src_key_padding_mask=sequence.eq(0))
+        last = encoded[torch.arange(len(sequence), device=sequence.device), lengths - 1]
+        return self.norm(last)
