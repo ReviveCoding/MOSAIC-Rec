@@ -318,6 +318,8 @@ def run_baseline(
         "status": "PASS",
         "baseline": baseline,
         "model_id": model_config["model_id"],
+        "trial_id": str(config.get("trial_id", "")),
+        "family": str(config.get("family", baseline)),
         "git_commit": subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=repo, text=True
         ).strip(),
@@ -331,7 +333,9 @@ def run_baseline(
         "checkpoint": str(checkpoint),
         "checkpoint_sha256": sha256_file(checkpoint),
         "validation": scoring,
-        "evidence_class": "p2_measured_development_baseline_pilot",
+        "evidence_class": str(
+            config.get("evidence_class", "p2_measured_development_baseline_pilot")
+        ),
     }
     write_json_new(receipt, result)
     return result

@@ -224,6 +224,8 @@ def train_and_score_legacy(
         "stage_id": config["stage_id"],
         "status": "PASS",
         "model_id": config["model_id"],
+        "trial_id": str(config.get("trial_id", "")),
+        "family": str(config.get("family", "LEGACY_M1")),
         "git_commit": subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=repo, text=True
         ).strip(),
@@ -237,7 +239,9 @@ def train_and_score_legacy(
         "checkpoint": str(checkpoint),
         "checkpoint_sha256": sha256_file(checkpoint),
         "validation": scoring,
-        "evidence_class": "p2_measured_development_legacy_pilot",
+        "evidence_class": str(
+            config.get("evidence_class", "p2_measured_development_legacy_pilot")
+        ),
     }
     write_json_new(receipt, result)
     return result

@@ -341,8 +341,10 @@ def train_sequence(
     )
     result = {
         "protocol_id": PROTOCOL_ID,
-        "stage_id": "P2-C03-PILOT",
+        "stage_id": str(config.get("stage_id", "P2-C03-PILOT")),
         "attempt_id": str(config.get("attempt_id", "")),
+        "trial_id": str(config.get("trial_id", "")),
+        "family": str(config.get("family", "CSEQ_BERT4REC")),
         "status": "PASS",
         "model_id": section["model_id"],
         "git_commit": subprocess.check_output(
@@ -358,7 +360,9 @@ def train_sequence(
         "checkpoint": str(checkpoint),
         "checkpoint_sha256": sha256_file(checkpoint),
         "validation": scoring,
-        "evidence_class": "p2_measured_development_pilot",
+        "evidence_class": str(
+            config.get("evidence_class", "p2_measured_development_pilot")
+        ),
     }
     write_json_new(receipt, result)
     return result
@@ -518,8 +522,10 @@ def train_content(
     )
     result = {
         "protocol_id": PROTOCOL_ID,
-        "stage_id": "P2-C04-PILOT",
+        "stage_id": str(config.get("stage_id", "P2-C04-PILOT")),
         "attempt_id": str(config.get("attempt_id", "")),
+        "trial_id": str(config.get("trial_id", "")),
+        "family": str(config.get("family", "CCOLD_TWO_TOWER")),
         "status": "PASS",
         "model_id": section["model_id"],
         "git_commit": subprocess.check_output(
@@ -535,7 +541,9 @@ def train_content(
         "checkpoint": str(checkpoint),
         "checkpoint_sha256": sha256_file(checkpoint),
         "validation": scoring,
-        "evidence_class": "p2_measured_development_pilot",
+        "evidence_class": str(
+            config.get("evidence_class", "p2_measured_development_pilot")
+        ),
     }
     write_json_new(receipt, result)
     return result
