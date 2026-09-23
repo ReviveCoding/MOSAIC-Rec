@@ -1,8 +1,8 @@
 {
   "protocol_id": "mosaic-rec-2026-09-20-p1",
-  "scientific_state": "ANALYSIS",
-  "execution_status": "CLOSURE_VALIDATION",
-  "updated_utc": "2026-09-23T03:05:00Z",
+  "scientific_state": "CLOSED",
+  "execution_status": "TERMINAL_RETAIN_BASELINE",
+  "updated_utc": "2026-09-23T03:12:00Z",
   "canonical_receipts_current": 169,
   "baseline_b1": "VALIDATION_SELECTED_7_DAYS_THREE_TRACKS",
   "baseline_b9_bm3": "ONE_EPOCH_REFERENCE_PROTOCOL_PILOT_PASS_UNQUALIFIED",
@@ -77,6 +77,6 @@
     "K02": "CLAIM_LEDGER_PASS",
     "K03": "TECHNICAL_REPORT_PASS",
     "K04": "ADVERSARIAL_AUDIT_PASS_WITH_INVALID_STAGES",
-    "K05": "CLOSURE_PENDING_FINAL_VALIDATION"
+    "K05": "FINAL_STATUS_RETAIN_BASELINE"
   }
 }

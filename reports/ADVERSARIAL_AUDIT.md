@@ -1,28 +1,36 @@
-# Adversarial scientific audit — development checkpoint
+# Final adversarial scientific audit
 
-Protocol `mosaic-rec-2026-09-20-p1` remains in DEVELOPMENT. This is a live audit, not K04 closure. The canonical warehouse currently validates 55 receipts and zero locked-execution receipts. A05 mechanical leakage checks passed, but outcome-dependent gates below remain open.
+Protocol: `mosaic-rec-2026-09-20-p1`. Terminal decision: `RETAIN_BASELINE`.
 
-| Risk | Current evidence or issue | Disposition |
+| Risk | Evidence | Final disposition |
 |---|---|---|
-| Future interaction leakage | Four roles and FIT-visible training artifacts are frozen; source-wide first-observed time is used only as an evaluation availability proxy. A pre-run review corrected the queued BPR sampler so its negative pool and user exclusions use only information available by each FIT event. | Mechanical pass; candidate-time interpretation limited; corrected BPR pilot pending |
-| Split contamination | Three-track A06 audits passed after the reboot integrity audit. | PASS mechanical |
-| Controlled-cold collaborative leakage | MicroLens 772 and PixelRec 3,109 selected item IDs have positive FIT collaboration hidden. A code review found the historical SASRec/GRU4Rec pilot negative sampler used source-wide item first-observed times, allowing possible negative updates on FIT-hidden cold IDs. Future sequence training now uses FIT_VISIBLE items only and asserts cold exclusion. | Historical sequence cold evidence unqualified; corrected code not yet rerun |
-| Candidate-time leakage | First observed interaction is not product launch. Full-source first-observed timestamps determine available candidates at an event. | Proxy limitation disclosed; further sensitivity pending |
-| Baseline undertraining | BM3 has one epoch; BERT4Rec only a reference runtime smoke; FREEDOM attempt 1 interrupted; fair HPO absent. | OPEN; no comparator freeze |
-| Unequal HPO | No equal-budget neural search has completed. | OPEN; no promotion claim |
-| Sampled evaluation headline | Development and BM3 pilots use exact available-catalog scoring. No locked headline exists. | Pending locked audit |
-| Best-seed cherry picking | M0-M7 development ladder is single-seed; additional seeds declared but not run. | OPEN |
-| License violations | Raw PixelRec covers quota-blocked; MicroLens raw-cover transformation rights unclear; publisher features stay local. | HOLD affected branches |
-| Raw-data redistribution | Raw datasets and feature vectors stay in WSL scratch and are ignored by Git. | PASS current workspace audit |
-| Invalid content mapping | MicroLens publisher arrays and PixelRec publisher image vectors passed full item-ID mapping/finiteness checks. | PASS measured sources |
-| Unobserved-as-negative overclaim | BPR-style training samples unobserved FIT items; no exposure or true-negative labels are known. | Wording constraint |
-| Gate-weight overinterpretation | M0 diagnostic softmax did not control its sum; original receipt preserved and marked invalid for interpretation. | PASS correction; later diagnostics pending |
-| Reliability language | Controlled intervention and directional gate-response tests have not run. The current gate observes support but no image-quality signal, so a content mismatch at fixed support cannot induce learned gate response. | UNSUPPORTED |
-| Production language | Local FastAPI adapter is a development demonstration; no throughput/latency study or deployment. | UNSUPPORTED |
-| Causal language | Public interactions are observational; no randomized exposure. | UNSUPPORTED |
-| Multi-GPU claims | One RTX GPU is present. | UNSUPPORTED |
-| CPU fallback of neural stages | CUDA requalified after reboot; completed neural pilots report RTX device. BM3 and FREEDOM attempt 1 used CUDA. | PASS observed jobs; later jobs pending |
-| Post-lock scientific mutation | No locked execution receipt exists. | Not applicable yet; enforce at freeze |
-| External replication interpretation | MovieLens and PixelRec final model replication has not run. | OPEN |
+| 1. Future leakage | Four temporal roles; time-safe FIT samplers; first-observed time used only as disclosed availability proxy | PASS with proxy limitation |
+| 2. Split contamination | Hash/schema and cross-role mechanical audits passed on all three tracks | PASS |
+| 3. Cold collaborative leakage | MicroLens 772 and PixelRec 3,109 FIT-hidden items; corrected neural pools excluded cold IDs | PASS for qualified runs; historical pilots remain unqualified |
+| 4. Candidate-time leakage | Candidate availability uses first observed interaction, not launch time | LIMITATION, disclosed |
+| 5. Baseline undertraining | Equal fixed HPO grids, independent E01 seeds, reference smokes, separate B7/B4 comparators | PASS for frozen comparators; other families explicitly unqualified |
+| 6. Unequal HPO | Comparable frozen candidates used declared three-trial budgets; all failures retained | PASS within declared grid |
+| 7. Sampled headline evaluation | Qualification and locked results use exact full catalog | PASS |
+| 8. Best-seed cherry picking | Frozen three-seed score ensembles | PASS |
+| 9. License violations | Source/terms audit; raw-cover derivative work held | PASS current use; HOLD derivative work |
+| 10. Raw-data redistribution | Raw data/features stay in ignored WSL scratch | PASS |
+| 11. Invalid content mapping | Publisher arrays/features passed full item alignment and finiteness checks | PASS |
+| 12. Unobserved-as-negative overclaim | Reports describe offline nonrelevance, not true negatives | PASS wording constraint |
+| 13. Gate-weight overinterpretation | M0 invalid diagnostic weights excluded; coefficients not called probabilities | PASS |
+| 14. Unsupported reliability language | Gxx invalid due incomplete frozen interventions | PASS by prohibiting claim |
+| 15. Unsupported production language | FastAPI evidence labeled local development demonstration | PASS |
+| 16. Unsupported causal language | No causal or engagement claim in ledger | PASS |
+| 17. Unsupported multi-GPU claims | Single-GPU evidence only | PASS |
+| 18. CPU fallback | Neural receipts identify RTX CUDA; no silent long CPU fallback | PASS |
+| 19. Post-lock mutation | Original and amended pre-access freezes preserved; post-lock G/H gaps left invalid | PASS |
+| 20. Replication overinterpretation | No external neural result; status `LOCAL_VALIDITY_ONLY` | PASS by holding claim |
 
-K04 can close only after comparator/seed parity, frozen locked scoring, robustness, ablations, replication, systems, and canonical claim validation. Unfavorable model results must remain in the warehouse.
+## Defects found and handling
+
+- A pre-access E05 query label defect was amended before any protected receipt and re-guarded under a new hash.
+- The first locked command failed its stage-token guard before reading protected data; the failure is preserved.
+- Robustness and ablation definitions were materially incomplete at freeze. They remain INVALID rather than being repaired after outcomes.
+- External transfer rules were not frozen before primary protected access. Replication remains HOLD.
+- Two systems attempts failed through CUDA-process isolation and lock reentrancy. Both failures are preserved; the corrected serial measurement succeeded without scientific changes.
+
+The audit found no evidence requiring invalidation of the exact locked scoring or primary bootstrap inference. It does prevent reliability, confirmatory mechanism, external replication, production, causal, and multi-GPU claims.

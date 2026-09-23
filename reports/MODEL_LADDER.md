@@ -1,5 +1,9 @@
 # MOSAIC development ladder: MicroLens-100K
 
+## Terminal update
+
+The later frozen qualification rule selected M1_T2. On LOCKED_FINAL it improved the controlled-cold point estimate but failed the superiority interval gate and failed warm noninferiority. The final decision is `RETAIN_BASELINE`. The table below remains preserved exploratory DEVELOPMENT evidence.
+
 Protocol `mosaic-rec-2026-09-20-p1`, DEVELOPMENT. These are single-seed, three-epoch CUDA pilots with exact available-catalog top-20 validation scoring. Each row is derived from its `evidence/microlens_m*_pilot.json` receipt. There is no equal-budget HPO, independent-seed qualification, frozen comparator, or protected outcome access.
 
 | Variant | All NDCG@20 | Controlled cold NDCG@20 (n=918) | FIT-warm NDCG@20 (n=20,047) |

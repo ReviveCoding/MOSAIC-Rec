@@ -1,5 +1,9 @@
 # Decisions
 
+2026-09-23: Close protocol p1 as `RETAIN_BASELINE` and `LOCAL_VALIDITY_ONLY`. Do not promote the positive overall secondary result over failed cold superiority and warm noninferiority gates. Keep robustness and ablations INVALID_UNDERSPECIFIED and external replication on HOLD because their material definitions were not frozen before protected access. Future scientific changes require a new protocol.
+
+2026-09-23: Release the user-reserved MOSAIC GPU window after closure. The previously paused ContextWeave supervisor PID 48528 no longer existed, so no resume signal could be delivered and no unrelated process was altered.
+
 2026-09-20: Use `mosaic-rec-2026-09-20-p1` as an unsealed pilot identity. Keep MovieLens 32M as behavioral replication only; its `movies.csv` title/genre fields do not constitute the visual modality required for multimodal claims. Do not use TMDB. Follow official dataset terms before any download or derived feature generation.
 
 2026-09-20: Freeze interaction role cutoffs and deterministic FIT-hidden item cohorts in `configs/split_p1.json` and hashed A05 manifests. This is a split/cohort freeze, not comparator or scientific outcome freeze. Preserve the MovieLens new-user drift as a replication limitation. The seven PixelRec item engagement aggregates have no as-of time and are excluded from features. Use publisher-provided MicroLens image/text vectors as qualified inputs; record any local encoder run separately.

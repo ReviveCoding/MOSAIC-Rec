@@ -1,5 +1,11 @@
 # Progress
 
+## 2026-09-23 terminal closure
+
+Protocol `mosaic-rec-2026-09-20-p1` is CLOSED with decision `RETAIN_BASELINE`. Exact locked scoring and 10,000-draw inference completed. M1_T2 failed controlled-cold superiority and warm noninferiority; its secondary overall difference was positive. Robustness and confirmatory ablations are INVALID_UNDERSPECIFIED, and external replication is HOLD/LOCAL_VALIDITY_ONLY. The systems study partially passed; ANN remains held. The canonical warehouse validates 169 receipts with 3 locked-execution receipts, Ruff passes, and 36 tests pass. See `reports/FINAL_STATUS.md`.
+
+The reserved GPU window was released. ContextWeave supervisor PID 48528 was already absent when checked, so no process was resumed.
+
 2026-09-20: Orientation completed. Repository is bootstrap-only and clean. Ubuntu-22.04 accessible with escalation; RTX 4090 Laptop GPU visible, 16 GB VRAM; WSL scratch has 854 GB free, RAM 15 GB plus 4 GB swap. Official source and terms review active. No scientific result yet.
 
 Current phase: A00/A01. Active process: none. Next: isolate Python environment, qualify CUDA, obtain and hash eligible data, then schema QA.

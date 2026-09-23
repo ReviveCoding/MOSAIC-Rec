@@ -1,5 +1,16 @@
 # MOSAIC-Rec reproduction and recovery runbook
 
+## Closed protocol notice
+
+Protocol `mosaic-rec-2026-09-20-p1` is CLOSED with decision `RETAIN_BASELINE`. Do not rerun protected scoring, overwrite existing outputs, or resume the old DEVELOPMENT/HPO commands below against their recorded paths. Those sections preserve historical reconstruction details. Validate the closed evidence with:
+
+```powershell
+wsl -d Ubuntu-22.04 -- bash -lc 'cd /mnt/c/Users/bjw-0/Downloads/MOSAIC-Rec && PYTHONPATH=src /home/bjw-0/mosaic-rec-work/.venv/bin/python -m mosaic_rec.validate_evidence evidence evidence/warehouse.duckdb'
+wsl -d Ubuntu-22.04 -- bash -lc 'cd /mnt/c/Users/bjw-0/Downloads/MOSAIC-Rec && PYTHONPATH=src /home/bjw-0/mosaic-rec-work/.venv/bin/python -m pytest -q'
+```
+
+The validator should report 169 receipts and 3 locked-execution receipts. Any new scientific experiment needs a new preregistered protocol and new output identities. Preserve p1 and its failed, invalid, and held outcomes unchanged.
+
 ## Current DEVELOPMENT HPO and PixelRec archive
 
 The predeclared HPO grid is `configs/hpo_development_p1.json`. Run one model or trial at a time in Ubuntu-22.04 after checking the sole GPU. The runner refuses existing trial outputs, applies the declared learning rate through `MOSAIC_HPO_LEARNING_RATE`, checks the measured receipt/checkpoint/metric before moving to another trial, and writes canonical companion receipts under `evidence/hpo_p1_*.json`:
@@ -12,7 +23,7 @@ wsl -d Ubuntu-22.04 -- /home/bjw-0/mosaic-rec-work/.venv/bin/python -m mosaic_re
 
 Run `scripts/summarize_hpo_p1.py` only after every declared model and trial has a terminal receipt. PixelRec raw `cover.7z` in WSL scratch was acquired from official Drive file `1VlQxEUoFntgQx0WnNcRsgJu_EtYEBzlS`; its local SHA-256 is `a27ba156123a30555d563be820011c406b5817621f93b7d5dcedc9b090dfa5ee`. The isolated, publisher-hash-verified 7-Zip 26.03 utility at `/home/bjw-0/mosaic-rec-work/tools/7zip-26.03/7zz` passed `t -mmt=2 -bb0` with 82,865 images matching metadata. `evidence/pixelrec_cover_archive_integrity_p1.json` records the result. Raw-cover feature extraction remains rights-held; use the already qualified publisher image-feature branch for feasible replication.
 
-This runbook reproduces **the current development evidence**, not a locked scientific conclusion. It uses the project paths in `configs/bootstrap.json`: PowerShell in `C:\Users\bjw-0\Downloads\MOSAIC-Rec`, Ubuntu-22.04 WSL for all scientific Python, and `/home/bjw-0/mosaic-rec-work` for raw data, features and checkpoints. The protocol is `mosaic-rec-2026-09-20-p1` in DEVELOPMENT.
+The sections below preserve the commands used to construct the development evidence that preceded closure. They use the project paths in `configs/bootstrap.json`: PowerShell in `C:\Users\bjw-0\Downloads\MOSAIC-Rec`, Ubuntu-22.04 WSL for scientific Python, and `/home/bjw-0/mosaic-rec-work` for raw data, features, and checkpoints.
 
 ## Before any neural job
 
@@ -49,7 +60,7 @@ wsl -d Ubuntu-22.04 -- /home/bjw-0/mosaic-rec-work/.venv/bin/python -m mosaic_re
 
 The validator prints `locked_execution_receipts`. It must remain zero until comparator, finalist, margin, seed, metric, and robustness definitions are validly frozen. Read `reports/RECOVERY_AUDIT.md` before resuming from a host or WSL interruption.
 
-`mosaic_rec.protocol` defines the allowed PILOT → DEVELOPMENT → QUALIFICATION → FROZEN → LOCKED_EXECUTION → ANALYSIS → CLOSED transitions and fails closed on protected role access. A freeze manifest must identify source, split/cohort/feature hashes, both comparator roles, finalist, seeds, HPO selection, metric/candidate definitions, margin, gates, robustness, and ablations. This repository is still in DEVELOPMENT; there is no valid freeze manifest and `LOCKED_FINAL` access is prohibited.
+`mosaic_rec.protocol` defines the allowed PILOT → DEVELOPMENT → QUALIFICATION → FROZEN → LOCKED_EXECUTION → ANALYSIS → CLOSED transitions and fails closed on protected role access. The amended p1 freeze manifest and guard are preserved in `evidence/`; the protocol is now CLOSED and protected scoring must not be reopened.
 
 ## Development runs
 
@@ -75,9 +86,9 @@ The script refuses existing attempt-2 receipt/checkpoint/cache paths and checks 
 
 The historical SASRec/GRU4Rec pilots may have trained on FIT-hidden cold item IDs as sampled negatives. Their receipts are preserved and their cold-start interpretation is unqualified. `scripts/run_corrected_sequence_pilots.sh` declares distinct, event-time-safe development reruns under `configs/sequence_coldguard_pilot_p1.json`. It requires a free GPU and writes new checkpoint, log and receipt paths; execute it only after the earlier GPU queue and inspect each result before warehouse refresh. These reruns remain unqualified pilots without fair HPO, reference parity and independent seeds.
 
-`scripts/run_bert4rec_common_pilot.sh` declares a local CUDA Cloze pilot with a distinct receipt and checkpoint under `configs/bert4rec_common_pilot_p1.json`. It checks GPU occupancy, holds the exclusive project lock, uses FIT_VISIBLE for training, and scores the first VALIDATION event per FIT-history user with exact available-catalog ranking. FIT-hidden cold IDs are excluded from training targets and softmax classes. The pilot has not run; even a successful run would remain unqualified until RecBole parity, fair HPO and seed replication.
+`scripts/run_bert4rec_common_pilot.sh` documents the completed local CUDA Cloze pilot under `configs/bert4rec_common_pilot_p1.json`. FIT-hidden cold IDs were excluded from training targets and softmax classes. Do not replay it over its recorded paths.
 
-`src/mosaic_rec/statistics.py` implements paired user-cluster percentile intervals, cold item-cluster sensitivity, and Holm adjustment. `configs/statistics_development_p1.json` records the proposed design. It is **not** an E04 scientific freeze; no locked scores may be analyzed until the full qualification manifest is sealed.
+`src/mosaic_rec/statistics.py` implements paired user-cluster percentile intervals, cold item-cluster sensitivity, and Holm adjustment. The executed frozen settings and results are recorded in the E04/E05 and F00 statistics receipts.
 
 `src/mosaic_rec/interventions.py` defines a seeded item derangement for cached image-embedding mismatch. Its permutation has no fixed points and does not alter the vector multiset. It is a feature-level mismatch intervention, not a claim about raw-image blur, crop, or occlusion; those remain held by the license audit.
 

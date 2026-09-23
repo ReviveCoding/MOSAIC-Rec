@@ -1,138 +1,126 @@
-# MOSAIC-Rec final execution status
+# MOSAIC-Rec final status
 
-**Historical status superseded 2026-09-21:** The user reserved the sole GPU for MOSAIC. Protocol p1 remains in DEVELOPMENT and execution resumed. The BLOCKED_EXTERNAL assessment below describes the prior GPU-contention window; commit `41d07d8` preserves it. This document will be regenerated from final canonical evidence after scientific closure.
+Generated 2026-09-23 under protocol `mosaic-rec-2026-09-20-p1`.
 
-Generated 2026-09-20T21:49:48.547645+00:00 from canonical evidence.
+## Terminal decision
 
-**Terminal decision for this execution window: BLOCKED_EXTERNAL (sole GPU occupied by unrelated jobs).** The scientific protocol remains in DEVELOPMENT and is **not closed**. No finalist, qualified comparator, margin, locked result, or promotion decision exists.
+**RETAIN_BASELINE.** The frozen MOSAIC finalist, `M1_T2`, failed both co-primary MicroLens LOCKED_FINAL gates. The project is technically closed with an unfavorable scientific result. The result also remains **LOCAL_VALIDITY_ONLY** because no valid frozen external transfer protocol was defined before the primary protected outcome was opened.
 
-## Identity and evidence
+## Identity
 
-- Protocol: `mosaic-rec-2026-09-20-p1`; scientific state: `DEVELOPMENT`.
-- Git identity at report generation: `471d758ebed5d3499f410826ed07a5ada93aeaeb`.
-- Runtime: Ubuntu-22.04; PyTorch `2.14.0+cu130`; CUDA runtime `13.0`; GPU inventory `0, NVIDIA GeForce RTX 4090 Laptop GPU, 16376 MiB, 616.92`.
-- Isolated environment: `/home/bjw-0/mosaic-rec-work/.venv`; scratch: `/home/bjw-0/mosaic-rec-work`.
-- `requirements.lock` SHA-256: `a46c8a71c3648ee0d3cacda594e4e99b42672fe5294f9dd334ee47523eec44f4`.
-- Canonical warehouse: 55 consistent stage receipts, 8 claim rows, 0 locked-execution receipts.
+- Scientific source Git identity: `3506a85` (`Complete post-lock analysis and systems evidence`).
+- Scientific state: `CLOSED`.
+- Runtime: Ubuntu-22.04 under WSL; isolated environment `/home/bjw-0/mosaic-rec-work/.venv`.
+- Device: NVIDIA GeForce RTX 4090 Laptop GPU; required neural work reported CUDA device identities.
+- Canonical evidence: 169 receipts, 3 LOCKED_EXECUTION receipts, 772 metric rows, 4 bootstrap intervals, 13 claim rows.
+- Validation: canonical warehouse PASS; Ruff PASS; pytest **36 passed**.
+- Frozen manifest amendment SHA-256: `99ddc01542078676e9c09809411cdbb68bcae2c8ada19b8498f766f8b5e185c8`.
 
 ## Dataset status
 
-| Track | Current evidence | Limitation |
+| Track | Terminal status | Limitation |
 |---|---|---|
-| MicroLens-100K | Interaction roles, FIT-hidden cold cohort, leakage audit, publisher vectors and local text features qualified | Historical content-effective time unavailable; raw-cover perturbation rights held |
-| MovieLens 32M | Interaction roles and FIT-only dense behavioral input qualified | No native image modality; FIT-history final population is a selected subset |
-| PixelRec50K | Interaction roles, FIT-hidden cold cohort, publisher image/local text alignment and FIT-only dense input qualified | Raw cover archive partial is quota-blocked; publisher-feature replication has not run |
+| MicroLens-100K | Primary locked study complete | Historical content revision times are unavailable; first-observed interaction time is an availability proxy |
+| MovieLens 32M | FIT input and temporal QA PASS; replication HOLD | No frozen transfer model/population/resource protocol; no native visual modality |
+| PixelRec50K | Data, raw archive integrity, publisher feature alignment, and FIT input PASS; replication HOLD | Raw-cover derived-feature rights remain held; no frozen external model/statistics protocol |
+
+Mechanical leakage audits passed on all three tracks. Controlled FIT-hidden cohorts contained 772 MicroLens and 3,109 PixelRec items.
+
+## Frozen identities
+
+- Sequence comparator `C_seq`: `B7_BERT4REC_T3`, three-seed score ensemble.
+- Cold-capable comparator `C_cold`: `B4_TWO_TOWER_T3`, three-seed score ensemble.
+- MOSAIC finalist: `M1_T2`, three-seed score ensemble.
+- Warm noninferiority margin: `0.0030883869550329584` NDCG@20.
+- Inference: 10,000-draw paired user-cluster bootstrap; cold item-cluster sensitivity.
+
+## Locked primary results
+
+| Model | Overall NDCG@20 | Controlled cold | FIT-warm |
+|---|---:|---:|---:|
+| `C_seq` B7 | 0.003882 | 0.000000 | 0.027066 |
+| `C_cold` B4 | 0.007457 | 0.003996 | 0.009612 |
+| `M1_T2` | 0.011365 | 0.012936 | 0.003447 |
+
+Cold difference versus `C_cold` was `+0.008940`; paired 95% interval `[-0.000194, 0.019205]`. The lower bound did not exceed zero, so cold superiority failed.
+
+Warm difference versus `C_seq` was `-0.023619`; paired 95% interval `[-0.026874, -0.020417]`. This was far below the frozen noninferiority threshold of `-0.003088`, so warm noninferiority failed.
+
+The secondary overall difference versus `C_seq` was `+0.007482`, paired 95% interval `[0.006634, 0.008332]`. It does not replace the failed co-primary gates.
+
+## Robustness, ablation, and replication
+
+- Robustness: **INVALID** for confirmatory use. E04/E05 froze family names but omitted material intervention intensities, scopes, and directional statistics. Reliability-aware language is prohibited.
+- Ablations: **INVALID** for confirmatory use. Removal implementations, applicability mapping, retraining identities, and multiplicity mapping were not fully frozen. The M0-M7 development ladder remains exploratory evidence.
+- Replication: **HOLD / LOCAL_VALIDITY_ONLY**. FIT adapters and QA exist, but no fixed external transfer protocol was frozen before primary outcome access. No external result was tuned until agreement.
+
+## Systems conclusion
+
+- Local text extraction: 3,815 MicroLens and 2,407 PixelRec items/s.
+- Exact full-catalog locked scoring: 5,927 users/s for B7, 8,469 users/s for B4, and 6,188 users/s for M1_T2 over 38,880 users.
+- Development FastAPI demo: 4.49 ms median and 5.27 ms p95 sequential recommendation latency across 100 requests; zero errors; 219 requests/s in the local single-process test.
+- `torch.compile`: numerical max absolute difference `4.77e-7`, 1.044x steady-state speedup, 1.81 s cold cost, about 15,396 batches to break even. Adoption is workload dependent.
+- ANN: HOLD because no index family or accuracy/latency operating point was frozen. Exact ranking remains the scientific evaluator.
+- Serving remains demonstration evidence and does not establish production readiness.
 
 ## Stage dispositions
 
-PASS below means the named pilot or preparation passed its stated contract; it does not imply scientific qualification. HOLD means a prerequisite or result is still missing.
+| Stage family | Status |
+|---|---|
+| A00-A06 data/provenance/splits | PASS, with declared media rights holds |
+| B00-B01 features | PASS for qualified publisher/text features |
+| C00-C05 baselines/reference checks | PASS or explicitly unqualified pilot |
+| D00-D08 MOSAIC ladder/stability | PASS as DEVELOPMENT evidence |
+| E00 HPO | `HPO_GRID_COMPLETE_UNQUALIFIED` |
+| E01 seed qualification | `SEED_QUALIFICATION_COMPLETE_UNQUALIFIED` |
+| E02-E05 selection/freeze | PASS |
+| F00 exact locked scoring | PASS |
+| F01 cold gate | FAIL |
+| F02 warm gate | FAIL |
+| F03-F05 slice/failure analysis | PASS |
+| Gxx robustness | INVALID underspecified |
+| Hxx ablations | INVALID underspecified |
+| I00-I02 replication | HOLD; `LOCAL_VALIDITY_ONLY` |
+| J00-J05 systems | PARTIAL PASS; ANN HOLD |
+| K00-K05 canonical closure | PASS |
 
-| Stage | Disposition | Recorded evidence status |
-|---|---|---|
-| A00 | PASS | `PASS` |
-| A01 | HOLD | `PASS_WITH_MEDIA_HOLD` |
-| A02 | BLOCKED | `PARTIAL_PIXEL_COVER_BLOCKED_EXTERNAL` |
-| A03 | PASS | `PASS` |
-| A04 | PASS | `PASS` |
-| A05 | PASS | `PASS` |
-| A06 | PASS | `PASS` |
-| B00 | PASS | `PASS_TEXT_ONLY` |
-| B01 | PASS | `PASS_PUBLISHER_FEATURES` |
-| C00 | PASS | `PILOT_PASS` |
-| C01 | PASS | `PILOT_PASS` |
-| C02 | PASS | `PILOT_PASS` |
-| C03 | HOLD | `PILOT_PARTIAL` |
-| C04 | HOLD | `PILOT_PARTIAL` |
-| C05 | HOLD | `IMPORT_SMOKE_PASS` |
-| D00 | PASS | `PILOT_PASS` |
-| D01 | PASS | `PILOT_PASS` |
-| D02 | PASS | `PILOT_PASS` |
-| D03 | PASS | `PILOT_PASS` |
-| D04 | PASS | `PILOT_PASS` |
-| D05 | PASS | `PILOT_PASS` |
-| D06 | PASS | `PILOT_PASS` |
-| D07 | PASS | `PILOT_PASS` |
-| D08 | HOLD | `PENDING` |
-| E00 | HOLD | `PENDING` |
-| E01 | HOLD | `PENDING` |
-| E02 | HOLD | `PENDING` |
-| E03 | HOLD | `PENDING` |
-| E04 | HOLD | `PENDING` |
-| E05 | HOLD | `PENDING` |
-| F00 | HOLD | `PENDING` |
-| F01 | HOLD | `PENDING` |
-| F02 | HOLD | `PENDING` |
-| F03 | HOLD | `PENDING` |
-| F04 | HOLD | `PENDING` |
-| F05 | HOLD | `PENDING` |
-| Gxx | HOLD | `PENDING` |
-| Hxx | HOLD | `PENDING` |
-| I00 | HOLD | `FIT_INPUT_PREP_PASS_REPLICATION_PENDING` |
-| I01 | HOLD | `FIT_INPUT_PREP_PASS_REPLICATION_PENDING` |
-| I02 | HOLD | `PENDING` |
-| J00 | HOLD | `PENDING` |
-| J01 | HOLD | `PENDING` |
-| J02 | HOLD | `PENDING` |
-| J03 | HOLD | `PENDING` |
-| J04 | HOLD | `PENDING` |
-| J05 | HOLD | `PENDING` |
-| K00 | HOLD | `PENDING` |
-| K01 | HOLD | `PENDING` |
-| K02 | HOLD | `DRAFT_CLAIM_LEDGER` |
-| K03 | HOLD | `DRAFT_DEVELOPMENT_ONLY` |
-| K04 | HOLD | `PENDING` |
-| K05 | HOLD | `PENDING` |
+## Supported claims
 
-## Scientific results available now
+- Under p1, the M1_T2 cold point estimate exceeded the frozen cold baseline, but superiority was not established.
+- Under p1, M1_T2 failed warm noninferiority by a wide margin.
+- The secondary overall locked metric favored M1_T2.
+- The evidence-supported decision is `RETAIN_BASELINE`.
+- The local systems measurements above are reproducible demonstration measurements.
 
-**Strongest qualified baseline:** none. **MOSAIC finalist:** none.
-The following exact-catalog VALIDATION observations are single-seed development pilots, not confirmatory comparisons:
+## Unsupported claims
 
-| Model | Slice | NDCG@20 | Users | Receipt |
-|---|---|---:|---:|---|
-| M4 | controlled_cold | 0.035573 | 918 | `microlens_m4_pilot` |
-| M4 | warm_fit | 0.001205 | 20,047 | `microlens_m4_pilot` |
-| M7 | controlled_cold | 0.001485 | 918 | `microlens_m7_pilot` |
-| M7 | warm_fit | 0.030546 | 20,047 | `microlens_m7_pilot` |
+- `CORE_PROMOTE` or `RELIABILITY_PROMOTE`.
+- Controlled-cold superiority.
+- Warm quality retention.
+- Reliability-aware or calibrated gating.
+- External replication.
+- Production impact, production readiness, causal benefit, or multi-GPU scaling.
 
-The M4 cold and M7 warm pattern is an unfavorable tradeoff. No warm noninferiority or cold superiority gate can be assessed without qualified frozen comparators and paired inference. Historical SASRec/GRU4Rec cold interpretation is unqualified because their negative pool could include FIT-hidden items; their receipts remain preserved.
+## Unresolved blockers and holds
 
-**Robustness:** no neural intervention result. **Ablation:** prespecified draft only. **Replication:** FIT-only inputs prepared, no model result. **Systems:** no uncontended benchmark or serving-latency result. All are HOLD.
+- PixelRec raw-cover transformation and derived-feature rights require explicit source permission.
+- A new replication study needs a preregistered transfer model, seed budget, role-access sequence, population, and statistics plan.
+- A new robustness/ablation protocol must freeze exact interventions and implementations before protected access.
 
-## Claim ledger
+No user action is required to interpret or reproduce p1. Permission from the relevant data owner is required before raw-cover derivative work.
 
-| Claim ID | Status | Source receipt |
-|---|---|---|
-| `bm3_reference_pilot_cold_zero` | INTERNAL_PILOT | `microlens_bm3_mmrec_reference_pilot` |
-| `core_promotion` | UNSUPPORTED | — |
-| `development_ladder_tradeoff` | INTERNAL_PILOT | `microlens_m4_pilot` |
-| `multi_gpu` | UNSUPPORTED | — |
-| `pilot_microlens_gru4rec` | INTERNAL_PILOT | `microlens_gru4rec_pilot` |
-| `pixelrec_local_content_alignment` | SUPPORTED | `pixelrec_content_alignment_p1` |
-| `production_impact` | UNSUPPORTED | — |
-| `reliability` | UNSUPPORTED | — |
+## Exact reproduction
 
-Supported now: local PixelRec feature alignment and narrowly labeled internal pilot observations. Unsupported: core promotion, calibrated reliability, production impact, multi-GPU scaling, external replication and causal benefit.
-
-## Blockers and audit
-
-The sole RTX GPU has been used by serial unrelated ACT-Agent training, rollout and benchmark jobs. A passive five-minute idle guard repeatedly reset during phase handoffs and was stopped before this blocked report; no MOSAIC heavy job launched during the contention. PixelRec raw covers remain an intact 11.47 GB partial under the official Drive quota. MicroLens raw-cover transformation rights remain unclear. See `reports/RECOVERY_AUDIT.md`, `reports/BLOCKERS.md` and `reports/NEEDS_USER_ACTION.md`.
-
-The final adversarial audit is **not closed**. Mechanical split/leakage checks and source mapping passed; baseline fairness, locked outcome gates, robustness, replication and system claims remain open in `reports/ADVERSARIAL_AUDIT.md`. No protected outcome was opened after recovery. This report is a blocked status, not a completed scientific result.
-
-## Exact reproduction and resumption commands
-
-From the Windows repository, run scientific commands in Ubuntu-22.04:
+Run from the Windows repository while keeping scientific Python in Ubuntu-22.04:
 
 ```powershell
-wsl -d Ubuntu-22.04 -- /home/bjw-0/mosaic-rec-work/.venv/bin/python -m mosaic_rec.validate_evidence evidence evidence/warehouse.duckdb
-wsl -d Ubuntu-22.04 -- /home/bjw-0/mosaic-rec-work/.venv/bin/python -m pytest -q
-# After sustained free-GPU verification and inspection of existing attempt-2 outputs:
-wsl -d Ubuntu-22.04 -- bash scripts/run_freedom_reference_attempt2.sh
-# After that receipt is inspected and the GPU is free again:
-wsl -d Ubuntu-22.04 -- bash scripts/run_mosaic_validation_replay.sh
+wsl -d Ubuntu-22.04 -- bash -lc 'cd /mnt/c/Users/bjw-0/Downloads/MOSAIC-Rec && PYTHONPATH=src /home/bjw-0/mosaic-rec-work/.venv/bin/python -m mosaic_rec.validate_evidence evidence evidence/warehouse.duckdb'
+wsl -d Ubuntu-22.04 -- bash -lc 'cd /mnt/c/Users/bjw-0/Downloads/MOSAIC-Rec && PYTHONPATH=src /home/bjw-0/mosaic-rec-work/.venv/bin/python -m pytest -q'
+wsl -d Ubuntu-22.04 -- bash -lc 'cd /mnt/c/Users/bjw-0/Downloads/MOSAIC-Rec && /home/bjw-0/.local/bin/uvx ruff==0.16.8 check src tests scripts'
 ```
 
-Run `scripts/run_corrected_sequence_pilots.sh` and `scripts/run_bert4rec_common_pilot.sh` only as later distinct GPU jobs. Preserve every failed attempt and rebuild the warehouse after each new receipt. Do not open QUALIFICATION or LOCKED_FINAL until the protocol state and freeze gates allow it.
+Protected scoring is intentionally not rerunnable under the now-closed guard. Source locked receipts, per-user Parquet hashes, freeze identities, and bootstrap output provide the audit trail. See `docs/REPRODUCTION_RUNBOOK.md` for pre-lock reconstruction.
 
-**Recommended next research step:** reserve a sustained exclusive GPU window; finish FREEDOM/BPR/sequence baseline pilots and checkpoint replay, then equal-budget HPO and independent seeds. If qualification succeeds, freeze comparators, margin, model and gates before any protected scoring. Retain protocol p1 unless a new scientific corruption is found.
+## Recommended next research step
+
+Open a new preregistered protocol that retains p1 unchanged, targets the observed cold/warm tradeoff, freezes the complete robustness and ablation implementations, and defines PixelRec transfer before accessing external outcomes. Develop a gate with an observable image-quality signal if reliability language remains a goal.

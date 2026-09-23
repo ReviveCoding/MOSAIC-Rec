@@ -1,5 +1,9 @@
 # Baseline qualification ledger
 
+## Terminal update, 2026-09-23
+
+E00 and E01 completed. Qualification froze B7_BERT4REC_T3 as `C_seq` and B4_TWO_TOWER_T3 as `C_cold`, both as three-seed score ensembles. The common-slice replays matched within 1e-6 and checkpoint hashes were unchanged. Other baseline families remain explicitly unqualified rather than serving as weak comparators. See `reports/FINAL_STATUS.md` for locked results.
+
 ## Current status, 2026-09-21
 
 The one-seed, three-learning-rate, 30-epoch CUDA HPO grid is in progress under `configs/hpo_development_p1.json`. B2 BPR-MF, B3 LightGCN, B4 content Two-Tower, B5 corrected GRU4Rec, and B8 VBPR have all three terminal trial receipts. B6 corrected SASRec has all three terminal trial receipts; B7 BERT4Rec now has three terminal CUDA trials; B9 BM3 has three terminal CUDA trials; B10 FREEDOM has three terminal CUDA trials; M1/M4/M6/M7 remain queued. Completed development grid heads by overall NDCG@20 are B2 .008909, B3 .009007, B4 .010669, B5 .014448, B6 .006839, B7 .024235, B8 .016933, B9 .012045, and B10 .012046. The strongest observed controlled-cold NDCG@20 in the B4 and B8 grids is .004774 and .000363, respectively; ID-only models are not cold comparators. These are validation observations; no neural baseline is yet qualified by parity and independent seeds, and neither comparator is frozen. FREEDOM attempt 2 passed a distinct one-epoch CUDA runtime pilot with zero controlled-cold score; attempt 1 remains INTERRUPTED. The corrected BPR, LightGCN, SASRec, GRU4Rec, and local BERT4Rec pilots all completed before HPO. See the canonical HPO receipts and `reports/PROGRESS.md` for current trial status.

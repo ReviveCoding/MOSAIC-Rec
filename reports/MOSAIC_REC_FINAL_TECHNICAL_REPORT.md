@@ -1,51 +1,55 @@
 # MOSAIC-Rec technical report
 
-Generated 2026-09-21T09:10:50.615729+00:00 from `evidence/warehouse.duckdb`.
-Protocol: `mosaic-rec-2026-09-20-p1`; state: **DEVELOPMENT**.
-Canonical receipts: 86; locked-execution receipts: 0.
+## Study design
 
-## Scientific status
+Protocol `mosaic-rec-2026-09-20-p1` tested adaptive multimodal sequential recommendation on a four-role temporal MicroLens-100K design: FIT, VALIDATION, QUALIFICATION, and LOCKED_FINAL. Controlled cold items had no model-visible FIT collaboration. QUALIFICATION selected two separate comparators and one MOSAIC finalist under rules frozen before access. LOCKED_FINAL used exact full-catalog scoring and three-seed score ensembles.
 
-**DRAFT — no locked scientific result exists.** No finalist, frozen pair of comparators, warm noninferiority margin, or promotion decision is established.
-The table below is single-seed development validation evidence only.
+MovieLens 32M and PixelRec50K received provenance, temporal split, leakage, and FIT-input preparation. They did not receive valid neural replication because the external transfer protocol was not completely frozen before the primary protected result.
 
-## Development MicroLens validation
+## Development and qualification
 
-Exact available-catalog first-event NDCG@20, using FIT-history users. Controlled-cold items have model-visible FIT collaboration hidden. These runs are not equal-budget HPO or qualified baselines.
+The M0-M7 ladder produced an unfavorable cold/warm tradeoff. Across independent DEVELOPMENT seeds, M4_T3 had the strongest mean controlled-cold result, while B7_T3 and warm-oriented MOSAIC variants were stronger on FIT-warm items. The frozen qualification rule selected M1_T2 by minimizing its worse ordinal rank across qualification cold and warm NDCG@20.
 
-| Model | All NDCG@20 | Controlled cold NDCG@20 | FIT-warm NDCG@20 | Receipt |
-|---|---:|---:|---:|---|
-| M0 | 0.012708 (n=41,694) | 0.000000 (n=918) | 0.026404 (n=20,047) | `microlens_m0_pilot` |
-| M1 | 0.019197 (n=41,694) | 0.030476 (n=918) | 0.005828 (n=20,047) | `microlens_m1_pilot` |
-| M2 | 0.018291 (n=41,694) | 0.030245 (n=918) | 0.000000 (n=20,047) | `microlens_m2_pilot` |
-| M3 | 0.015975 (n=41,694) | 0.027928 (n=918) | 0.000000 (n=20,047) | `microlens_m3_pilot` |
-| M4 | 0.015313 (n=41,694) | 0.035573 (n=918) | 0.001205 (n=20,047) | `microlens_m4_pilot` |
-| M5 | 0.016732 (n=41,694) | 0.005140 (n=918) | 0.029227 (n=20,047) | `microlens_m5_pilot` |
-| M6 | 0.017389 (n=41,694) | 0.005051 (n=918) | 0.030447 (n=20,047) | `microlens_m6_pilot` |
-| M7 | 0.015415 (n=41,694) | 0.001485 (n=918) | 0.030546 (n=20,047) | `microlens_m7_pilot` |
-| B9_BM3_MMREC_REFERENCE | 0.002922 (n=41,694) | 0.000000 (n=918) | 0.006078 (n=20,047) | `microlens_bm3_mmrec_reference_pilot` |
+Frozen identities were B7_BERT4REC_T3 as `C_seq`, B4_TWO_TOWER_T3 as `C_cold`, and M1_T2 as the MOSAIC finalist. The warm noninferiority margin was 10% of `C_seq` qualification warm NDCG@20: 0.0030883869550329584.
 
-M4 led the single-seed controlled-cold ladder slice; M7 led FIT-warm. The table shows the cold/warm tradeoff. The BM3 reference architecture ran for one epoch and scored zero on the cold slice; it is underqualified and cannot be the sole cold comparator. FREEDOM attempt 1 was interrupted without a metric; its log and graph cache were preserved.
+## Locked results
 
-## Data and provenance
+| Model | Overall NDCG@20 | Controlled cold NDCG@20 | FIT-warm NDCG@20 |
+|---|---:|---:|---:|
+| B7 `C_seq` | 0.003882 | 0.000000 | 0.027066 |
+| B4 `C_cold` | 0.007457 | 0.003996 | 0.009612 |
+| M1_T2 | 0.011365 | 0.012936 | 0.003447 |
 
-The three interaction tracks have four temporal role artifacts and passing mechanical leakage audits. Publisher MicroLens image/text arrays and the PixelRec publisher-image/local-text alignment passed source and item-ID QA. PixelRec raw covers remain an intact partial blocked by the official Drive quota. Raw assets and feature arrays stay in WSL scratch.
+M1_T2 minus `C_cold` on controlled cold was +0.008940. Its paired user-cluster 95% bootstrap interval was [-0.000194, 0.019205], so superiority failed. Cold item-cluster sensitivity was [-0.001985, 0.024194].
 
-Historical content-effective timestamps are unavailable. First observed interaction time is a candidate-availability proxy, not a product launch time. Observed non-events are not verified negatives. MovieLens 32M supports behavioral replication but lacks a native image modality; its FIT-history final population is a small selected subset.
+M1_T2 minus `C_seq` on FIT-warm was -0.023619, with paired 95% interval [-0.026874, -0.020417]. The lower bound was below the frozen -0.003088 margin, so noninferiority failed.
 
-## Claims from the canonical ledger
+The secondary overall difference against `C_seq` was +0.007482, 95% interval [0.006634, 0.008332]. The co-primary design does not permit this secondary positive result to override either failed gate. The terminal decision is **RETAIN_BASELINE**.
 
-| Claim ID | Status | Source receipt |
-|---|---|---|
-| `bm3_reference_pilot_cold_zero` | INTERNAL_PILOT | `microlens_bm3_mmrec_reference_pilot` |
-| `core_promotion` | UNSUPPORTED | — |
-| `development_ladder_tradeoff` | INTERNAL_PILOT | `microlens_m4_pilot` |
-| `multi_gpu` | UNSUPPORTED | — |
-| `pilot_microlens_gru4rec` | INTERNAL_PILOT | `microlens_gru4rec_pilot` |
-| `pixelrec_local_content_alignment` | SUPPORTED | `pixelrec_content_alignment_p1` |
-| `production_impact` | UNSUPPORTED | — |
-| `reliability` | UNSUPPORTED | — |
+## Failure analysis
 
-## Pending scientific work
+The locked support analysis sharpened the tradeoff. On zero-FIT-support targets, M1_T2 reached 0.012691 NDCG@20, compared with 0.007097 for `C_cold` and zero for `C_seq`. On FIT support above 20, M1_T2 reached 0.004833, compared with 0.011714 for `C_cold` and 0.036247 for `C_seq`. M1_T2 scored zero in the emerging 1-5 and sparse 6-20 support bins. This pattern is consistent with specialization at the cold boundary rather than broad support-conditioned adaptation.
 
-Baseline parity and equal-budget HPO, independent seeds, D08 finalist selection, qualification/freeze, exact locked scoring, paired uncertainty, robustness, ablations, replication, and system benchmarks are pending. The API is a local development demonstration and has no production-impact claim. See `reports/PROGRESS.md`, `reports/BLOCKERS.md`, and `reports/ADVERSARIAL_AUDIT.md` for current gates.
+## Robustness and mechanism evidence
+
+Confirmatory robustness and ablation programs are **INVALID_UNDERSPECIFIED**. The freeze recorded family names but omitted material intensities, scopes, implementation identities, and directional/multiplicity rules. These gaps were discovered after protected access, so p1 does not repair them. The development M0-M7 ladder remains exploratory component evidence. The supported term is **adaptive multimodal fusion**; reliability-aware language is unsupported.
+
+## Replication
+
+MovieLens 32M lacks a native visual modality and has a sharply selected FIT-history evaluation population under the existing split. PixelRec has aligned publisher image features and local text features, plus 3,109 controlled cold items. Neither track had a complete frozen transfer identity, seed budget, access sequence, or external statistics rule before the MicroLens protected outcome. Their terminal replication status is HOLD, and the p1 conclusion is **LOCAL_VALIDITY_ONLY**.
+
+## Systems evidence
+
+The RTX 4090 Laptop GPU processed exact locked full-catalog scoring at 5,927 users/s for B7, 8,469 users/s for B4, and 6,188 users/s for M1_T2. The local FastAPI development adapter completed 100 sequential requests with 4.49 ms median, 5.27 ms p95, 219 requests/s, and zero errors. These are local single-process demonstration results.
+
+`torch.compile` matched eager output within 4.77e-7 and measured 1.044x steady-state speedup, but its 1.81 s cold cost required about 15,396 batches to break even. ANN was not measured because no accuracy/latency operating point was frozen.
+
+## Evidence quality and limitations
+
+The canonical warehouse contains 169 receipts, 772 metric rows, 4 bootstrap intervals, and 13 claims. It validates with three protected execution receipts. Ruff passes and 36 tests pass. Failed jobs, transient CUDA failure, FREEDOM interruption, systems orchestration failures, negative results, and rights holds remain preserved.
+
+Unobserved items are treated as nonrelevant for offline ranking, not verified negatives. First-observed interaction time is a candidate-availability proxy. Content revision times are unavailable. Public observational data provide no production or causal evidence.
+
+## Conclusion
+
+M1_T2 improved the cold point estimate and the secondary overall metric, but the cold confidence interval crossed zero and warm quality fell well beyond the frozen margin. The proposed model is not promoted under p1. A future protocol should directly optimize the cold/warm frontier, observe modality quality in the gate, and preregister exact interventions and external transfer rules.
