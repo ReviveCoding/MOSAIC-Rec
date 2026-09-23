@@ -1,0 +1,24 @@
+{
+  "stage_id": "E05_AMENDMENT1_GUARD",
+  "protocol_id": "mosaic-rec-2026-09-20-p1",
+  "state": "FROZEN",
+  "status": "FROZEN_AMENDMENT1_GUARD_PASS",
+  "ended_utc": "2026-09-23T02:22:37.266424+00:00",
+  "git_commit": "8a12f90febb65551649c3de8c11023f5d023514f",
+  "e05_manifest": "evidence/e05_freeze_manifest_p1_amendment1.json",
+  "e05_manifest_sha256": "99ddc01542078676e9c09809411cdbb68bcae2c8ada19b8498f766f8b5e185c8",
+  "qualification_manifest_sha256": "77a827f87e15eea3b30f699527eaca91928ce55bf6a91fd07cd079762736b900",
+  "canonical_receipts_before_guard": 155,
+  "locked_execution_receipts_before_guard": 0,
+  "C_seq": "B7_BERT4REC_T3",
+  "C_cold": "B4_TWO_TOWER_T3",
+  "MOSAIC_finalist": "M1_T2",
+  "warm_noninferiority_margin": 0.0030883869550329584,
+  "locked_final_sha256": "89eadf4f60fe807e367b4e9f6190315f901bc627696fbaab3537679c32772421",
+  "worktree_clean": true,
+  "warnings": [
+    "This guard compares the preexisting A05 LOCKED_FINAL identity receipt; it does not open protected rows.",
+    "Scientific identities are immutable under p1 after locked outcome access."
+  ],
+  "evidence_class": "derived_protocol_state_transition"
+}
