@@ -82,3 +82,11 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 - Froze three trials and ten scheduled epochs for each neural family under selection seed 20260930; failed scientific trials consume their budget and are not replaced.
 - Expert and baseline families select by validation overall NDCG@20 with predeclared warm, cold, and identity tie breaks.
 - Router families use a predeclared worst-gate development score relative to the corrected content and sequence experts, so overall quality cannot hide failure on either side of the cold/warm tradeoff.
+
+## 2026-09-23 — reboot recovery checkpoint
+
+- Recovery anchor was Git `49ee02aa3da271fc1a0dec3350ea8f526d142785`; no committed scientific identity changed during the interruption.
+- Preserved `src/mosaic_rec/p2/slices.py` and `tests/p2/test_slices.py`. Review confirmed that they only implement the support, popularity, age, user, cross-slice, and minimum-sample rules frozen before protected access.
+- R3 attempt 1 remains `BLOCKED_EXTERNAL_PRESTART`: it acquired no p2 lock and created no checkpoint, log, scored output, or metric receipt. No R3 attempt-2 artifact survived the reboot.
+- The lock file's released R2 PID is historical text. A nonblocking `flock` probe passed; the GPU had no CUDA process and requalified successfully.
+- Exact scientific resume point is P2-D03 R3 attempt 2 with the committed router ladder and queue. QUALIFICATION and LOCKED_FINAL counters remain zero.

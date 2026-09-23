@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-P2-D02-D04 learned router ladder using the corrected expert identities.
+Crash recovery complete; resume at P2-D03 R3 attempt 2 using the committed queue and unchanged router configuration.
 
 ## Completed
 
@@ -32,10 +32,14 @@ P2-D02-D04 learned router ladder using the corrected expert identities.
 - Completed and independently rehashed corrected attempt-2 expert runs after a sustained idle GPU window. C_seq validation NDCG@20 is 0.001864 overall and 0.013602 warm; C_cold is 0.001312 overall, 0.000940 controlled zero, 0.001411 natural zero, and 0.001570 warm.
 - R1 hard routing preserved warm quality at 0.013539 but scored zero on controlled zero under per-query standardized alignment. This unfavorable development result is retained and motivates the preregistered alignment comparison.
 - R2 monotonic routing reached 0.014892 warm NDCG@20 and 0.002306 overall but also scored zero on controlled zero. R3 attempt 1 then stopped before model loading when ACT-Agent PID 137901 began a new CUDA SFT job.
+- Recovered after the reboot from pre-reboot HEAD `49ee02aa3da271fc1a0dec3350ea8f526d142785`. Preserved and validated the untracked preregistered slice implementation and tests; Ruff, targeted tests, and the full 71-test suite pass.
+- Reverified all corrected C_seq, C_cold, R1, and R2 hashes and Parquet schemas. The canonical warehouse passes with 25 p2 receipts, 24 metric rows, zero p1 receipts, and zero protected access.
+- The reboot audit found no R3, R4, HPO, temporary, or queue artifact. The R3 attempt-1 receipt remains a prestart contention event with no scientific output. The stale lock text names completed R2 PID 137697, while an actual `flock` probe was available.
+- After reboot the RTX 4090 Laptop GPU showed 0 MiB, 0% utilization, no CUDA process, and passed the real torch CUDA/BF16 tensor qualification.
 
 ## Active next action
 
-Execute R2-R4 and remaining baseline pilots serially, inspecting and canonicalizing each boundary before HPO.
+Execute R3 attempt 2 from `scripts/p2/run_gate_queue.sh` without changing `configs/p2/router_ladder.json`, then inspect R3 before R4 and continue to the frozen HPO plan.
 
 ## Protected access counters
 
@@ -46,4 +50,4 @@ Execute R2-R4 and remaining baseline pilots serially, inspecting and canonicaliz
 
 - Raw-cover extraction and modification remain on rights hold.
 - Official publisher text-feature download is quota-blocked. Amendment 001 selects the already authorized local MiniLM embedding derived from official title/tag/description fields; its p2 copy and alignment qualification passed.
-- ACT-Agent released the GPU. The queue required six consecutive idle checks before each corrected expert and the p2 advisory lock qualified CUDA for both runs.
+- No active GPU blocker after reboot. An ACT-Agent control process exists without a CUDA child; the p2 fail-closed queue must still require its sustained idle checks before R3.

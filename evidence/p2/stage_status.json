@@ -1,7 +1,7 @@
 {
   "protocol_id": "mosaic-rec-2026-09-23-p2",
   "scientific_state": "DEVELOPMENT",
-  "updated_utc": "2026-09-23T08:17:00Z",
+  "updated_utc": "2026-09-23T15:03:57.7484145Z",
   "qualification_access_count": 0,
   "locked_final_access_count": 0,
   "stages": {
@@ -20,7 +20,7 @@
     "P2-C04": {"status": "PASS_DEVELOPMENT", "summary": "corrected attempt 2 masks complete FIT history; checkpoint and exact validation output independently rehashed"},
     "P2-D01": {"status": "PASS_DEVELOPMENT", "summary": "R1 preserved warm quality but scored zero on controlled-zero validation under standardized alignment"},
     "P2-D02": {"status": "PASS_DEVELOPMENT", "summary": "R2 achieved 0.014892 warm NDCG@20 but zero controlled-zero NDCG@20"},
-    "P2-D03": {"status": "WAITING_GPU", "summary": "attempt 1 blocked before lock/model load by unrelated ACT-Agent CUDA PID 137901; no R3 artifacts created"}
+    "P2-D03": {"status": "READY_RECOVERED", "summary": "attempt 1 remains a prestart contention event; reboot audit found no R3 artifact, actual flock free, GPU idle, and CUDA requalified"}
   },
   "p1_canonical_receipts_included": 0,
   "warnings": [
