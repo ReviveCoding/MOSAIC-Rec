@@ -1,7 +1,7 @@
 {
   "protocol_id": "mosaic-rec-2026-09-23-p2",
   "scientific_state": "DEVELOPMENT",
-  "updated_utc": "2026-09-23T18:14:00Z",
+  "updated_utc": "2026-09-23T18:30:00Z",
   "qualification_access_count": 0,
   "locked_final_access_count": 0,
   "stages": {
@@ -16,8 +16,12 @@
     "P2-B01": {"status": "PASS", "summary": "82865 image/text rows align; all vectors finite; 108 permitted tag categories"},
     "P2-B02": {"status": "PASS", "summary": "FIT-only item/user contexts and earliest eligible role queries hashed; candidate-time violations zero"},
     "P2-C00": {"status": "PASS_DEVELOPMENT", "summary": "global and 30-day recent popularity exact validation baselines completed"},
+    "P2-C00-BPR-PILOT": {"status": "PASS_DEVELOPMENT", "summary": "BPR-MF completed on CUDA; exact validation NDCG@20 was 0.000707 overall, 0 controlled zero, and 0.004266 warm"},
+    "P2-C01-LIGHTGCN-PILOT": {"status": "PASS_DEVELOPMENT", "summary": "LightGCN completed on CUDA; exact validation NDCG@20 was 0.000068 overall, 0 controlled zero, and 0.000139 warm"},
     "P2-C03": {"status": "PASS_DEVELOPMENT", "summary": "corrected attempt 2 masks complete FIT history; checkpoint and exact validation output independently rehashed"},
+    "P2-C03-SASREC-PILOT": {"status": "PASS_DEVELOPMENT", "summary": "SASRec completed on CUDA; exact validation NDCG@20 was 0.001932 overall, 0 controlled zero, and 0.013587 warm"},
     "P2-C04": {"status": "PASS_DEVELOPMENT", "summary": "corrected attempt 2 masks complete FIT history; checkpoint and exact validation output independently rehashed"},
+    "P2-C04-VBPR-PILOT": {"status": "FAILED_RESOURCE_OOM_AWAITING_ATTEMPT2", "summary": "attempt 1 trained and wrote a preserved checkpoint, then exact scoring OOMed before output or metric after materializing batch x catalog x image features; bounded-memory algebraic scorer validated for distinct attempt 2"},
     "P2-D01": {"status": "PASS_DEVELOPMENT", "summary": "R1 preserved warm quality but scored zero on controlled-zero validation under standardized alignment"},
     "P2-D02": {"status": "PASS_DEVELOPMENT", "summary": "R2 achieved 0.014892 warm NDCG@20 but zero controlled-zero NDCG@20"},
     "P2-D03": {"status": "PASS_DEVELOPMENT", "summary": "attempt 3 completed on CUDA after the sustained idle gate; exact validation NDCG@20 was 0.001939 overall, 0 controlled zero, 0.000131 natural zero, and 0.013539 warm"},

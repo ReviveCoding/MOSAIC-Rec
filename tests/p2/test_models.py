@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import torch
 
+from mosaic_rec.p2.additional_baselines import vbpr_full_catalog_scores
 from mosaic_rec.p2.models import (
     BPRMF,
     VBPR,
@@ -91,6 +92,15 @@ def test_additional_baseline_shapes() -> None:
     assert sas.query(sequence, torch.tensor([2, 3])).shape == (2, 4)
     vbpr = VBPR(3, 5, torch.randn(5, 6), width=4)
     assert vbpr.scores(users, items).shape == (2, 2)
+    catalog = torch.arange(5).expand(2, -1)
+    expected = vbpr.scores(users, catalog)
+    actual = vbpr_full_catalog_scores(
+        vbpr,
+        users,
+        vbpr.item_id.weight,
+        vbpr.image_projection(vbpr.image_features),
+    )
+    torch.testing.assert_close(actual, expected)
     graph = LightGCN(2, 3, width=4, layers=1)
     indices = torch.tensor([[0, 2, 1, 3], [2, 0, 3, 1]])
     adjacency = torch.sparse_coo_tensor(indices, torch.ones(4), (5, 5)).coalesce()

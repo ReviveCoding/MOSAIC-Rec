@@ -25,6 +25,19 @@ from mosaic_rec.p2.runtime import (
 )
 
 
+def vbpr_full_catalog_scores(
+    model: VBPR,
+    users: torch.Tensor,
+    item_id_catalog: torch.Tensor,
+    visual_catalog: torch.Tensor,
+) -> torch.Tensor:
+    """Score a VBPR catalog without materializing batch x catalog x features."""
+    return (
+        model.user_id(users) @ item_id_catalog.T
+        + model.user_visual(users) @ visual_catalog.T
+    )
+
+
 def _training_rows(
     fit_path: Path,
     item_to_index: dict[str, int],
@@ -232,6 +245,23 @@ def run_baseline(
                     [user_to_index[user] for user in batch_users], device=device
                 )
                 return user_catalog[indices] @ item_catalog.T
+
+        elif baseline == "VBPR":
+            # Project the image catalog once. Calling ``model.scores`` with a
+            # batch-expanded catalog first materializes B x I x image_dim,
+            # which is mathematically unnecessary and exceeds laptop VRAM.
+            item_id_catalog = model.item_id.weight.detach().clone()
+            visual_catalog = (
+                model.image_projection(model.image_features).detach().clone()
+            )
+
+            def score_batch(batch_users: list[str]) -> torch.Tensor:
+                indices = torch.tensor(
+                    [user_to_index[user] for user in batch_users], device=device
+                )
+                return vbpr_full_catalog_scores(
+                    model, indices, item_id_catalog, visual_catalog
+                )
 
         else:
             catalog_ids = torch.arange(len(item_ids), device=device)

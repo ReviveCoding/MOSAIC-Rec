@@ -15,7 +15,7 @@ BASELINES = (
     ("BPR_MF", "bpr_mf_pilot", "p2-c00-bpr-mf-pilot.json"),
     ("LIGHTGCN", "lightgcn_pilot", "p2-c01-lightgcn-pilot.json"),
     ("SASREC", "sasrec_pilot", "p2-c03-sasrec-pilot.json"),
-    ("VBPR", "vbpr_pilot", "p2-c04-vbpr-pilot.json"),
+    ("VBPR", "vbpr_pilot_attempt2", "p2-c04-vbpr-pilot-attempt2.json"),
 )
 
 
@@ -95,12 +95,17 @@ def main() -> None:
         checkpoint = scratch / f"checkpoints/{stem}.pt"
         output = scratch / f"development/{stem}_validation.parquet"
         receipt = repo / f"evidence/p2/{receipt_name}"
+        config_name = (
+            "additional_baseline_pilots_vbpr_attempt2.json"
+            if baseline == "VBPR"
+            else "additional_baseline_pilots.json"
+        )
         command = [
             sys.executable,
             str(repo / "scripts/p2/run_additional_baseline.py"),
             baseline,
             "--config",
-            str(repo / "configs/p2/additional_baseline_pilots.json"),
+            str(repo / f"configs/p2/{config_name}"),
             "--checkpoint",
             str(checkpoint),
             "--output",

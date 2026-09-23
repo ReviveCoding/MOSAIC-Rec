@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-Crash recovery complete. P2-D03 R3 and P2-D04 R4 are complete; the remaining additional and legacy development baseline pilots are next.
+Crash recovery complete. P2-D03 R3 and P2-D04 R4 are complete. Three additional baseline pilots passed; VBPR attempt 1 OOMed during exact scoring and its audited attempt 2 is next, followed by legacy M1.
 
 ## Completed
 
@@ -44,10 +44,14 @@ Crash recovery complete. P2-D03 R3 and P2-D04 R4 are complete; the remaining add
 - R4 attempt 3 completed under the p2 lock after ACT-Agent's final evaluation exited. Exact VALIDATION NDCG@20 was 0.001938 overall, 0 controlled zero, 0.000131 natural zero, and 0.013537 warm. The warm-preservation term did not recover zero-support quality under the standardized alignment pilot; this negative result is preserved.
 - Independently rehashed R4 checkpoint `5474235bbd2b05db6849f905eca77e7f003b9955e9a371c13394394b946869a1`, output `23a6f1b15d8fdfb5f148a7f3cada78ecc94048b32d2f16df8075ee718eed457c`, and log `806a79a93c46561136235a4faf35435943a8b83d3a7e1aea59793d4f7e04135e`.
 - Rebuilt the p2-only warehouse after R4: 30 receipts, 32 valid metric rows, zero p1 receipts, zero QUALIFICATION access, zero LOCKED_FINAL access, validation PASS.
+- Completed and independently rehashed BPR-MF, LightGCN, and SASRec CUDA pilots. Overall/warm NDCG@20 were respectively 0.000707/0.004266, 0.000068/0.000139, and 0.001932/0.013587; all three scored zero on controlled zero.
+- VBPR attempt 1 completed training and wrote checkpoint SHA-256 `def78b03de2ba34aad4b136cd5b777273a1ef0d3569c11b8700d1eaf74122062`, then OOMed before any scored output or metric while the evaluator unnecessarily materialized a 128 x catalog x 1024 image tensor. The log is preserved at SHA-256 `fefd39820f381f1c1ce9bb974fe7cb7d5391b67a528f635a2977e247ed835560`.
+- Validated an algebraically equivalent bounded-memory VBPR scorer that projects the image catalog once, then uses matrix multiplication. Attempt 2 has a distinct config, log, checkpoint, output, and receipt identity; attempt-1 artifacts remain untouched.
+- Rebuilt the p2-only warehouse at this recovery boundary: 34 receipts, 44 valid metric rows, zero p1 receipts, zero QUALIFICATION access, zero LOCKED_FINAL access, validation PASS.
 
 ## Active next action
 
-Run the crash-safe serial development queue for BPR-MF, LightGCN, SASRec, VBPR, and legacy M1; inspect and canonicalize each terminal result.
+Run the distinct VBPR attempt 2 through the crash-safe queue, then run legacy M1; inspect and canonicalize each terminal result.
 
 ## Protected access counters
 

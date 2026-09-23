@@ -107,3 +107,9 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 
 - Preserved R4 attempts 1 and 2 as external prestart contention events. Attempt 3 used the unchanged ladder and completed only after the final unrelated evaluation exited.
 - The R4 warm-preservation objective produced warm NDCG@20 `0.013536823102781708` and controlled-zero NDCG@20 `0`. This did not improve the standardized-alignment cold failure seen for R1 and R3; the result remains eligible only as DEVELOPMENT evidence.
+
+## 2026-09-23 — VBPR pilot attempt-1 OOM recovery
+
+- Preserve the attempt-1 checkpoint and log. The failure occurred after training and before any exact-scoring output or scientific metric; it is classified as a resource failure caused by evaluator tensor materialization.
+- The scorer had expanded publisher image features to batch x catalog x image dimension before projection, requesting 40.46 GiB. The validated replacement computes the same VBPR expression by projecting the catalog once and applying two matrix products. This changes evaluator memory use without changing data, model parameters, candidate semantics, metric, or score formula.
+- Any retry uses attempt-2 config and separate log/checkpoint/output/receipt paths. The frozen HPO search space remains unchanged, and both protected-access counters remain zero.

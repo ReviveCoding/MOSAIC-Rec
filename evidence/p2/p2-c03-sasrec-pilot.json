@@ -1,0 +1,69 @@
+{
+  "baseline": "SASREC",
+  "best_epoch": 3,
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/checkpoints/sasrec_pilot.pt",
+  "checkpoint_sha256": "3f3be3f7fe79de63233ec13f42c5df3accf1c9d3958c440e703fc48f716beef1",
+  "config_sha256": "951b2474d5abbe340cfe40f6474236e3c87b0c5173e38a8b40b3a309f0f88a3b",
+  "epochs_completed": 3,
+  "evidence_class": "p2_measured_development_baseline_pilot",
+  "family": "SASREC",
+  "git_commit": "cd64959977442db7e8d3bd3e597586624b2c5977",
+  "gpu_qualification": {
+    "bf16_supported": true,
+    "cuda_runtime": "13.0",
+    "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+    "tensor_result": 5590357.0,
+    "torch": "2.14.0+cu130",
+    "vram_bytes": 17170956288
+  },
+  "model_id": "SASREC_PILOT",
+  "peak_vram_bytes": 371857408,
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "seed": 20260929,
+  "stage_id": "P2-C03-SASREC-PILOT",
+  "status": "PASS",
+  "stopping_reason": "scheduled_epochs_complete",
+  "train_seconds": 14.615825491000578,
+  "training_examples": 47898,
+  "training_log": [
+    {
+      "epoch": 1,
+      "loss": 10.26738238021065
+    },
+    {
+      "epoch": 2,
+      "loss": 9.379017022722344
+    },
+    {
+      "epoch": 3,
+      "loss": 8.991800062093631
+    }
+  ],
+  "trial_id": "",
+  "validation": {
+    "output": "/home/bjw-0/mosaic-rec-work/p2/development/sasrec_pilot_validation.parquet",
+    "output_sha256": "c5b730b39f0ae2307b35ef3e9ba124bdabfed1faf40dcb1d9e0111ef723d009a",
+    "role": "VALIDATION",
+    "rows": 27918,
+    "seconds": 12.220493759999954,
+    "slices": {
+      "all": {
+        "n": 27918,
+        "ndcg_at_20": 0.0019315247326873563
+      },
+      "controlled_zero": {
+        "n": 458,
+        "ndcg_at_20": 0.0
+      },
+      "natural_zero": {
+        "n": 17866,
+        "ndcg_at_20": 0.0
+      },
+      "warm": {
+        "n": 3808,
+        "ndcg_at_20": 0.013586787579867636
+      }
+    },
+    "users_per_second": 2284.5226414088033
+  }
+}
