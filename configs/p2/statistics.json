@@ -1,0 +1,50 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "version": 1,
+  "primary_unit": "user",
+  "primary_bootstrap": {
+    "method": "paired user-cluster percentile bootstrap",
+    "draws": 10000,
+    "confidence_level": 0.95,
+    "seed": 2026092301,
+    "paired": true
+  },
+  "cold_sensitivity": {
+    "method": "paired item-cluster percentile bootstrap",
+    "draws": 10000,
+    "confidence_level": 0.95,
+    "seed": 2026092302,
+    "population": "CONTROLLED_ZERO_SUPPORT"
+  },
+  "primary_gates": {
+    "conjunctive": true,
+    "H1": "lower_95 > 0",
+    "H2": "lower_95 > -frozen_numeric_margin",
+    "overall_metric_cannot_override": true
+  },
+  "secondary_multiplicity": {
+    "procedure": "Holm",
+    "alpha": 0.05,
+    "families": {
+      "ranking_metrics": ["Recall@20", "MRR@20", "Hit@20", "Precision@20"],
+      "support_slices": ["0", "1-5", "6-20", "21-50", "51-100", "101+"],
+      "popularity": ["interaction_quintiles", "interaction_deciles", "unique_user_quantiles", "head_torso_tail"],
+      "item_age": ["0-7d", "8-30d", "31-90d", "91-365d", ">365d"],
+      "user_cohorts": ["history_length", "recency", "tail_preference", "niche_preference", "history_diversity"],
+      "non_accuracy": ["coverage", "average_popularity", "tail_percentage", "gini", "hhi", "entropy", "novelty", "ild", "personalization"],
+      "robustness": "all defined robustness cells within each modality family",
+      "ablations": "A1-A7 versus A0 within each evaluation population"
+    }
+  },
+  "slice_reporting": {
+    "general_min_n": 200,
+    "controlled_zero_min_n": 50,
+    "cross_slice_min_n": 200,
+    "below_minimum": "report count; suppress interval and inferential interpretation",
+    "empty_slice": "NOT_AVAILABLE"
+  },
+  "intervals": "percentile",
+  "confirmatory_p_values": "none unless added before QUALIFICATION by a new committed preregistration version",
+  "missing_values": "pairwise complete cases for the named metric with missingness counts reported",
+  "failure_rule": "degenerate bootstrap or invalid pairing is INVALID, never PASS"
+}

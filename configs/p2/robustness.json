@@ -1,0 +1,29 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "version": 1,
+  "status": "PREREGISTERED_BEFORE_QUALIFICATION",
+  "base_seed": 2026092303,
+  "populations": ["overall", "CONTROLLED_ZERO_SUPPORT", "warm_support_gt_20"],
+  "metrics": ["NDCG@20", "Recall@20", "router_content_weight"],
+  "missingness_assignment": "sha256(protocol_id:model_id:role:modality:intensity:item_id:base_seed) as uint256 divided by 2^256 is below intensity",
+  "interventions": [
+    {"id": "IMAGE_MISSING", "intensities": [0.10, 0.25, 0.50, 1.00], "transform": "replace image vector with zero and set image_present=false before gate and scoring"},
+    {"id": "TEXT_MISSING", "intensities": [0.10, 0.25, 0.50, 1.00], "transform": "replace text vector with zero and set text_present=false before gate and scoring"},
+    {"id": "IMAGE_TEXT_JOINT_MISSING", "intensities": [0.10, 0.25, 0.50], "transform": "apply the same deterministic item mask to both modalities and set both presence flags false"},
+    {"id": "CONTENT_FEATURE_PERTURBATION", "intensities": [0.05, 0.10, 0.20], "transform": "for each selected item and modality, add deterministic iid Normal(0, intensity * per-dimension FIT-catalog standard deviation), then L2-normalize; PRNG seed is SHA256-derived from base_seed, item_id, modality, intensity"}
+  ],
+  "scope": "apply to the complete candidate catalog representation before exact scoring; target and non-target items follow the same deterministic item rule",
+  "directional_expectations": {
+    "positive_support": "mean router content weight on degraded target items must not increase relative to uncorrupted scoring",
+    "zero_support": "sequence branch may be structurally unavailable; degradation may reduce accuracy and no nondegradation gate is asserted"
+  },
+  "inference": {
+    "unit": "paired user",
+    "draws": 10000,
+    "confidence": 0.95,
+    "multiplicity": "Holm within each intervention family across intensities and declared populations"
+  },
+  "retraining": false,
+  "terminology": "adaptive routing; reliability-aware is prohibited unless every separately declared reliability gate passes",
+  "failure_policy": "missing implementation identity or transformation mismatch makes the affected robustness stage INVALID"
+}

@@ -1,0 +1,72 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "primary": "NDCG@20",
+  "secondary_ranking": ["Recall@20", "MRR@20", "Hit@20", "Precision@20"],
+  "evaluation": {
+    "ranking": "exact full catalog",
+    "training_history_masked": true,
+    "candidate_availability": "first_observed_timestamp <= query_timestamp",
+    "same_candidates_for_all_models": true,
+    "target_in_candidate_set_required": true,
+    "one_target_per_user_per_role": true
+  },
+  "topk_artifact": {
+    "roles": ["QUALIFICATION", "LOCKED_FINAL"],
+    "format": "compressed Parquet",
+    "compression": "zstd",
+    "required_columns": [
+      "user_id", "query_timestamp", "target_item_id", "target_rank",
+      "top20_item_ids", "top20_scores", "top100_item_ids", "top100_scores",
+      "model_id", "config_id", "protocol_id"
+    ],
+    "router_columns": [
+      "item_fit_support", "router_weight", "sequence_score", "content_score",
+      "item_age_days", "user_fit_history_length", "user_recency_days",
+      "user_tail_share", "image_present", "text_present"
+    ],
+    "hash_required": true,
+    "overwrite_terminal_artifact": false
+  },
+  "support_bins": [
+    {"name": "0", "min": 0, "max": 0},
+    {"name": "1-5", "min": 1, "max": 5},
+    {"name": "6-20", "min": 6, "max": 20},
+    {"name": "21-50", "min": 21, "max": 50},
+    {"name": "51-100", "min": 51, "max": 100},
+    {"name": "101+", "min": 101, "max": null}
+  ],
+  "warm_population": "FIT support > 20",
+  "popularity": {
+    "source": "FIT_VISIBLE only",
+    "interaction_quantiles": 5,
+    "interaction_deciles": 10,
+    "unique_user_quantiles": 5,
+    "tie_break": "item_id ascending",
+    "head_torso_tail": "head top 20%, torso middle 60%, tail bottom 20% by FIT interaction count with item_id tie-break"
+  },
+  "item_age_bins_days": ["0-7", "8-30", "31-90", "91-365", ">365"],
+  "user_cohorts": {
+    "history_length": "FIT_VISIBLE count quartiles with deterministic boundary values",
+    "recency": ["0-7d", "8-30d", "31-90d", "91-365d", ">365d"],
+    "tail_preference": "quartiles of FIT history share in frozen tail items",
+    "niche_preference": "quartiles of median FIT interaction popularity of history, low median is more niche",
+    "history_diversity": "quartiles of Shannon entropy over permitted item tag categories in FIT history"
+  },
+  "cross_slices": ["support x item_age"],
+  "non_accuracy": {
+    "ItemCoverage@20": "unique recommended items at rank<=20 divided by candidate-eligible catalog size",
+    "AveragePopularity@20": "mean log1p FIT interaction count over top-20 exposures",
+    "TailPercentage@20": "share of top-20 exposures assigned to frozen bottom-20%-popularity items",
+    "exposure_Gini": "Gini coefficient of item top-20 exposure counts including zero-exposure eligible items",
+    "exposure_HHI": "sum of squared item exposure shares",
+    "exposure_entropy": "Shannon entropy of nonzero item exposure shares",
+    "novelty": "mean -log2((FIT_count+1)/(FIT_total+eligible_catalog_size)) over top-20 exposures",
+    "intra_list_diversity": "mean pairwise cosine distance among top-20 items using frozen L2-normalized permitted concatenated image/text/tag representation",
+    "personalization": "1 minus mean top-20 Jaccard overlap over 10000 deterministic SHA256-selected eligible user pairs"
+  },
+  "pairwise_failure_analysis": {
+    "comparisons": ["router_vs_C_seq", "router_vs_C_cold"],
+    "measures": ["win", "tie", "loss", "rescue", "regression", "both_hit", "both_miss", "rank_gain_loss_when_both_hit"],
+    "slices": ["support", "popularity", "age", "warm_cold", "user_history_cohorts"]
+  }
+}

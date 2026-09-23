@@ -1,0 +1,33 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "device_required": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "physical_gpu_count": 1,
+  "cuda_required_for": [
+    "neural training",
+    "multimodal feature transforms when neural",
+    "neural exact full-catalog scoring",
+    "neural robustness inference"
+  ],
+  "silent_cpu_fallback": false,
+  "heavy_jobs_per_gpu": 1,
+  "lock_path": "/home/bjw-0/mosaic-rec-work/p2/locks/heavy_gpu.lock",
+  "preflight": {
+    "require_no_unrelated_compute_pid": true,
+    "idle_window_seconds": 30,
+    "require_cuda_tensor_operation": true,
+    "require_finite_result": true,
+    "require_bf16_probe": true,
+    "require_target_receipt_absent_or_audited_resume": true
+  },
+  "mixed_precision": "bf16 after per-model finite pilot; otherwise fp32 CUDA with receipt warning",
+  "pipeline": {
+    "pinned_memory": true,
+    "non_blocking_transfer": true,
+    "persistent_workers": "benchmark during PILOT",
+    "prefetch_factor": "benchmark during PILOT",
+    "dataloader_workers": "benchmark during PILOT",
+    "concurrent_cpu_statistics_allowed": true
+  },
+  "oom_policy": "record OOM; only use a predeclared microbatch/gradient-accumulation equivalent within the same attempt",
+  "multi_gpu_claims": false
+}

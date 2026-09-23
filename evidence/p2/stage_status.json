@@ -1,0 +1,21 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "scientific_state": "PILOT",
+  "updated_utc": "2026-09-23T05:26:13.6012376Z",
+  "qualification_access_count": 0,
+  "locked_final_access_count": 0,
+  "stages": {
+    "P2-A00": {"status": "PASS", "summary": "Preregistration and independent protocol identity created before model execution"},
+    "P2-A01": {"status": "PASS_WITH_HOLD", "summary": "Official PixelRec and MovieLens terms rechecked; raw covers held; text feature identity open"},
+    "P2-A02": {"status": "IN_PROGRESS", "summary": "Local raw and feature provenance audit pending p2 receipt"},
+    "P2-A03": {"status": "PENDING"},
+    "P2-A04": {"status": "PENDING"},
+    "P2-A05": {"status": "PENDING"},
+    "P2-A06": {"status": "PENDING"}
+  },
+  "p1_canonical_receipts_included": 0,
+  "warnings": [
+    "p1 is immutable and excluded from p2 canonical counts",
+    "no QUALIFICATION or LOCKED_FINAL model outcome has been accessed"
+  ]
+}

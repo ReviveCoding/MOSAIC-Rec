@@ -1,0 +1,22 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "version": 1,
+  "status": "PREREGISTERED_BEFORE_QUALIFICATION",
+  "seeds": [20261001, 20261002, 20261003],
+  "evaluation_populations": ["overall", "CONTROLLED_ZERO_SUPPORT", "warm_support_gt_20"],
+  "metric": "NDCG@20",
+  "comparisons": "each A1-A7 minus A0 on paired users",
+  "multiplicity": "Holm across A1-A7 within each population",
+  "ablations": [
+    {"id": "A0", "name": "full_finalist", "retrain": false, "implementation": "frozen router finalist and three-seed score ensemble", "interpretation": "reference"},
+    {"id": "A1", "name": "no_image", "retrain": true, "implementation": "image vector always zero and image_present=false during FIT and scoring", "interpretation": "incremental image contribution"},
+    {"id": "A2", "name": "no_text", "retrain": true, "implementation": "text vector always zero and text_present=false during FIT and scoring", "interpretation": "incremental text contribution"},
+    {"id": "A3", "name": "no_item_age_input", "retrain": true, "implementation": "remove item-age field and its parameters from gate input", "interpretation": "item lifecycle context contribution"},
+    {"id": "A4", "name": "no_user_context_input", "retrain": true, "implementation": "remove history length, recency, historical popularity and tail-share fields and their parameters from gate", "interpretation": "user context contribution"},
+    {"id": "A5", "name": "no_warm_preservation", "retrain": true, "implementation": "set positive-support distillation coefficient exactly to zero", "interpretation": "warm preservation objective contribution"},
+    {"id": "A6", "name": "no_hard_zero_constraint", "retrain": true, "implementation": "remove exact content-only override at support zero; learned gate applies at all support values", "interpretation": "zero-support structural constraint contribution"},
+    {"id": "A7", "name": "hard_router", "retrain": false, "implementation": "reuse frozen expert checkpoints; content scores at support zero and sequence scores at positive support with frozen alignment", "interpretation": "learned routing versus direct support rule"}
+  ],
+  "checkpoint_policy": "each retrained ablation has separate config, checkpoint and receipt identities; no overwrite",
+  "failure_policy": "an unimplemented or post-outcome redefined ablation is INVALID and remains in the family"
+}

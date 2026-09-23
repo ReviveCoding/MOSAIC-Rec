@@ -1,0 +1,150 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "created_utc": "2026-09-23T05:26:13.6012376Z",
+  "scientific_state": "PILOT",
+  "parent_protocol": null,
+  "hypothesis_provenance": {
+    "source_protocol": "mosaic-rec-2026-09-20-p1",
+    "source_status": "CLOSED",
+    "source_decision": "RETAIN_BASELINE",
+    "evidence_class": "POSTHOC_P1_HYPOTHESIS_GENERATING_ONLY",
+    "posthoc_manifest_sha256": "4c343e4892f25713a2d923f394dbfe93efe4655b952b6442b6c4b200e9695af0",
+    "p2_hypotheses_sha256": "5d5c20ac27f497d35041116063e9dbe7b68dbe04b54b84e1a51d9bdd5d97f79a",
+    "p1_final_status_sha256": "79994c8583e2b56bb823c08a32dd8da2b2b850c5409f1e31b6906b881dd6f553",
+    "p1_claims_sha256": "41153619f71023fb2ae2ebf8168d85be05376ee72badec2b81d2c56777cdf218",
+    "p1_stage_status_sha256": "021f340d36a4b5bec5066b74620f9efa76e9d59c3a6928acc4e9d58a3cc593cd"
+  },
+  "primary_dataset": "pixelrec50k",
+  "secondary_dataset": "movielens-32m",
+  "scratch_root": "/home/bjw-0/mosaic-rec-work/p2",
+  "repository_root": "/mnt/c/Users/bjw-0/Downloads/MOSAIC-Rec",
+  "data_roles": [
+    "FIT_VISIBLE",
+    "VALIDATION",
+    "QUALIFICATION",
+    "LOCKED_FINAL"
+  ],
+  "pixelrec_source": {
+    "interaction_path": "/home/bjw-0/mosaic-rec-work/data/pixelrec50k/interaction.csv",
+    "interaction_sha256": "638b53ec100f760cb9bd540c361f6d6e3617c81b1c054ced63fffa41da909e4d",
+    "item_path": "/home/bjw-0/mosaic-rec-work/data/pixelrec50k/item_info.csv",
+    "publisher_image_features_path": "/home/bjw-0/mosaic-rec-work/features/pixelrec50k/publisher_image_features.npy",
+    "publisher_image_features_sha256": "bb114e3d89e3983aa3798f72e0d3756f535c881366a8bacb65e44f70a9c301ae",
+    "publisher_image_item_ids_sha256": "ac84d699f63c4d11b5c2085047edab2fb128e0bd20a96b9a19d1506217add209",
+    "local_text_features_path": "/home/bjw-0/mosaic-rec-work/features/pixelrec50k/local_minilm_text.npy",
+    "local_text_features_sha256": "9be4f7232b65064d7ee0544e49706ea381127120f1b6bd5493e6f24d25c8cbca",
+    "local_text_status": "ELIGIBLE_ONLY_AFTER_P2_RIGHTS_AND_PROVENANCE_RECONFIRMATION"
+  },
+  "temporal_split": {
+    "method": "fixed_global_timestamp_boundaries_from_source_distribution_before_model_outcomes",
+    "fit_max_timestamp_inclusive": 1630118460,
+    "validation_max_timestamp_inclusive": 1636695517,
+    "qualification_max_timestamp_inclusive": 1643524851,
+    "locked_final_max_timestamp_inclusive": 1656087360,
+    "tie_policy": "all rows sharing a boundary timestamp remain in the earlier role",
+    "user_eligibility": "at least 5 FIT_VISIBLE interactions before the query",
+    "query_policy": "earliest eligible target event per user per protected role",
+    "candidate_availability": "item first-observed interaction timestamp <= query timestamp",
+    "availability_disclosure": "first-observed interaction time is a proxy, not a product launch timestamp"
+  },
+  "controlled_zero_support": {
+    "eligible_items": "items observed in the source FIT interval",
+    "selection": "sha256(protocol_id + ':controlled-zero:' + item_id) interpreted as uint256 < floor(0.05 * 2^256)",
+    "withholding": "remove all selected-item interactions from model-visible FIT collaboration",
+    "content_visibility": "permitted content remains visible",
+    "minimum_target_count_per_protected_role": 50
+  },
+  "natural_zero_support": {
+    "definition": "target item has zero model-visible FIT interactions without protocol withholding",
+    "candidate_requirement": "target is available under first-observed candidate semantics at query time",
+    "status_if_invalid": "HOLD"
+  },
+  "primary_question": "Can a support-aware expert router preserve the content expert's zero-support cold-start advantage while switching rapidly enough to a sequence expert to avoid warm-quality collapse?",
+  "primary_hypotheses": {
+    "H1": {
+      "name": "ZERO_SUPPORT_SUPERIORITY",
+      "population": "CONTROLLED_ZERO_SUPPORT",
+      "metric": "NDCG@20",
+      "comparison": "selected_router_minus_C_cold",
+      "pass_rule": "paired_user_bootstrap_95pct_lower_bound > 0",
+      "sensitivity": "item_cluster_bootstrap"
+    },
+    "H2": {
+      "name": "WARM_NONINFERIORITY",
+      "population": "FIT support > 20",
+      "metric": "NDCG@20",
+      "comparison": "selected_router_minus_C_seq",
+      "margin_rule": "0.10 * frozen C_seq VALIDATION warm NDCG@20",
+      "pass_rule": "paired_user_bootstrap_95pct_lower_bound > -numeric_margin"
+    },
+    "promotion_rule": "H1_PASS_AND_H2_PASS",
+    "overall_ndcg_role": "SECONDARY"
+  },
+  "model_families": {
+    "C_seq": "BERT4Rec-style sequence expert",
+    "C_cold": "multimodal content Two-Tower expert",
+    "legacy": "p1-style M1_T2 adapted to PixelRec p2",
+    "routers": ["R1", "R2", "R3", "R4"],
+    "additional_baselines": ["global_popularity", "recent_popularity", "BPR_MF", "LightGCN", "SASRec", "VBPR"]
+  },
+  "router_definitions": {
+    "R1": "content expert when FIT support == 0; sequence expert otherwise",
+    "R2": "g(s)=sigmoid(a+b*log1p(s)), b=softplus(raw_b), with exact content-only override at s=0",
+    "R3": "gate uses only log1p FIT support, age proxy, FIT history length, FIT recency, historical popularity/tail share, and declared content indicators",
+    "R4": "R3 plus warm positive-support distillation against frozen C_seq logits and zero-support content learning"
+  },
+  "score_alignment": {
+    "development_candidates": ["temperature_scaling", "per_query_standardized_logits", "rank_percentile_normalization"],
+    "selection_role": "VALIDATION",
+    "selection_metric": "mean of controlled-zero NDCG@20 and margin-adjusted warm NDCG@20 after unit scaling",
+    "tie_break": "temperature_scaling, then per_query_standardized_logits, then rank_percentile_normalization",
+    "protected_rule": "procedure and fitted parameters freeze before QUALIFICATION"
+  },
+  "hpo": {
+    "selection_seed": 20260930,
+    "independent_seeds": [20261001, 20261002, 20261003],
+    "trials_per_neural_family": 3,
+    "max_epochs_per_trial": 30,
+    "early_stopping_patience": 5,
+    "early_stopping_metric": "VALIDATION overall NDCG@20 with cold and warm gates reported",
+    "max_gpu_hours_per_trial": 2.0,
+    "no_best_seed_selection": true,
+    "ensemble_policy": "arithmetic mean of aligned full-catalog scores across all three independent seeds",
+    "selection_seed_excluded_from_qualification_statistics": true
+  },
+  "protected_access": {
+    "qualification_open_requires": [
+      "baseline candidates frozen",
+      "router family frozen",
+      "seed and ensemble policy frozen",
+      "score alignment frozen",
+      "metrics and slices frozen",
+      "robustness definitions frozen",
+      "ablation implementations frozen",
+      "statistics frozen",
+      "clean protocol guard PASS"
+    ],
+    "locked_open_requires": [
+      "C_seq frozen",
+      "C_cold frozen",
+      "one router finalist frozen",
+      "numeric warm noninferiority margin frozen",
+      "complete E05 manifest committed and hashed",
+      "clean frozen protocol guard PASS"
+    ],
+    "qualification_access_count_initial": 0,
+    "locked_final_access_count_initial": 0
+  },
+  "stage_dag": [
+    "P2-A00", "P2-A01", "P2-A02", "P2-A03", "P2-A04", "P2-A05", "P2-A06",
+    "P2-B00", "P2-B01", "P2-C00", "P2-C01", "P2-C02", "P2-C03", "P2-C04", "P2-C05",
+    "P2-D00", "P2-D01", "P2-D02", "P2-D03", "P2-D04",
+    "P2-E00", "P2-E01", "P2-E02", "P2-E03", "P2-E04", "P2-E05",
+    "P2-F00", "P2-F01", "P2-F02", "P2-F03", "P2-F04", "P2-F05",
+    "P2-G00", "P2-H00", "P2-I00", "P2-I01", "P2-I02",
+    "P2-J00", "P2-J01", "P2-J02", "P2-J03", "P2-J04", "P2-J05",
+    "P2-K00", "P2-K01", "P2-K02", "P2-K03", "P2-K04", "P2-K05"
+  ],
+  "terminal_statuses": ["PASS", "FAIL", "HOLD", "INVALID", "BLOCKED_EXTERNAL", "BLOCKED_GPU"],
+  "p1_immutability": "p1 artifacts are read-only hypothesis provenance and never enter p2 canonical receipt counts"
+}
