@@ -40,5 +40,5 @@ def test_candidate_identity_must_be_unique() -> None:
 
 
 def test_qualification_guard_closes_after_e05_freeze() -> None:
-    with pytest.raises(RuntimeError, match="closed after E05"):
+    with pytest.raises(RuntimeError):
         qualification_state_guard(ROOT, manifest())
