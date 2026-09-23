@@ -1,0 +1,157 @@
+{
+  "hpo_manifest_sha256": "2297c0b0953ab3e5f496b87198d6d1a2b0f110396aeb7c9cfa4204d8ad92ce71",
+  "protected_roles_opened": [],
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-E00-CONFIG-MATERIALIZATION",
+  "status": "PASS",
+  "trial_count": 21,
+  "trials": [
+    {
+      "canonical_config_sha256": "fdd65ebf21e24df4dbc247d306424f8342b04808f60ff698e534cfe01951dae3",
+      "family": "BPR_MF",
+      "path": "configs/p2/hpo_trials/bpr_t1.json",
+      "sha256": "12ee17f25fa62341d532349f8267e97386a31728090f19f2fbbe28619ac563a3",
+      "trial_id": "BPR_T1"
+    },
+    {
+      "canonical_config_sha256": "a3413b96d21adfac1f226461343a2644a28c16b8a2754c0d4cfc471c2ed4a12f",
+      "family": "BPR_MF",
+      "path": "configs/p2/hpo_trials/bpr_t2.json",
+      "sha256": "a626fa71328166b99baf33f2e731cdaeecfc916407b93a29f7d316a462915458",
+      "trial_id": "BPR_T2"
+    },
+    {
+      "canonical_config_sha256": "aef20d399993151b2158c509f29af7509a1398333843085cf95baa84d611ecab",
+      "family": "BPR_MF",
+      "path": "configs/p2/hpo_trials/bpr_t3.json",
+      "sha256": "b65995c5eb21ce00f43f7a80a465c7a75ee447dd393202e6c58bbb5229c7a2c8",
+      "trial_id": "BPR_T3"
+    },
+    {
+      "canonical_config_sha256": "f309f597cf36d8058b7f3205ffdb56c143f72e7c2b42ec43fef5eb43dba72e0f",
+      "family": "CCOLD_TWO_TOWER",
+      "path": "configs/p2/hpo_trials/ccold_t1.json",
+      "sha256": "e3f05b83a145385269de088fc85b958347cc418407358d4108915ae52141e3a9",
+      "trial_id": "CCOLD_T1"
+    },
+    {
+      "canonical_config_sha256": "0330645ed4c2987480ec267e61c17dd9368b564c018876b1d45dbfc0ae4444de",
+      "family": "CCOLD_TWO_TOWER",
+      "path": "configs/p2/hpo_trials/ccold_t2.json",
+      "sha256": "a30e41ea2ef0b5b77e5c4a63d0d5f1b756ea605935d7cf5766840e6dc90c7601",
+      "trial_id": "CCOLD_T2"
+    },
+    {
+      "canonical_config_sha256": "cf33406cb49e595d70eebc7d237fe3f2ae5346979674318ddee8ed6aee08f788",
+      "family": "CCOLD_TWO_TOWER",
+      "path": "configs/p2/hpo_trials/ccold_t3.json",
+      "sha256": "2cba32ae7e969cec8d90e742002394e996a61dbefcd6767928a1a3475bc6dd8a",
+      "trial_id": "CCOLD_T3"
+    },
+    {
+      "canonical_config_sha256": "2e2c9d36e23f0bedfc1244d68ad25032736614eeb3725a8ca9783bbe3a792791",
+      "family": "CSEQ_BERT4REC",
+      "path": "configs/p2/hpo_trials/cseq_t1.json",
+      "sha256": "02879b5e1bb9d4c83f97dd7de7ce9e4be35088420ed4e50e6c4dccba5987c143",
+      "trial_id": "CSEQ_T1"
+    },
+    {
+      "canonical_config_sha256": "55a6c178779e7bcd470c3140f08b3b021f85d000783d2caac59f9d1e82f0a491",
+      "family": "CSEQ_BERT4REC",
+      "path": "configs/p2/hpo_trials/cseq_t2.json",
+      "sha256": "7e70c4cce5e4e35a305516f9b64e7f8db2dff2d96c3466153ffe9a1de7df7e3b",
+      "trial_id": "CSEQ_T2"
+    },
+    {
+      "canonical_config_sha256": "22695294d3b38e69cae80b2292b4cce306e189f6dd567a591efb5341aa90abe3",
+      "family": "CSEQ_BERT4REC",
+      "path": "configs/p2/hpo_trials/cseq_t3.json",
+      "sha256": "2a5bf1dba186485f275e61e8e047f190c6ba30de3ebe802a092b71e52644001d",
+      "trial_id": "CSEQ_T3"
+    },
+    {
+      "canonical_config_sha256": "4369e040d845c2061aa8d7a86f9c524f9da445b16126400639391c36bbf518c4",
+      "family": "LEGACY_M1",
+      "path": "configs/p2/hpo_trials/legacy_t1.json",
+      "sha256": "a957252aaaf176308d56f5e7811dfbbae8cfa1787bda26b6156c2707ff162089",
+      "trial_id": "LEGACY_T1"
+    },
+    {
+      "canonical_config_sha256": "051fb68d6a66a9bedb2f53f224a94375735230fbf120a4010b9948dfb17e7bff",
+      "family": "LEGACY_M1",
+      "path": "configs/p2/hpo_trials/legacy_t2.json",
+      "sha256": "b0b07b36c626714df1e951c36126ca07aa9d7ac3445bfa430aa909cd5c4649d1",
+      "trial_id": "LEGACY_T2"
+    },
+    {
+      "canonical_config_sha256": "2efd63a1ca0f7b1f92117efbf3bd13cd0592b116837e99fc6fe3e3eb9d8f29e2",
+      "family": "LEGACY_M1",
+      "path": "configs/p2/hpo_trials/legacy_t3.json",
+      "sha256": "2f23644d6ea993c966bbf2b785663c812fdaedebd44495b002b0969b8919e870",
+      "trial_id": "LEGACY_T3"
+    },
+    {
+      "canonical_config_sha256": "d4536733ca27d89867c2511314fadad46400b8772e7360dc7679d9b3dacf60d3",
+      "family": "LIGHTGCN",
+      "path": "configs/p2/hpo_trials/lightgcn_t1.json",
+      "sha256": "bfa7849bbf773f387e349328e64e08a2e6eb1005983d8b48d7c7a17101455d5a",
+      "trial_id": "LIGHTGCN_T1"
+    },
+    {
+      "canonical_config_sha256": "939da0dd12e1b8880f06084fdb448b1d8ce78e08abf6d1b559bee3a1daa2dca7",
+      "family": "LIGHTGCN",
+      "path": "configs/p2/hpo_trials/lightgcn_t2.json",
+      "sha256": "88abc53636aa2a468799f737ff8761afb451dc96611b3f6565a24406994c6681",
+      "trial_id": "LIGHTGCN_T2"
+    },
+    {
+      "canonical_config_sha256": "87b0a731d445b728fad3b20247aee24f095e01d8c8be72b2b0c5fdb2601994b0",
+      "family": "LIGHTGCN",
+      "path": "configs/p2/hpo_trials/lightgcn_t3.json",
+      "sha256": "dbe77e8703105164f9980c8e7e7bbd8d737a6762ca5611d3f1d2d6106df0eb2b",
+      "trial_id": "LIGHTGCN_T3"
+    },
+    {
+      "canonical_config_sha256": "1f76a2892c1d9e889cc381c15697299308663d3392774b164f61849e0eddc997",
+      "family": "SASREC",
+      "path": "configs/p2/hpo_trials/sasrec_t1.json",
+      "sha256": "7697d84bf852ef2360ad7f718e21f42311ebfc7667953df8db4a4de6e887edb5",
+      "trial_id": "SASREC_T1"
+    },
+    {
+      "canonical_config_sha256": "030e0a4859a8725648d99b9b8ea56467e2b752e258272241090fe08f8c2d5b9c",
+      "family": "SASREC",
+      "path": "configs/p2/hpo_trials/sasrec_t2.json",
+      "sha256": "51962f090a49092b47f7bab10f1309f98dcd59d4f7227179b3090884caf569b5",
+      "trial_id": "SASREC_T2"
+    },
+    {
+      "canonical_config_sha256": "7cbbf6b1b951ad278c35dac89ad083a7d996a27dfcaedf2037fbabf85d7bca55",
+      "family": "SASREC",
+      "path": "configs/p2/hpo_trials/sasrec_t3.json",
+      "sha256": "4e69ee8055b23f9b0c60858e22725b2bf4e835c8d2775367eecab74b52ef27ce",
+      "trial_id": "SASREC_T3"
+    },
+    {
+      "canonical_config_sha256": "e90b117ac17dd70272ebeb25b58bc852dce3f098e9541ae6655497165cca0070",
+      "family": "VBPR",
+      "path": "configs/p2/hpo_trials/vbpr_t1.json",
+      "sha256": "7f61e9bef9d2aa46eb2f891b723bace2252b29bf2e95a418dfdf83be606f9ac4",
+      "trial_id": "VBPR_T1"
+    },
+    {
+      "canonical_config_sha256": "1e9c6482c6a61f9cd0eda1c1d35322403eb4e3cb188647883690af6e6c95d3e5",
+      "family": "VBPR",
+      "path": "configs/p2/hpo_trials/vbpr_t2.json",
+      "sha256": "c0144b94869153e503606b1f4cbd99b0f8551a639ee8410a620b87095ffd83c9",
+      "trial_id": "VBPR_T2"
+    },
+    {
+      "canonical_config_sha256": "affc1e637bd5c2668d475e21a528ecad1c70ad6e0fd9b4af7f1d9bb3f27e0e15",
+      "family": "VBPR",
+      "path": "configs/p2/hpo_trials/vbpr_t3.json",
+      "sha256": "b8b4c6aeef30adfb25f2d55d3d99f5f0053c67f639a2f27898272fcb08bca0c0",
+      "trial_id": "VBPR_T3"
+    }
+  ]
+}
