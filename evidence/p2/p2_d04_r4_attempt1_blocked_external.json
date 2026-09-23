@@ -1,0 +1,21 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-D04-PILOT",
+  "attempt_id": "r4-warm-preserving-pilot-attempt1",
+  "status": "BLOCKED_EXTERNAL_PRESTART",
+  "failure_class": "gpu_contention_during_nested_idle_guard",
+  "unrelated_cuda_pid": 14599,
+  "unrelated_process": "act_agent.training.sft_v2 seed11 steps120 run sft-v2c-seed11-steps120-aligned-tools",
+  "queue_idle_window_completed": true,
+  "project_gpu_lock_acquired": false,
+  "cuda_qualification_entered": false,
+  "model_loaded": false,
+  "checkpoint_created": false,
+  "output_created": false,
+  "scientific_metrics_created": false,
+  "log": "/home/bjw-0/mosaic-rec-work/p2/logs/r4_warm_preserving_pilot_attempt1.log",
+  "log_sha256": "a0721489efe9fb32606950cbe61c6e920f554053cdae464cf176d02d2eb4e66c",
+  "disposition": "preserved; any retry must use attempt2 identity and distinct artifact paths",
+  "qualification_access_count": 0,
+  "locked_final_access_count": 0
+}

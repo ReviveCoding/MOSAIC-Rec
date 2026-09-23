@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-Crash recovery complete. P2-D03 R3 attempt 3 completed under the exclusive GPU lock; P2-D04 R4 is the next scientific job.
+Crash recovery complete. P2-D03 R3 attempt 3 completed under the exclusive GPU lock; P2-D04 R4 attempt 1 is preserved as a prestart contention event and attempt 2 is next.
 
 ## Completed
 
@@ -39,10 +39,11 @@ Crash recovery complete. P2-D03 R3 attempt 3 completed under the exclusive GPU l
 - R3 attempt 2 completed the queue idle window, but ACT-Agent launched CUDA PID 2404 during the runner's independent idle guard. The p2 guard failed closed before lock acquisition/model loading; only the 760-byte prestart log exists and is hashed. Any retry will use attempt 3 paths.
 - R3 attempt 3 waited through ACT-Agent's follow-on evaluation, acquired the p2 lock only after six idle checks, and completed on the RTX 4090 Laptop GPU. Exact VALIDATION NDCG@20 was 0.001939 overall, 0 controlled zero, 0.000131 natural zero, and 0.013539 warm. The unfavorable zero-support result is preserved; checkpoint and output hashes independently match the receipt.
 - Rebuilt the p2-only warehouse after R3: 27 receipts, 28 valid metric rows, zero p1 receipts, zero QUALIFICATION access, zero LOCKED_FINAL access, validation PASS.
+- R4 attempt 1 passed its outer idle window, then failed closed before lock acquisition when ACT-Agent CUDA PID 14599 launched. Its 761-byte log is preserved at SHA-256 `a0721489efe9fb32606950cbe61c6e920f554053cdae464cf176d02d2eb4e66c`; no checkpoint, scored output, terminal model receipt, or scientific metric exists.
 
 ## Active next action
 
-Execute P2-D04 R4 attempt 1 with the unchanged preregistered ladder after a fresh GPU/process/lock check; inspect and canonicalize it before baseline pilots.
+Queue P2-D04 R4 attempt 2 on distinct paths with the unchanged preregistered ladder. Inspect and canonicalize it before baseline pilots.
 
 ## Protected access counters
 
@@ -53,4 +54,4 @@ Execute P2-D04 R4 attempt 1 with the unchanged preregistered ladder after a fres
 
 - Raw-cover extraction and modification remain on rights hold.
 - Official publisher text-feature download is quota-blocked. Amendment 001 selects the already authorized local MiniLM embedding derived from official title/tag/description fields; its p2 copy and alignment qualification passed.
-- No active GPU contention remains from the completed ACT-Agent evaluation at the R3 boundary; every subsequent heavy job must repeat the live process and lock checks.
+- ACT-Agent CUDA PID 14599 is the current transient blocker. R4 attempt 2 must remain outside the p2 lock until that process exits and a fresh sustained idle window passes.
