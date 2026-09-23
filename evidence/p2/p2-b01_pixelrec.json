@@ -1,0 +1,70 @@
+{
+  "aligned_indices": true,
+  "dataset": "pixelrec50k",
+  "evidence_class": "p2_measured_feature_alignment_qa",
+  "excluded_engagement_fields": [
+    "view_number",
+    "comment_number",
+    "thumbup_number",
+    "share_number",
+    "coin_number",
+    "favorite_number",
+    "barrage_number"
+  ],
+  "git_commit": "6f00e422c45e1b817fa53e9078595dc0eeceb839",
+  "image_missing": 0,
+  "inputs": {
+    "content_amendment": "1928ff22286f3f0d7bd1682a7823b6d51f4615c3d4532834e62e521bf4e74ad7",
+    "image_index_source": "ac84d699f63c4d11b5c2085047edab2fb128e0bd20a96b9a19d1506217add209",
+    "image_source": "bb114e3d89e3983aa3798f72e0d3756f535c881366a8bacb65e44f70a9c301ae",
+    "item_source": "a073c2c65900f215a8137929b27dc57cf6f4f8fa11453a5c74fa8ff3a730a04e",
+    "text_index_source": "ac84d699f63c4d11b5c2085047edab2fb128e0bd20a96b9a19d1506217add209",
+    "text_source": "9be4f7232b65064d7ee0544e49706ea381127120f1b6bd5493e6f24d25c8cbca"
+  },
+  "items": 82865,
+  "outputs": {
+    "authorized_minilm_item_ids.txt": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/features/pixelrec50k/authorized_minilm_item_ids.txt",
+      "sha256": "ac84d699f63c4d11b5c2085047edab2fb128e0bd20a96b9a19d1506217add209"
+    },
+    "authorized_minilm_text_features.npy": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/features/pixelrec50k/authorized_minilm_text_features.npy",
+      "sha256": "9be4f7232b65064d7ee0544e49706ea381127120f1b6bd5493e6f24d25c8cbca"
+    },
+    "image_present.npy": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/features/pixelrec50k/image_present.npy",
+      "sha256": "97e742d8f797891238479a7014ea36278c499e3d05d1d05482f153f1a29c6913"
+    },
+    "publisher_image_features.npy": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/features/pixelrec50k/publisher_image_features.npy",
+      "sha256": "bb114e3d89e3983aa3798f72e0d3756f535c881366a8bacb65e44f70a9c301ae"
+    },
+    "publisher_image_item_ids.txt": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/features/pixelrec50k/publisher_image_item_ids.txt",
+      "sha256": "ac84d699f63c4d11b5c2085047edab2fb128e0bd20a96b9a19d1506217add209"
+    },
+    "tag_ids.npy": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/features/pixelrec50k/tag_ids.npy",
+      "sha256": "033719e2f5c45b99fa6e87aff2d82e48f396d1219e1e094b50bf48976da1da9c"
+    },
+    "tag_vocabulary.json": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/features/pixelrec50k/tag_vocabulary.json",
+      "sha256": "055b8b5cb67aa7fed77867b8f4cf9191ba71632b24106e58a79a4a104372e7ee"
+    },
+    "text_present.npy": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/features/pixelrec50k/text_present.npy",
+      "sha256": "97e742d8f797891238479a7014ea36278c499e3d05d1d05482f153f1a29c6913"
+    }
+  },
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-B01",
+  "status": "PASS",
+  "tag_categories": 108,
+  "text_missing": 0,
+  "unique_indices": 82865,
+  "warnings": [
+    "Publisher image and local text embeddings have different encoder provenance.",
+    "Historical content effective times are unavailable.",
+    "Feature bytes are local noncommercial research inputs and are not redistributed."
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "attempt_id": "P2-A02-PREPARE-ATTEMPT-1",
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-A02",
+  "scientific_state": "PILOT",
+  "status": "FAIL_IMPLEMENTATION",
+  "git_commit": "6f00e42",
+  "command_scope": "fresh PixelRec p2 source QA and temporal materialization",
+  "failure": "DuckDB ParserException on unquoted SQL alias rows",
+  "outputs_created": false,
+  "protected_model_outcomes_accessed": false,
+  "resolution": "rename SQL aliases; rerun as distinct attempt 2 against empty p2 data directory"
+}

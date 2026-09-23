@@ -1,0 +1,13 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "receipt_type": "CODE_IDENTITY_SUPPLEMENT",
+  "applies_to": ["P2-A02", "P2-A03", "P2-A04", "P2-A05", "P2-A06"],
+  "reason": "execution occurred from the preregistration commit plus an uncommitted p2-only implementation; preserve exact executed source hashes",
+  "base_git_commit": "6f00e422c45e1b817fa53e9078595dc0eeceb839",
+  "executed_source_sha256": {
+    "src/mosaic_rec/p2/data.py": "2497a483252ae46fbd8e10bb92c324dfa7d1a3c011b6b05dcd416aaa480e0363",
+    "scripts/p2/prepare_pixelrec.py": "30db00cf58417d31a4c295164401f10e66de2578f94b103954dae001dd4ae848"
+  },
+  "protocol_config_sha256": "3362c0bab9ab4aedbd24fc4e4598908811a39e305df756d4dd236749ff5fb166",
+  "protected_model_outcomes_accessed": false
+}

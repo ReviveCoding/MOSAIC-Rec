@@ -1,0 +1,38 @@
+{
+  "availability_proxy": "first_observed_interaction_timestamp",
+  "controlled_zero_items": 3013,
+  "evidence_class": "p2_descriptive_eda",
+  "git_commit": "6f00e422c45e1b817fa53e9078595dc0eeceb839",
+  "item_source_sha256": "a073c2c65900f215a8137929b27dc57cf6f4f8fa11453a5c74fa8ff3a730a04e",
+  "natural_zero_items": 22585,
+  "protocol_config_sha256": "3362c0bab9ab4aedbd24fc4e4598908811a39e305df756d4dd236749ff5fb166",
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "role_population": {
+    "LOCKED_FINAL": {
+      "controlled_zero_targets": 295,
+      "eligible_users": 25367,
+      "natural_zero_targets": 19792,
+      "warm_support_gt_20_targets": 2100
+    },
+    "QUALIFICATION": {
+      "controlled_zero_targets": 264,
+      "eligible_users": 26900,
+      "natural_zero_targets": 21648,
+      "warm_support_gt_20_targets": 2057
+    },
+    "VALIDATION": {
+      "controlled_zero_targets": 458,
+      "eligible_users": 27918,
+      "natural_zero_targets": 17866,
+      "warm_support_gt_20_targets": 3808
+    }
+  },
+  "source_population": {
+    "items": 82865,
+    "rows": 989494,
+    "users": 50000
+  },
+  "source_sha256": "638b53ec100f760cb9bd540c361f6d6e3617c81b1c054ced63fffa41da909e4d",
+  "stage_id": "P2-A04",
+  "status": "PASS"
+}

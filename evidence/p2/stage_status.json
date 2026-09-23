@@ -1,21 +1,25 @@
 {
   "protocol_id": "mosaic-rec-2026-09-23-p2",
-  "scientific_state": "PILOT",
+  "scientific_state": "DEVELOPMENT",
   "updated_utc": "2026-09-23T05:26:13.6012376Z",
   "qualification_access_count": 0,
   "locked_final_access_count": 0,
   "stages": {
     "P2-A00": {"status": "PASS", "summary": "Preregistration and independent protocol identity created before model execution"},
     "P2-A01": {"status": "PASS_WITH_HOLD", "summary": "Official PixelRec and MovieLens terms rechecked; raw covers held; text feature identity open"},
-    "P2-A02": {"status": "IN_PROGRESS", "summary": "Local raw and feature provenance audit pending p2 receipt"},
-    "P2-A03": {"status": "PENDING"},
-    "P2-A04": {"status": "PENDING"},
-    "P2-A05": {"status": "PENDING"},
-    "P2-A06": {"status": "PENDING"}
+    "P2-A02": {"status": "PASS", "summary": "PixelRec sources hashed under p2 after two preserved implementation failures"},
+    "P2-A03": {"status": "PASS", "summary": "989494 interactions, 50000 users, 82865 items; schema and null/duplicate checks passed"},
+    "P2-A04": {"status": "PASS", "summary": "p2-only descriptive populations recorded without model outcomes"},
+    "P2-A05": {"status": "PASS", "summary": "fresh temporal roles and 3013-item controlled-zero cohort materialized and hashed"},
+    "P2-A06": {"status": "PASS", "summary": "mechanical temporal and zero-support leakage checks passed"},
+    "P2-B00": {"status": "PASS", "summary": "authorized image/text feature bytes copied to p2 paths under new identities"},
+    "P2-B01": {"status": "PASS", "summary": "82865 image/text rows align; all vectors finite; 108 permitted tag categories"},
+    "P2-B02": {"status": "IN_PROGRESS", "summary": "common query, context, and candidate semantics materialization pending"}
   },
   "p1_canonical_receipts_included": 0,
   "warnings": [
     "p1 is immutable and excluded from p2 canonical counts",
-    "no QUALIFICATION or LOCKED_FINAL model outcome has been accessed"
+    "no QUALIFICATION or LOCKED_FINAL model outcome has been accessed",
+    "official publisher text download is quota-blocked; amendment 001 selects the already authorized attribute-derived local text representation"
   ]
 }

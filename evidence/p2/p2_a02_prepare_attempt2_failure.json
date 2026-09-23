@@ -1,0 +1,17 @@
+{
+  "attempt_id": "P2-A02-PREPARE-ATTEMPT-2",
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-A02",
+  "scientific_state": "PILOT",
+  "status": "FAIL_IMPLEMENTATION_PARTIAL_PRESERVED",
+  "git_commit": "6f00e42",
+  "command_scope": "fresh PixelRec p2 source QA, cohort construction, and temporal materialization",
+  "failure": "DuckDB ParserException on unquoted projection alias timestamp",
+  "protected_model_outcomes_accessed": false,
+  "partial_artifact": {
+    "path": "/home/bjw-0/mosaic-rec-work/p2/data/pixelrec50k_attempt2_failed/controlled_zero_item_ids.txt",
+    "rows": 3013,
+    "sha256": "59bb66b20a66f8ec232e4f322843184f80fbed52d80df530f0a5bc295c60e549"
+  },
+  "resolution": "preserve the partial directory, quote the timestamp alias, and run distinct attempt 3"
+}

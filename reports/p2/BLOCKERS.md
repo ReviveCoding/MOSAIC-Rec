@@ -6,9 +6,11 @@ The current official dataset license says no rights are granted to copy, modify,
 
 Independent path: use official publisher-provided extracted features and permitted item attributes locally without redistribution.
 
-## OPEN QUALIFICATION — text feature identity
+## BLOCKED_EXTERNAL — official publisher text file
 
-The official PixelRec README links publisher text vectors. p2 must either acquire and hash that official file or document why the existing qualified local title embedding is permitted under the user's authorized-attribute boundary. Until then, the final text representation is not frozen and model training is blocked.
+The official PixelRec README links a 9,290,203,646-byte publisher text-vector file, but Google Drive returned a quota-exceeded response on 2026-09-23. The response is preserved at `/home/bjw-0/mosaic-rec-work/p2/downloads/publisher_text_feature_quota_attempt1.html`, SHA-256 `61be7a39fb35ddee071f7314112254bdfd5ae84da4c3dbde69cc145bd14a52eb`.
+
+Independent path: amendment 001 selects the already authorized local MiniLM embedding derived only from official title, tag, and description attributes. Feature alignment must pass before model execution.
 
 ## Resource note
 

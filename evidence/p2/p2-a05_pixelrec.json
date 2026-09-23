@@ -1,0 +1,79 @@
+{
+  "boundaries": {
+    "availability_disclosure": "first-observed interaction time is a proxy, not a product launch timestamp",
+    "candidate_availability": "item first-observed interaction timestamp <= query timestamp",
+    "fit_max_timestamp_inclusive": 1630118460,
+    "locked_final_max_timestamp_inclusive": 1656087360,
+    "method": "fixed_global_timestamp_boundaries_from_source_distribution_before_model_outcomes",
+    "qualification_max_timestamp_inclusive": 1643524851,
+    "query_policy": "earliest eligible target event per user per protected role",
+    "tie_policy": "all rows sharing a boundary timestamp remain in the earlier role",
+    "user_eligibility": "at least 5 FIT_VISIBLE interactions before the query",
+    "validation_max_timestamp_inclusive": 1636695517
+  },
+  "controlled_zero_count": 3013,
+  "controlled_zero_method": {
+    "content_visibility": "permitted content remains visible",
+    "eligible_items": "items observed in the source FIT interval",
+    "minimum_target_count_per_protected_role": 50,
+    "selection": "sha256(protocol_id + ':controlled-zero:' + item_id) interpreted as uint256 < floor(0.05 * 2^256)",
+    "withholding": "remove all selected-item interactions from model-visible FIT collaboration"
+  },
+  "evidence_class": "p2_derived_temporal_protocol",
+  "git_commit": "6f00e422c45e1b817fa53e9078595dc0eeceb839",
+  "item_source_sha256": "a073c2c65900f215a8137929b27dc57cf6f4f8fa11453a5c74fa8ff3a730a04e",
+  "natural_zero_count": 22585,
+  "output_manifest_sha256": "868a64eb8e9072100135420920e1e429e61f842a9b346cdc2faf01c9c14a2560",
+  "outputs": {
+    "FIT_VISIBLE": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/data/pixelrec50k/FIT_VISIBLE.parquet",
+      "rows": 659790,
+      "sha256": "34e74f9e64f4280fcff59231d7740526416197d53cd864351efa7622e9c5fb7e"
+    },
+    "FIT_WITHHELD_CONTROLLED": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/data/pixelrec50k/FIT_WITHHELD_CONTROLLED.parquet",
+      "rows": 32995,
+      "sha256": "1e7134877b200af1863403a35a3ad2da26761460a38fd5ddd3f956e4aea83d10"
+    },
+    "LOCKED_FINAL": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/data/pixelrec50k/LOCKED_FINAL.parquet",
+      "rows": 98707,
+      "sha256": "a7477812efab8442b223f29030782239f7db122daef80296aba57722b6e24654"
+    },
+    "QUALIFICATION": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/data/pixelrec50k/QUALIFICATION.parquet",
+      "rows": 99827,
+      "sha256": "4df84ebd5c37fee417f44c7e58b32f9a63e9b11aca194ca5ecde9fc7c5fbcc6e"
+    },
+    "VALIDATION": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/data/pixelrec50k/VALIDATION.parquet",
+      "rows": 98175,
+      "sha256": "18a61a4f8bd2de54a089460c0e5adcedc7e1d8484d9d0e7bc3d53816bae95689"
+    },
+    "controlled_zero_item_ids": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/data/pixelrec50k/controlled_zero_item_ids.txt",
+      "sha256": "59bb66b20a66f8ec232e4f322843184f80fbed52d80df530f0a5bc295c60e549"
+    },
+    "fit_item_support": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/data/pixelrec50k/fit_item_support.parquet",
+      "sha256": "3e447c0454fdfaf18b9497ae8d1d4518c75a8a3dbfe3cc135cf718f1a0920f42"
+    },
+    "fit_user_stats": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/data/pixelrec50k/fit_user_stats.parquet",
+      "sha256": "9e127980e931a14eeb8da8d62370a1db62d82e3a3d8bde587f1af1921e107a96"
+    },
+    "item_first_observed": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/data/pixelrec50k/item_first_observed.parquet",
+      "sha256": "b977aa494ced1db9a1cbd1397bf93d28795e0898653dfec95c6977b56d1d5c19"
+    },
+    "natural_zero_item_ids": {
+      "path": "/home/bjw-0/mosaic-rec-work/p2/data/pixelrec50k/natural_zero_item_ids.txt",
+      "sha256": "6a55d697f672fb905cb6d16b9fab7f60af6c26ca58a5ff29765b34a583794b2c"
+    }
+  },
+  "protocol_config_sha256": "3362c0bab9ab4aedbd24fc4e4598908811a39e305df756d4dd236749ff5fb166",
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "source_sha256": "638b53ec100f760cb9bd540c361f6d6e3617c81b1c054ced63fffa41da909e4d",
+  "stage_id": "P2-A05",
+  "status": "PASS"
+}

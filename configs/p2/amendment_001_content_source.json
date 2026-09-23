@@ -1,0 +1,37 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "amendment_id": "P2-AMENDMENT-001",
+  "timing": "before any p2 model execution or protected outcome access",
+  "scientific_semantics_changed": false,
+  "reason": "resolve the preregistered open text-feature identity",
+  "official_publisher_text_attempt": {
+    "official_file_id": "1t1ZknzSY-8KxhhfTWMORh66BOdV7qmCj",
+    "advertised_filename": "text_feature.json",
+    "advertised_content_length": 9290203646,
+    "status": "BLOCKED_EXTERNAL_GOOGLE_DRIVE_QUOTA",
+    "preserved_response_path": "/home/bjw-0/mosaic-rec-work/p2/downloads/publisher_text_feature_quota_attempt1.html",
+    "preserved_response_sha256": "61be7a39fb35ddee071f7314112254bdfd5ae84da4c3dbde69cc145bd14a52eb"
+  },
+  "selected_text_input": {
+    "status": "ELIGIBLE_EXISTING_AUTHORIZED_ATTRIBUTE_DERIVATIVE",
+    "source_item_attributes": ["title", "tag", "description"],
+    "excluded_item_attributes": [
+      "view_number",
+      "comment_number",
+      "thumbup_number",
+      "share_number",
+      "coin_number",
+      "favorite_number",
+      "barrage_number"
+    ],
+    "encoder": "sentence-transformers/all-MiniLM-L6-v2",
+    "encoder_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "encoder_license": "Apache-2.0",
+    "feature_sha256": "9be4f7232b65064d7ee0544e49706ea381127120f1b6bd5493e6f24d25c8cbca",
+    "item_index_sha256": "ac84d699f63c4d11b5c2085047edab2fb128e0bd20a96b9a19d1506217add209",
+    "use_boundary": "local noncommercial research only; no redistribution",
+    "warning": "content effective times are unavailable and historical revisions cannot be ruled out"
+  },
+  "model_effect": "the preregistered text modality remains present; only its already-open source identity is resolved",
+  "protected_access_counts": {"QUALIFICATION": 0, "LOCKED_FINAL": 0}
+}

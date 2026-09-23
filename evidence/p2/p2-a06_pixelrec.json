@@ -1,0 +1,46 @@
+{
+  "boundary_violations": {
+    "FIT_VISIBLE": 0,
+    "FIT_WITHHELD_CONTROLLED": 0,
+    "LOCKED_FINAL": 0,
+    "QUALIFICATION": 0,
+    "VALIDATION": 0
+  },
+  "candidate_time_test": "first_observed_timestamp <= query timestamp required by evaluator contract",
+  "controlled_items_with_visible_fit_rows": 0,
+  "evidence_class": "p2_measured_mechanical_leakage_audit",
+  "git_commit": "6f00e422c45e1b817fa53e9078595dc0eeceb839",
+  "item_source_sha256": "a073c2c65900f215a8137929b27dc57cf6f4f8fa11453a5c74fa8ff3a730a04e",
+  "natural_zero_items_with_fit_support": 0,
+  "protocol_config_sha256": "3362c0bab9ab4aedbd24fc4e4598908811a39e305df756d4dd236749ff5fb166",
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "role_population": {
+    "LOCKED_FINAL": {
+      "controlled_zero_targets": 295,
+      "eligible_users": 25367,
+      "natural_zero_targets": 19792,
+      "warm_support_gt_20_targets": 2100
+    },
+    "QUALIFICATION": {
+      "controlled_zero_targets": 264,
+      "eligible_users": 26900,
+      "natural_zero_targets": 21648,
+      "warm_support_gt_20_targets": 2057
+    },
+    "VALIDATION": {
+      "controlled_zero_targets": 458,
+      "eligible_users": 27918,
+      "natural_zero_targets": 17866,
+      "warm_support_gt_20_targets": 3808
+    }
+  },
+  "source_rows": 989494,
+  "source_sha256": "638b53ec100f760cb9bd540c361f6d6e3617c81b1c054ced63fffa41da909e4d",
+  "split_rows": 989494,
+  "stage_id": "P2-A06",
+  "status": "PASS",
+  "warnings": [
+    "First-observed time is an availability proxy, not launch time.",
+    "Untimestamped content revisions cannot be mechanically ruled out."
+  ]
+}

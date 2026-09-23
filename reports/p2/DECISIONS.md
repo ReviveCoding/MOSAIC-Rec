@@ -26,3 +26,17 @@ Checked 2026-09-23:
 - RecBole repository HEAD: `7b02be5ec80a88310f2d04a27a82adfcbb5dc211`.
 - MMRec repository HEAD: `c68ee7c9b0de1ca7c5150258322edb4994be29d9`.
 - Existing WSL environment passed a real CUDA operation with torch `2.14.0+cu130`, CUDA runtime `13.0`, BF16 support, and the RTX 4090 Laptop GPU.
+
+## 2026-09-23 — PixelRec p2 data boundary
+
+- P2-A02 attempt 1 failed before outputs because DuckDB rejected an unquoted alias; its failure receipt is preserved.
+- Attempt 2 produced only the deterministic 3,013-item controlled-zero list before a second alias parse failure. The partial file and directory are preserved with their hash.
+- Attempt 3 materialized all fresh p2 roles. Mechanical temporal and zero-support leakage checks passed.
+- The fresh roles contain 659,790 FIT-visible, 32,995 FIT-withheld controlled, 98,175 validation, 99,827 qualification, and 98,707 locked rows.
+- The p2 controlled-zero cohort contains 3,013 items. Protected model-outcome access remains zero.
+
+## 2026-09-23 — text source amendment 001
+
+- The official publisher text-vector file advertised 9,290,203,646 bytes but Google Drive returned a quota-exceeded response. The response is preserved and hashed.
+- Selected the existing authorized local MiniLM representation derived solely from official `title`, `tag`, and `description` attributes. Engagement aggregates remain excluded.
+- This resolves an explicitly open source identity before any model execution and does not change the preregistered text modality, hypothesis, role, metric, or gate semantics.
