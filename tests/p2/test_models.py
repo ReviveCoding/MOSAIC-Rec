@@ -14,7 +14,7 @@ from mosaic_rec.p2.models import (
     SASRecExpert,
     cloze_batch,
 )
-from mosaic_rec.p2.router import hard_zero_combine
+from mosaic_rec.p2.router import align_expert_scores, hard_zero_combine
 
 
 def test_bert4rec_cloze_and_query_shapes() -> None:
@@ -53,6 +53,19 @@ def test_hard_zero_router_uses_content_only_at_zero_support() -> None:
     )
     assert combined[0, 1] == sequence_only[0, 1]
     assert combined[0, 0] != sequence_only[0, 0]
+
+
+def test_declared_alignment_methods_preserve_shape_and_finite_order() -> None:
+    scores = torch.tensor([[[1.0, 3.0, -torch.inf], [2.0, 4.0, -torch.inf]]])
+    for method in (
+        "per_query_standardized_logits",
+        "temperature_scaling",
+        "rank_percentile_normalization",
+    ):
+        aligned = align_expert_scores(scores, method, temperatures=(0.5, 2.0))
+        assert aligned.shape == scores.shape
+        assert aligned[0, 0, 1] > aligned[0, 0, 0]
+        assert torch.isneginf(aligned[0, :, 2]).all()
 
 
 def test_router_gates_enforce_zero_support_content_only() -> None:

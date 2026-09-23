@@ -34,12 +34,58 @@ def _standardize(scores: torch.Tensor) -> torch.Tensor:
     return torch.where(finite, centered / scale, -torch.inf)
 
 
+def _centered_temperature(
+    scores: torch.Tensor, temperatures: tuple[float, float]
+) -> torch.Tensor:
+    finite = torch.isfinite(scores)
+    count = finite.sum(dim=-1, keepdim=True).clamp_min(1)
+    safe = torch.where(finite, scores, 0)
+    centered = scores - safe.sum(dim=-1, keepdim=True) / count
+    temperature = torch.tensor(temperatures, device=scores.device, dtype=scores.dtype)[
+        None, :, None
+    ]
+    return torch.where(finite, centered / temperature, -torch.inf)
+
+
+def _rank_percentile(scores: torch.Tensor) -> torch.Tensor:
+    finite = torch.isfinite(scores)
+    safe = torch.where(finite, scores, -torch.inf)
+    order = torch.argsort(safe, dim=-1, descending=False, stable=True)
+    ranks = torch.empty_like(order)
+    positions = torch.arange(
+        scores.shape[-1], device=scores.device, dtype=order.dtype
+    ).expand_as(order)
+    ranks.scatter_(-1, order, positions)
+    denominator = (finite.sum(dim=-1, keepdim=True) - 1).clamp_min(1)
+    percentile = ranks.to(scores.dtype) / denominator
+    return torch.where(finite, percentile, -torch.inf)
+
+
+def align_expert_scores(
+    expert_scores: torch.Tensor,
+    method: str,
+    *,
+    temperatures: tuple[float, float] = (1.0, 1.0),
+) -> torch.Tensor:
+    if method == "per_query_standardized_logits":
+        return _standardize(expert_scores)
+    if method == "temperature_scaling":
+        return _centered_temperature(expert_scores, temperatures)
+    if method == "rank_percentile_normalization":
+        return _rank_percentile(expert_scores)
+    raise ValueError(f"Unknown score alignment: {method}")
+
+
 def hard_zero_combine(
-    expert_scores: torch.Tensor, support: torch.Tensor
+    expert_scores: torch.Tensor,
+    support: torch.Tensor,
+    *,
+    alignment: str = "per_query_standardized_logits",
+    temperatures: tuple[float, float] = (1.0, 1.0),
 ) -> torch.Tensor:
     if expert_scores.ndim != 3 or expert_scores.shape[1] != 2:
         raise ValueError("Expected [batch, sequence/content, catalog] scores")
-    aligned = _standardize(expert_scores)
+    aligned = align_expert_scores(expert_scores, alignment, temperatures=temperatures)
     return torch.where(support[None, :].eq(0), aligned[:, 1, :], aligned[:, 0, :])
 
 
@@ -155,7 +201,12 @@ def score_r1(
         item_ids=item_ids,
         first_seen=first_seen,
         score_batch=score_batch,
-        combine_scores=lambda scores: hard_zero_combine(scores, support),
+        combine_scores=lambda scores: hard_zero_combine(
+            scores,
+            support,
+            alignment=config["router"]["alignment"],
+            temperatures=tuple(config["router"].get("temperatures", [1.0, 1.0])),
+        ),
         output=output,
         batch_size=int(config["scoring"]["batch_size"]),
     )
