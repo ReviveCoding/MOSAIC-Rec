@@ -18,6 +18,7 @@ from mosaic_rec.p2 import PROTOCOL_ID
 from mosaic_rec.p2.contracts import sha256_file, write_json_new
 from mosaic_rec.p2.models import LegacyM1
 from mosaic_rec.p2.runtime import (
+    exact_metric_summary,
     exact_score,
     load_catalog,
     sequence_tensor,
@@ -37,6 +38,7 @@ def train_and_score_legacy(
     output: Path,
     receipt: Path,
     gpu_qualification: dict[str, object],
+    hpo_policy: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     config = json.loads(config_path.read_text())
     if config["protocol_id"] != PROTOCOL_ID:
@@ -144,7 +146,40 @@ def train_and_score_legacy(
         lr=float(config["learning_rate"]),
         weight_decay=float(config["weight_decay"]),
     )
+    queries = validation_queries(query_path)
+    final_support = torch.tensor(final_support_np, device=device)
+    first_seen = torch.tensor(first_seen_np, device=device)
+    catalog_ids = torch.arange(1, len(item_ids) + 1, device=device)
+
+    def build_score_batch() -> Any:
+        model.eval()
+        with torch.inference_mode():
+            catalog = model.fuse(catalog_ids, final_support)
+
+        def score_batch(users: list[str]) -> torch.Tensor:
+            sequence, length = sequence_tensor(
+                [histories[user][-max_length:] for user in users], max_length
+            )
+            support_values = np.zeros_like(sequence.numpy())
+            for row, user in enumerate(users):
+                values = history_supports[user][-max_length:]
+                support_values[row, : len(values)] = values
+            with torch.autocast("cuda", dtype=torch.bfloat16):
+                state = model.user_state(
+                    sequence.to(device),
+                    torch.from_numpy(support_values).to(device),
+                    length.to(device),
+                )
+                return state @ catalog.T
+
+        return score_batch
+
     log = []
+    best_metric = -float("inf")
+    best_epoch = 0
+    best_state: dict[str, torch.Tensor] | None = None
+    stale_epochs = 0
+    stopping_reason = "scheduled_epochs_complete"
     torch.cuda.reset_peak_memory_stats()
     started = time.perf_counter()
     for epoch in range(int(config["epochs"])):
@@ -180,33 +215,41 @@ def train_and_score_legacy(
             total += float(loss.detach()) * len(sequence)
             seen_examples += len(sequence)
         log.append({"epoch": epoch + 1, "loss": total / seen_examples})
+        if hpo_policy is not None:
+            summary = exact_metric_summary(
+                queries=queries,
+                histories=dict(histories),
+                item_ids=item_ids,
+                first_seen=first_seen,
+                score_batch=build_score_batch(),
+                batch_size=int(config["score_batch_size"]),
+            )
+            metric = float(summary["all"]["ndcg_at_20"] or 0.0)
+            log[-1]["validation_ndcg_at_20"] = metric
+            if metric > best_metric:
+                best_metric = metric
+                best_epoch = epoch + 1
+                stale_epochs = 0
+                best_state = {
+                    key: value.detach().cpu().clone()
+                    for key, value in model.state_dict().items()
+                }
+            else:
+                stale_epochs += 1
+            if stale_epochs >= int(hpo_policy["early_stopping_patience"]):
+                stopping_reason = "early_stopping_patience"
+                break
+            elapsed_hours = (time.perf_counter() - started) / 3600.0
+            if elapsed_hours >= float(hpo_policy["maximum_gpu_hours_per_trial"]):
+                stopping_reason = "gpu_hour_ceiling"
+                break
     torch.cuda.synchronize()
     train_seconds = time.perf_counter() - started
+    if best_state is not None:
+        model.load_state_dict(best_state)
     checkpoint.parent.mkdir(parents=True, exist_ok=True)
     torch.save({"model": model.state_dict(), "config": config}, checkpoint)
-    model.eval()
-    final_support = torch.tensor(final_support_np, device=device)
-    first_seen = torch.tensor(first_seen_np, device=device)
-    catalog_ids = torch.arange(1, len(item_ids) + 1, device=device)
-    with torch.inference_mode():
-        catalog = model.fuse(catalog_ids, final_support)
-    queries = validation_queries(query_path)
-
-    def score_batch(users: list[str]) -> torch.Tensor:
-        sequence, length = sequence_tensor(
-            [histories[user][-max_length:] for user in users], max_length
-        )
-        support_values = np.zeros_like(sequence.numpy())
-        for row, user in enumerate(users):
-            values = history_supports[user][-max_length:]
-            support_values[row, : len(values)] = values
-        with torch.autocast("cuda", dtype=torch.bfloat16):
-            state = model.user_state(
-                sequence.to(device),
-                torch.from_numpy(support_values).to(device),
-                length.to(device),
-            )
-            return state @ catalog.T
+    score_batch = build_score_batch()
 
     scoring = exact_score(
         model_id=config["model_id"],
@@ -233,6 +276,9 @@ def train_and_score_legacy(
         "seed": seed,
         "training_examples": len(training),
         "training_log": log,
+        "epochs_completed": len(log),
+        "best_epoch": best_epoch if hpo_policy is not None else len(log),
+        "stopping_reason": stopping_reason,
         "train_seconds": train_seconds,
         "peak_vram_bytes": torch.cuda.max_memory_allocated(),
         "gpu_qualification": gpu_qualification,
