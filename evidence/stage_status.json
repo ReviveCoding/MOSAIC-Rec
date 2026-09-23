@@ -1,8 +1,8 @@
 {
   "protocol_id": "mosaic-rec-2026-09-20-p1",
   "scientific_state": "DEVELOPMENT",
-  "execution_status": "ACTIVE_E02_QUALIFICATION_FREEZE_PREPARATION",
-  "updated_utc": "2026-09-23T01:42:29Z",
+  "execution_status": "READY_TO_OPEN_QUALIFICATION_AFTER_COMMIT_GUARD",
+  "updated_utc": "2026-09-23T01:52:00Z",
   "canonical_receipts_current": 141,
   "baseline_b1": "VALIDATION_SELECTED_7_DAYS_THREE_TRACKS",
   "baseline_b9_bm3": "ONE_EPOCH_REFERENCE_PROTOCOL_PILOT_PASS_UNQUALIFIED",
