@@ -28,6 +28,7 @@ P2-D01 R1 hard zero-support router pilot after completed expert pilots.
 - Persisted both exact validation top-100 artifacts and checkpoint hashes.
 - Completed exact CPU global and 30-day recent popularity baselines; the optimized scorer preserved exact ranks and top-100 lists.
 - R1 attempt 1 was blocked before model loading by an unrelated ACT-Agent CUDA trainer; no p2 router artifact exists yet.
+- Built the p2-only canonical warehouse: 18 p2 receipts, 16 metric rows, zero p1 canonical receipts, and zero protected access.
 
 ## Active next action
 

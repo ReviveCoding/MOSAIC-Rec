@@ -1,0 +1,20 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "status": "PASS",
+  "receipt_count": 18,
+  "metric_count": 16,
+  "p1_canonical_receipts": 0,
+  "qualification_access_count": 0,
+  "locked_final_access_count": 0,
+  "warehouse_sha256": "be162519a151d83b429ca37ea45cadbaf5e784a00d53ce3e1e153450224b478e",
+  "tables": {
+    "receipts": {
+      "rows": 18,
+      "sha256": "6d6e6035ba1001188f61b292ccb5d51108d290e8cd57a68acbd7cf9161750a2b"
+    },
+    "metrics": {
+      "rows": 16,
+      "sha256": "33cd09de6ddfa33a9c6e6a60d4814a4180148d0aa5efd19f667411f9fda0ebff"
+    }
+  }
+}

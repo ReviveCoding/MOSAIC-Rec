@@ -20,7 +20,7 @@ def _receipt_files(repo: Path) -> list[Path]:
     return sorted(
         path
         for path in (repo / "evidence/p2").glob("*.json")
-        if path.name != "stage_status.json"
+        if path.name not in {"stage_status.json", "warehouse_manifest.json"}
     )
 
 
