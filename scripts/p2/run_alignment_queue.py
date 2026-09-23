@@ -11,7 +11,10 @@ from pathlib import Path
 
 from mosaic_rec.p2.contracts import sha256_file
 
-AUDITED_LAUNCH_ATTEMPTS = {"ALIGN_TEMP_0.5_0.5": 3}
+AUDITED_LAUNCH_ATTEMPTS = {
+    "ALIGN_TEMP_0.5_0.5": 3,
+    "ALIGN_TEMP_1.0_0.5": 2,
+}
 
 
 def main() -> None:

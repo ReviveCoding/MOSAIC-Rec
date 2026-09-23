@@ -41,3 +41,5 @@ VBPR pilot attempt 1 exhausted VRAM during exact scoring after creating a checkp
 Unrelated ACT-Agent CUDA PID 38158 started after two alignment candidates completed and blocked `ALIGN_TEMP_0.5_0.5` launch attempt 1 during the inner sustained-idle guard. The p2 lock is free, and no p2 model or output was created by that launch. Resume uses a distinct attempt-2 log only after the unrelated CUDA process exits.
 
 The wait wrapper later launched attempt 2 after its outer idle checks, but unrelated ACT-Agent capacity evaluation PID 53602 appeared by the inner guard. Attempt 2 failed before CUDA qualification, model loading, scoring, output, or metrics. Its transient flock was automatically released, and the lock is currently available. Attempt 3 must wait for all unrelated CUDA processes to exit.
+
+PID 53602 exited and the queue completed two more frozen candidates. ACT-Agent then launched turn-14 evaluation PID 58174, blocking `ALIGN_TEMP_1.0_0.5` attempt 1 during the inner idle guard. No scientific artifact was created by that launch; distinct attempt 2 waits for the GPU to become fully idle.
