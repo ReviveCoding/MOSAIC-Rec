@@ -222,6 +222,7 @@ def train_sequence(
     *,
     repo: Path,
     config: dict[str, Any],
+    config_path: Path,
     fit_path: Path,
     query_path: Path,
     context_dir: Path,
@@ -341,12 +342,13 @@ def train_sequence(
     result = {
         "protocol_id": PROTOCOL_ID,
         "stage_id": "P2-C03-PILOT",
+        "attempt_id": str(config.get("attempt_id", "")),
         "status": "PASS",
         "model_id": section["model_id"],
         "git_commit": subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=repo, text=True
         ).strip(),
-        "config_sha256": sha256_file(repo / "configs/p2/development_pilots.json"),
+        "config_sha256": sha256_file(config_path),
         "seed": seed,
         "training_examples": len(train_histories),
         "training_log": log,
@@ -366,6 +368,7 @@ def train_content(
     *,
     repo: Path,
     config: dict[str, Any],
+    config_path: Path,
     fit_path: Path,
     query_path: Path,
     context_dir: Path,
@@ -516,12 +519,13 @@ def train_content(
     result = {
         "protocol_id": PROTOCOL_ID,
         "stage_id": "P2-C04-PILOT",
+        "attempt_id": str(config.get("attempt_id", "")),
         "status": "PASS",
         "model_id": section["model_id"],
         "git_commit": subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=repo, text=True
         ).strip(),
-        "config_sha256": sha256_file(repo / "configs/p2/development_pilots.json"),
+        "config_sha256": sha256_file(config_path),
         "seed": seed,
         "training_examples": len(training),
         "training_log": log,

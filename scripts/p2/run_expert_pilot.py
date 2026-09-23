@@ -39,6 +39,7 @@ def main() -> None:
         result = function(
             repo=repo,
             config=config,
+            config_path=args.config,
             fit_path=args.fit,
             query_path=args.queries,
             context_dir=args.contexts,
