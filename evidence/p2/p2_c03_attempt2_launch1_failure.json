@@ -1,0 +1,16 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-C03-PILOT",
+  "attempt_id": "candidate-mask-correction-attempt2-launch1",
+  "status": "FAILED_INFRASTRUCTURE_PRESTART",
+  "failure_class": "orchestration_quoting",
+  "model_loaded": false,
+  "gpu_lock_acquired": false,
+  "checkpoint_created": false,
+  "output_created": false,
+  "terminal_model_receipt_created": false,
+  "error": "PowerShell-to-Bash inline quoting altered shell variables; the runner rejected Path('.') before model loading",
+  "disposition": "preserved; retry only through repository queue script under launch2",
+  "qualification_access_count": 0,
+  "locked_final_access_count": 0
+}
