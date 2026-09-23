@@ -3,7 +3,10 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from mosaic_rec.p2.hpo_configs import materialize_open_hpo_configs
+from mosaic_rec.p2.hpo_configs import (
+    materialize_open_hpo_configs,
+    validate_trial_identity,
+)
 
 ROOT = Path(__file__).parents[2]
 
@@ -33,3 +36,14 @@ def test_frozen_open_hpo_trials_materialize_without_scientific_changes() -> None
         == 10
         for config in configs.values()
     )
+
+
+def test_committed_trial_manifest_validates_config_and_hpo_hashes() -> None:
+    manifest = json.loads((ROOT / "configs/p2/hpo_trials_manifest.json").read_text())
+    row = validate_trial_identity(
+        manifest=manifest,
+        trial_id="CSEQ_T1",
+        config_path=ROOT / "configs/p2/hpo_trials/cseq_t1.json",
+        hpo_path=ROOT / "configs/p2/hpo.json",
+    )
+    assert row["family"] == "CSEQ_BERT4REC"

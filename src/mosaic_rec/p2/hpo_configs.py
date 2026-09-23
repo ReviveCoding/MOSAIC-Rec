@@ -112,3 +112,19 @@ def write_materialized_configs(
         "trials": rows,
         "protected_roles_opened": [],
     }
+
+
+def validate_trial_identity(
+    *, manifest: dict[str, Any], trial_id: str, config_path: Path, hpo_path: Path
+) -> dict[str, Any]:
+    if manifest["protocol_id"] != PROTOCOL_ID:
+        raise RuntimeError("Trial manifest protocol mismatch")
+    if sha256_file(hpo_path) != manifest["hpo_manifest_sha256"]:
+        raise RuntimeError("Frozen HPO manifest hash mismatch")
+    matches = [row for row in manifest["trials"] if row["trial_id"] == trial_id]
+    if len(matches) != 1:
+        raise RuntimeError(f"Unknown or duplicate HPO trial identity: {trial_id}")
+    row = matches[0]
+    if sha256_file(config_path) != row["sha256"]:
+        raise RuntimeError(f"HPO trial config hash mismatch: {trial_id}")
+    return row
