@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-Crash recovery and the development model ladder are complete. Four preregistered score-alignment candidates passed; `ALIGN_TEMP_1.0_0.5` is waiting for unrelated ACT-Agent CUDA work to exit before audited launch attempt 2.
+Crash recovery and the development model ladder are complete. Five of nine preregistered score-alignment candidates passed; manifest-next `ALIGN_TEMP_1.0_1.0` waits for unrelated ACT-Agent CUDA work to exit.
 
 ## Completed
 
@@ -57,10 +57,12 @@ Crash recovery and the development model ladder are complete. Four preregistered
 - After PID 53602 exited, launch attempt 3 completed `ALIGN_TEMP_0.5_0.5`; `ALIGN_TEMP_0.5_1.0` also completed. Both produced overall/warm NDCG@20 0.001864/0.013602 and controlled-zero NDCG@20 0.
 - The next candidate, `ALIGN_TEMP_1.0_0.5`, was blocked before CUDA qualification by new ACT-Agent turn-14 evaluation PID 58174. Its attempt-1 log is preserved at SHA-256 `30acb827575ab5df3a9c59f9f1f01ff86270961703df5d800a0206a2112c7894`; no output or metric exists.
 - PID 58174 later exited, but ACT-Agent launched Qwen3-4B control turn-14 evaluation PID 61711 before the six-check idle window completed. The hardened waiter reset without launching attempt 2, acquiring the p2 lock, or creating an artifact. Per-candidate no-lock idle checks and transient `nvidia-smi` retry handling are committed.
+- `ALIGN_TEMP_1.0_0.5` launch attempt 2 subsequently completed on CUDA. Its frozen config hash and 29,446,255-byte VALIDATION output independently match the terminal receipt; exact NDCG@20 was 0.001864 overall, 0 controlled zero, and 0.013602 warm. The p2-only warehouse now passes with 44 receipts and 72 metric rows.
+- The receipt schema identifies this candidate through `model_id=R1_ALIGN_TEMP_1.0_0.5` and its frozen config hash; it does not include separate `alignment_id` or `protected_roles_opened` fields. Global protocol counters remain authoritative at zero, and p1 immutability hashes pass.
 
 ## Active next action
 
-The active crash-safe waiter is waiting without lock ownership for CUDA PID 61711 and every other unrelated compute PID to exit, then will resume the unchanged alignment queue at `ALIGN_TEMP_1.0_0.5` launch attempt 2. All four completed candidates hash-validate and skip.
+Wait without lock ownership for ACT-Agent full-rollout PID 113021 and every other unrelated compute PID to exit, then resume manifest-next `ALIGN_TEMP_1.0_1.0`. All five completed candidates must hash-validate and skip.
 
 ## Protected access counters
 

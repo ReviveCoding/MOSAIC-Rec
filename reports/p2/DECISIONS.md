@@ -123,3 +123,8 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 - Launch attempt 2 was also blocked during the inner idle check, this time by ACT-Agent evaluation PID 53602. Source review confirms the flock is acquired before `sustained_idle`; it was automatically released on the exception, before CUDA qualification and before the owner record or model loading. Preserve that sequence and resume only under launch-attempt-3 logging.
 - Launch attempt 3 completed `ALIGN_TEMP_0.5_0.5`, followed by terminal `ALIGN_TEMP_0.5_1.0`. A new unrelated turn-14 evaluation then blocked `ALIGN_TEMP_1.0_0.5` before qualification. Preserve its attempt-1 log and retry that unchanged candidate only under attempt-2 logging.
 - Strengthen orchestration without changing scientific semantics: wait for sustained GPU idleness before every incomplete alignment candidate, retain the existing inner flock guard, and treat transient `nvidia-smi` probe failures as non-idle instead of terminating the waiter.
+
+## 2026-09-24 — fifth alignment candidate recovery
+
+- Accept the untracked `ALIGN_TEMP_1.0_0.5` terminal receipt without rewriting it: status, protocol, model identity, frozen config hash, VALIDATION role, output path, and output hash all validate. The successful attempt-2 log is preserved in scratch at SHA-256 `734913e44164c28e4c849dcb89a044a6ea90e496bfd44aea5bcf29d919c75563`.
+- Derive the next candidate from the frozen manifest order: `ALIGN_TEMP_1.0_1.0`. Do not infer order from filenames and do not rerun the five completed candidates.

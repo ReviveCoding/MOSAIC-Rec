@@ -45,3 +45,5 @@ The wait wrapper later launched attempt 2 after its outer idle checks, but unrel
 PID 53602 exited and the queue completed two more frozen candidates. ACT-Agent then launched turn-14 evaluation PID 58174, blocking `ALIGN_TEMP_1.0_0.5` attempt 1 during the inner idle guard. No scientific artifact was created by that launch; distinct attempt 2 waits for the GPU to become fully idle.
 
 PID 58174 exited, but ACT-Agent launched Qwen3-4B control turn-14 evaluation PID 61711 before the outer six-check idle requirement completed. The waiter remains active without lock ownership and has not launched attempt 2. This is the current external GPU blocker.
+
+`ALIGN_TEMP_1.0_0.5` attempt 2 later completed and is canonical. The current blocker is unrelated ACT-Agent full-rollout PID 113021, using about 11.6 GiB VRAM. The MOSAIC flock is available but does not establish GPU idleness. Manifest-next `ALIGN_TEMP_1.0_1.0` must wait without lock ownership.
