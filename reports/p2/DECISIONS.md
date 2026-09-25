@@ -141,3 +141,9 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 - Preserve the frozen 256 MiB/5% aggregate threshold for configurations where the RTX GPU is not directly driving a display.
 - In Lenovo dGPU-only mode, aggregate `nvidia-smi` memory and utilization include Windows display work and cannot identify CUDA contention. Require both `--query-compute-apps` and `nvidia-smi pmon` to show no unrelated compute PID throughout the sustained window, then repeat the same probes under the p2 flock before CUDA qualification.
 - Treat any failed NVIDIA probe as non-idle. This is an operational compatibility correction caused by the host GPU-mode change; it does not amend any scientific identity or frozen model/HPO configuration.
+
+## 2026-09-25 — score-alignment development selection
+
+- All nine frozen alignment candidates terminated PASS on VALIDATION with matching config and scored-output hashes.
+- Apply the frozen unit-scaled cold/warm objective and tie rule without amendment. `ALIGN_RANK` has the highest selection score (`0.6470106506911057`) and is selected for subsequent router development/HPO configuration.
+- This selection opens no protected role and does not change the frozen P2-E00 HPO search space.

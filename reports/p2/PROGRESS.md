@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-Crash recovery and the development model ladder are complete. Six of nine preregistered score-alignment candidates passed; manifest-next is `ALIGN_TEMP_1.0_2.0`.
+Crash recovery, the development model ladder, and all nine preregistered score-alignment candidates are complete. The frozen VALIDATION rule selected `ALIGN_RANK`; P2-E00 equal-budget HPO is next.
 
 ## Completed
 
@@ -62,7 +62,7 @@ Crash recovery and the development model ladder are complete. Six of nine prereg
 
 ## Active next action
 
-Resume only manifest-next `ALIGN_TEMP_1.0_2.0` after the dGPU-only live guard, CUDA qualification, and flock checks. Six completed candidates hash-validate and skip.
+Audit the frozen P2-E00 HPO queue and resume its first genuinely incomplete trial under the same dGPU-only live guard, CUDA qualification, and flock checks.
 
 ## 2026-09-25 reboot recovery
 
@@ -80,6 +80,9 @@ Resume only manifest-next `ALIGN_TEMP_1.0_2.0` after the dGPU-only live guard, C
 - The p2 warehouse remains consistent at 46 p2-only receipts and 76 metric rows, validation PASS, with zero p1 receipts and zero protected access. The p1 immutability hashes pass.
 - The prior ACT-Agent PID 1346 and all other CUDA workers are absent. The actual p2 flock is available. Under the new dGPU-only machine mode, aggregate RTX memory/utilization includes the Windows display (about 1.8--2.0 GiB and variable graphics utilization) even with no compute PID; `nvidia-smi pmon` and the compute-app query both report no compute process.
 - The operational idle guard now requires both independent NVIDIA compute-process probes to remain empty when `display_active=Enabled`; the original aggregate 256 MiB/5% fail-closed threshold is retained when the GPU is not directly driving the display. Targeted tests pass. This changes no model, role, metric, alignment, HPO, or protected-access rule.
+- Completed `ALIGN_TEMP_1.0_2.0`, `ALIGN_TEMP_2.0_1.0`, and `ALIGN_TEMP_2.0_2.0` serially on CUDA after both idle guards passed. All nine candidate receipts, frozen configs, and 27,918-row outputs revalidate.
+- The deterministic frozen selection rule chose `ALIGN_RANK`: selection score `0.6470106506911057`, controlled-zero NDCG@20 `0.0008446567843548943`, and warm NDCG@20 `0.012779977211517015`. This remains DEVELOPMENT evidence.
+- Rebuilt the p2-only warehouse at the alignment-complete boundary: 50 receipts, 88 metric rows, zero p1 receipts, zero QUALIFICATION access, zero LOCKED_FINAL access, validation PASS.
 
 ## Protected access counters
 

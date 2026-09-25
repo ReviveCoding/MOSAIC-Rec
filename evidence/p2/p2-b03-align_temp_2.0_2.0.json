@@ -1,0 +1,47 @@
+{
+  "alignment": "temperature_scaling",
+  "config_sha256": "b315930e66b98e93f7197069926bb05e9d2ebb5ea9a9a2cec7dbee954340bf07",
+  "content_checkpoint_sha256": "b2e7f47471f0a97d63117f401e33ec82dc3029546c86a022903201d35c53d862",
+  "evidence_class": "p2_measured_development_score_alignment",
+  "git_commit": "e1de0aa0d08ee22e2bc6984424ba7faeb0ecbcae",
+  "gpu_qualification": {
+    "bf16_supported": true,
+    "cuda_runtime": "13.0",
+    "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+    "tensor_result": 5590357.0,
+    "torch": "2.14.0+cu130",
+    "vram_bytes": 17170956288
+  },
+  "model_id": "R1_ALIGN_TEMP_2.0_2.0",
+  "pilot_config_sha256": "f21a8e4249bc2250d6d485f29348ae9c02b0d9b770eb546ae0b914fcad30604a",
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "sequence_checkpoint_sha256": "23bd4d04ab000fdd307544b96b7b325a17fbf4f836159ebb120883163831e082",
+  "stage_id": "P2-B03-SCORE-ALIGNMENT",
+  "status": "PASS",
+  "validation": {
+    "output": "/home/bjw-0/mosaic-rec-work/p2/alignment/align_temp_2.0_2.0_validation.parquet",
+    "output_sha256": "810e08f7f7590e3502552ad45b5d17c91c3c5d6571ef75ce51e89bb2c09a5cc0",
+    "role": "VALIDATION",
+    "rows": 27918,
+    "seconds": 9.491622088999975,
+    "slices": {
+      "all": {
+        "n": 27918,
+        "ndcg_at_20": 0.001863714536141457
+      },
+      "controlled_zero": {
+        "n": 458,
+        "ndcg_at_20": 0.0
+      },
+      "natural_zero": {
+        "n": 17866,
+        "ndcg_at_20": 0.0
+      },
+      "warm": {
+        "n": 3808,
+        "ndcg_at_20": 0.013601831278001724
+      }
+    },
+    "users_per_second": 2941.3303524031576
+  }
+}

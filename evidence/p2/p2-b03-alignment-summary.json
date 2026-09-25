@@ -1,0 +1,280 @@
+{
+  "ccold_receipt_sha256": "d9cce163ff0119f815272f4c3682b89cad97f153841ec653518b2445ec62706d",
+  "cseq_receipt_sha256": "b5cc2ca33f5b6796e42915ac378471a613532e70fc1df1b105b35fc1e3dc42a7",
+  "evidence_class": "p2_measured_development_score_alignment_summary",
+  "implementation_sha256": "01fe96372dda927660e079b99d76b947499035a5bcb59ac0010c8147e8166caa",
+  "manifest_sha256": "74644cdc896d6f9ff36f30256b8b0b07d39afbd5a414739406acd734ef9f4d2b",
+  "protected_roles_opened": [],
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "selected_alignment_id": "ALIGN_RANK",
+  "selected_method": "rank_percentile_normalization",
+  "selected_temperatures": null,
+  "stage_id": "P2-B03-SCORE-ALIGNMENT",
+  "status": "PASS_DEVELOPMENT",
+  "trials": [
+    {
+      "alignment_id": "ALIGN_STD",
+      "cold_unit": 0.0,
+      "method": "per_query_standardized_logits",
+      "selection_score": 0.4768501896648544,
+      "temperatures": null,
+      "validation": {
+        "all": {
+          "n": 27918,
+          "ndcg_at_20": 0.0019386536712776804
+        },
+        "controlled_zero": {
+          "n": 458,
+          "ndcg_at_20": 0.0
+        },
+        "natural_zero": {
+          "n": 17866,
+          "ndcg_at_20": 0.00013052520101316536
+        },
+        "warm": {
+          "n": 3808,
+          "ndcg_at_20": 0.013538855315142446
+        }
+      },
+      "warm_margin": 0.0013601831278001724,
+      "warm_unit": 0.9537003793297087
+    },
+    {
+      "alignment_id": "ALIGN_RANK",
+      "cold_unit": 0.8982444017039273,
+      "method": "rank_percentile_normalization",
+      "selection_score": 0.6470106506911057,
+      "temperatures": null,
+      "validation": {
+        "all": {
+          "n": 27918,
+          "ndcg_at_20": 0.0025243203601432703
+        },
+        "controlled_zero": {
+          "n": 458,
+          "ndcg_at_20": 0.0008446567843548943
+        },
+        "natural_zero": {
+          "n": 17866,
+          "ndcg_at_20": 0.0011858032504434043
+        },
+        "warm": {
+          "n": 3808,
+          "ndcg_at_20": 0.012779977211517015
+        }
+      },
+      "warm_margin": 0.0013601831278001724,
+      "warm_unit": 0.3957768996782842
+    },
+    {
+      "alignment_id": "ALIGN_TEMP_0.5_0.5",
+      "cold_unit": 0.0,
+      "method": "temperature_scaling",
+      "selection_score": 0.5,
+      "temperatures": [
+        0.5,
+        0.5
+      ],
+      "validation": {
+        "all": {
+          "n": 27918,
+          "ndcg_at_20": 0.001863714536141457
+        },
+        "controlled_zero": {
+          "n": 458,
+          "ndcg_at_20": 0.0
+        },
+        "natural_zero": {
+          "n": 17866,
+          "ndcg_at_20": 0.0
+        },
+        "warm": {
+          "n": 3808,
+          "ndcg_at_20": 0.013601831278001724
+        }
+      },
+      "warm_margin": 0.0013601831278001724,
+      "warm_unit": 1.0
+    },
+    {
+      "alignment_id": "ALIGN_TEMP_0.5_1.0",
+      "cold_unit": 0.0,
+      "method": "temperature_scaling",
+      "selection_score": 0.5,
+      "temperatures": [
+        0.5,
+        1.0
+      ],
+      "validation": {
+        "all": {
+          "n": 27918,
+          "ndcg_at_20": 0.001863714536141457
+        },
+        "controlled_zero": {
+          "n": 458,
+          "ndcg_at_20": 0.0
+        },
+        "natural_zero": {
+          "n": 17866,
+          "ndcg_at_20": 0.0
+        },
+        "warm": {
+          "n": 3808,
+          "ndcg_at_20": 0.013601831278001724
+        }
+      },
+      "warm_margin": 0.0013601831278001724,
+      "warm_unit": 1.0
+    },
+    {
+      "alignment_id": "ALIGN_TEMP_1.0_0.5",
+      "cold_unit": 0.0,
+      "method": "temperature_scaling",
+      "selection_score": 0.5,
+      "temperatures": [
+        1.0,
+        0.5
+      ],
+      "validation": {
+        "all": {
+          "n": 27918,
+          "ndcg_at_20": 0.001863714536141457
+        },
+        "controlled_zero": {
+          "n": 458,
+          "ndcg_at_20": 0.0
+        },
+        "natural_zero": {
+          "n": 17866,
+          "ndcg_at_20": 0.0
+        },
+        "warm": {
+          "n": 3808,
+          "ndcg_at_20": 0.013601831278001724
+        }
+      },
+      "warm_margin": 0.0013601831278001724,
+      "warm_unit": 1.0
+    },
+    {
+      "alignment_id": "ALIGN_TEMP_1.0_1.0",
+      "cold_unit": 0.0,
+      "method": "temperature_scaling",
+      "selection_score": 0.5,
+      "temperatures": [
+        1.0,
+        1.0
+      ],
+      "validation": {
+        "all": {
+          "n": 27918,
+          "ndcg_at_20": 0.001863714536141457
+        },
+        "controlled_zero": {
+          "n": 458,
+          "ndcg_at_20": 0.0
+        },
+        "natural_zero": {
+          "n": 17866,
+          "ndcg_at_20": 0.0
+        },
+        "warm": {
+          "n": 3808,
+          "ndcg_at_20": 0.013601831278001724
+        }
+      },
+      "warm_margin": 0.0013601831278001724,
+      "warm_unit": 1.0
+    },
+    {
+      "alignment_id": "ALIGN_TEMP_1.0_2.0",
+      "cold_unit": 0.0,
+      "method": "temperature_scaling",
+      "selection_score": 0.5,
+      "temperatures": [
+        1.0,
+        2.0
+      ],
+      "validation": {
+        "all": {
+          "n": 27918,
+          "ndcg_at_20": 0.001863714536141457
+        },
+        "controlled_zero": {
+          "n": 458,
+          "ndcg_at_20": 0.0
+        },
+        "natural_zero": {
+          "n": 17866,
+          "ndcg_at_20": 0.0
+        },
+        "warm": {
+          "n": 3808,
+          "ndcg_at_20": 0.013601831278001724
+        }
+      },
+      "warm_margin": 0.0013601831278001724,
+      "warm_unit": 1.0
+    },
+    {
+      "alignment_id": "ALIGN_TEMP_2.0_1.0",
+      "cold_unit": 0.0,
+      "method": "temperature_scaling",
+      "selection_score": 0.5,
+      "temperatures": [
+        2.0,
+        1.0
+      ],
+      "validation": {
+        "all": {
+          "n": 27918,
+          "ndcg_at_20": 0.001863714536141457
+        },
+        "controlled_zero": {
+          "n": 458,
+          "ndcg_at_20": 0.0
+        },
+        "natural_zero": {
+          "n": 17866,
+          "ndcg_at_20": 0.0
+        },
+        "warm": {
+          "n": 3808,
+          "ndcg_at_20": 0.013601831278001724
+        }
+      },
+      "warm_margin": 0.0013601831278001724,
+      "warm_unit": 1.0
+    },
+    {
+      "alignment_id": "ALIGN_TEMP_2.0_2.0",
+      "cold_unit": 0.0,
+      "method": "temperature_scaling",
+      "selection_score": 0.5,
+      "temperatures": [
+        2.0,
+        2.0
+      ],
+      "validation": {
+        "all": {
+          "n": 27918,
+          "ndcg_at_20": 0.001863714536141457
+        },
+        "controlled_zero": {
+          "n": 458,
+          "ndcg_at_20": 0.0
+        },
+        "natural_zero": {
+          "n": 17866,
+          "ndcg_at_20": 0.0
+        },
+        "warm": {
+          "n": 3808,
+          "ndcg_at_20": 0.013601831278001724
+        }
+      },
+      "warm_margin": 0.0013601831278001724,
+      "warm_unit": 1.0
+    }
+  ]
+}
