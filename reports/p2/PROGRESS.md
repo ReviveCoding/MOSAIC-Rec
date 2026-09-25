@@ -62,7 +62,7 @@ Crash recovery and the development model ladder are complete. Five of nine prere
 
 ## Active next action
 
-Commit the recovered `ALIGN_TEMP_1.0_1.0` PASS boundary, then resume only manifest-next `ALIGN_TEMP_1.0_2.0`. Six completed candidates must hash-validate and skip.
+The crash-safe queue is waiting without lock ownership for unrelated ACT-Agent DPO PID 1346 to exit, then will resume only manifest-next `ALIGN_TEMP_1.0_2.0`. Six completed candidates hash-validate and skip.
 
 ## 2026-09-25 reboot recovery
 
@@ -71,6 +71,7 @@ Commit the recovered `ALIGN_TEMP_1.0_1.0` PASS boundary, then resume only manife
 - Post-reboot GPU inspection showed 0 MiB, 0% utilization, no CUDA PID, no alignment/HPO process, and an available actual flock. Live preflight is repeated immediately before attempt 2.
 - Recovered and independently verified the successful launch-attempt-2 receipt without rewriting it. Its frozen config and 29,512,674-byte VALIDATION output hashes match; exact NDCG@20 was 0.001864 overall, 0 controlled zero, and 0.013602 warm.
 - Reconciled the interrupted warehouse state deterministically: 46 p2-only receipts, 76 metric rows, zero p1 receipts, zero QUALIFICATION access, zero LOCKED_FINAL access, validation PASS. Manifest-next is `ALIGN_TEMP_1.0_2.0`; HPO and E01 receipt counts remain zero.
+- The immediate post-commit live preflight found unrelated ACT-Agent DPO PID 1346 using about 10.8 GiB at 100% GPU utilization. The sustained-idle gate failed closed before CUDA qualification for the next candidate; no `ALIGN_TEMP_1.0_2.0` artifact exists, and the hardened waiter holds no flock while waiting.
 
 ## Protected access counters
 

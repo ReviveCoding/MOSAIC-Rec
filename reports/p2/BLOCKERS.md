@@ -51,3 +51,5 @@ PID 58174 exited, but ACT-Agent launched Qwen3-4B control turn-14 evaluation PID
 The machine rebooted after `ALIGN_TEMP_1.0_1.0` launch attempt 1 failed its inner idle guard on unrelated CUDA PID 68032. The log is preserved; no model, scored output, or metric exists. After reboot the prior PID is absent and the GPU/flock are idle, so this historical blocker is resolved subject to the normal live attempt-2 preflight.
 
 `ALIGN_TEMP_1.0_1.0` launch attempt 2 completed before the later interruption and is now canonical. The prior PID 68032 blocker is resolved. No current p2 scientific blocker exists at this boundary; live GPU/process/partial-artifact checks remain mandatory before `ALIGN_TEMP_1.0_2.0`.
+
+The live preflight for `ALIGN_TEMP_1.0_2.0` found unrelated ACT-Agent DPO PID 1346 using material VRAM/compute. No p2 artifact or lock ownership exists for that candidate. The crash-safe waiter is active and will require six idle checks plus the independent inner guard before launch.
