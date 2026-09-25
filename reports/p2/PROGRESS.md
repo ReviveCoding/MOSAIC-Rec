@@ -62,7 +62,13 @@ Crash recovery and the development model ladder are complete. Five of nine prere
 
 ## Active next action
 
-Wait without lock ownership for ACT-Agent full-rollout PID 113021 and every other unrelated compute PID to exit, then resume manifest-next `ALIGN_TEMP_1.0_1.0`. All five completed candidates must hash-validate and skip.
+After reboot, preserve `ALIGN_TEMP_1.0_1.0` launch attempt 1 as a prestart GPU-contention event, then resume the unchanged frozen candidate under launch-attempt-2 logging. Five completed candidates must hash-validate and skip.
+
+## 2026-09-25 reboot recovery
+
+- Audited the 775-byte `ALIGN_TEMP_1.0_1.0` log at SHA-256 `4a26981f69518090633cc56c5a1511677687971f06ccf85f14511dc8b69ee6be`. The inner idle guard observed unrelated CUDA PID 68032 after transient flock acquisition.
+- The exception occurred before CUDA qualification, lock owner-record writing, expert checkpoint loading, exact scoring, validation-row output, or metric computation. No output, receipt, temporary, or partial candidate artifact exists.
+- Post-reboot GPU inspection showed 0 MiB, 0% utilization, no CUDA PID, no alignment/HPO process, and an available actual flock. Live preflight is repeated immediately before attempt 2.
 
 ## Protected access counters
 

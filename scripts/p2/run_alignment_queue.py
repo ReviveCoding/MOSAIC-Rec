@@ -16,6 +16,7 @@ from mosaic_rec.p2.gpu import sustained_idle
 AUDITED_LAUNCH_ATTEMPTS = {
     "ALIGN_TEMP_0.5_0.5": 3,
     "ALIGN_TEMP_1.0_0.5": 2,
+    "ALIGN_TEMP_1.0_1.0": 2,
 }
 
 

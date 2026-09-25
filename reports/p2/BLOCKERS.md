@@ -47,3 +47,5 @@ PID 53602 exited and the queue completed two more frozen candidates. ACT-Agent t
 PID 58174 exited, but ACT-Agent launched Qwen3-4B control turn-14 evaluation PID 61711 before the outer six-check idle requirement completed. The waiter remains active without lock ownership and has not launched attempt 2. This is the current external GPU blocker.
 
 `ALIGN_TEMP_1.0_0.5` attempt 2 later completed and is canonical. The current blocker is unrelated ACT-Agent full-rollout PID 113021, using about 11.6 GiB VRAM. The MOSAIC flock is available but does not establish GPU idleness. Manifest-next `ALIGN_TEMP_1.0_1.0` must wait without lock ownership.
+
+The machine rebooted after `ALIGN_TEMP_1.0_1.0` launch attempt 1 failed its inner idle guard on unrelated CUDA PID 68032. The log is preserved; no model, scored output, or metric exists. After reboot the prior PID is absent and the GPU/flock are idle, so this historical blocker is resolved subject to the normal live attempt-2 preflight.

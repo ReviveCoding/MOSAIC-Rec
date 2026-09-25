@@ -128,3 +128,8 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 
 - Accept the untracked `ALIGN_TEMP_1.0_0.5` terminal receipt without rewriting it: status, protocol, model identity, frozen config hash, VALIDATION role, output path, and output hash all validate. The successful attempt-2 log is preserved in scratch at SHA-256 `734913e44164c28e4c849dcb89a044a6ea90e496bfd44aea5bcf29d919c75563`.
 - Derive the next candidate from the frozen manifest order: `ALIGN_TEMP_1.0_1.0`. Do not infer order from filenames and do not rerun the five completed candidates.
+
+## 2026-09-25 — ALIGN_TEMP_1.0_1.0 reboot recovery
+
+- Classify launch attempt 1 as `BLOCKED_EXTERNAL_PRESTART` from its preserved traceback, not from analogy with earlier failures. PID 68032 was detected inside `sustained_idle`; the transient flock released on exception before CUDA qualification or scientific execution.
+- Preserve the original log and use only `align_temp_1.0_1.0_attempt2.log` for retry. Alignment method, temperatures, score semantics, objective, comparator, and frozen HPO search space remain unchanged.
