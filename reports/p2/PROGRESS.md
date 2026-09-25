@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-Crash recovery and the development model ladder are complete. Five of nine preregistered score-alignment candidates passed; manifest-next `ALIGN_TEMP_1.0_1.0` waits for unrelated ACT-Agent CUDA work to exit.
+Crash recovery and the development model ladder are complete. Six of nine preregistered score-alignment candidates passed; manifest-next is `ALIGN_TEMP_1.0_2.0`.
 
 ## Completed
 
@@ -62,7 +62,7 @@ Crash recovery and the development model ladder are complete. Five of nine prere
 
 ## Active next action
 
-The crash-safe queue is waiting without lock ownership for unrelated ACT-Agent DPO PID 1346 to exit, then will resume only manifest-next `ALIGN_TEMP_1.0_2.0`. Six completed candidates hash-validate and skip.
+Resume only manifest-next `ALIGN_TEMP_1.0_2.0` after the dGPU-only live guard, CUDA qualification, and flock checks. Six completed candidates hash-validate and skip.
 
 ## 2026-09-25 reboot recovery
 
@@ -72,6 +72,14 @@ The crash-safe queue is waiting without lock ownership for unrelated ACT-Agent D
 - Recovered and independently verified the successful launch-attempt-2 receipt without rewriting it. Its frozen config and 29,512,674-byte VALIDATION output hashes match; exact NDCG@20 was 0.001864 overall, 0 controlled zero, and 0.013602 warm.
 - Reconciled the interrupted warehouse state deterministically: 46 p2-only receipts, 76 metric rows, zero p1 receipts, zero QUALIFICATION access, zero LOCKED_FINAL access, validation PASS. Manifest-next is `ALIGN_TEMP_1.0_2.0`; HPO and E01 receipt counts remain zero.
 - The immediate post-commit live preflight found unrelated ACT-Agent DPO PID 1346 using about 10.8 GiB at 100% GPU utilization. The sustained-idle gate failed closed before CUDA qualification for the next candidate; no `ALIGN_TEMP_1.0_2.0` artifact exists, and the hardened waiter holds no flock while waiting.
+
+## 2026-09-25 dGPU-only recovery
+
+- Recovered from Git `7e9641ffdce487a1976057adef5d88c4175aaae3` with a clean worktree. Revalidated all six terminal alignment receipts against the nine-candidate frozen manifest; every config and 27,918-row VALIDATION output hash matches.
+- Found no candidate-specific artifact for `ALIGN_TEMP_1.0_2.0`, `ALIGN_TEMP_2.0_1.0`, or `ALIGN_TEMP_2.0_2.0`, and no HPO/E01 receipt or scratch artifact. The exact resume point remains frozen manifest candidate 7, `ALIGN_TEMP_1.0_2.0`.
+- The p2 warehouse remains consistent at 46 p2-only receipts and 76 metric rows, validation PASS, with zero p1 receipts and zero protected access. The p1 immutability hashes pass.
+- The prior ACT-Agent PID 1346 and all other CUDA workers are absent. The actual p2 flock is available. Under the new dGPU-only machine mode, aggregate RTX memory/utilization includes the Windows display (about 1.8--2.0 GiB and variable graphics utilization) even with no compute PID; `nvidia-smi pmon` and the compute-app query both report no compute process.
+- The operational idle guard now requires both independent NVIDIA compute-process probes to remain empty when `display_active=Enabled`; the original aggregate 256 MiB/5% fail-closed threshold is retained when the GPU is not directly driving the display. Targeted tests pass. This changes no model, role, metric, alignment, HPO, or protected-access rule.
 
 ## Protected access counters
 

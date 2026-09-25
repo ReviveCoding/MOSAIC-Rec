@@ -42,6 +42,39 @@ def gpu_activity() -> tuple[int, int]:
     return memory, utilization
 
 
+def display_is_active() -> bool:
+    """Return whether the physical GPU is directly driving a display."""
+    output = subprocess.check_output(
+        [
+            "nvidia-smi",
+            "--query-gpu=display_active",
+            "--format=csv,noheader,nounits",
+        ],
+        text=True,
+    ).strip()
+    rows = [row.strip() for row in output.splitlines() if row.strip()]
+    if len(rows) != 1 or rows[0] not in {"Enabled", "Disabled"}:
+        raise RuntimeError(f"Unexpected display-active response: {rows}")
+    return rows[0] == "Enabled"
+
+
+def compute_engine_pids() -> list[str]:
+    """Return compute-engine PIDs from pmon as a second live-process probe."""
+    output = subprocess.check_output(["nvidia-smi", "pmon", "-c", "1"], text=True)
+    pids: list[str] = []
+    for line in output.splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        fields = stripped.split()
+        if len(fields) < 3:
+            raise RuntimeError(f"Unexpected nvidia-smi pmon row: {line!r}")
+        pid, engine_type = fields[1], fields[2]
+        if pid != "-" and "C" in engine_type:
+            pids.append(pid)
+    return pids
+
+
 def sustained_idle(
     seconds: int = 30,
     interval: int = 5,
@@ -51,11 +84,23 @@ def sustained_idle(
 ) -> None:
     checks = max(2, seconds // interval + 1)
     for index in range(checks):
-        pids = [pid for pid in compute_pids() if pid != str(os.getpid())]
+        pids = {
+            pid
+            for pid in [*compute_pids(), *compute_engine_pids()]
+            if pid != str(os.getpid())
+        }
         if pids:
-            raise RuntimeError(f"Unrelated CUDA compute PIDs are active: {pids}")
+            raise RuntimeError(
+                f"Unrelated CUDA compute PIDs are active: {sorted(pids)}"
+            )
         memory, utilization = gpu_activity()
-        if memory > maximum_memory_mib or utilization > maximum_utilization_percent:
+        # Aggregate memory/utilization includes the Windows desktop when the
+        # laptop is in dGPU-only mode. In that mode two independent NVIDIA
+        # process probes above remain the fail-closed CUDA activity gate.
+        if not display_is_active() and (
+            memory > maximum_memory_mib
+            or utilization > maximum_utilization_percent
+        ):
             raise RuntimeError(
                 "GPU is materially active even though WSL exposed no compute PID: "
                 f"memory_used_mib={memory}, utilization_percent={utilization}"

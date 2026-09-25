@@ -135,3 +135,9 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 - Preserve the original log and use only `align_temp_1.0_1.0_attempt2.log` for retry. Alignment method, temperatures, score semantics, objective, comparator, and frozen HPO search space remain unchanged.
 - Accept launch attempt 2 as terminal DEVELOPMENT evidence after receipt/config/output rehash and warehouse reconciliation. Preserve the successful log at SHA-256 `b362c56a2ea97e158e0455ca9544c63c029f0b05c2c48ce6ca4c19952596383b`; do not rerun this candidate.
 - Resume strictly from frozen manifest-next `ALIGN_TEMP_1.0_2.0`. No HPO trial is considered complete because the audited HPO receipt count remains zero.
+
+## 2026-09-25 — dGPU-only idle-guard recovery
+
+- Preserve the frozen 256 MiB/5% aggregate threshold for configurations where the RTX GPU is not directly driving a display.
+- In Lenovo dGPU-only mode, aggregate `nvidia-smi` memory and utilization include Windows display work and cannot identify CUDA contention. Require both `--query-compute-apps` and `nvidia-smi pmon` to show no unrelated compute PID throughout the sustained window, then repeat the same probes under the p2 flock before CUDA qualification.
+- Treat any failed NVIDIA probe as non-idle. This is an operational compatibility correction caused by the host GPU-mode change; it does not amend any scientific identity or frozen model/HPO configuration.

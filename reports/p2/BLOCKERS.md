@@ -53,3 +53,5 @@ The machine rebooted after `ALIGN_TEMP_1.0_1.0` launch attempt 1 failed its inne
 `ALIGN_TEMP_1.0_1.0` launch attempt 2 completed before the later interruption and is now canonical. The prior PID 68032 blocker is resolved. No current p2 scientific blocker exists at this boundary; live GPU/process/partial-artifact checks remain mandatory before `ALIGN_TEMP_1.0_2.0`.
 
 The live preflight for `ALIGN_TEMP_1.0_2.0` found unrelated ACT-Agent DPO PID 1346 using material VRAM/compute. No p2 artifact or lock ownership exists for that candidate. The crash-safe waiter is active and will require six idle checks plus the independent inner guard before launch.
+
+After the unexpected shutdown and switch to dGPU-only display mode, PID 1346 and every other CUDA compute process are absent and the p2 flock is available. The aggregate display reservation prevents the old headless-style memory threshold from reaching 256 MiB, so the guard was corrected to use two independent NVIDIA compute-process probes while display activity is enabled. There is no current external GPU blocker.
