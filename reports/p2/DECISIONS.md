@@ -133,3 +133,5 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 
 - Classify launch attempt 1 as `BLOCKED_EXTERNAL_PRESTART` from its preserved traceback, not from analogy with earlier failures. PID 68032 was detected inside `sustained_idle`; the transient flock released on exception before CUDA qualification or scientific execution.
 - Preserve the original log and use only `align_temp_1.0_1.0_attempt2.log` for retry. Alignment method, temperatures, score semantics, objective, comparator, and frozen HPO search space remain unchanged.
+- Accept launch attempt 2 as terminal DEVELOPMENT evidence after receipt/config/output rehash and warehouse reconciliation. Preserve the successful log at SHA-256 `b362c56a2ea97e158e0455ca9544c63c029f0b05c2c48ce6ca4c19952596383b`; do not rerun this candidate.
+- Resume strictly from frozen manifest-next `ALIGN_TEMP_1.0_2.0`. No HPO trial is considered complete because the audited HPO receipt count remains zero.

@@ -1,7 +1,7 @@
 {
   "protocol_id": "mosaic-rec-2026-09-23-p2",
   "scientific_state": "DEVELOPMENT",
-  "updated_utc": "2026-09-25T13:30:00Z",
+  "updated_utc": "2026-09-25T10:35:00Z",
   "qualification_access_count": 0,
   "locked_final_access_count": 0,
   "stages": {
@@ -23,7 +23,7 @@
     "P2-C04": {"status": "PASS_DEVELOPMENT", "summary": "corrected attempt 2 masks complete FIT history; checkpoint and exact validation output independently rehashed"},
     "P2-C04-VBPR-PILOT": {"status": "PASS_DEVELOPMENT", "summary": "attempt 1 OOM is preserved; distinct attempt 2 completed on CUDA with the algebraically equivalent bounded-memory scorer and exact validation NDCG@20 of 0.000478 overall, 0 controlled zero, and 0.000395 warm"},
     "P2-D00-LEGACY-M1-PILOT": {"status": "PASS_DEVELOPMENT", "summary": "legacy M1 completed on CUDA; exact validation NDCG@20 was 0.005991 overall, 0.005334 controlled zero, 0.009025 natural zero, and 0.000806 warm"},
-    "P2-B03-ALIGNMENT-DEVELOPMENT": {"status": "IN_PROGRESS_RECOVERED", "summary": "five of nine frozen alignment candidates passed; ALIGN_TEMP_1.0_1.0 launch attempt 1 is preserved as prestart GPU contention with no scientific artifact; attempt 2 is next"},
+    "P2-B03-ALIGNMENT-DEVELOPMENT": {"status": "IN_PROGRESS", "summary": "six of nine frozen alignment candidates passed with verified hashes; manifest-next ALIGN_TEMP_1.0_2.0 has no terminal artifact"},
     "P2-D01": {"status": "PASS_DEVELOPMENT", "summary": "R1 preserved warm quality but scored zero on controlled-zero validation under standardized alignment"},
     "P2-D02": {"status": "PASS_DEVELOPMENT", "summary": "R2 achieved 0.014892 warm NDCG@20 but zero controlled-zero NDCG@20"},
     "P2-D03": {"status": "PASS_DEVELOPMENT", "summary": "attempt 3 completed on CUDA after the sustained idle gate; exact validation NDCG@20 was 0.001939 overall, 0 controlled zero, 0.000131 natural zero, and 0.013539 warm"},

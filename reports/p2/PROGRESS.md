@@ -62,13 +62,15 @@ Crash recovery and the development model ladder are complete. Five of nine prere
 
 ## Active next action
 
-After reboot, preserve `ALIGN_TEMP_1.0_1.0` launch attempt 1 as a prestart GPU-contention event, then resume the unchanged frozen candidate under launch-attempt-2 logging. Five completed candidates must hash-validate and skip.
+Commit the recovered `ALIGN_TEMP_1.0_1.0` PASS boundary, then resume only manifest-next `ALIGN_TEMP_1.0_2.0`. Six completed candidates must hash-validate and skip.
 
 ## 2026-09-25 reboot recovery
 
 - Audited the 775-byte `ALIGN_TEMP_1.0_1.0` log at SHA-256 `4a26981f69518090633cc56c5a1511677687971f06ccf85f14511dc8b69ee6be`. The inner idle guard observed unrelated CUDA PID 68032 after transient flock acquisition.
 - The exception occurred before CUDA qualification, lock owner-record writing, expert checkpoint loading, exact scoring, validation-row output, or metric computation. No output, receipt, temporary, or partial candidate artifact exists.
 - Post-reboot GPU inspection showed 0 MiB, 0% utilization, no CUDA PID, no alignment/HPO process, and an available actual flock. Live preflight is repeated immediately before attempt 2.
+- Recovered and independently verified the successful launch-attempt-2 receipt without rewriting it. Its frozen config and 29,512,674-byte VALIDATION output hashes match; exact NDCG@20 was 0.001864 overall, 0 controlled zero, and 0.013602 warm.
+- Reconciled the interrupted warehouse state deterministically: 46 p2-only receipts, 76 metric rows, zero p1 receipts, zero QUALIFICATION access, zero LOCKED_FINAL access, validation PASS. Manifest-next is `ALIGN_TEMP_1.0_2.0`; HPO and E01 receipt counts remain zero.
 
 ## Protected access counters
 
