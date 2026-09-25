@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-Crash recovery, the development model ladder, and all nine preregistered score-alignment candidates are complete. The frozen VALIDATION rule selected `ALIGN_RANK`; P2-E00 equal-budget HPO is next.
+Crash recovery, the development model ladder, and score alignment are complete. P2-E00 equal-budget HPO is in progress; `CSEQ_T1` is terminal PASS and the frozen next trial is `CSEQ_T2`.
 
 ## Completed
 
@@ -62,7 +62,7 @@ Crash recovery, the development model ladder, and all nine preregistered score-a
 
 ## Active next action
 
-Audit the frozen P2-E00 HPO queue and resume its first genuinely incomplete trial under the same dGPU-only live guard, CUDA qualification, and flock checks.
+Resume the frozen P2-E00 HPO queue from `CSEQ_T2`; hash validation must skip terminal `CSEQ_T1`.
 
 ## 2026-09-25 reboot recovery
 
@@ -83,6 +83,8 @@ Audit the frozen P2-E00 HPO queue and resume its first genuinely incomplete tria
 - Completed `ALIGN_TEMP_1.0_2.0`, `ALIGN_TEMP_2.0_1.0`, and `ALIGN_TEMP_2.0_2.0` serially on CUDA after both idle guards passed. All nine candidate receipts, frozen configs, and 27,918-row outputs revalidate.
 - The deterministic frozen selection rule chose `ALIGN_RANK`: selection score `0.6470106506911057`, controlled-zero NDCG@20 `0.0008446567843548943`, and warm NDCG@20 `0.012779977211517015`. This remains DEVELOPMENT evidence.
 - Rebuilt the p2-only warehouse at the alignment-complete boundary: 50 receipts, 88 metric rows, zero p1 receipts, zero QUALIFICATION access, zero LOCKED_FINAL access, validation PASS.
+- `CSEQ_T1` completed all 10 scheduled CUDA epochs and exact VALIDATION scoring before the queue hit an implementation-only terminal-validation key error. Its receipt, 21,505,487-byte checkpoint, and 11,200,760-byte output independently match their recorded hashes; it was not rerun.
+- Corrected the queue to read the materialized config byte hash from the manifest's existing `sha256` field. Targeted tests pass, the warehouse canonicalizes `CSEQ_T1` at 51 receipts/92 metric rows, and protected counters remain zero. Frozen next trial is `CSEQ_T2`.
 
 ## Protected access counters
 

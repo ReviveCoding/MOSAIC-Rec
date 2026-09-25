@@ -38,6 +38,14 @@ def test_terminal_validation_is_hash_strict(tmp_path: Path) -> None:
         module.validate_terminal(paths, "config-hash")
 
 
+def test_manifest_config_hash_uses_materialized_file_hash(tmp_path: Path) -> None:
+    repo = Path(__file__).resolve().parents[2]
+    module = _module(repo)
+    assert module.manifest_config_hash({"sha256": "file-hash"}) == "file-hash"
+    with pytest.raises(RuntimeError, match="missing sha256"):
+        module.manifest_config_hash({"canonical_config_sha256": "canonical-hash"})
+
+
 def test_family_runner_mapping(tmp_path: Path) -> None:
     repo = Path(__file__).resolve().parents[2]
     module = _module(repo)

@@ -147,3 +147,8 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 - All nine frozen alignment candidates terminated PASS on VALIDATION with matching config and scored-output hashes.
 - Apply the frozen unit-scaled cold/warm objective and tie rule without amendment. `ALIGN_RANK` has the highest selection score (`0.6470106506911057`) and is selected for subsequent router development/HPO configuration.
 - This selection opens no protected role and does not change the frozen P2-E00 HPO search space.
+
+## 2026-09-25 — P2-E00 queue validation repair
+
+- `CSEQ_T1` completed scientific execution and wrote a terminal PASS receipt before orchestration failed while looking up a nonexistent `config_sha256` manifest key. The manifest has always stored the materialized file hash as `sha256`; the receipt uses that same hash.
+- Rehash and canonicalize the existing checkpoint/output rather than rerunning the trial. Repair only the post-run validator key lookup, preserve all scientific configuration, and resume from frozen next trial `CSEQ_T2`.

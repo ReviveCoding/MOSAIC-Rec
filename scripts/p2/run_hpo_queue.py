@@ -52,6 +52,14 @@ def validate_terminal(paths: dict[str, Path], config_hash: str) -> dict[str, Any
     return receipt
 
 
+def manifest_config_hash(identity: dict[str, Any]) -> str:
+    """Return the byte-level trial-config hash stored by materialization."""
+    value = identity.get("sha256")
+    if not isinstance(value, str) or not value:
+        raise RuntimeError("HPO manifest identity is missing sha256")
+    return value
+
+
 def command_for(
     *, family: str, trial_id: str, repo: Path, scratch: Path, lock: Path
 ) -> list[str]:
@@ -100,7 +108,7 @@ def main() -> None:
             hpo_path=hpo_path,
         )
         if paths["receipt"].exists():
-            validate_terminal(paths, identity["config_sha256"])
+            validate_terminal(paths, manifest_config_hash(identity))
             print(f"SKIP_TERMINAL {trial_id}", flush=True)
             continue
         partials = [
@@ -140,7 +148,7 @@ def main() -> None:
             raise RuntimeError(
                 f"Trial {trial_id} exited {completed.returncode}; audit {paths['log']}"
             )
-        validate_terminal(paths, identity["config_sha256"])
+        validate_terminal(paths, manifest_config_hash(identity))
         print(f"PASS {trial_id}", flush=True)
 
 
