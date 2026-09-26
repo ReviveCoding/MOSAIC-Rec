@@ -1,7 +1,7 @@
 {
   "protocol_id": "mosaic-rec-2026-09-23-p2",
   "scientific_state": "LOCKED_EXECUTION",
-  "updated_utc": "2026-09-26T16:02:00Z",
+  "updated_utc": "2026-09-26T16:30:00Z",
   "frozen_manifest_sha256": "15233342edf761c957f061e5ff72323feda8cdcfae9119e8a464fc046c509de7",
   "qualification_access_count": 1,
   "locked_final_access_count": 1,
@@ -35,6 +35,7 @@
     "P2-F00": {"status": "PASS", "summary": "C_seq, C_cold, and frozen R4 exact-scored 25367 LOCKED_FINAL queries with immutable top-20/top-100 outputs and verified hashes"},
     "P2-F01": {"status": "FAIL", "summary": "H1 failed: R4 minus C_cold controlled-zero mean +0.0008903 but paired-user 95% lower bound was 0.0, not greater than zero"},
     "P2-F02": {"status": "FAIL", "summary": "H2 failed: warm delta -0.0013377 with lower bound -0.0022765 below frozen noninferiority threshold -0.0013209; conjunctive promotion failed"},
+    "P2-G00": {"status": "FAIL", "summary": "all 14 frozen robustness cells passed execution and hash validation, but the positive-support directional routing expectation failed in 11 cells; reliability language remains prohibited"},
     "P2-D01": {"status": "PASS_DEVELOPMENT", "summary": "R1 preserved warm quality but scored zero on controlled-zero validation under standardized alignment"},
     "P2-D02": {"status": "PASS_DEVELOPMENT", "summary": "R2 achieved 0.014892 warm NDCG@20 but zero controlled-zero NDCG@20"},
     "P2-D03": {"status": "PASS_DEVELOPMENT", "summary": "attempt 3 completed on CUDA after the sustained idle gate; exact validation NDCG@20 was 0.001939 overall, 0 controlled zero, 0.000131 natural zero, and 0.013539 warm"},

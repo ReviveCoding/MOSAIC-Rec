@@ -213,3 +213,8 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 
 - Preserve R4 as the frozen evaluated finalist and record both primary gates as FAIL. H1's positive point estimate does not pass because its paired-user lower bound equals zero. H2 fails because its lower bound is worse than the frozen noninferiority threshold.
 - Apply the frozen conjunctive rule without reinterpretation: R4 is not promoted. Continue the preregistered robustness and ablation stages for diagnosis; those outcomes cannot reverse the failed primary promotion decision.
+
+## 2026-09-26 — robustness disposition
+
+- Preserve every one of the 14 frozen robustness outcomes. Classify G00 as FAIL because 11 cells violate the declared positive-support direction: missing image/text signals increased content reliance rather than reducing it.
+- Continue to use **adaptive routing** only. Reliability-aware language is unsupported regardless of accuracy degradation patterns.

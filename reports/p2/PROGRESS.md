@@ -71,7 +71,14 @@ Development and QUALIFICATION are complete. C_seq, C_cold, R2, R3, and R4 were e
 
 ## Active next action
 
-F00 exact locked scoring is complete for all three frozen families. H1 and H2 both failed their frozen confidence-bound rules, so conjunctive promotion failed. R4 remains the evaluated finalist; no substitution or tuning is permitted. Next is the preregistered Gxx robustness family.
+Gxx robustness execution is complete. All 14 frozen cells produced valid locked outputs, but 11 failed the preregistered positive-support routing direction; the robustness stage is FAIL and reliability language remains prohibited. Next is the frozen A0-A7 ablation family.
+
+## 2026-09-26 — Gxx robustness
+
+- Executed all 14 E04 cells serially under the p2 CUDA lock: four image-missing, four text-missing, three joint-missing, and three deterministic content-feature perturbation conditions.
+- Every cell has a distinct top-k artifact, terminal receipt, matching SHA-256, and paired 10,000-draw interval against locked R4 A0.
+- Only the three feature-perturbation cells met the positive-support directional expectation. All eleven missingness cells increased inferred content reliance (`1 - sequence router weight`) after content degradation, contrary to the frozen direction.
+- Record G00 as FAIL. The outcome does not affect the already failed promotion gate, and it independently prohibits reliability-aware terminology.
 
 ## 2026-09-26 — F00 locked result
 
