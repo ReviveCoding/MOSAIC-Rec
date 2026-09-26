@@ -1,0 +1,765 @@
+{
+  "analysis_version": "1.0.0",
+  "associations": [
+    {
+      "association_contrast": -0.0034719480169167595,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "zero_or_low_support",
+      "intensity": 0.1,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.00015730278017028393,
+      "n": 21174
+    },
+    {
+      "association_contrast": -0.00208149227466183,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "young_item_age",
+      "intensity": 0.1,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.0,
+      "n": 16456
+    },
+    {
+      "association_contrast": 0.00788277843583152,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "missing_image_flag",
+      "intensity": 0.1,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.00788277843583152,
+      "n": 2353
+    },
+    {
+      "association_contrast": -0.0007311931903461808,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "missing_text_flag",
+      "intensity": 0.1,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.0,
+      "n": 0
+    },
+    {
+      "association_contrast": 0.00013621901002967124,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "short_user_history",
+      "intensity": 0.1,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.0008056633772461485,
+      "n": 11499
+    },
+    {
+      "association_contrast": 0.0007311931903461808,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "stale_user_history",
+      "intensity": 0.1,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.0007311931903461808,
+      "n": 25367
+    },
+    {
+      "association_contrast": 0.0007311931903461808,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "high_tail_affinity",
+      "intensity": 0.1,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.0007311931903461808,
+      "n": 25367
+    },
+    {
+      "association_contrast": -0.007813899472089703,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "zero_or_low_support",
+      "intensity": 0.25,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.0004954607243284328,
+      "n": 21174
+    },
+    {
+      "association_contrast": -0.005087199268377452,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "young_item_age",
+      "intensity": 0.25,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.0,
+      "n": 16456
+    },
+    {
+      "association_contrast": 0.0070975469986709686,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "missing_image_flag",
+      "intensity": 0.25,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.0070975469986709686,
+      "n": 6387
+    },
+    {
+      "association_contrast": -0.0017870474506449904,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "missing_text_flag",
+      "intensity": 0.25,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.0,
+      "n": 0
+    },
+    {
+      "association_contrast": 2.696144953131846e-05,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "short_user_history",
+      "intensity": 0.25,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.001801787127473166,
+      "n": 11499
+    },
+    {
+      "association_contrast": 0.0017870474506449904,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "stale_user_history",
+      "intensity": 0.25,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.0017870474506449904,
+      "n": 25367
+    },
+    {
+      "association_contrast": 0.0017870474506449904,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "high_tail_affinity",
+      "intensity": 0.25,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.0017870474506449904,
+      "n": 25367
+    },
+    {
+      "association_contrast": -0.016038835749377648,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "zero_or_low_support",
+      "intensity": 0.5,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.0009109170987246406,
+      "n": 21174
+    },
+    {
+      "association_contrast": -0.01014005973970244,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "young_item_age",
+      "intensity": 0.5,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.0,
+      "n": 16456
+    },
+    {
+      "association_contrast": 0.007194686865235164,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "missing_image_flag",
+      "intensity": 0.5,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.007194686865235164,
+      "n": 12559
+    },
+    {
+      "association_contrast": -0.003562032260042119,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "missing_text_flag",
+      "intensity": 0.5,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.0,
+      "n": 0
+    },
+    {
+      "association_contrast": 0.00022967457053488021,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "short_user_history",
+      "intensity": 0.5,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.0036875940901433418,
+      "n": 11499
+    },
+    {
+      "association_contrast": 0.003562032260042119,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "stale_user_history",
+      "intensity": 0.5,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.003562032260042119,
+      "n": 25367
+    },
+    {
+      "association_contrast": 0.003562032260042119,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "high_tail_affinity",
+      "intensity": 0.5,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.003562032260042119,
+      "n": 25367
+    },
+    {
+      "association_contrast": -0.03161884341027071,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "zero_or_low_support",
+      "intensity": 1.0,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.001873858538342342,
+      "n": 21174
+    },
+    {
+      "association_contrast": -0.02021231960065035,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "young_item_age",
+      "intensity": 1.0,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.0,
+      "n": 16456
+    },
+    {
+      "association_contrast": 0.007100247564213161,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "missing_image_flag",
+      "intensity": 1.0,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.007100247564213161,
+      "n": 25367
+    },
+    {
+      "association_contrast": -0.007100247564213161,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "missing_text_flag",
+      "intensity": 1.0,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.0,
+      "n": 0
+    },
+    {
+      "association_contrast": 0.000633196826536001,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "short_user_history",
+      "intensity": 1.0,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.007446412802136497,
+      "n": 11499
+    },
+    {
+      "association_contrast": 0.007100247564213161,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "stale_user_history",
+      "intensity": 1.0,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.007100247564213161,
+      "n": 25367
+    },
+    {
+      "association_contrast": 0.007100247564213161,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "high_tail_affinity",
+      "intensity": 1.0,
+      "intervention": "IMAGE_MISSING",
+      "mean_content_reliance_delta": 0.007100247564213161,
+      "n": 25367
+    },
+    {
+      "association_contrast": -0.010325230070609353,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "zero_or_low_support",
+      "intensity": 0.1,
+      "intervention": "IMAGE_TEXT_JOINT_MISSING",
+      "mean_content_reliance_delta": 0.0007087849260018344,
+      "n": 21174
+    },
+    {
+      "association_contrast": -0.006876157210633324,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "young_item_age",
+      "intensity": 0.1,
+      "intervention": "IMAGE_TEXT_JOINT_MISSING",
+      "mean_content_reliance_delta": 0.0,
+      "n": 16456
+    },
+    {
+      "association_contrast": 0.02324485466766068,
+      "classification": "SUPPORTED_ASSOCIATION",
+      "covariate": "missing_image_flag",
+      "intensity": 0.1,
+      "intervention": "IMAGE_TEXT_JOINT_MISSING",
+      "mean_content_reliance_delta": 0.02324485466766068,
+      "n": 2636
+    },
+    {
+      "association_contrast": 0.02324485466766068,
+      "classification": "SUPPORTED_ASSOCIATION",
+      "covariate": "missing_text_flag",
+      "intensity": 0.1,
+      "intervention": "IMAGE_TEXT_JOINT_MISSING",
+      "mean_content_reliance_delta": 0.02324485466766068,
+      "n": 2636
+    },
+    {
+      "association_contrast": 0.00010384268742820923,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "short_user_history",
+      "intensity": 0.1,
+      "intervention": "IMAGE_TEXT_JOINT_MISSING",
+      "mean_content_reliance_delta": 0.0024722484839834412,
+      "n": 11499
+    },
+    {
+      "association_contrast": 0.0024154782553693203,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "stale_user_history",
+      "intensity": 0.1,
+      "intervention": "IMAGE_TEXT_JOINT_MISSING",
+      "mean_content_reliance_delta": 0.0024154782553693203,
+      "n": 25367
+    },
+    {
+      "association_contrast": 0.0024154782553693203,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "high_tail_affinity",
+      "intensity": 0.1,
+      "intervention": "IMAGE_TEXT_JOINT_MISSING",
+      "mean_content_reliance_delta": 0.0024154782553693203,
+      "n": 25367
+    },
+    {
+      "association_contrast": -0.02695768881019919,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "zero_or_low_support",
+      "intensity": 0.25,
+      "intervention": "IMAGE_TEXT_JOINT_MISSING",
+      "mean_content_reliance_delta": 0.0015636191237937789,
+      "n": 21174
+    },
+    {
+      "association_contrast": -0.017135889966832227,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "young_item_age",
+      "intensity": 0.25,
+      "intervention": "IMAGE_TEXT_JOINT_MISSING",
+      "mean_content_reliance_delta": 0.0,
+      "n": 16456
+    },
+    {
+      "association_contrast": 0.024427758037824664,
+      "classification": "SUPPORTED_ASSOCIATION",
+      "covariate": "missing_image_flag",
+      "intensity": 0.25,
+      "intervention": "IMAGE_TEXT_JOINT_MISSING",
+      "mean_content_reliance_delta": 0.024427758037824664,
+      "n": 6251
+    },
+    {
+      "association_contrast": 0.024427758037824664,
+      "classification": "SUPPORTED_ASSOCIATION",
+      "covariate": "missing_text_flag",
+      "intensity": 0.25,
+      "intervention": "IMAGE_TEXT_JOINT_MISSING",
+      "mean_content_reliance_delta": 0.024427758037824664,
+      "n": 6251
+    },
+    {
+      "association_contrast": 0.0003266289194642632,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "short_user_history",
+      "intensity": 0.25,
+      "intervention": "IMAGE_TEXT_JOINT_MISSING",
+      "mean_content_reliance_delta": 0.006198115872967729,
+      "n": 11499
+    },
+    {
+      "association_contrast": 0.006019549631191784,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "stale_user_history",
+      "intensity": 0.25,
+      "intervention": "IMAGE_TEXT_JOINT_MISSING",
+      "mean_content_reliance_delta": 0.006019549631191784,
+      "n": 25367
+    },
+    {
+      "association_contrast": 0.006019549631191784,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "high_tail_affinity",
+      "intensity": 0.25,
+      "intervention": "IMAGE_TEXT_JOINT_MISSING",
+      "mean_content_reliance_delta": 0.006019549631191784,
+      "n": 25367
+    },
+    {
+      "association_contrast": -0.05358660640707706,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "zero_or_low_support",
+      "intensity": 0.5,
+      "intervention": "IMAGE_TEXT_JOINT_MISSING",
+      "mean_content_reliance_delta": 0.003061316202954056,
+      "n": 21174
+    },
+    {
+      "association_contrast": -0.03392941855966891,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "young_item_age",
+      "intensity": 0.5,
+      "intervention": "IMAGE_TEXT_JOINT_MISSING",
+      "mean_content_reliance_delta": 0.0,
+      "n": 16456
+    },
+    {
+      "association_contrast": 0.023872487073447267,
+      "classification": "SUPPORTED_ASSOCIATION",
+      "covariate": "missing_image_flag",
+      "intensity": 0.5,
+      "intervention": "IMAGE_TEXT_JOINT_MISSING",
+      "mean_content_reliance_delta": 0.023872487073447267,
+      "n": 12665
+    },
+    {
+      "association_contrast": 0.023872487073447267,
+      "classification": "SUPPORTED_ASSOCIATION",
+      "covariate": "missing_text_flag",
+      "intensity": 0.5,
+      "intervention": "IMAGE_TEXT_JOINT_MISSING",
+      "mean_content_reliance_delta": 0.023872487073447267,
+      "n": 12665
+    },
+    {
+      "association_contrast": 0.0009995917184850624,
+      "classification": "SUPPORTED_ASSOCIATION",
+      "covariate": "short_user_history",
+      "intensity": 0.5,
+      "intervention": "IMAGE_TEXT_JOINT_MISSING",
+      "mean_content_reliance_delta": 0.012465304795094433,
+      "n": 11499
+    },
+    {
+      "association_contrast": 0.011918833475980986,
+      "classification": "SUPPORTED_ASSOCIATION",
+      "covariate": "stale_user_history",
+      "intensity": 0.5,
+      "intervention": "IMAGE_TEXT_JOINT_MISSING",
+      "mean_content_reliance_delta": 0.011918833475980986,
+      "n": 25367
+    },
+    {
+      "association_contrast": 0.011918833475980986,
+      "classification": "SUPPORTED_ASSOCIATION",
+      "covariate": "high_tail_affinity",
+      "intensity": 0.5,
+      "intervention": "IMAGE_TEXT_JOINT_MISSING",
+      "mean_content_reliance_delta": 0.011918833475980986,
+      "n": 25367
+    },
+    {
+      "association_contrast": -0.005163721788109247,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "zero_or_low_support",
+      "intensity": 0.1,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.0003594964914375046,
+      "n": 21174
+    },
+    {
+      "association_contrast": -0.0034531290490222477,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "young_item_age",
+      "intensity": 0.1,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.0,
+      "n": 16456
+    },
+    {
+      "association_contrast": -0.0012130260951565912,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "missing_image_flag",
+      "intensity": 0.1,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.0,
+      "n": 0
+    },
+    {
+      "association_contrast": 0.012362729190774307,
+      "classification": "SUPPORTED_ASSOCIATION",
+      "covariate": "missing_text_flag",
+      "intensity": 0.1,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.012362729190774307,
+      "n": 2489
+    },
+    {
+      "association_contrast": 5.643861895530109e-05,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "short_user_history",
+      "intensity": 0.1,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.0012438807791031405,
+      "n": 11499
+    },
+    {
+      "association_contrast": 0.0012130260951565912,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "stale_user_history",
+      "intensity": 0.1,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.0012130260951565912,
+      "n": 25367
+    },
+    {
+      "association_contrast": 0.0012130260951565912,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "high_tail_affinity",
+      "intensity": 0.1,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.0012130260951565912,
+      "n": 25367
+    },
+    {
+      "association_contrast": -0.01282635485908284,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "zero_or_low_support",
+      "intensity": 0.25,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.0007767363097699898,
+      "n": 21174
+    },
+    {
+      "association_contrast": -0.008246479171144615,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "young_item_age",
+      "intensity": 0.25,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.0,
+      "n": 16456
+    },
+    {
+      "association_contrast": -0.002896849288211837,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "missing_image_flag",
+      "intensity": 0.25,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.0,
+      "n": 0
+    },
+    {
+      "association_contrast": 0.01108696075649814,
+      "classification": "SUPPORTED_ASSOCIATION",
+      "covariate": "missing_text_flag",
+      "intensity": 0.25,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.01108696075649814,
+      "n": 6628
+    },
+    {
+      "association_contrast": 0.00011707811077366027,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "short_user_history",
+      "intensity": 0.25,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.0029608552502967947,
+      "n": 11499
+    },
+    {
+      "association_contrast": 0.002896849288211837,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "stale_user_history",
+      "intensity": 0.25,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.002896849288211837,
+      "n": 25367
+    },
+    {
+      "association_contrast": 0.002896849288211837,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "high_tail_affinity",
+      "intensity": 0.25,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.002896849288211837,
+      "n": 25367
+    },
+    {
+      "association_contrast": -0.025746266300106315,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "zero_or_low_support",
+      "intensity": 0.5,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.0015931365126713123,
+      "n": 21174
+    },
+    {
+      "association_contrast": -0.016649892101142292,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "young_item_age",
+      "intensity": 0.5,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.0,
+      "n": 16456
+    },
+    {
+      "association_contrast": -0.00584882676364091,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "missing_image_flag",
+      "intensity": 0.5,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.0,
+      "n": 0
+    },
+    {
+      "association_contrast": 0.011918000523196961,
+      "classification": "SUPPORTED_ASSOCIATION",
+      "covariate": "missing_text_flag",
+      "intensity": 0.5,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.011918000523196961,
+      "n": 12449
+    },
+    {
+      "association_contrast": 0.0008371302542928213,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "short_user_history",
+      "intensity": 0.5,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.0063064812898573665,
+      "n": 11499
+    },
+    {
+      "association_contrast": 0.00584882676364091,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "stale_user_history",
+      "intensity": 0.5,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.00584882676364091,
+      "n": 25367
+    },
+    {
+      "association_contrast": 0.00584882676364091,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "high_tail_affinity",
+      "intensity": 0.5,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.00584882676364091,
+      "n": 25367
+    },
+    {
+      "association_contrast": -0.051865206238256946,
+      "classification": "WEAK_ASSOCIATION",
+      "covariate": "zero_or_low_support",
+      "intensity": 1.0,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.003064514045349608,
+      "n": 21174
+    },
+    {
+      "association_contrast": -0.033128530753607326,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "young_item_age",
+      "intensity": 1.0,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.0,
+      "n": 16456
+    },
+    {
+      "association_contrast": -0.011637495074127603,
+      "classification": "NOT_SUPPORTED",
+      "covariate": "missing_image_flag",
+      "intensity": 1.0,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.0,
+      "n": 0
+    },
+    {
+      "association_contrast": 0.011637495074127603,
+      "classification": "SUPPORTED_ASSOCIATION",
+      "covariate": "missing_text_flag",
+      "intensity": 1.0,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.011637495074127603,
+      "n": 25367
+    },
+    {
+      "association_contrast": 0.0010164861002581894,
+      "classification": "SUPPORTED_ASSOCIATION",
+      "covariate": "short_user_history",
+      "intensity": 1.0,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.01219320245924924,
+      "n": 11499
+    },
+    {
+      "association_contrast": 0.011637495074127603,
+      "classification": "SUPPORTED_ASSOCIATION",
+      "covariate": "stale_user_history",
+      "intensity": 1.0,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.011637495074127603,
+      "n": 25367
+    },
+    {
+      "association_contrast": 0.011637495074127603,
+      "classification": "SUPPORTED_ASSOCIATION",
+      "covariate": "high_tail_affinity",
+      "intensity": 1.0,
+      "intervention": "TEXT_MISSING",
+      "mean_content_reliance_delta": 0.011637495074127603,
+      "n": 25367
+    }
+  ],
+  "canonical_p2_mutated": false,
+  "causal_interpretation": false,
+  "classification": "WEAK_ASSOCIATION",
+  "evidence_class": "POSTHOC_EXPLORATORY_READ_ONLY",
+  "generated_utc": "2026-09-26T17:13:33Z",
+  "hypothesis": "The learned router may conflate missing-content / cold-item signals with a reason to increase content reliance.",
+  "mean_missingness_content_reliance_delta_in_zero_or_low_support": 0.0013241038866857987,
+  "protected_scoring_rerun": false,
+  "row_count": 77,
+  "script_path": "/mnt/c/Users/bjw-0/Downloads/MOSAIC-Rec/scripts/posthoc/run_industry_diagnostics.py",
+  "script_sha256": "8a625562e5b85bc8d6cd33d5dd9757bafcd92f81bb9a7696c0e9ceed3a13d558",
+  "source_commit": "b9bdc1bcb6abf912687ffb304f426107349cd06f",
+  "source_file_sha256": {
+    "/home/bjw-0/mosaic-rec-work/p2/contexts/pixelrec50k/LOCKED_FINAL_QUERIES.parquet": "9b4e38219bcbddd832464ecc4840270ec0ddb4fb17d93975c99a4ba715df7bd7",
+    "/home/bjw-0/mosaic-rec-work/p2/contexts/pixelrec50k/item_context.parquet": "eef882bc8fa1b0848f506ec5b6615884262878939ad73fc21ecde4c697c4339f",
+    "/home/bjw-0/mosaic-rec-work/p2/features/pixelrec50k/authorized_minilm_item_ids.txt": "ac84d699f63c4d11b5c2085047edab2fb128e0bd20a96b9a19d1506217add209",
+    "/home/bjw-0/mosaic-rec-work/p2/features/pixelrec50k/authorized_minilm_text_features.npy": "9be4f7232b65064d7ee0544e49706ea381127120f1b6bd5493e6f24d25c8cbca",
+    "/home/bjw-0/mosaic-rec-work/p2/features/pixelrec50k/image_present.npy": "97e742d8f797891238479a7014ea36278c499e3d05d1d05482f153f1a29c6913",
+    "/home/bjw-0/mosaic-rec-work/p2/features/pixelrec50k/publisher_image_features.npy": "bb114e3d89e3983aa3798f72e0d3756f535c881366a8bacb65e44f70a9c301ae",
+    "/home/bjw-0/mosaic-rec-work/p2/features/pixelrec50k/publisher_image_item_ids.txt": "ac84d699f63c4d11b5c2085047edab2fb128e0bd20a96b9a19d1506217add209",
+    "/home/bjw-0/mosaic-rec-work/p2/features/pixelrec50k/tag_ids.npy": "033719e2f5c45b99fa6e87aff2d82e48f396d1219e1e094b50bf48976da1da9c",
+    "/home/bjw-0/mosaic-rec-work/p2/features/pixelrec50k/tag_vocabulary.json": "055b8b5cb67aa7fed77867b8f4cf9191ba71632b24106e58a79a4a104372e7ee",
+    "/home/bjw-0/mosaic-rec-work/p2/features/pixelrec50k/text_present.npy": "97e742d8f797891238479a7014ea36278c499e3d05d1d05482f153f1a29c6913",
+    "/home/bjw-0/mosaic-rec-work/p2/locked_final/ccold_two_tower_topk.parquet": "4e382313803daa6894f7c9af092afadc341d4ded80ff79fe93ba12f95bbaeaa9",
+    "/home/bjw-0/mosaic-rec-work/p2/locked_final/cseq_bert4rec_topk.parquet": "ef234b5b4342ee2a056f58d308b18e51204c07d9526d09e435a07cfb6685d214",
+    "/home/bjw-0/mosaic-rec-work/p2/locked_final/r4_topk.parquet": "f810256cdb732488cbd51563f232b5b14f448a19de2f7df74a0a53197f012ca2",
+    "/home/bjw-0/mosaic-rec-work/p2/robustness/content_feature_perturbation_0p05_topk.parquet": "c469490562c97262bbded3dc8e7fe40ddc47aa0b26950e3ac23a7d4c78af2a89",
+    "/home/bjw-0/mosaic-rec-work/p2/robustness/content_feature_perturbation_0p1_topk.parquet": "d5ac8dce9e4b7d902ad70cbd3fc6af7851441ea1ec7a63cb1a74dc037c30b4ef",
+    "/home/bjw-0/mosaic-rec-work/p2/robustness/content_feature_perturbation_0p2_topk.parquet": "7f4b04fb6269a2ea0e21e137b90a9e63036f0537bffcb8f5a801c3488a0a296e",
+    "/home/bjw-0/mosaic-rec-work/p2/robustness/image_missing_0p1_topk.parquet": "406b1cb116227065bc13079b3949dca7e092ee45684ad5345756f88697c0089a",
+    "/home/bjw-0/mosaic-rec-work/p2/robustness/image_missing_0p25_topk.parquet": "56428e48b39032c92448105cf64907deed802b49c2e40c702322810c788cf058",
+    "/home/bjw-0/mosaic-rec-work/p2/robustness/image_missing_0p5_topk.parquet": "b80eb894fbac4aad1c52561cebab78acc92e7b73b18d67f7e8d016d276f37d20",
+    "/home/bjw-0/mosaic-rec-work/p2/robustness/image_missing_1_topk.parquet": "a0b05ba5d524f5f718ab243687929a4ac540c96e817cba157249ec01b48a7fcc",
+    "/home/bjw-0/mosaic-rec-work/p2/robustness/image_text_joint_missing_0p1_topk.parquet": "43db6383ef0a5e9944a890d8618462e41950f7f21f2a45b5a5b96bc0481b403e",
+    "/home/bjw-0/mosaic-rec-work/p2/robustness/image_text_joint_missing_0p25_topk.parquet": "638a0ecadbfdc3c0dd9418dd87346625a36affc59cc9811de806f2afde88f32f",
+    "/home/bjw-0/mosaic-rec-work/p2/robustness/image_text_joint_missing_0p5_topk.parquet": "166ad44a191ee16747abfda4d30171944661f389140a5a08f3c5198318ad79bc",
+    "/home/bjw-0/mosaic-rec-work/p2/robustness/text_missing_0p1_topk.parquet": "8487e48cc5f3cd806ab8fdd88325948a1ed535d320926a7a4bca30af248019c7",
+    "/home/bjw-0/mosaic-rec-work/p2/robustness/text_missing_0p25_topk.parquet": "03a7c84cc9cdd9c5cf126815984427cd0a4b05822e52765fcc67a9abdb447ace",
+    "/home/bjw-0/mosaic-rec-work/p2/robustness/text_missing_0p5_topk.parquet": "fcf87c72d881fbe26934fff078c0ba2490e42c3537ddf433a2b4fe92a39057e8",
+    "/home/bjw-0/mosaic-rec-work/p2/robustness/text_missing_1_topk.parquet": "ee710e81fc4188e9020d391c9d49454f3b7df12695478cd27d180fd94abfd40d",
+    "evidence/p2/claims.json": "97e3e68bf4b40d96de9024ee05b491631907516d90223f4250add08f18fbbef2",
+    "evidence/p2/p2-f00-f02-locked-summary.json": "f5c3d92a37f34bed42b683fe3102b63f808a6471ee73a76bb31687aae94bc973",
+    "evidence/p2/p2-f00-locked-ccold_two_tower.json": "edf93013f21e58468f449bf72e271f707e21d4f7a50f4be830bec7abe2226de8",
+    "evidence/p2/p2-f00-locked-cseq_bert4rec.json": "c6a44b4e87a3dd3e5307e886835cd477cd49574b80d451e890e152b6d55ee7da",
+    "evidence/p2/p2-f00-locked-r4.json": "56f0d3bdbe41ad107acd368b94008c30cd823dc63a303eb87737d8f6420bd3d6",
+    "evidence/p2/p2-g00-content_feature_perturbation_0p05.json": "d9d5b624374902518010143cddd7a3157412c5341b5a834662dd0d167bdbd0be",
+    "evidence/p2/p2-g00-content_feature_perturbation_0p1.json": "9a4f27bd3e455c39177b6dc0d32a22a512f0241ca274ade37a7bf884ee574f06",
+    "evidence/p2/p2-g00-content_feature_perturbation_0p2.json": "38b7e6584057e0622a2c2a6691ed9ec331b4109cc220512cdfd478e0573179a2",
+    "evidence/p2/p2-g00-image_missing_0p1.json": "d9d1752f5ed066d7913b30ed3fc9eb0651e3446bb7150a554ad1c15b50a7f302",
+    "evidence/p2/p2-g00-image_missing_0p25.json": "6a24681073d7b1af1a5f197a8e155dc2c5d0285633921e0d47b24b9930999d13",
+    "evidence/p2/p2-g00-image_missing_0p5.json": "2aeca7b8e0178f5869f861b15cc8147e18255d48896d94f4bb8ee393f55cd725",
+    "evidence/p2/p2-g00-image_missing_1.json": "e82d735084eac8e594236f07ff0dd4717921601262191e50704803fc949a4652",
+    "evidence/p2/p2-g00-image_text_joint_missing_0p1.json": "d30169c5020e8b9a6e85ba2e12b507f3daa9ab03635298fea0cb65697c4827ac",
+    "evidence/p2/p2-g00-image_text_joint_missing_0p25.json": "2052d7bff54783fcd01695d6055f99c6b15835427e4c10fecaae519bfcab3509",
+    "evidence/p2/p2-g00-image_text_joint_missing_0p5.json": "5ce962a494b8e3b9d8d4ad0af19c6600bc3699041d68f9136b84ffdfe3aedc77",
+    "evidence/p2/p2-g00-robustness-summary.json": "023f3901a2baf85f97eb5ba0c2079000fc8a1a1127955c3ef7ac83ad16949471",
+    "evidence/p2/p2-g00-text_missing_0p1.json": "51700d298da53b84b75f5344807f4a8ccf99bceaeb1560d57e00f3f33f784212",
+    "evidence/p2/p2-g00-text_missing_0p25.json": "e8fe7660a0a7d1376b93896ceab86555181e6ae28eb3df6954113cb01e3d87d7",
+    "evidence/p2/p2-g00-text_missing_0p5.json": "e66db126dcebb13f673115ae75369535566395946c94ef7bb10b2bddb8526e05",
+    "evidence/p2/p2-g00-text_missing_1.json": "074c731e883c4be5e2d17d2db42eb8e1e1bba2c4c031be7b3be0c2ec644f9d9b",
+    "evidence/p2/p2-j00-j05-systems-summary.json": "0e92fb676167acc141710c2c5c90574aea833688cefaf65b6007b76a04143d90",
+    "evidence/p2/stage_status.json": "6cbb5cad485b649e2f8461236040954e4de89507b9a1b633e54feded1c06023f",
+    "evidence/p2/warehouse.duckdb": "d8dd7bfbe9466d56d882344f0a6aa83be138ed60c460255649098cfc75a4591e",
+    "evidence/p2/warehouse_manifest.json": "afd508052f8682824069fd525cf115466620616635f08c2df23982a7b4bdebe6",
+    "reports/p2/FINAL_STATUS.md": "5358a27481d89ce808de1e9f2a777ceb89f42872a9ad54930887bfad143d2faf"
+  },
+  "source_protocol": "mosaic-rec-2026-09-23-p2"
+}
