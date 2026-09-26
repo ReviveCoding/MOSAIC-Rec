@@ -1,0 +1,52 @@
+{
+  "common": {
+    "alignment": "rank_percentile_normalization",
+    "batch_size": 256,
+    "epochs": 10,
+    "feature_order": [
+      "log1p_fit_support",
+      "log1p_item_age_days",
+      "log1p_user_history_length",
+      "log1p_user_recency_days",
+      "log1p_median_history_popularity",
+      "history_tail_share",
+      "image_present",
+      "text_present"
+    ],
+    "feature_scaling": "log features divided by 10; shares and indicators unscaled",
+    "learning_rate": 0.001,
+    "negatives_per_user": 10,
+    "score_batch_size": 128,
+    "temperatures": [
+      1.0,
+      1.0
+    ],
+    "weight_decay": 0.0001
+  },
+  "evidence_class": "p2_measured_development_independent_seed",
+  "experts": {
+    "content_checkpoint": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/checkpoints/e01-ccold_two_tower-seed20261003.pt",
+    "sequence_checkpoint": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/checkpoints/e01-cseq_bert4rec-seed20261003.pt"
+  },
+  "family": "R4",
+  "models": {
+    "R4": {
+      "distillation_weight": 0.25,
+      "gate": "context_mlp",
+      "hidden": 32,
+      "model_id": "E01-R4-SEED20261003"
+    }
+  },
+  "protected_roles_opened": [],
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "seed": 20261003,
+  "selected_alignment_id": "ALIGN_RANK",
+  "selected_expert_trials": {
+    "content": "CCOLD_T2",
+    "sequence": "CSEQ_T1"
+  },
+  "selected_hpo_config_sha256": "5a9b4b1aed5353aba86d4c6a846a6f716794fa71cbc1f4f9f3677897c82483b2",
+  "selected_hpo_trial_id": "R4_T1",
+  "stage_id": "P2-E01",
+  "trial_id": "E01-R4-SEED20261003"
+}

@@ -1,0 +1,256 @@
+{
+  "protected_roles_opened": [],
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "run_count": 30,
+  "runs": [
+    {
+      "canonical_config_sha256": "1177c2f1682d6b8c4d77711c289a2ae34d28da5786669fc693610082bdd37f08",
+      "family": "BPR_MF",
+      "path": "configs/p2/seed_trials/e01-bpr_mf-seed20261001.json",
+      "run_id": "E01-BPR_MF-SEED20261001",
+      "seed": 20261001,
+      "sha256": "cfdbfa5e6c3b11558a8a5a17f72ed5c9e2cb63763b3da09396034a8611dc1230"
+    },
+    {
+      "canonical_config_sha256": "a9e4b58a69f48e0dc5cb7d99f0254270f01a3cf586c7a75059776dd12336b59c",
+      "family": "BPR_MF",
+      "path": "configs/p2/seed_trials/e01-bpr_mf-seed20261002.json",
+      "run_id": "E01-BPR_MF-SEED20261002",
+      "seed": 20261002,
+      "sha256": "1256fe09083c3a06da57670e6f75eea8f35f2c55164a01878adc1c17b5e3990b"
+    },
+    {
+      "canonical_config_sha256": "57aa036bec7bac7a724c6ceb3c27bd5f83144c1694cf0053168147ff3c65dd25",
+      "family": "BPR_MF",
+      "path": "configs/p2/seed_trials/e01-bpr_mf-seed20261003.json",
+      "run_id": "E01-BPR_MF-SEED20261003",
+      "seed": 20261003,
+      "sha256": "92b57790b8086e212dd3948af1ddc78744da41178568e3db47a7f67c65dfd66a"
+    },
+    {
+      "canonical_config_sha256": "7be92aeec067038a16907e373b0ede1ada489a5d96660f0cd573368e56ede0e8",
+      "family": "CCOLD_TWO_TOWER",
+      "path": "configs/p2/seed_trials/e01-ccold_two_tower-seed20261001.json",
+      "run_id": "E01-CCOLD_TWO_TOWER-SEED20261001",
+      "seed": 20261001,
+      "sha256": "1505e5d9b73259a9fd7f039b8b467a75f3b17fd2a1a1443ac8360ec849b92807"
+    },
+    {
+      "canonical_config_sha256": "9a07dbc71e1b9dacd95dda11b8bb4342a57212695a7b8c12c69ea6e59744669c",
+      "family": "CCOLD_TWO_TOWER",
+      "path": "configs/p2/seed_trials/e01-ccold_two_tower-seed20261002.json",
+      "run_id": "E01-CCOLD_TWO_TOWER-SEED20261002",
+      "seed": 20261002,
+      "sha256": "594cbc9cfa24772ddc3dd70545bbdf33d28017e857803451b14295fc5bce45f5"
+    },
+    {
+      "canonical_config_sha256": "74a444d8ac7b5104e1bfd2bf5bd47347010e67895850a8b2424c3f0276a30aa7",
+      "family": "CCOLD_TWO_TOWER",
+      "path": "configs/p2/seed_trials/e01-ccold_two_tower-seed20261003.json",
+      "run_id": "E01-CCOLD_TWO_TOWER-SEED20261003",
+      "seed": 20261003,
+      "sha256": "378071aa601f601185b8f3cfb653e6de63865ff97afdf70165626ea553e897d5"
+    },
+    {
+      "canonical_config_sha256": "c3d27704ebe170ffee44a3a7b2c77b68a0716519e5c977952522b39ba3c44818",
+      "family": "CSEQ_BERT4REC",
+      "path": "configs/p2/seed_trials/e01-cseq_bert4rec-seed20261001.json",
+      "run_id": "E01-CSEQ_BERT4REC-SEED20261001",
+      "seed": 20261001,
+      "sha256": "abdee32510ab2756a2968f733574f4ac9834aa48348539d310bc72386e418b0a"
+    },
+    {
+      "canonical_config_sha256": "bbd71ef8424817f9d8eebd50d1db058186f262523ef816fc61f5a05e938aa078",
+      "family": "CSEQ_BERT4REC",
+      "path": "configs/p2/seed_trials/e01-cseq_bert4rec-seed20261002.json",
+      "run_id": "E01-CSEQ_BERT4REC-SEED20261002",
+      "seed": 20261002,
+      "sha256": "d53f6ed0e9c623bc092d1873742f87655c99e663ce3f058f2213998a97a72254"
+    },
+    {
+      "canonical_config_sha256": "7ef506fcd57b1d67deeae8d248c6a221b5fafa6fe4ce725cdd580a2f0c63ee27",
+      "family": "CSEQ_BERT4REC",
+      "path": "configs/p2/seed_trials/e01-cseq_bert4rec-seed20261003.json",
+      "run_id": "E01-CSEQ_BERT4REC-SEED20261003",
+      "seed": 20261003,
+      "sha256": "9cd81193e1f7ee0eff907d12e66336e176b846f81a811b7c8c9ad1781bf3ebd7"
+    },
+    {
+      "canonical_config_sha256": "453e69a94aea144b6d31a2c8b4945610aeb58b2eef05d23e198b3d8356f60a35",
+      "family": "LEGACY_M1",
+      "path": "configs/p2/seed_trials/e01-legacy_m1-seed20261001.json",
+      "run_id": "E01-LEGACY_M1-SEED20261001",
+      "seed": 20261001,
+      "sha256": "d0460d00ba7e1c477286a9ae42cf8f03628691f667da10e943a737f18ca95e05"
+    },
+    {
+      "canonical_config_sha256": "b8ffc849d627dc6ad8685bef88515baabf8a5fc74c649c0be65a88ebb5207adb",
+      "family": "LEGACY_M1",
+      "path": "configs/p2/seed_trials/e01-legacy_m1-seed20261002.json",
+      "run_id": "E01-LEGACY_M1-SEED20261002",
+      "seed": 20261002,
+      "sha256": "ed487ae187adfc06571f07136827fb32f55042a00c6c415b69671a20885bef94"
+    },
+    {
+      "canonical_config_sha256": "005ad6d8d4db12d5e6e8c27fecd0329ee0a56d4daffc3117b8c502ff055aa76f",
+      "family": "LEGACY_M1",
+      "path": "configs/p2/seed_trials/e01-legacy_m1-seed20261003.json",
+      "run_id": "E01-LEGACY_M1-SEED20261003",
+      "seed": 20261003,
+      "sha256": "92f60c26c36e465aea345af7c5143bd4845c9bbb9e99be80dd7093a13beb1b21"
+    },
+    {
+      "canonical_config_sha256": "296d535980bc2480e02f2eab29d16314771f44eed3d6b657af59453c9c5d817e",
+      "family": "LIGHTGCN",
+      "path": "configs/p2/seed_trials/e01-lightgcn-seed20261001.json",
+      "run_id": "E01-LIGHTGCN-SEED20261001",
+      "seed": 20261001,
+      "sha256": "2b92cdd3c2115c70bce0654f09cd8ac7d3ac1052ac034f3d937b654b1bb26bbb"
+    },
+    {
+      "canonical_config_sha256": "49659c258f6ad41f11109dcc0f5ca46d9927a737507aec7a541919e82541bd20",
+      "family": "LIGHTGCN",
+      "path": "configs/p2/seed_trials/e01-lightgcn-seed20261002.json",
+      "run_id": "E01-LIGHTGCN-SEED20261002",
+      "seed": 20261002,
+      "sha256": "d0feab1d0e0a74b7d8c903da5d5fbf2acb32cbb874d447ec8603412b05b5fff7"
+    },
+    {
+      "canonical_config_sha256": "48eb9cc8b78521e144d6a8870e3c93ec35faf05e39675af9c583c5d6641490a8",
+      "family": "LIGHTGCN",
+      "path": "configs/p2/seed_trials/e01-lightgcn-seed20261003.json",
+      "run_id": "E01-LIGHTGCN-SEED20261003",
+      "seed": 20261003,
+      "sha256": "ffd05737be123f615e72131de4a8e9ee54469c8bf1bf54a444f9b661a4662e6f"
+    },
+    {
+      "canonical_config_sha256": "8b3738f6803d3e780713656624f8387ce6a2fb7731cf67e0e351d259ea546d68",
+      "family": "R2",
+      "path": "configs/p2/seed_trials/e01-r2-seed20261001.json",
+      "run_id": "E01-R2-SEED20261001",
+      "seed": 20261001,
+      "sha256": "c2d4e57b3988d49b9f7c708a6d81a25ffd838114c6118d9ef4b03ec91406c519"
+    },
+    {
+      "canonical_config_sha256": "4d731bf38d1c19d82ba309ab2988b3675b0460f3970569bb37e6d9c74d720380",
+      "family": "R2",
+      "path": "configs/p2/seed_trials/e01-r2-seed20261002.json",
+      "run_id": "E01-R2-SEED20261002",
+      "seed": 20261002,
+      "sha256": "a2e67c074242691b8bcab1f5f747bef958a74989ea62d28c7b03e1a425af9ade"
+    },
+    {
+      "canonical_config_sha256": "d51f6a46f76ba570c34afdc5df1856140b3feeec21babe1a87c666516dc4f883",
+      "family": "R2",
+      "path": "configs/p2/seed_trials/e01-r2-seed20261003.json",
+      "run_id": "E01-R2-SEED20261003",
+      "seed": 20261003,
+      "sha256": "32e6dd3950427b056233af1617200fe12023767386785c83de0558c1275bd71d"
+    },
+    {
+      "canonical_config_sha256": "b3e3e29845e95d6f12f0c5d14f5af4ca88e7088f7a6074f97cd9505dfcea0054",
+      "family": "R3",
+      "path": "configs/p2/seed_trials/e01-r3-seed20261001.json",
+      "run_id": "E01-R3-SEED20261001",
+      "seed": 20261001,
+      "sha256": "ed7f64d262f873145e60772bec1cc7d8c525f9a676ef43cd4e495e203acdb38a"
+    },
+    {
+      "canonical_config_sha256": "87ac89ac8c435b1ad3aded2bebb743b17ebd85fbad60c4d2682c15044ccc0f1d",
+      "family": "R3",
+      "path": "configs/p2/seed_trials/e01-r3-seed20261002.json",
+      "run_id": "E01-R3-SEED20261002",
+      "seed": 20261002,
+      "sha256": "4c9aa50a139e0fb080daff874fa7639bbb882b045fd2f0847c8ed93b48ea3bd0"
+    },
+    {
+      "canonical_config_sha256": "943088c2d9c3474cbbf44c9b46e96b8bf88b2b5a4b45232f63ff27c31de44c00",
+      "family": "R3",
+      "path": "configs/p2/seed_trials/e01-r3-seed20261003.json",
+      "run_id": "E01-R3-SEED20261003",
+      "seed": 20261003,
+      "sha256": "95e5fd5538db71104f5d630347adf99ef6578298cb0a34a4826393f22c30e746"
+    },
+    {
+      "canonical_config_sha256": "7a5b74fca47d2de8dcd40aa8e187c3312c900b8e139688213fcd31562969bf8d",
+      "family": "R4",
+      "path": "configs/p2/seed_trials/e01-r4-seed20261001.json",
+      "run_id": "E01-R4-SEED20261001",
+      "seed": 20261001,
+      "sha256": "16b02d83c2679217fca466d2abced540cb6492d21c282c72f4c10cce6ba3ac39"
+    },
+    {
+      "canonical_config_sha256": "eb32ed684ed84a861423582e062d499fad2f035a264c55c2e1baae54f910a989",
+      "family": "R4",
+      "path": "configs/p2/seed_trials/e01-r4-seed20261002.json",
+      "run_id": "E01-R4-SEED20261002",
+      "seed": 20261002,
+      "sha256": "ce07d98906c5083388714d570dce44008e7e3eff90284533e46ff3f98c625ed8"
+    },
+    {
+      "canonical_config_sha256": "8c7fb9182bc17acbbe6b60a12064cfa1b0e83c4c22f1a9c31be0d2aa0bc4b2ef",
+      "family": "R4",
+      "path": "configs/p2/seed_trials/e01-r4-seed20261003.json",
+      "run_id": "E01-R4-SEED20261003",
+      "seed": 20261003,
+      "sha256": "52baa2940c734a0ae59238e0fd5c017a1a4cca593d12276026641c8b0115f7e5"
+    },
+    {
+      "canonical_config_sha256": "24ce780d1e8b47cd0d4698df9e89666b8dce09e658a7cef8ea677cdc4d975238",
+      "family": "SASREC",
+      "path": "configs/p2/seed_trials/e01-sasrec-seed20261001.json",
+      "run_id": "E01-SASREC-SEED20261001",
+      "seed": 20261001,
+      "sha256": "15aa92802c891574d9c2fbff80a1926576c04e54fe4f414f9977f82511340b9a"
+    },
+    {
+      "canonical_config_sha256": "43c560b1f3cca81c76f1c2d3982fcff01b53b58941d193c25b8792973ae6265b",
+      "family": "SASREC",
+      "path": "configs/p2/seed_trials/e01-sasrec-seed20261002.json",
+      "run_id": "E01-SASREC-SEED20261002",
+      "seed": 20261002,
+      "sha256": "c6fdd985cb399beda1ac851bfe8372b07e30137d71959aff0195c91bd6fe96a8"
+    },
+    {
+      "canonical_config_sha256": "4c5464df23598007ab0e06559bedfa67da69f9c8342e34b63761e8aada9db311",
+      "family": "SASREC",
+      "path": "configs/p2/seed_trials/e01-sasrec-seed20261003.json",
+      "run_id": "E01-SASREC-SEED20261003",
+      "seed": 20261003,
+      "sha256": "491734fc62ec266df02bd488ae918d8b94313ebb67a39a2e9148ab083e2f71c8"
+    },
+    {
+      "canonical_config_sha256": "4816974d8f3ab3541f8ba091c7fd480f1488806cf147c62f0b281f9fd06943f6",
+      "family": "VBPR",
+      "path": "configs/p2/seed_trials/e01-vbpr-seed20261001.json",
+      "run_id": "E01-VBPR-SEED20261001",
+      "seed": 20261001,
+      "sha256": "1c5241ec087393d9c03bc07bef868b504adfdf885be6dbfa86e61ec5dd0be61e"
+    },
+    {
+      "canonical_config_sha256": "1665f8ca8eb47889aa77d5a87feb3a95aeb6bd9103c283b812d1772638f70a15",
+      "family": "VBPR",
+      "path": "configs/p2/seed_trials/e01-vbpr-seed20261002.json",
+      "run_id": "E01-VBPR-SEED20261002",
+      "seed": 20261002,
+      "sha256": "a7dffbec15db1ce9d7d256626bb94a0a24ea095fa0cb1dd65a900c8de38d781c"
+    },
+    {
+      "canonical_config_sha256": "2a57dd7fba7b79e489e13abf8645a06fd7d8dd310b970af859638750d3869278",
+      "family": "VBPR",
+      "path": "configs/p2/seed_trials/e01-vbpr-seed20261003.json",
+      "run_id": "E01-VBPR-SEED20261003",
+      "seed": 20261003,
+      "sha256": "8ba2f17dbaca99721d675d5e15ac943b2b6bdd62980587399d1d47dd0c581230"
+    }
+  ],
+  "source_hashes": {
+    "hpo": "2297c0b0953ab3e5f496b87198d6d1a2b0f110396aeb7c9cfa4204d8ad92ce71",
+    "pre_router_manifest": "db6fe0702d6fdece2ee99acb4d60162ed1ec9e7ffab237da798ffb25984f77d6",
+    "pre_router_summary": "905510572b723820d7c82f652c1e04d4538835eb4e16fbf13f4fa427e3b9012a",
+    "router_manifest": "019fbba4eac6a92e88545d1c4ba46bff8d3d81d42f16b3aa01695f1348e6948d",
+    "router_summary": "06a53de0f0180f9c7d13ab10628a2ad465021b94e584085a3f1705901dadfa9f"
+  },
+  "stage_id": "P2-E01-CONFIG-MATERIALIZATION",
+  "status": "PASS"
+}

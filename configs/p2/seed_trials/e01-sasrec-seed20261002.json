@@ -1,0 +1,33 @@
+{
+  "common": {
+    "batch_size": 256,
+    "bf16": true,
+    "epochs": 10,
+    "exact_validation_scoring": true,
+    "learning_rate": 0.0003,
+    "max_length": 50,
+    "negatives_per_user": 10,
+    "score_batch_size": 128,
+    "weight_decay": 0.0001,
+    "width": 64
+  },
+  "evidence_class": "p2_measured_development_independent_seed",
+  "family": "SASREC",
+  "models": {
+    "SASREC": {
+      "dropout": 0.2,
+      "heads": 4,
+      "layers": 2,
+      "model_id": "E01-SASREC-SEED20261002",
+      "stage_id": "P2-E01"
+    }
+  },
+  "protected_roles_opened": [],
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "seed": 20261002,
+  "selected_hpo_config_sha256": "7697d84bf852ef2360ad7f718e21f42311ebfc7667953df8db4a4de6e887edb5",
+  "selected_hpo_trial_id": "SASREC_T1",
+  "stage": "P2-E00",
+  "stage_id": "P2-E01",
+  "trial_id": "E01-SASREC-SEED20261002"
+}

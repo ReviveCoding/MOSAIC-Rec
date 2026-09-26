@@ -1,0 +1,31 @@
+{
+  "common": {
+    "batch_size": 256,
+    "bf16": true,
+    "epochs": 10,
+    "exact_validation_scoring": true,
+    "learning_rate": 0.003,
+    "max_length": 50,
+    "negatives_per_user": 10,
+    "score_batch_size": 128,
+    "weight_decay": 0.0001,
+    "width": 64
+  },
+  "evidence_class": "p2_measured_development_independent_seed",
+  "family": "LIGHTGCN",
+  "models": {
+    "LIGHTGCN": {
+      "layers": 2,
+      "model_id": "E01-LIGHTGCN-SEED20261002",
+      "stage_id": "P2-E01"
+    }
+  },
+  "protected_roles_opened": [],
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "seed": 20261002,
+  "selected_hpo_config_sha256": "dbe77e8703105164f9980c8e7e7bbd8d737a6762ca5611d3f1d2d6106df0eb2b",
+  "selected_hpo_trial_id": "LIGHTGCN_T3",
+  "stage": "P2-E00",
+  "stage_id": "P2-E01",
+  "trial_id": "E01-LIGHTGCN-SEED20261002"
+}
