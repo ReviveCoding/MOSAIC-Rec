@@ -19,8 +19,8 @@ from mosaic_rec.p2.warehouse import validate
 
 def prequalification_guard(repo: Path) -> dict[str, Any]:
     status = load_json(repo / "evidence/p2/stage_status.json")
-    if status.get("scientific_state") != "DEVELOPMENT":
-        raise RuntimeError("Guard requires committed DEVELOPMENT state")
+    if status.get("scientific_state") not in {"DEVELOPMENT", "QUALIFICATION"}:
+        raise RuntimeError("Guard requires a committed pre-outcome state")
     if (
         status.get("qualification_access_count") != 0
         or status.get("locked_final_access_count") != 0
@@ -34,7 +34,7 @@ def prequalification_guard(repo: Path) -> dict[str, Any]:
     head = subprocess.check_output(
         ["git", "rev-parse", "HEAD"], cwd=repo, text=True
     ).strip()
-    freeze_path = repo / "configs/p2/prequalification_freeze_v2.json"
+    freeze_path = repo / "configs/p2/prequalification_freeze_v3.json"
     frozen = load_json(freeze_path)
     rebuilt = build_prequalification_freeze(repo)
     if canonical_json_sha256(frozen) != canonical_json_sha256(rebuilt):
@@ -60,6 +60,6 @@ def prequalification_guard(repo: Path) -> dict[str, Any]:
         "warehouse_validation": warehouse,
         "p1_immutable_hashes": verify_p1_immutable(repo),
         "protected_access_counts": {"QUALIFICATION": 0, "LOCKED_FINAL": 0},
-        "authorized_next_transition": "QUALIFICATION",
+        "authorized_next_transition": "QUALIFICATION_SCORING",
         "protected_roles_opened": [],
     }

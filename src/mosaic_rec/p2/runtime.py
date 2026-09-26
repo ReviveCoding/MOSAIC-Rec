@@ -82,6 +82,9 @@ def exact_score(
     output: Path,
     batch_size: int,
     top_k: int = 100,
+    config_id: str | None = None,
+    diagnostic_batch: Callable[[list[str], list[int]], dict[str, list[Any]]]
+    | None = None,
 ) -> dict[str, Any]:
     if output.exists():
         raise FileExistsError(output)
@@ -102,12 +105,28 @@ def exact_score(
         "top100_item_ids": [],
         "top100_scores": [],
         "model_id": [],
+        "config_id": [],
         "protocol_id": [],
         "fit_support": [],
+        "item_fit_support": [],
         "is_controlled_zero": [],
         "is_natural_zero": [],
         "is_warm": [],
     }
+    diagnostic_names = (
+        "router_weight",
+        "sequence_score",
+        "content_score",
+        "item_age_days",
+        "user_fit_history_length",
+        "user_recency_days",
+        "user_tail_share",
+        "image_present",
+        "text_present",
+    )
+    if diagnostic_batch is not None:
+        for name in diagnostic_names:
+            rows[name] = []
     ndcg_sums = defaultdict(float)
     count_sums = defaultdict(int)
     start = time.perf_counter()
@@ -154,6 +173,9 @@ def exact_score(
             top_scores, top_indices = scores.topk(top_k, dim=1)
             top_scores_list = top_scores.cpu().tolist()
             top_indices_list = top_indices.cpu().tolist()
+            diagnostics = (
+                diagnostic_batch(users, targets) if diagnostic_batch is not None else {}
+            )
             for local, user in enumerate(users):
                 global_row = offset + local
                 rank = int(ranks[local])
@@ -191,11 +213,16 @@ def exact_score(
                 rows["top100_item_ids"].append([item_ids[index] for index in indices])
                 rows["top100_scores"].append(values)
                 rows["model_id"].append(model_id)
+                rows["config_id"].append(config_id or model_id)
                 rows["protocol_id"].append(PROTOCOL_ID)
                 rows["fit_support"].append(queries["fit_interactions"][global_row])
+                rows["item_fit_support"].append(queries["fit_interactions"][global_row])
                 rows["is_controlled_zero"].append(controlled)
                 rows["is_natural_zero"].append(natural)
                 rows["is_warm"].append(warm)
+                for name in diagnostic_names:
+                    if diagnostic_batch is not None:
+                        rows[name].append(diagnostics[name][local])
     torch.cuda.synchronize()
     output.parent.mkdir(parents=True, exist_ok=True)
     pq.write_table(pa.table(rows), output, compression="zstd")

@@ -51,8 +51,8 @@ def _candidate(repo: Path, identity: dict[str, Any]) -> dict[str, Any]:
 
 def build_prequalification_freeze(repo: Path) -> dict[str, Any]:
     status = load_json(repo / "evidence/p2/stage_status.json")
-    if status.get("scientific_state") != "DEVELOPMENT":
-        raise RuntimeError("Pre-QUALIFICATION freeze requires DEVELOPMENT")
+    if status.get("scientific_state") not in {"DEVELOPMENT", "QUALIFICATION"}:
+        raise RuntimeError("Pre-QUALIFICATION freeze requires a pre-outcome state")
     if (
         status.get("qualification_access_count") != 0
         or status.get("locked_final_access_count") != 0
@@ -97,12 +97,15 @@ def build_prequalification_freeze(repo: Path) -> dict[str, Any]:
         "src/mosaic_rec/p2/slices.py",
         "src/mosaic_rec/p2/robustness.py",
         "src/mosaic_rec/p2/ablations.py",
+        "src/mosaic_rec/p2/qualification.py",
+        "src/mosaic_rec/p2/runtime.py",
+        "scripts/p2/score_qualification.py",
     ]
     return {
         "protocol_id": PROTOCOL_ID,
         "stage_id": "P2-E02-PREQUALIFICATION-FREEZE",
         "status": "FROZEN_FOR_QUALIFICATION_ACCESS",
-        "scientific_state": "DEVELOPMENT",
+        "scientific_state": status["scientific_state"],
         "protected_access_counts": {"QUALIFICATION": 0, "LOCKED_FINAL": 0},
         "alignment": {
             "alignment_id": "ALIGN_RANK",
