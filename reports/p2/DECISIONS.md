@@ -176,3 +176,10 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 - Apply the frozen no-best-seed rule. Subsequent protected scoring must use the preregistered arithmetic mean of aligned scores from all three independent-seed checkpoints.
 - Retain `ALIGN_RANK` and the already frozen metric, slice, robustness, ablation, and statistics definitions. The seed summary does not select a seed and does not open either protected role.
 - Treat the observed stability differences as development evidence only. In particular, preserve R3's high controlled-zero variability and every unfavorable family result; do not use them to alter the HPO space or seed policy.
+
+## 2026-09-26 — pre-QUALIFICATION freeze
+
+- Freeze the `CSEQ_BERT4REC`, `CCOLD_TWO_TOWER`, `R2`, `R3`, and `R4` three-seed ensemble identities, including every config, checkpoint, VALIDATION output, receipt path, and SHA-256.
+- Freeze `ALIGN_RANK` and the arithmetic three-seed score ensemble. The HPO seed remains excluded and no best seed is selected.
+- Freeze the warm noninferiority margin at `0.001320914873267875`, exactly 10% of the C_seq three-seed VALIDATION warm NDCG@20 mean `0.013209148732678748`.
+- Amendment 003 makes cross-family router selection executable by reusing the already frozen router objective and declared tie rules. It adds no candidate, metric, population, or outcome-dependent choice and occurs with both protected counters at zero.

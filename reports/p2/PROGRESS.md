@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-Crash recovery, the development model ladder, score alignment, equal-budget HPO, and all 30 frozen independent-seed runs are complete. P2-E01 is `PASS_DEVELOPMENT`; the next action is to materialize the already-preregistered comparator/router ensemble identities and validate every pre-QUALIFICATION freeze gate before protected access.
+Crash recovery, the development model ladder, score alignment, equal-budget HPO, and all 30 frozen independent-seed runs are complete. P2-E01 is `PASS_DEVELOPMENT`; the comparator/router ensemble identities and pre-QUALIFICATION contracts are frozen. The next action is the clean committed protocol guard before opening QUALIFICATION.
 
 ## Completed
 
@@ -70,7 +70,7 @@ Crash recovery, the development model ladder, score alignment, equal-budget HPO,
 
 ## Active next action
 
-Materialize and commit the preregistered three-seed ensemble identities for comparator and router qualification preparation, then run the clean pre-QUALIFICATION protocol guard. QUALIFICATION and LOCKED_FINAL remain unopened.
+Commit the pre-QUALIFICATION freeze, run the clean protocol guard, and only then transition to QUALIFICATION scoring. LOCKED_FINAL remains unopened.
 
 ## 2026-09-25 reboot recovery
 

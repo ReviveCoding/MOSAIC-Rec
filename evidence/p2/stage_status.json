@@ -26,6 +26,7 @@
     "P2-B03-ALIGNMENT-DEVELOPMENT": {"status": "PASS_DEVELOPMENT", "summary": "all nine frozen VALIDATION candidates passed with verified hashes; frozen selection rule chose ALIGN_RANK"},
     "P2-E00": {"status": "PASS_DEVELOPMENT", "summary": "all 30 frozen HPO trials passed; router rule selected R2_T3, R3_T3, and R4_T1; receipt stage-label defect preserved and audited"},
     "P2-E01": {"status": "PASS_DEVELOPMENT", "summary": "all 30 frozen independent-seed runs passed and were hash-validated; deterministic summary uses all three seeds with no best-seed selection"},
+    "P2-E02": {"status": "FROZEN_PENDING_QUALIFICATION", "summary": "C_seq, C_cold, R2, R3, and R4 three-seed ensemble identities, ALIGN_RANK, selection rule, numeric warm margin, and pre-access contracts are frozen; protected access remains zero"},
     "P2-D01": {"status": "PASS_DEVELOPMENT", "summary": "R1 preserved warm quality but scored zero on controlled-zero validation under standardized alignment"},
     "P2-D02": {"status": "PASS_DEVELOPMENT", "summary": "R2 achieved 0.014892 warm NDCG@20 but zero controlled-zero NDCG@20"},
     "P2-D03": {"status": "PASS_DEVELOPMENT", "summary": "attempt 3 completed on CUDA after the sustained idle gate; exact validation NDCG@20 was 0.001939 overall, 0 controlled zero, 0.000131 natural zero, and 0.013539 warm"},

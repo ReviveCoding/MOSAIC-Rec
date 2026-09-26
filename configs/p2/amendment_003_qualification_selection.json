@@ -1,0 +1,10 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "amendment_id": "P2-AMENDMENT-003",
+  "status": "IMPLEMENTATION_CLARIFICATION_BEFORE_QUALIFICATION",
+  "scientific_semantics_changed": false,
+  "protected_access_counts": {"QUALIFICATION": 0, "LOCKED_FINAL": 0},
+  "clarification": "The cross-family QUALIFICATION router selection reuses the already frozen router HPO objective: maximize min(controlled_zero/C_cold - 1, warm/C_seq - 1 + 0.10), with the declared zero-denominator rule; ties use overall NDCG@20 then family_id ascending.",
+  "scope": "Makes the preregistered one-router-finalist selection executable without adding a model, metric, population, or outcome-dependent choice.",
+  "protected_roles_opened": []
+}
