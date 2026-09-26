@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-Crash recovery, the development model ladder, score alignment, and all 21 frozen pre-router HPO trials are complete. P2-E00 remains in progress for the preregistered router families.
+Crash recovery, the development model ladder, score alignment, and all 30 frozen HPO trials are complete. P2-E00 is `PASS_DEVELOPMENT`; P2-E01 independent-seed materialization is next.
 
 ## Completed
 
@@ -62,7 +62,7 @@ Crash recovery, the development model ladder, score alignment, and all 21 frozen
 
 ## Active next action
 
-Materialize and audit the preregistered router HPO configurations using the selected `ALIGN_RANK` and completed pre-router family summary, then continue the frozen router grid.
+Materialize and commit the preregistered P2-E01 independent-seed identities from the completed summaries before executing any seed run.
 
 ## 2026-09-25 reboot recovery
 
@@ -91,6 +91,9 @@ Materialize and audit the preregistered router HPO configurations using the sele
 - `LIGHTGCN_T3` attempt 2 completed all 10 scheduled epochs and exact scoring. Checkpoint/output hashes are `8d815882c5db85863c7653d6b29f9859333558d48ec07c4bbe6d95ed96415a6e` and `c0f08ce27a447e6c1700337c238b765501272c46b65529f9f67ebed5e4dcf65a`; the distinct attempt-2 log hash is `f79454e93aac6db96ab336fd18d2191acd30da76e4b4c2b9ae2a5bb05c886aed`.
 - Timestamped monitoring found no new field-spanning/FORTIFY warning, CUDA error, device-not-ready failure, or loss of process liveness during attempt 2. The monitor log is preserved in scratch at SHA-256 `ef9c47be521686d1ad96841291150b3e696e33898f2f00d41ac04b5b9029233b`. Routine `dxgkio_escape -22` lines were observed and are not reclassified as the specified failure signature.
 - All 21 pre-router HPO receipts and artifact hashes validate. The deterministic summary selected `CSEQ_T1`, `CCOLD_T2`, `LEGACY_T3`, `BPR_T3`, `LIGHTGCN_T3`, `SASREC_T1`, and `VBPR_T3` within their families. This is DEVELOPMENT selection only.
+- All nine router receipts are terminal PASS. Frozen config, checkpoint, and VALIDATION output hashes match; the selection seed is `20260930`; early-stopped runs completed 6 or 9 of the scheduled maximum 10 epochs; protected counters remain zero.
+- The frozen router rule selected `R2_T3`, `R3_T3`, and `R4_T1` within their families. All router selection scores are negative, preserving the unfavorable two-sided tradeoff rather than presenting family selection as gate success.
+- The router receipts inherited pilot `stage_id` labels despite P2-E00 config identities. Existing receipts remain immutable; `p2-e00-router-stage-label-audit.json` records the metadata-only defect, and future gate receipts use the frozen top-level stage label.
 
 ## Protected access counters
 

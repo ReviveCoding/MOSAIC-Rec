@@ -1,0 +1,91 @@
+{
+  "best_epoch": 1,
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/r3_t1.pt",
+  "checkpoint_sha256": "34b60f8e13bbbdcb14e599786622cfd9ec1a30e1379018804ef5964b927d00b2",
+  "config_sha256": "13907fbf3eba418030d6975b109b58ddac882ebf957bfd1991bd84798a11bb84",
+  "content_checkpoint_sha256": "f2f577903f62307b332b8f263ac783c50fc67c86c21ede96255456fa291e1c1e",
+  "epochs_completed": 6,
+  "evidence_class": "p2_measured_development_router_pilot",
+  "family": "R3",
+  "git_commit": "00167f7c91b961e4966d189e55fd7ac1bcf2f47a",
+  "gpu_qualification": {
+    "bf16_supported": true,
+    "cuda_runtime": "13.0",
+    "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+    "tensor_result": 5590357.0,
+    "torch": "2.14.0+cu130",
+    "vram_bytes": 17170956288
+  },
+  "ladder_config_sha256": "13907fbf3eba418030d6975b109b58ddac882ebf957bfd1991bd84798a11bb84",
+  "model_id": "R3_T1",
+  "peak_vram_bytes": 1837876736,
+  "pilot_config_sha256": "f21a8e4249bc2250d6d485f29348ae9c02b0d9b770eb546ae0b914fcad30604a",
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "router": "R3",
+  "seed": 20260930,
+  "sequence_checkpoint_sha256": "caf0be56933d5a13d3206e28b33bdff12e7c05644d15ee2e8a437a3a689cfdb3",
+  "stage_id": "P2-D03-PILOT",
+  "status": "PASS",
+  "stopping_reason": "early_stopping_patience",
+  "train_seconds": 340.65531325400025,
+  "training_examples": 47898,
+  "training_log": [
+    {
+      "epoch": 1,
+      "loss": 0.4998452710958009,
+      "validation_ndcg_at_20": 0.007222153668170236
+    },
+    {
+      "epoch": 2,
+      "loss": 0.4886473544858792,
+      "validation_ndcg_at_20": 0.007049512611775406
+    },
+    {
+      "epoch": 3,
+      "loss": 0.48141705634061455,
+      "validation_ndcg_at_20": 0.006657827020138072
+    },
+    {
+      "epoch": 4,
+      "loss": 0.478172620117622,
+      "validation_ndcg_at_20": 0.0063651198106204785
+    },
+    {
+      "epoch": 5,
+      "loss": 0.4767698712578208,
+      "validation_ndcg_at_20": 0.006045804662677841
+    },
+    {
+      "epoch": 6,
+      "loss": 0.47609785403745986,
+      "validation_ndcg_at_20": 0.005880516972479153
+    }
+  ],
+  "trial_id": "R3_T1",
+  "validation": {
+    "output": "/home/bjw-0/mosaic-rec-work/p2/hpo/results/r3_t1_validation.parquet",
+    "output_sha256": "8f4d75bd0eeb7e2e1a8326a5ef295456d49ee7a03981a9b0a600ea157dcdc23f",
+    "role": "VALIDATION",
+    "rows": 27918,
+    "seconds": 51.84115560999999,
+    "slices": {
+      "all": {
+        "n": 27918,
+        "ndcg_at_20": 0.007222153668170236
+      },
+      "controlled_zero": {
+        "n": 458,
+        "ndcg_at_20": 0.013562449382498589
+      },
+      "natural_zero": {
+        "n": 17866,
+        "ndcg_at_20": 0.009911070248486179
+      },
+      "warm": {
+        "n": 3808,
+        "ndcg_at_20": 0.004655054230355329
+      }
+    },
+    "users_per_second": 538.5296355468621
+  }
+}

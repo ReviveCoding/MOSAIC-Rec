@@ -1,0 +1,341 @@
+{
+  "evidence_class": "p2_measured_development_router_hpo_summary",
+  "families": {
+    "R2": {
+      "selection": {
+        "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/r2_t3.pt",
+        "checkpoint_sha256": "4a762a90f37d2e3366ebc3be81bb9a5c7a1286d5af7e9f6b397a30013fb8d09b",
+        "router_selection_score": -0.5670990556334219,
+        "selected_trial_id": "R2_T3",
+        "status": "SELECTED_DEVELOPMENT",
+        "validation": {
+          "all": {
+            "n": 27918,
+            "ndcg_at_20": 0.007227305530512713
+          },
+          "controlled_zero": {
+            "n": 458,
+            "ndcg_at_20": 0.013562449382498589
+          },
+          "natural_zero": {
+            "n": 17866,
+            "ndcg_at_20": 0.009936023932195052
+          },
+          "warm": {
+            "n": 3808,
+            "ndcg_at_20": 0.004575749393100745
+          }
+        }
+      },
+      "trials": [
+        {
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/r2_t1.pt",
+          "checkpoint_sha256": "f3a1808779d0357bdb4cf46d37c113280950753395e1850e6b5ba69aa2dc3503",
+          "cold_gate_term": 4.044430501369005,
+          "router_selection_score": -0.595341087828575,
+          "status": "PASS",
+          "trial_id": "R2_T1",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.007254821698858818
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.013562449382498589
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.010060849098768344
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.0041875604622378685
+            }
+          },
+          "warm_gate_term": -0.595341087828575
+        },
+        {
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/r2_t2.pt",
+          "checkpoint_sha256": "9b6002b2a60f58f91cc62ba3ef1d38866467583de3109326508b71d60f59dd40",
+          "cold_gate_term": 4.044430501369005,
+          "router_selection_score": -0.5961070201710037,
+          "status": "PASS",
+          "trial_id": "R2_T2",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.0072560497438523735
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.013562449382498589
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.010065012001559088
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.004177032662571537
+            }
+          },
+          "warm_gate_term": -0.5961070201710037
+        },
+        {
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/r2_t3.pt",
+          "checkpoint_sha256": "4a762a90f37d2e3366ebc3be81bb9a5c7a1286d5af7e9f6b397a30013fb8d09b",
+          "cold_gate_term": 4.044430501369005,
+          "router_selection_score": -0.5670990556334219,
+          "status": "PASS",
+          "trial_id": "R2_T3",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.007227305530512713
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.013562449382498589
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.009936023932195052
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.004575749393100745
+            }
+          },
+          "warm_gate_term": -0.5670990556334219
+        }
+      ]
+    },
+    "R3": {
+      "selection": {
+        "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/r3_t3.pt",
+        "checkpoint_sha256": "0be4330bc4451035a6ec3b2115d228505cd4a7d90752093f6c09c40b7a7dc569",
+        "router_selection_score": -0.0918582287796671,
+        "selected_trial_id": "R3_T3",
+        "status": "SELECTED_DEVELOPMENT",
+        "validation": {
+          "all": {
+            "n": 27918,
+            "ndcg_at_20": 0.002899240342669534
+          },
+          "controlled_zero": {
+            "n": 458,
+            "ndcg_at_20": 0.0024416288024913368
+          },
+          "natural_zero": {
+            "n": 17866,
+            "ndcg_at_20": 0.0016730789945375215
+          },
+          "warm": {
+            "n": 3808,
+            "ndcg_at_20": 0.012953761841107945
+          }
+        }
+      },
+      "trials": [
+        {
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/r3_t1.pt",
+          "checkpoint_sha256": "34b60f8e13bbbdcb14e599786622cfd9ec1a30e1379018804ef5964b927d00b2",
+          "cold_gate_term": 4.044430501369005,
+          "router_selection_score": -0.5613293656992014,
+          "status": "PASS",
+          "trial_id": "R3_T1",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.007222153668170236
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.013562449382498589
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.009911070248486179
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.004655054230355329
+            }
+          },
+          "warm_gate_term": -0.5613293656992014
+        },
+        {
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/r3_t2.pt",
+          "checkpoint_sha256": "4d5993300168ce6cbf0d8c0dd1799df6fd07131adb811c394b47d38c8cabacee",
+          "cold_gate_term": 3.7363650591863635,
+          "router_selection_score": -0.21621882716091748,
+          "status": "PASS",
+          "trial_id": "R3_T2",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.00626380585920267
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.012734185029373844
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.007421491253198634
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.00939862544573264
+            }
+          },
+          "warm_gate_term": -0.21621882716091748
+        },
+        {
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/r3_t3.pt",
+          "checkpoint_sha256": "0be4330bc4451035a6ec3b2115d228505cd4a7d90752093f6c09c40b7a7dc569",
+          "cold_gate_term": -0.0918582287796671,
+          "router_selection_score": -0.0918582287796671,
+          "status": "PASS",
+          "trial_id": "R3_T3",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.002899240342669534
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.0024416288024913368
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.0016730789945375215
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.012953761841107945
+            }
+          },
+          "warm_gate_term": 0.04242913663642453
+        }
+      ]
+    },
+    "R4": {
+      "selection": {
+        "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/r4_t1.pt",
+        "checkpoint_sha256": "14d8d5a4aa86f9dd02cf8e9af239ade9b65a9e276e216636aaf7e7e3865c3e71",
+        "router_selection_score": -0.23993412123677957,
+        "selected_trial_id": "R4_T1",
+        "status": "SELECTED_DEVELOPMENT",
+        "validation": {
+          "all": {
+            "n": 27918,
+            "ndcg_at_20": 0.006373561299229578
+          },
+          "controlled_zero": {
+            "n": 458,
+            "ndcg_at_20": 0.012734185029373844
+          },
+          "natural_zero": {
+            "n": 17866,
+            "ndcg_at_20": 0.007675219614974166
+          },
+          "warm": {
+            "n": 3808,
+            "ndcg_at_20": 0.009072656882677624
+          }
+        }
+      },
+      "trials": [
+        {
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/r4_t1.pt",
+          "checkpoint_sha256": "14d8d5a4aa86f9dd02cf8e9af239ade9b65a9e276e216636aaf7e7e3865c3e71",
+          "cold_gate_term": 3.7363650591863635,
+          "router_selection_score": -0.23993412123677957,
+          "status": "PASS",
+          "trial_id": "R4_T1",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.006373561299229578
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.012734185029373844
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.007675219614974166
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.009072656882677624
+            }
+          },
+          "warm_gate_term": -0.23993412123677957
+        },
+        {
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/r4_t2.pt",
+          "checkpoint_sha256": "c17f4093587b46c21f03f1df87e3aabd0a6aeabe7ced234bf984e6acc5583157",
+          "cold_gate_term": 3.7620100191678025,
+          "router_selection_score": -0.2708818671433626,
+          "status": "PASS",
+          "trial_id": "R4_T2",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.006407182428595539
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.012803134035920784
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.00781665585971356
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.008647277706240237
+            }
+          },
+          "warm_gate_term": -0.2708818671433626
+        },
+        {
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/r4_t3.pt",
+          "checkpoint_sha256": "ff941ce9dc04e297630af96e8deb98e3bdb0a74d4558a96836873064119ad162",
+          "cold_gate_term": 3.778449940807776,
+          "router_selection_score": -0.3143480819293425,
+          "status": "PASS",
+          "trial_id": "R4_T3",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.00643804257225059
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.01284733438817737
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.00799108695915414
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.008049831200626472
+            }
+          },
+          "warm_gate_term": -0.3143480819293425
+        }
+      ]
+    }
+  },
+  "manifest_sha256": "019fbba4eac6a92e88545d1c4ba46bff8d3d81d42f16b3aa01695f1348e6948d",
+  "pre_router_summary_sha256": "905510572b723820d7c82f652c1e04d4538835eb4e16fbf13f4fa427e3b9012a",
+  "protected_roles_opened": [],
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-E00-ROUTER-SUMMARY",
+  "status": "PASS_DEVELOPMENT"
+}

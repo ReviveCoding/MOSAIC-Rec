@@ -163,3 +163,9 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 
 - Attempt 2 passed without the predeclared same-time failure signature. Preserve attempt 1 as `INTERRUPTED_UNATTRIBUTED`, accept attempt 2 as the terminal scientific result, and continue the frozen queue without a WSL/kernel amendment.
 - The completed 21-trial pre-router grid uses the frozen family selection rule. Its selected identities remain DEVELOPMENT inputs to router HPO and do not open QUALIFICATION.
+
+## 2026-09-26 — router HPO closure
+
+- Apply the preregistered two-sided router objective and tie rule unchanged. Select `R2_T3`, `R3_T3`, and `R4_T1` within their families for independent-seed stability; no family is promoted at this stage.
+- Preserve the negative router selection scores and every trial result. The scores show that no router simultaneously matched both development comparators under the frozen objective.
+- Preserve all nine original receipts with their inherited pilot stage labels. Record the mismatch as a metadata defect, retain the P2-E00 config hashes as the scientific identity, and correct only future receipt generation.

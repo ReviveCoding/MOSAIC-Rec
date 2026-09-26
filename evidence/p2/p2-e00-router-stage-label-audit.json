@@ -1,0 +1,24 @@
+{
+  "classification": "METADATA_LABEL_DEFECT",
+  "evidence_class": "p2_engineering_audit",
+  "expected_stage_id": "P2-E00",
+  "finding": "All nine router HPO receipts inherited their family pilot stage label even though their frozen configs, trial identities, selection seed, and evidence class identify P2-E00 HPO.",
+  "impact": "Receipt stage label only; no model, data, seed, training, scoring, metric, selection objective, or protected-access semantics changed.",
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "protected_roles_opened": [],
+  "receipts": {
+    "R2_T1": "P2-D02-PILOT",
+    "R2_T2": "P2-D02-PILOT",
+    "R2_T3": "P2-D02-PILOT",
+    "R3_T1": "P2-D03-PILOT",
+    "R3_T2": "P2-D03-PILOT",
+    "R3_T3": "P2-D03-PILOT",
+    "R4_T1": "P2-D04-PILOT",
+    "R4_T2": "P2-D04-PILOT",
+    "R4_T3": "P2-D04-PILOT"
+  },
+  "remediation": "Preserve existing receipts unchanged. Future gate receipts use the top-level frozen config stage_id when present.",
+  "stage_id": "P2-E00-AUDIT",
+  "status": "PASS_WITH_METADATA_WARNING",
+  "valid_for_development_selection": true
+}
