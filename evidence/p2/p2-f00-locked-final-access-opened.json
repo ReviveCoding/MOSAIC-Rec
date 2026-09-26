@@ -1,0 +1,24 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-F00-LOCKED-FINAL-ACCESS",
+  "status": "OPENED_ONCE",
+  "protected_role": "LOCKED_FINAL",
+  "opened_utc": "2026-09-26T15:43:28Z",
+  "authorizing_guard_path": "evidence/p2/p2-e05-guard.json",
+  "authorizing_guard_sha256": "7d218ce9e7fefa63e5cd2237c58984bbd722e235ad0c8ed633e0a6c1aa57cf2e",
+  "authorizing_git_commit": "d02a792148aa289140137896db48ed54c50bd72d",
+  "e05_manifest_path": "evidence/p2/e05_freeze_manifest.json",
+  "e05_manifest_sha256": "15233342edf761c957f061e5ff72323feda8cdcfae9119e8a464fc046c509de7",
+  "qualification_access_count": 1,
+  "locked_final_access_count": 1,
+  "authorized_families": [
+    "CSEQ_BERT4REC",
+    "CCOLD_TWO_TOWER",
+    "R4"
+  ],
+  "protected_roles_opened": [
+    "QUALIFICATION",
+    "LOCKED_FINAL"
+  ],
+  "scoring_started": false
+}

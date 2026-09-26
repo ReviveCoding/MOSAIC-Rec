@@ -19,11 +19,11 @@ def test_protocol_identity_and_protected_roles() -> None:
     status = load_stage_status(repo)
     assert status["protocol_id"] == PROTOCOL_ID
     assert status["qualification_access_count"] == 1
-    assert status["locked_final_access_count"] == 0
+    assert status["locked_final_access_count"] == 1
     assert_outcome_access(repo, "VALIDATION")
-    assert_outcome_access(repo, "QUALIFICATION")
     with pytest.raises(PermissionError):
-        assert_outcome_access(repo, "LOCKED_FINAL")
+        assert_outcome_access(repo, "QUALIFICATION")
+    assert_outcome_access(repo, "LOCKED_FINAL")
 
 
 def test_preregistered_configs_are_p2_only() -> None:

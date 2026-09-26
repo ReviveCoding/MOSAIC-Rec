@@ -71,7 +71,12 @@ Development and QUALIFICATION are complete. C_seq, C_cold, R2, R3, and R4 were e
 
 ## Active next action
 
-E05 is complete and its clean guard passed. The protocol remains FROZEN with protected counts `1/0`; LOCKED_FINAL is sealed. The next separate transition may open it once under the recorded guard authorization.
+LOCKED_FINAL access is opened exactly once under the committed E05 guard. Protected counts are now `1/1`; F00 scoring has not yet started at this separately committed boundary.
+
+## 2026-09-26 — one-time LOCKED_FINAL access
+
+- Revalidated Git `d02a792148aa289140137896db48ed54c50bd72d`, a clean worktree, exact E05 rederivation, p1 immutability, warehouse PASS, absence of prior locked artifacts, GPU idleness, flock availability, and a real finite CUDA tensor operation.
+- Opened LOCKED_FINAL once at `2026-09-26T15:43:28Z` for only `CSEQ_BERT4REC`, `CCOLD_TWO_TOWER`, and R4. No scoring occurred before this receipt and state transition.
 
 ## 2026-09-26 — E05 complete freeze manifest
 

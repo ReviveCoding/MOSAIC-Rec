@@ -1,10 +1,10 @@
 {
   "protocol_id": "mosaic-rec-2026-09-23-p2",
-  "scientific_state": "FROZEN",
-  "updated_utc": "2026-09-26T09:25:00Z",
+  "scientific_state": "LOCKED_EXECUTION",
+  "updated_utc": "2026-09-26T15:43:28Z",
   "frozen_manifest_sha256": "15233342edf761c957f061e5ff72323feda8cdcfae9119e8a464fc046c509de7",
   "qualification_access_count": 1,
-  "locked_final_access_count": 0,
+  "locked_final_access_count": 1,
   "stages": {
     "P2-A00": {"status": "PASS", "summary": "Preregistration and independent protocol identity created before model execution"},
     "P2-A01": {"status": "PASS_WITH_HOLD", "summary": "Official PixelRec and MovieLens terms rechecked; raw covers held; text feature identity open"},
@@ -30,7 +30,8 @@
     "P2-E02": {"status": "PASS_QUALIFICATION", "summary": "frozen C_seq BERT4Rec and C_cold Two-Tower ensembles exact-scored 26900 common QUALIFICATION queries with immutable top-k outputs"},
     "P2-E03": {"status": "PASS_QUALIFICATION", "summary": "R2, R3, and R4 exact-scored under the frozen rule; R4 selected as finalist with negative selection score -0.635077, which is not promotion"},
     "P2-E04": {"status": "PASS_FREEZE", "summary": "numeric warm margin, conjunctive gates, all 14 robustness cells, and A0-A7 ablation identities frozen; outcome execution remains Gxx/Hxx after F00"},
-    "P2-E05": {"status": "PASS", "summary": "complete manifest committed and clean guard PASS at Git 8ba1e5c; next transition authorized but LOCKED_FINAL remains unopened"},
+    "P2-E05": {"status": "PASS", "summary": "complete manifest committed and clean guard PASS at Git 8ba1e5c"},
+    "P2-F00-ACCESS": {"status": "OPENED_ONCE", "summary": "LOCKED_FINAL access opened once under E05 guard committed at d02a792; scoring had not started at this boundary"},
     "P2-D01": {"status": "PASS_DEVELOPMENT", "summary": "R1 preserved warm quality but scored zero on controlled-zero validation under standardized alignment"},
     "P2-D02": {"status": "PASS_DEVELOPMENT", "summary": "R2 achieved 0.014892 warm NDCG@20 but zero controlled-zero NDCG@20"},
     "P2-D03": {"status": "PASS_DEVELOPMENT", "summary": "attempt 3 completed on CUDA after the sustained idle gate; exact validation NDCG@20 was 0.001939 overall, 0 controlled zero, 0.000131 natural zero, and 0.013539 warm"},
@@ -39,7 +40,7 @@
   "p1_canonical_receipts_included": 0,
   "warnings": [
     "p1 is immutable and excluded from p2 canonical counts",
-    "QUALIFICATION was opened exactly once; LOCKED_FINAL remains sealed",
+    "QUALIFICATION and LOCKED_FINAL were each opened exactly once; locked scoring is immutable",
     "official publisher text download is quota-blocked; amendment 001 selects the already authorized attribute-derived local text representation"
   ]
 }

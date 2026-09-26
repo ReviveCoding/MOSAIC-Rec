@@ -204,3 +204,7 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 - Freeze the complete locked identity at manifest SHA-256 `15233342edf761c957f061e5ff72323feda8cdcfae9119e8a464fc046c509de7`.
 - Require a clean committed rederivation guard before any LOCKED_FINAL access. Materializing the manifest changes scientific state to FROZEN but does not itself authorize or open LOCKED_FINAL.
 - Accept the E05 guard PASS at committed Git `8ba1e5c379d565e0e64c3cf2e1b401b426f6319a`. Preserve the explicit separation between authorization and access: this boundary leaves LOCKED_FINAL unopened with access count zero.
+
+## 2026-09-26 — LOCKED_FINAL access
+
+- Open LOCKED_FINAL exactly once after every boundary audit passed. Restrict F00 to the three E05-frozen families in manifest order and preserve the transition as a separate commit before any score is computed.
