@@ -23,7 +23,8 @@ def test_protocol_identity_and_protected_roles() -> None:
     assert_outcome_access(repo, "VALIDATION")
     with pytest.raises(PermissionError):
         assert_outcome_access(repo, "QUALIFICATION")
-    assert_outcome_access(repo, "LOCKED_FINAL")
+    with pytest.raises(PermissionError):
+        assert_outcome_access(repo, "LOCKED_FINAL")
 
 
 def test_preregistered_configs_are_p2_only() -> None:

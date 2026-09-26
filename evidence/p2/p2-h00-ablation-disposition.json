@@ -1,0 +1,20 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-H00",
+  "status": "INVALID",
+  "role": "LOCKED_FINAL",
+  "qualification_access_count": 1,
+  "locked_final_access_count": 1,
+  "e04_manifest_path": "configs/p2/e04_analysis_manifest.json",
+  "e04_manifest_sha256": "8cadcb2a936f60d246415a8985fb23727ff50c06191191699782b8744e61cc4c",
+  "a0_reference": {
+    "path": "/home/bjw-0/mosaic-rec-work/p2/locked_final/r4_topk.parquet",
+    "sha256": "f810256cdb732488cbd51563f232b5b14f448a19de2f7df74a0a53197f012ca2"
+  },
+  "invalid_ablations": ["A1", "A2", "A3", "A4", "A5", "A6", "A7"],
+  "reason": "E04 froze overrides, retraining decisions, and seeds, but E05 did not bind an executable ablation training and LOCKED_FINAL scoring runner. Creating those mechanics after LOCKED_FINAL outcome access would be a post-lock scientific implementation choice.",
+  "frozen_failure_policy": "an unimplemented or post-outcome redefined ablation is INVALID and remains in the family",
+  "scientific_action": "preserve INVALID family; do not execute or replace canonical ablations under p2",
+  "promotion_effect": "none; conjunctive primary promotion already failed",
+  "evidence_class": "p2_locked_protocol_audit"
+}

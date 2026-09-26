@@ -1,7 +1,8 @@
 {
   "protocol_id": "mosaic-rec-2026-09-23-p2",
-  "scientific_state": "LOCKED_EXECUTION",
-  "updated_utc": "2026-09-26T16:30:00Z",
+  "scientific_state": "CLOSED",
+  "updated_utc": "2026-09-26T16:48:00Z",
+  "final_decision": "RETAIN_BASELINE",
   "frozen_manifest_sha256": "15233342edf761c957f061e5ff72323feda8cdcfae9119e8a464fc046c509de7",
   "qualification_access_count": 1,
   "locked_final_access_count": 1,
@@ -36,6 +37,25 @@
     "P2-F01": {"status": "FAIL", "summary": "H1 failed: R4 minus C_cold controlled-zero mean +0.0008903 but paired-user 95% lower bound was 0.0, not greater than zero"},
     "P2-F02": {"status": "FAIL", "summary": "H2 failed: warm delta -0.0013377 with lower bound -0.0022765 below frozen noninferiority threshold -0.0013209; conjunctive promotion failed"},
     "P2-G00": {"status": "FAIL", "summary": "all 14 frozen robustness cells passed execution and hash validation, but the positive-support directional routing expectation failed in 11 cells; reliability language remains prohibited"},
+    "P2-H00": {"status": "INVALID", "summary": "A0 reference is preserved; A1-A7 cannot be canonically executed because E05 did not bind their retraining and locked-scoring runner, and post-lock implementation is prohibited"},
+    "P2-F03": {"status": "PASS", "summary": "frozen support and item-age slice metrics materialized from immutable locked outputs"},
+    "P2-F04": {"status": "PASS", "summary": "frozen popularity, coverage, exposure, novelty, and diversity metrics materialized; personalization held because pair selection was underspecified"},
+    "P2-F05": {"status": "PASS", "summary": "frozen user-history cohort metrics materialized from immutable locked outputs"},
+    "P2-I00": {"status": "HOLD", "summary": "MovieLens behavioral transfer had no executable p2 protocol frozen before protected access"},
+    "P2-I01": {"status": "HOLD", "summary": "no separately preregistered untouched replication track was executed"},
+    "P2-I02": {"status": "HOLD", "summary": "replication synthesis unavailable because external tracks are held"},
+    "P2-J00": {"status": "HOLD", "summary": "feature-loading throughput was not measured"},
+    "P2-J01": {"status": "PASS", "summary": "R4 training throughput measured across all three independent seeds"},
+    "P2-J02": {"status": "PASS", "summary": "R4 peak allocated VRAM measured at 2453621760 bytes"},
+    "P2-J03": {"status": "PASS", "summary": "exact locked scoring throughput measured for all three frozen models"},
+    "P2-J04": {"status": "PASS", "summary": "compressed top-k artifact sizes and hashes recorded"},
+    "P2-J05": {"status": "HOLD", "summary": "local API latency, requests per second, and torch.compile break-even were not measured"},
+    "P2-K00": {"status": "PASS", "summary": "claim ledger distinguishes supported, qualified, and prohibited claims"},
+    "P2-K01": {"status": "PASS", "summary": "20-point adversarial audit completed"},
+    "P2-K02": {"status": "PASS", "summary": "final technical report and status created"},
+    "P2-K03": {"status": "PASS", "summary": "reproduction and portfolio-safe documentation created"},
+    "P2-K04": {"status": "PASS", "summary": "p2-only canonical warehouse validated with zero p1 receipts"},
+    "P2-K05": {"status": "PASS", "summary": "protocol closed with RETAIN_BASELINE"},
     "P2-D01": {"status": "PASS_DEVELOPMENT", "summary": "R1 preserved warm quality but scored zero on controlled-zero validation under standardized alignment"},
     "P2-D02": {"status": "PASS_DEVELOPMENT", "summary": "R2 achieved 0.014892 warm NDCG@20 but zero controlled-zero NDCG@20"},
     "P2-D03": {"status": "PASS_DEVELOPMENT", "summary": "attempt 3 completed on CUDA after the sustained idle gate; exact validation NDCG@20 was 0.001939 overall, 0 controlled zero, 0.000131 natural zero, and 0.013539 warm"},
@@ -46,5 +66,6 @@
     "p1 is immutable and excluded from p2 canonical counts",
     "QUALIFICATION and LOCKED_FINAL were each opened exactly once; locked scoring is immutable",
     "official publisher text download is quota-blocked; amendment 001 selects the already authorized attribute-derived local text representation"
+    ,"canonical ablation family is INVALID because its executable runner was not frozen before LOCKED_FINAL access"
   ]
 }

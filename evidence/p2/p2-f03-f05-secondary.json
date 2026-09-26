@@ -1,0 +1,55 @@
+{
+  "evidence_class": "p2_locked_preregistered_secondary_descriptive",
+  "input_sha256": {
+    "C_cold": "4e382313803daa6894f7c9af092afadc341d4ded80ff79fe93ba12f95bbaeaa9",
+    "C_seq": "ef234b5b4342ee2a056f58d308b18e51204c07d9526d09e435a07cfb6685d214",
+    "R4": "f810256cdb732488cbd51563f232b5b14f448a19de2f7df74a0a53197f012ca2"
+  },
+  "locked_final_access_count": 1,
+  "non_accuracy": {
+    "C_cold": {
+      "AveragePopularity_at_20": 1.5578107739974756,
+      "ItemCoverage_at_20": 0.34791528389549264,
+      "TailPercentage_at_20": 0.09409074782197344,
+      "exposure_Gini": 0.9227276707720087,
+      "exposure_HHI": 0.0002860258575631781,
+      "exposure_entropy": 8.918861495539883,
+      "intra_list_diversity": 0.4107114930334764,
+      "novelty": 17.254886759291658,
+      "personalization": "NOT_AVAILABLE_PROTOCOL_UNDERSPECIFIED_PAIR_SELECTION"
+    },
+    "C_seq": {
+      "AveragePopularity_at_20": 4.17615602708142,
+      "ItemCoverage_at_20": 0.003439329029143788,
+      "TailPercentage_at_20": 0.0,
+      "exposure_Gini": 0.999560188217573,
+      "exposure_HHI": 0.025877481445405456,
+      "exposure_entropy": 3.88757717471848,
+      "intra_list_diversity": 0.6322142487398882,
+      "novelty": 13.477413047332286,
+      "personalization": "NOT_AVAILABLE_PROTOCOL_UNDERSPECIFIED_PAIR_SELECTION"
+    },
+    "R4": {
+      "AveragePopularity_at_20": 0.40472301935825633,
+      "ItemCoverage_at_20": 0.16623423640861643,
+      "TailPercentage_at_20": 0.0,
+      "exposure_Gini": 0.9680998071938768,
+      "exposure_HHI": 0.0007137789023601772,
+      "exposure_entropy": 8.04180802325294,
+      "intra_list_diversity": 0.4512661989727615,
+      "novelty": 18.91844074461945,
+      "personalization": "NOT_AVAILABLE_PROTOCOL_UNDERSPECIFIED_PAIR_SELECTION"
+    }
+  },
+  "personalization_disposition": "The frozen metric named deterministic SHA256-selected user pairs but did not define the pair-construction algorithm; no post-lock algorithm was invented.",
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "qualification_access_count": 1,
+  "role": "LOCKED_FINAL",
+  "slice_table": {
+    "path": "analysis/p2/locked_slice_metrics.parquet",
+    "rows": 213,
+    "sha256": "62cc3091018b75fd463cc96d76b926727e3066a781ab478e048d2daebbac41ee"
+  },
+  "stage_id": "P2-F03-F05",
+  "status": "PASS_DESCRIPTIVE"
+}

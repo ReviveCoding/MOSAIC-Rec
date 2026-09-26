@@ -1,5 +1,14 @@
 # p2 blockers
 
+## Terminal holds at closure
+
+- PixelRec raw-cover derivatives remain rights-held and were not used.
+- H00 is INVALID because the executable ablation retraining/scoring runner was omitted from E05; post-lock repair is prohibited.
+- I00-I02 are HOLD because no executable transfer/replication protocol was frozen.
+- Personalization, feature-loading throughput, API latency, requests/s, and `torch.compile` break-even are HOLD because their executable measurement details were absent or unexecuted.
+
+None of these holds changes the locked primary conclusion. P2 is closed with `RETAIN_BASELINE`.
+
 ## HOLD — PixelRec raw covers
 
 The current official dataset license says no rights are granted to copy, modify, publish, distribute, or commercialize the dataset. The local `cover.7z` remains unextracted and unused. Blur, crop, occlusion, or new raw-cover derivatives are excluded unless explicit permission or a source-specific grant is obtained.

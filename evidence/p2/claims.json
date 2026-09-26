@@ -1,0 +1,29 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-K00",
+  "status": "PASS",
+  "final_decision": "RETAIN_BASELINE",
+  "supported": [
+    "R4 locked overall NDCG@20 was 0.00184599982935903 on 25367 PixelRec queries.",
+    "H1 failed because the paired-user lower 95% bound was 0 rather than greater than 0.",
+    "H2 failed because the lower 95% bound -0.002276471679525191 was below the frozen threshold -0.001320914873267875.",
+    "Eleven of fourteen preregistered robustness cells failed the positive-support directional routing expectation."
+  ],
+  "qualified": [
+    "Top-k coverage, exposure, novelty, and diversity metrics are offline secondary evidence.",
+    "System throughput is a local single-GPU workload measurement."
+  ],
+  "unsupported": [
+    "model promotion",
+    "cold superiority",
+    "warm retention",
+    "reliability",
+    "valid canonical ablation conclusions",
+    "external replication",
+    "production or causal impact",
+    "multi-GPU scaling"
+  ],
+  "qualification_access_count": 1,
+  "locked_final_access_count": 1,
+  "evidence_class": "p2_canonical_claim_ledger"
+}

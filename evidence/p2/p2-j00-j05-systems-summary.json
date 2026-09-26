@@ -1,0 +1,58 @@
+{
+  "evidence_class": "p2_measured_system_partial",
+  "gpu": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "holds": {
+    "feature_loading_throughput": "HOLD_NOT_MEASURED",
+    "local_api_latency_and_requests_per_second": "HOLD_NO_FROZEN_SERVICE_BENCHMARK",
+    "multi_gpu": "PROHIBITED_NOT_MEASURED",
+    "production_readiness": "PROHIBITED_UNSUPPORTED",
+    "torch_compile": "HOLD_NOT_USED_NO_BREAK_EVEN_STUDY"
+  },
+  "locked_exact_scoring": {
+    "C_cold": {
+      "seconds": 17.139271693000012,
+      "topk_artifact_bytes": 28859484,
+      "topk_artifact_sha256": "4e382313803daa6894f7c9af092afadc341d4ded80ff79fe93ba12f95bbaeaa9",
+      "users_per_second": 1480.051070787995
+    },
+    "C_seq": {
+      "seconds": 17.800805352999987,
+      "topk_artifact_bytes": 25923549,
+      "topk_artifact_sha256": "ef234b5b4342ee2a056f58d308b18e51204c07d9526d09e435a07cfb6685d214",
+      "users_per_second": 1425.0477379588256
+    },
+    "R4": {
+      "seconds": 37.998445058000016,
+      "topk_artifact_bytes": 28770841,
+      "topk_artifact_sha256": "f810256cdb732488cbd51563f232b5b14f448a19de2f7df74a0a53197f012ca2",
+      "users_per_second": 667.579615586206
+    }
+  },
+  "physical_gpu_count": 1,
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "r4_training": [
+    {
+      "examples_per_second": 96.30373142126147,
+      "peak_vram_bytes": 2453621760,
+      "seed": 20261001,
+      "train_seconds": 497.3639057710002,
+      "training_examples": 47898
+    },
+    {
+      "examples_per_second": 121.33390032412838,
+      "peak_vram_bytes": 2453621760,
+      "seed": 20261002,
+      "train_seconds": 394.7618915409994,
+      "training_examples": 47898
+    },
+    {
+      "examples_per_second": 120.66512929392633,
+      "peak_vram_bytes": 2453621760,
+      "seed": 20261003,
+      "train_seconds": 396.94980878299975,
+      "training_examples": 47898
+    }
+  ],
+  "stage_id": "P2-J00-J05",
+  "status": "PARTIAL_PASS"
+}

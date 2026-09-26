@@ -218,3 +218,8 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 
 - Preserve every one of the 14 frozen robustness outcomes. Classify G00 as FAIL because 11 cells violate the declared positive-support direction: missing image/text signals increased content reliance rather than reducing it.
 - Continue to use **adaptive routing** only. Reliability-aware language is unsupported regardless of accuracy degradation patterns.
+
+## 2026-09-26 — ablation protocol defect
+
+- Preserve A0 as the immutable R4 locked reference and mark A1-A7 INVALID. E04 bound their semantic overrides, retraining flags, and seeds, but E05 omitted an executable training/scoring runner identity.
+- Do not repair this omission after LOCKED_FINAL access. The frozen ablation failure policy explicitly requires an unimplemented ablation to remain INVALID; a future protocol may preregister and bind the missing executable pipeline.

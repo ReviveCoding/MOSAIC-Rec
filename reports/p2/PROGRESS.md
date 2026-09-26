@@ -71,7 +71,7 @@ Development and QUALIFICATION are complete. C_seq, C_cold, R2, R3, and R4 were e
 
 ## Active next action
 
-Gxx robustness execution is complete. All 14 frozen cells produced valid locked outputs, but 11 failed the preregistered positive-support routing direction; the robustness stage is FAIL and reliability language remains prohibited. Next is the frozen A0-A7 ablation family.
+Protocol p2 is CLOSED with `RETAIN_BASELINE`. Locked H1 and H2 failed, G00 failed its directional expectation, and H00 is INVALID under its frozen failure policy. Frozen slice/top-k analyses, partial systems evidence, claim ledger, audit, and closure reports are complete; transfer and underspecified measurements are terminal HOLDs.
 
 ## 2026-09-26 — Gxx robustness
 
