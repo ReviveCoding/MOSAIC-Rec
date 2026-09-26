@@ -146,6 +146,16 @@ def win_tie_loss(delta: np.ndarray) -> dict[str, float | int]:
     zero = int((values == 0).sum())
     negative = int((values < 0).sum())
     total = values.size
+    if total == 0:
+        return {
+            "n": 0,
+            "win_n": 0,
+            "tie_n": 0,
+            "loss_n": 0,
+            "win_rate": 0.0,
+            "tie_rate": 0.0,
+            "loss_rate": 0.0,
+        }
     return {
         "n": total,
         "win_n": positive,

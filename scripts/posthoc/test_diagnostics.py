@@ -61,6 +61,7 @@ def test_paired_identity_and_accounting() -> None:
         assert_paired([frame, frame.assign(target_item_id="y")])
     result = win_tie_loss(np.array([1.0, 0.0, -1.0, 0.0]))
     assert (result["win_n"], result["tie_n"], result["loss_n"]) == (1, 2, 1)
+    assert win_tie_loss(np.asarray([]))["n"] == 0
 
 
 def test_oracle_jaccard_and_concentration() -> None:

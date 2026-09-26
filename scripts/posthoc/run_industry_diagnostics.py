@@ -288,11 +288,13 @@ def routing_outputs(
     frame: pd.DataFrame,
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]:
     work = frame.copy()
-    edges = quantile_edges(work["router_weight"].to_numpy(), groups=10)
-    work["router_decile"] = [
-        f"D{int(np.searchsorted(edges[1:-1], value, side='right')) + 1}"
-        for value in work["router_weight"]
-    ]
+    values = work["router_weight"].to_numpy()
+    edges = quantile_edges(values, groups=10)
+    order = np.argsort(values, kind="stable")
+    deciles = np.empty(len(work), dtype=np.int8)
+    for decile, indices in enumerate(np.array_split(order, 10), start=1):
+        deciles[indices] = decile
+    work["router_decile"] = [f"D{value}" for value in deciles]
     expert_delta = work["c_seq_ndcg_at_20"] - work["c_cold_ndcg_at_20"]
     chosen = np.where(
         work["router_weight"] > 0.5,
@@ -329,6 +331,9 @@ def routing_outputs(
     alignment = []
     axes = {**_axes(), "router_decile": "router_decile"}
     for family, label, subset in _groups(work, axes):
+        aligned = int(subset["routing_agrees"].sum())
+        misaligned = int(subset["routing_disagrees"].sum())
+        informative = aligned + misaligned
         alignment.append(
             {
                 "slice_family": family,
@@ -336,6 +341,10 @@ def routing_outputs(
                 "n": len(subset),
                 "agreement_rate": float(subset["routing_agrees"].mean()),
                 "disagreement_rate": float(subset["routing_disagrees"].mean()),
+                "conditional_agreement_among_expert_nonties": aligned / informative
+                if informative
+                else None,
+                "informative_expert_nontie_n": informative,
                 "neutral_rate": float((subset["router_weight"] == 0.5).mean()),
                 "expert_tie_rate": float(
                     (subset["c_seq_ndcg_at_20"] == subset["c_cold_ndcg_at_20"]).mean()
@@ -918,6 +927,7 @@ def _reports(
     mechanism: dict[str, Any],
     uncertainty: pd.DataFrame,
     edges: dict[str, Any],
+    systems: dict[str, Any],
 ) -> None:
     report = repo / "reports/posthoc"
     overall_rows = []
@@ -964,10 +974,11 @@ Crossed slices were emitted only for N >= 200. Exact quartile edges are persiste
         repo,
     )
     spearman = routing[(routing["slice_family"] == "overall")].iloc[0]
+    conditional_agreement = spearman["conditional_agreement_among_expert_nonties"]
     _write_report(
         report / "ROUTER_ROOT_CAUSE.md",
         "Router Root Cause",
-        f"""The persisted value is reported as **sequence routing weight**, not as a probability. Overall routing-side agreement with the empirically stronger expert was {_fmt(spearman["agreement_rate"])}; disagreement was {_fmt(spearman["disagreement_rate"])}; neutral routing was {_fmt(spearman["neutral_rate"])}.
+        f"""The persisted value is reported as **sequence routing weight**, not as a probability. Overall routing-side agreement with the empirically stronger expert was {_fmt(spearman["agreement_rate"])}; disagreement was {_fmt(spearman["disagreement_rate"])}; neutral routing was {_fmt(spearman["neutral_rate"])}. Experts tied on {_fmt(spearman["expert_tie_rate"])} of queries. Conditional on the {int(spearman["informative_expert_nontie_n"])} queries where one expert was stronger and routing chose a side, agreement was {_fmt(conditional_agreement)}.
 
 Spearman association between sequence routing weight and per-query C_seq minus C_cold NDCG was {_fmt(edges["spearman_router_weight_vs_expert_ndcg_delta"])}. This is an association measured after outcomes and is not a causal or reliability claim.
 
@@ -988,17 +999,13 @@ H1 had a positive point estimate while its lower interval touched zero because n
     experts_best = max(
         overall_oracle["c_seq_ndcg_at_20"], overall_oracle["c_cold_ndcg_at_20"]
     )
-    bottleneck = (
-        "both weak experts and routing error"
-        if overall_oracle["oracle_ndcg_at_20"] < 0.1 and routing_gap > 0
-        else ("routing error" if routing_gap > 0 else "weak experts")
-    )
+    bottleneck = "weak experts overall, with localized routing/fusion errors"
     _write_report(
         report / "ORACLE_REGRET.md",
         "Oracle and Routing Regret",
         f"""The retrospective per-query expert oracle achieved NDCG@20 {_fmt(overall_oracle["oracle_ndcg_at_20"])}; R4 achieved {_fmt(overall_oracle["r4_ndcg_at_20"])}; the better single expert achieved {_fmt(experts_best)}. R4 captured {_fmt(capture * 100, 2)}% of oracle NDCG. Mean oracle minus R4 regret was {_fmt(routing_gap)}; R4 exceeded this two-expert oracle on {_fmt(overall_oracle["fraction_r4_above_oracle"] * 100, 2)}% of queries because R4 can produce a ranking different from both input experts.
 
-The diagnostic classification is **{bottleneck}**. The oracle itself remains weak in absolute terms while a nonzero oracle-to-router gap remains. This oracle is retrospective and undeployable.
+The diagnostic classification is **{bottleneck}**. Mean `oracle - R4` is negative because R4 creates a distinct ranking and sometimes exceeds both experts, so this max-expert construction is not a mathematical upper bound on the hybrid. Positive-regret queries still reveal localized routing or fusion failures. This oracle is retrospective and undeployable.
 """,
         repo,
     )
@@ -1062,9 +1069,9 @@ The widest interval belongs to `{uncertainty.assign(width=uncertainty["upper_95"
 2. **Where R4 fails:** the largest slice risk is `{largest_risk["slice_family"]} / {largest_risk["slice"]}`, delta {_fmt(largest_risk["point_estimate"])}.
 3. **Cold gain breadth:** controlled-zero gain is concentrated: {gain["win_n"]} positive queries among {gain["n"]}, top-10% positive-gain share {_fmt(gain["query_concentration"]["top_10pct"])}.
 4. **H1 lower bound:** sparse, concentrated nonzero gains left substantial bootstrap mass at zero.
-5. **Warm collapse:** R4 was below C_seq in the >50-support slice by {_fmt(warm_seq["point_estimate"])}; routing disagreement and ranking differences are associated diagnostics, not a causal explanation.
-6. **Router choice:** routing-side agreement was {_fmt(spearman["agreement_rate"])}, disagreement {_fmt(spearman["disagreement_rate"])}.
-7. **Oracle capture:** R4 captured {_fmt(capture * 100, 2)}% of retrospective oracle NDCG.
+5. **Warm collapse:** R4 was below C_seq in the >50-support slice by {_fmt(warm_seq["point_estimate"])}. Its sequence routing weight was high in this slice, yet the hybrid lost sparse C_seq successes; this points descriptively to score-fusion ranking disturbance rather than failure to weight the sequence side. It is not a causal explanation.
+6. **Router choice:** unconditional agreement was {_fmt(spearman["agreement_rate"])} because experts tied on {_fmt(spearman["expert_tie_rate"])} of queries. Among informative non-ties, agreement was {_fmt(conditional_agreement)}.
+7. **Oracle ratio:** R4 was {_fmt(capture * 100, 2)}% of max-per-query expert NDCG. Values above 100% occur because R4 generates a distinct ranking; this is not evidence of exceeding a true oracle.
 8. **Main bottleneck:** {bottleneck}; both absolute oracle quality and routing regret matter.
 9. **Missingness direction:** the predefined conflation hypothesis is `{mechanism_class}` from persisted routing deltas; causal mechanism remains unproven.
 10. **Catalog health:** R4 vs C_seq changed coverage {_fmt(r4_catalog["item_coverage_at_20"] - cseq_catalog["item_coverage_at_20"])}, tail exposure {_fmt(r4_catalog["tail_percentage_at_20"] - cseq_catalog["tail_percentage_at_20"])}, and Gini {_fmt(r4_catalog["exposure_gini"] - cseq_catalog["exposure_gini"])}.
@@ -1094,7 +1101,7 @@ Canonical p2 remains CLOSED with `RETAIN_BASELINE`. All computations read existi
     _write_report(
         report / "EXECUTIVE_SUMMARY.md",
         "Executive Summary",
-        f"""Canonical p2 retained its baseline. This read-only study finds that R4's controlled-zero advantage was sparse and concentrated, while warm and high-support slices continued to favor C_seq. R4 captured {_fmt(capture * 100, 2)}% of a retrospective per-query two-expert oracle; the remaining gap and low absolute oracle quality indicate {bottleneck}. Catalog health and temporal behavior are reported as offline diagnostics only.
+        f"""Canonical p2 retained its baseline. This read-only study finds that R4's controlled-zero advantage was sparse and concentrated, while warm and high-support slices continued to favor C_seq. R4 achieved {_fmt(capture * 100, 2)}% of max-per-query expert NDCG because its distinct ranking sometimes exceeded both experts; this ratio is not a true oracle bound. The absolute expert quality and localized routing/fusion errors indicate {bottleneck}. Catalog health and temporal behavior are reported as offline diagnostics only.
 
 No posthoc finding revises p2. The useful outcome is a p3 hypothesis set: hard zero-support behavior, explicit warm preservation, stronger score calibration, and validation-only routing supervision.
 """,
@@ -1106,7 +1113,7 @@ No posthoc finding revises p2. The useful outcome is a p3 hypothesis set: hard z
         f"""| Classification | Candidate statement |
 | --- | --- |
 | SAFE_DESCRIPTIVE | Built a read-only diagnostic pipeline over three immutable full-catalog recommender outputs, with deterministic 10,000-draw paired bootstrap intervals and catalog-health analysis. |
-| SAFE_WITH_EXPLORATORY_QUALIFIER | In posthoc analysis, R4 captured {_fmt(capture * 100, 2)}% of a retrospective two-expert oracle's NDCG@20; this did not change the retained-baseline decision. |
+| SAFE_WITH_EXPLORATORY_QUALIFIER | In posthoc analysis, R4 achieved {_fmt(capture * 100, 2)}% of max-per-query expert NDCG@20; values over 100% reflect a distinct hybrid ranking and do not denote a true oracle bound. |
 | SAFE_WITH_EXPLORATORY_QUALIFIER | Controlled-zero R4 gain occurred on {gain["win_n"]} of {gain["n"]} queries and was concentrated across {gain["positive_gain_items"]} target items. |
 | INTERVIEW_ONLY | Routing-side agreement was {_fmt(spearman["agreement_rate"])}; use this only with the exact persisted-outcome definition and exploratory qualifier. |
 | DO_NOT_CLAIM | R4 was promoted, statistically superior, production-ready, reliable, causal, or proven to improve engagement. |
@@ -1134,6 +1141,9 @@ No posthoc finding revises p2. The useful outcome is a p3 hypothesis set: hard z
         + "</tr>"
         for model, *values in overall_rows
     )
+    r4_system = systems["locked_exact_scoring"]["R4"]
+    train_rates = [row["examples_per_second"] for row in systems["r4_training"]]
+    peak_vram = max(row["peak_vram_bytes"] for row in systems["r4_training"])
     sections = {
         "A. Model quality": overall_table,
         "B. Slice health": f"Strongest: {strongest['slice_family']} / {strongest['slice']}; risk: {largest_risk['slice_family']} / {largest_risk['slice']}.",
@@ -1144,7 +1154,7 @@ No posthoc finding revises p2. The useful outcome is a p3 hypothesis set: hard z
         "G. Robustness": f"14 immutable cells; missingness hypothesis {mechanism_class}.",
         "H. Uncertainty": f"Small-sample rows {int(uncertainty['small_sample'].sum())}; sparse-signal rows {int(uncertainty['sparse_signal'].sum())}.",
         "I. Data / protocol quality": "Source commit pinned; protected counts remain 1/1; no rerun; canonical p2 unchanged.",
-        "J. Systems": "See canonical p2 systems receipts for R4 users/s, training throughput, peak VRAM, artifact size, and single-GPU disclosure.",
+        "J. Systems": f"R4 locked scoring {r4_system['users_per_second']:.2f} users/s; training {min(train_rates):.2f}-{max(train_rates):.2f} examples/s; peak VRAM {peak_vram / 2**30:.3f} GiB; artifact {r4_system['topk_artifact_bytes'] / 2**20:.2f} MiB; one RTX 4090 Laptop GPU.",
     }
     cards = "".join(
         f"<section><h2>{html.escape(title)}</h2><pre>{html.escape(text)}</pre></section>"
@@ -1157,7 +1167,10 @@ No posthoc finding revises p2. The useful outcome is a p3 hypothesis set: hard z
 
 
 def _artifact_manifest(
-    repo: Path, input_hashes: dict[str, str], row_counts: dict[str, int]
+    repo: Path,
+    input_hashes: dict[str, str],
+    row_counts: dict[str, int],
+    script: Path,
 ) -> dict[str, Any]:
     artifacts = []
     for root in (
@@ -1180,11 +1193,58 @@ def _artifact_manifest(
                     }
                 )
     return {
-        **metadata(input_hashes=input_hashes),
+        **metadata(
+            script=script,
+            source_hashes=input_hashes,
+            row_count=len(artifacts),
+        ),
         "manifest_self_hash_excluded": True,
         "artifact_count": len(artifacts),
         "artifacts": artifacts,
     }
+
+
+def _verify_sources(
+    repo: Path, input_hashes: dict[str, str], script: Path
+) -> dict[str, Any]:
+    mismatches = []
+    for raw_path, expected in input_hashes.items():
+        path = Path(raw_path)
+        if not path.is_absolute():
+            path = repo / path
+        observed = sha256_file(path)
+        if observed != expected:
+            mismatches.append(
+                {
+                    "path": raw_path,
+                    "expected_sha256": expected,
+                    "observed_sha256": observed,
+                }
+            )
+    stage = load_json(repo / "evidence/p2/stage_status.json")
+    verification = {
+        **metadata(script=script, source_hashes=input_hashes, row_count=1),
+        "status": "PASS" if not mismatches else "FAIL",
+        "source_hash_mismatches": mismatches,
+        "scientific_state": stage["scientific_state"],
+        "final_decision": stage["final_decision"],
+        "qualification_access_count": stage["qualification_access_count"],
+        "locked_final_access_count": stage["locked_final_access_count"],
+        "p1_canonical_receipts_included": stage["p1_canonical_receipts_included"],
+        "protected_inference_rerun": False,
+        "gpu_model_process_launched_by_analysis": False,
+    }
+    if mismatches:
+        raise RuntimeError(f"immutable source hash mismatch: {mismatches}")
+    if (
+        stage["scientific_state"] != "CLOSED"
+        or stage["final_decision"] != "RETAIN_BASELINE"
+        or stage["qualification_access_count"] != 1
+        or stage["locked_final_access_count"] != 1
+        or stage["p1_canonical_receipts_included"] != 0
+    ):
+        raise RuntimeError("canonical p2 boundary changed during posthoc analysis")
+    return verification
 
 
 def main() -> int:
@@ -1195,6 +1255,7 @@ def main() -> int:
     )
     args = parser.parse_args()
     repo = args.repo.resolve()
+    script = Path(__file__).resolve()
     source_manifest = load_json(repo / "analysis/posthoc/source_manifest.json")
     input_hashes = _source_hashes(source_manifest)
     frame, _ = _load_joined(args.scratch)
@@ -1210,6 +1271,7 @@ def main() -> int:
     exposure, catalog = exposure_outputs(frame, args.scratch)
     robust, mechanism = robustness_outputs(frame, repo)
     quartile_edges.update(routing_meta)
+    systems = load_json(repo / "evidence/p2/p2-j00-j05-systems-summary.json")
 
     outputs: dict[str, Any] = {
         "analysis/posthoc/performance_slices.parquet": pd.DataFrame(performance),
@@ -1229,24 +1291,38 @@ def main() -> int:
     for relative, data in outputs.items():
         path = repo / relative
         validate_output_path(path, repo)
-        write_parquet_new(path, data, input_hashes=input_hashes)
+        write_parquet_new(
+            path,
+            data.to_dict(orient="records"),
+            script=script,
+            source_hashes=input_hashes,
+        )
         row_counts[relative] = len(data)
     json_outputs = {
-        "analysis/posthoc/quartile_edges.json": quartile_edges,
-        "analysis/posthoc/gain_loss_concentration.json": gain,
-        "analysis/posthoc/oracle_summary.json": oracle,
-        "analysis/posthoc/catalog_health.json": catalog,
-        "analysis/posthoc/robustness_mechanism_summary.json": mechanism,
+        "analysis/posthoc/quartile_edges.json": (quartile_edges, 1),
+        "analysis/posthoc/gain_loss_concentration.json": (gain, gain["n"]),
+        "analysis/posthoc/oracle_summary.json": (oracle, len(oracle["slices"])),
+        "analysis/posthoc/catalog_health.json": (catalog, 3),
+        "analysis/posthoc/robustness_mechanism_summary.json": (
+            mechanism,
+            len(mechanism["associations"]),
+        ),
     }
-    for relative, data in json_outputs.items():
+    for relative, (data, payload_rows) in json_outputs.items():
         path = repo / relative
         validate_output_path(path, repo)
-        write_json_new(path, {**metadata(input_hashes=input_hashes), **data})
-        row_counts[relative] = (
-            len(data.get("slices", data.get("associations", [])))
-            if isinstance(data, dict)
-            else 0
+        write_json_new(
+            path,
+            {
+                **metadata(
+                    script=script,
+                    source_hashes=input_hashes,
+                    row_count=payload_rows,
+                ),
+                **data,
+            },
         )
+        row_counts[relative] = payload_rows
 
     perf_df = pd.DataFrame(performance)
     cross_df = pd.DataFrame(cross)
@@ -1275,8 +1351,13 @@ def main() -> int:
         mechanism,
         uncertainty_df,
         quartile_edges,
+        systems,
     )
-    manifest = _artifact_manifest(repo, input_hashes, row_counts)
+    verification_path = repo / "analysis/posthoc/final_verification.json"
+    verification = _verify_sources(repo, input_hashes, script)
+    write_json_new(verification_path, verification)
+    row_counts["analysis/posthoc/final_verification.json"] = 1
+    manifest = _artifact_manifest(repo, input_hashes, row_counts, script)
     write_json_new(repo / "analysis/posthoc/posthoc_manifest.json", manifest)
     print(
         json.dumps(
