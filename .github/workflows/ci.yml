@@ -1,16 +1,49 @@
 name: CPU scientific contracts
 on:
   push:
+    branches: [main]
   pull_request:
+    branches: [main]
+  workflow_dispatch:
 jobs:
   contracts:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-      - run: python -m pip install 'duckdb>=1.0' 'pyarrow>=18.0' 'numpy>=2.0' 'ijson==3.5.1' 'ruff==0.16.8'
-      - run: ruff check src tests scripts
-      - run: ruff format --check src tests scripts
-      - run: PYTHONPATH=src python -m unittest discover -s tests -v
+          cache: pip
+      - name: Install CPU test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu 'torch==2.14.0'
+          python -m pip install \
+            'duckdb==1.5.5' \
+            'ijson==3.5.1' \
+            'numpy==2.2.6' \
+            'pandas==2.3.3' \
+            'polars==1.44.2' \
+            'pyarrow==25.0.1' \
+            'pytest==9.1.1' \
+            'PyYAML==6.0.3' \
+            'ruff==0.16.8'
+          python -m pip install --no-deps -e .
+      - name: Ruff lint
+        run: ruff check src tests scripts
+      - name: Ruff format
+        run: ruff format --check src tests scripts
+      - name: CPU-safe repository tests
+        env:
+          PYTHONPATH: src:.
+        run: pytest -q --import-mode=importlib tests
+      - name: Pure posthoc helper tests
+        env:
+          PYTHONPATH: src
+        run: pytest -q scripts/posthoc/test_diagnostics.py
+      - name: Public checkout integrity
+        run: |
+          test -z "$(git status --porcelain=v1)"
+          git diff --check

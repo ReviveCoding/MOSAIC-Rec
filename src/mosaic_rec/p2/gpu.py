@@ -98,8 +98,7 @@ def sustained_idle(
         # laptop is in dGPU-only mode. In that mode two independent NVIDIA
         # process probes above remain the fail-closed CUDA activity gate.
         if not display_is_active() and (
-            memory > maximum_memory_mib
-            or utilization > maximum_utilization_percent
+            memory > maximum_memory_mib or utilization > maximum_utilization_percent
         ):
             raise RuntimeError(
                 "GPU is materially active even though WSL exposed no compute PID: "

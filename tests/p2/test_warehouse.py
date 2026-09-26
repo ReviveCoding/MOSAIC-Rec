@@ -51,7 +51,9 @@ def test_empty_p2_warehouse_validates(tmp_path: Path) -> None:
     assert validate(repo, warehouse)["status"] == "PASS"
 
 
-def test_qualification_access_is_valid_only_in_qualification_state(tmp_path: Path) -> None:
+def test_qualification_access_is_valid_only_in_qualification_state(
+    tmp_path: Path,
+) -> None:
     repo = tmp_path
     evidence = repo / "evidence/p2"
     evidence.mkdir(parents=True)

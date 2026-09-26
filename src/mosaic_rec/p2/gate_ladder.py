@@ -438,9 +438,7 @@ def train_and_score_gate(
     )
     result = {
         "protocol_id": PROTOCOL_ID,
-        "stage_id": str(
-            ladder.get("stage_id", f"P2-D0{int(router_name[1])}-PILOT")
-        ),
+        "stage_id": str(ladder.get("stage_id", f"P2-D0{int(router_name[1])}-PILOT")),
         "status": "PASS",
         "router": router_name,
         "model_id": model_config["model_id"],

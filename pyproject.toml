@@ -4,10 +4,12 @@ build-backend = "hatchling.build"
 
 [project]
 name = "mosaic-rec"
-version = "0.1.0"
+version = "1.0.0"
 description = "Auditable multimodal sequential recommendation research"
+readme = "README.md"
 requires-python = ">=3.10"
 dependencies = ["duckdb>=1.0", "numpy>=2.0", "polars>=1.0", "pyarrow>=18.0", "torch>=2.6"]
+keywords = ["recommender-systems", "multimodal-learning", "sequential-recommendation", "cold-start"]
 
 [project.optional-dependencies]
 data = ["gdown==6.4.0", "ijson==3.5.1", "py7zr==1.1.3"]
@@ -17,6 +19,11 @@ dev = ["ruff==0.16.8", "pytest==9.1.1"]
 
 [project.scripts]
 mosaic-data-qa = "mosaic_rec.data_qa:main"
+
+[project.urls]
+Homepage = "https://github.com/ReviveCoding/MOSAIC-Rec"
+Repository = "https://github.com/ReviveCoding/MOSAIC-Rec"
+Documentation = "https://github.com/ReviveCoding/MOSAIC-Rec#readme"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/mosaic_rec"]
