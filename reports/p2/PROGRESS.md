@@ -2,11 +2,11 @@
 
 Protocol: `mosaic-rec-2026-09-23-p2`
 
-Scientific state: `DEVELOPMENT`
+Scientific state: `QUALIFICATION`
 
 ## Current phase
 
-Crash recovery, the development model ladder, score alignment, equal-budget HPO, and all 30 frozen independent-seed runs are complete. P2-E01 is `PASS_DEVELOPMENT`; the comparator/router ensemble identities and pre-QUALIFICATION contracts are frozen. The next action is the clean committed protocol guard before opening QUALIFICATION.
+Development, HPO, independent-seed stability, and the complete pre-QUALIFICATION freeze are complete. The superseding clean guard v2 passed at committed Git `44e4235`; the protocol is authorized to enter QUALIFICATION. No protected model outcome has yet been accessed, and LOCKED_FINAL remains sealed.
 
 ## Completed
 
@@ -71,7 +71,7 @@ Crash recovery, the development model ladder, score alignment, equal-budget HPO,
 
 ## Active next action
 
-Commit the pre-QUALIFICATION freeze, run the clean protocol guard, and only then transition to QUALIFICATION scoring. LOCKED_FINAL remains unopened.
+Commit the QUALIFICATION state transition, then exact-score the five frozen three-seed ensembles on QUALIFICATION with immutable top-20/top-100 outputs. LOCKED_FINAL remains unopened.
 
 ## 2026-09-25 reboot recovery
 

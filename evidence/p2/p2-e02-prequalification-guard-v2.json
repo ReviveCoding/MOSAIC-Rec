@@ -1,0 +1,30 @@
+{
+  "authorized_next_transition": "QUALIFICATION",
+  "git_commit": "44e423510bc76902c8b56a55fa64b6cd8285f76c",
+  "p1_immutable_hashes": {
+    "evidence/claims.json": "41153619f71023fb2ae2ebf8168d85be05376ee72badec2b81d2c56777cdf218",
+    "evidence/stage_status.json": "021f340d36a4b5bec5066b74620f9efa76e9d59c3a6928acc4e9d58a3cc593cd",
+    "reports/FINAL_STATUS.md": "79994c8583e2b56bb823c08a32dd8da2b2b850c5409f1e31b6906b881dd6f553"
+  },
+  "prequalification_freeze_canonical_sha256": "7c3184ff2ea5579794165832cea8061fd0fe7277a93e281178270ec537a8f606",
+  "prequalification_freeze_sha256": "36b934aab988b38fdc0e43c3c06341aaa3f37e37c6ef4c735beb383057164d55",
+  "protected_access_counts": {
+    "LOCKED_FINAL": 0,
+    "QUALIFICATION": 0
+  },
+  "protected_roles_opened": [],
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-E02-PREQUALIFICATION-GUARD",
+  "status": "PASS",
+  "warehouse_validation": {
+    "locked_final_access_count": 0,
+    "metric_count": 328,
+    "p1_canonical_receipts": 0,
+    "payloads_mentioning_p1_provenance": 0,
+    "protocol_id": "mosaic-rec-2026-09-23-p2",
+    "qualification_access_count": 0,
+    "receipt_count": 117,
+    "status": "PASS"
+  },
+  "worktree_clean": true
+}
