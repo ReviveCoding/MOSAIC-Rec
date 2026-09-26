@@ -1,0 +1,107 @@
+{
+  "baseline": "LIGHTGCN",
+  "best_epoch": 10,
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/checkpoints/e01-lightgcn-seed20261002.pt",
+  "checkpoint_sha256": "9d9d030f7f4801e9cb1230999fa435f35a09ef5a49376c2b5fafdc6d3a5f00c2",
+  "config_sha256": "d0feab1d0e0a74b7d8c903da5d5fbf2acb32cbb874d447ec8603412b05b5fff7",
+  "epochs_completed": 10,
+  "evidence_class": "p2_measured_development_independent_seed",
+  "family": "LIGHTGCN",
+  "git_commit": "a380971b69b2c95d143ac23b84d12beafe0fb197",
+  "gpu_qualification": {
+    "bf16_supported": true,
+    "cuda_runtime": "13.0",
+    "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+    "tensor_result": 5590357.0,
+    "torch": "2.14.0+cu130",
+    "vram_bytes": 17170956288
+  },
+  "model_id": "E01-LIGHTGCN-SEED20261002",
+  "peak_vram_bytes": 695345664,
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "seed": 20261002,
+  "stage_id": "P2-E01",
+  "status": "PASS",
+  "stopping_reason": "scheduled_epochs_complete",
+  "train_seconds": 130.87882423500014,
+  "training_examples": 47898,
+  "training_log": [
+    {
+      "epoch": 1,
+      "loss": 0.692869246006012,
+      "validation_ndcg_at_20": 0.00011904365699329605
+    },
+    {
+      "epoch": 2,
+      "loss": 0.692522406578064,
+      "validation_ndcg_at_20": 0.0002555164462245063
+    },
+    {
+      "epoch": 3,
+      "loss": 0.6921195983886719,
+      "validation_ndcg_at_20": 0.0003702339896488313
+    },
+    {
+      "epoch": 4,
+      "loss": 0.6916499733924866,
+      "validation_ndcg_at_20": 0.0005226862218972079
+    },
+    {
+      "epoch": 5,
+      "loss": 0.6911029815673828,
+      "validation_ndcg_at_20": 0.0006506549553416536
+    },
+    {
+      "epoch": 6,
+      "loss": 0.6904691457748413,
+      "validation_ndcg_at_20": 0.0007445583226310629
+    },
+    {
+      "epoch": 7,
+      "loss": 0.6897392868995667,
+      "validation_ndcg_at_20": 0.0008066639419668437
+    },
+    {
+      "epoch": 8,
+      "loss": 0.688904345035553,
+      "validation_ndcg_at_20": 0.0008836936618524702
+    },
+    {
+      "epoch": 9,
+      "loss": 0.6879562139511108,
+      "validation_ndcg_at_20": 0.0009736940416603939
+    },
+    {
+      "epoch": 10,
+      "loss": 0.6868864297866821,
+      "validation_ndcg_at_20": 0.0010888453739253947
+    }
+  ],
+  "trial_id": "E01-LIGHTGCN-SEED20261002",
+  "validation": {
+    "output": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/results/e01-lightgcn-seed20261002_validation.parquet",
+    "output_sha256": "3977b6d15de1baffb92aa3dc0afe50871ea47ac18dc8197c1325246bc9c03fee",
+    "role": "VALIDATION",
+    "rows": 27918,
+    "seconds": 16.485334454999247,
+    "slices": {
+      "all": {
+        "n": 27918,
+        "ndcg_at_20": 0.0010888453739253947
+      },
+      "controlled_zero": {
+        "n": 458,
+        "ndcg_at_20": 0.0
+      },
+      "natural_zero": {
+        "n": 17866,
+        "ndcg_at_20": 0.0
+      },
+      "warm": {
+        "n": 3808,
+        "ndcg_at_20": 0.005157222686091356
+      }
+    },
+    "users_per_second": 1693.5050554051961
+  }
+}

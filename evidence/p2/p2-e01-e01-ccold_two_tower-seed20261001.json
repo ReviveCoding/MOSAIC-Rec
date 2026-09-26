@@ -1,0 +1,107 @@
+{
+  "attempt_id": "",
+  "best_epoch": 8,
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/checkpoints/e01-ccold_two_tower-seed20261001.pt",
+  "checkpoint_sha256": "32b78e9216e046f00602b8b242bfaa7aa9be1e3db47cf2e0299adc4500811946",
+  "config_sha256": "1505e5d9b73259a9fd7f039b8b467a75f3b17fd2a1a1443ac8360ec849b92807",
+  "epochs_completed": 10,
+  "evidence_class": "p2_measured_development_independent_seed",
+  "family": "CCOLD_TWO_TOWER",
+  "git_commit": "a380971b69b2c95d143ac23b84d12beafe0fb197",
+  "gpu_qualification": {
+    "bf16_supported": true,
+    "cuda_runtime": "13.0",
+    "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+    "tensor_result": 5590357.0,
+    "torch": "2.14.0+cu130",
+    "vram_bytes": 17170956288
+  },
+  "model_id": "E01-CCOLD_TWO_TOWER-SEED20261001",
+  "peak_vram_bytes": 732648448,
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "seed": 20261001,
+  "stage_id": "P2-E01",
+  "status": "PASS",
+  "stopping_reason": "scheduled_epochs_complete",
+  "train_seconds": 141.29532148000004,
+  "training_examples": 47898,
+  "training_log": [
+    {
+      "epoch": 1,
+      "loss": 0.6043735398465325,
+      "validation_ndcg_at_20": 0.0013030382103612185
+    },
+    {
+      "epoch": 2,
+      "loss": 0.5692366672769769,
+      "validation_ndcg_at_20": 0.0013932779088816373
+    },
+    {
+      "epoch": 3,
+      "loss": 0.5567146241005351,
+      "validation_ndcg_at_20": 0.001456262003030423
+    },
+    {
+      "epoch": 4,
+      "loss": 0.5485163533720941,
+      "validation_ndcg_at_20": 0.001530456012710737
+    },
+    {
+      "epoch": 5,
+      "loss": 0.5422318342722673,
+      "validation_ndcg_at_20": 0.0015715551433467623
+    },
+    {
+      "epoch": 6,
+      "loss": 0.5371125062859239,
+      "validation_ndcg_at_20": 0.0015783504782434744
+    },
+    {
+      "epoch": 7,
+      "loss": 0.5327653225077792,
+      "validation_ndcg_at_20": 0.0016881406600337836
+    },
+    {
+      "epoch": 8,
+      "loss": 0.529001929209055,
+      "validation_ndcg_at_20": 0.0018717753966729768
+    },
+    {
+      "epoch": 9,
+      "loss": 0.5255793038079164,
+      "validation_ndcg_at_20": 0.0017242738170486008
+    },
+    {
+      "epoch": 10,
+      "loss": 0.5225080468419788,
+      "validation_ndcg_at_20": 0.0016928845731778914
+    }
+  ],
+  "trial_id": "E01-CCOLD_TWO_TOWER-SEED20261001",
+  "validation": {
+    "output": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/results/e01-ccold_two_tower-seed20261001_validation.parquet",
+    "output_sha256": "800920ff0b0d38d9ff3fa2e36c65993a239c6ea97288dd4136737bfb19cd24f9",
+    "role": "VALIDATION",
+    "rows": 27918,
+    "seconds": 10.283048988000019,
+    "slices": {
+      "all": {
+        "n": 27918,
+        "ndcg_at_20": 0.0018717753966729768
+      },
+      "controlled_zero": {
+        "n": 458,
+        "ndcg_at_20": 0.0013775758811603875
+      },
+      "natural_zero": {
+        "n": 17866,
+        "ndcg_at_20": 0.0019245917413890001
+      },
+      "warm": {
+        "n": 3808,
+        "ndcg_at_20": 0.001991820984887438
+      }
+    },
+    "users_per_second": 2714.953078012385
+  }
+}

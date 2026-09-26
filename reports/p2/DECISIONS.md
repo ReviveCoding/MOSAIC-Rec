@@ -169,3 +169,10 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 - Apply the preregistered two-sided router objective and tie rule unchanged. Select `R2_T3`, `R3_T3`, and `R4_T1` within their families for independent-seed stability; no family is promoted at this stage.
 - Preserve the negative router selection scores and every trial result. The scores show that no router simultaneously matched both development comparators under the frozen objective.
 - Preserve all nine original receipts with their inherited pilot stage labels. Record the mismatch as a metadata defect, retain the P2-E00 config hashes as the scientific identity, and correct only future receipt generation.
+
+## 2026-09-26 — independent-seed stability closure
+
+- Accept all 30 preregistered P2-E01 runs as DEVELOPMENT evidence after the queue revalidated every terminal receipt, checkpoint hash, and VALIDATION-output hash without rerunning any model.
+- Apply the frozen no-best-seed rule. Subsequent protected scoring must use the preregistered arithmetic mean of aligned scores from all three independent-seed checkpoints.
+- Retain `ALIGN_RANK` and the already frozen metric, slice, robustness, ablation, and statistics definitions. The seed summary does not select a seed and does not open either protected role.
+- Treat the observed stability differences as development evidence only. In particular, preserve R3's high controlled-zero variability and every unfavorable family result; do not use them to alter the HPO space or seed policy.

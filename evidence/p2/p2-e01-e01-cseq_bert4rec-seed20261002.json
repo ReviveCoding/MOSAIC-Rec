@@ -1,0 +1,87 @@
+{
+  "attempt_id": "",
+  "best_epoch": 1,
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/checkpoints/e01-cseq_bert4rec-seed20261002.pt",
+  "checkpoint_sha256": "fc28a11d6f845dd1ab6ac7f50ceb2cf49d075685d4deabe54d7ca7df94629ea3",
+  "config_sha256": "d53f6ed0e9c623bc092d1873742f87655c99e663ce3f058f2213998a97a72254",
+  "epochs_completed": 6,
+  "evidence_class": "p2_measured_development_independent_seed",
+  "family": "CSEQ_BERT4REC",
+  "git_commit": "a380971b69b2c95d143ac23b84d12beafe0fb197",
+  "gpu_qualification": {
+    "bf16_supported": true,
+    "cuda_runtime": "13.0",
+    "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+    "tensor_result": 5590357.0,
+    "torch": "2.14.0+cu130",
+    "vram_bytes": 17170956288
+  },
+  "model_id": "E01-CSEQ_BERT4REC-SEED20261002",
+  "peak_vram_bytes": 992636416,
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "seed": 20261002,
+  "stage_id": "P2-E01",
+  "status": "PASS",
+  "stopping_reason": "early_stopping_patience",
+  "train_seconds": 108.73742642600018,
+  "training_examples": 47898,
+  "training_log": [
+    {
+      "epoch": 1,
+      "loss": 10.697182176900409,
+      "validation_ndcg_at_20": 0.0017542232789735867
+    },
+    {
+      "epoch": 2,
+      "loss": 10.40568432879092,
+      "validation_ndcg_at_20": 0.0014818319810729536
+    },
+    {
+      "epoch": 3,
+      "loss": 10.307001417383194,
+      "validation_ndcg_at_20": 0.0015226688101932226
+    },
+    {
+      "epoch": 4,
+      "loss": 10.194775604900808,
+      "validation_ndcg_at_20": 0.0017149381285056706
+    },
+    {
+      "epoch": 5,
+      "loss": 10.085176951718818,
+      "validation_ndcg_at_20": 0.001586252747992164
+    },
+    {
+      "epoch": 6,
+      "loss": 9.990913257607408,
+      "validation_ndcg_at_20": 0.0016889602973641333
+    }
+  ],
+  "trial_id": "E01-CSEQ_BERT4REC-SEED20261002",
+  "validation": {
+    "output": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/results/e01-cseq_bert4rec-seed20261002_validation.parquet",
+    "output_sha256": "4be259a96631db271947f50b19b2c7297d98a42ad373d7798fd4b5d00ad6ce2c",
+    "role": "VALIDATION",
+    "rows": 27918,
+    "seconds": 15.123332218000087,
+    "slices": {
+      "all": {
+        "n": 27918,
+        "ndcg_at_20": 0.0017542232789735867
+      },
+      "controlled_zero": {
+        "n": 458,
+        "ndcg_at_20": 0.0
+      },
+      "natural_zero": {
+        "n": 17866,
+        "ndcg_at_20": 0.0
+      },
+      "warm": {
+        "n": 3808,
+        "ndcg_at_20": 0.012860925814701836
+      }
+    },
+    "users_per_second": 1846.0214451951176
+  }
+}

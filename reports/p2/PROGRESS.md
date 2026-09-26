@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-Crash recovery, the development model ladder, score alignment, and all 30 frozen HPO trials are complete. P2-E00 is `PASS_DEVELOPMENT`; P2-E01 independent-seed materialization is next.
+Crash recovery, the development model ladder, score alignment, equal-budget HPO, and all 30 frozen independent-seed runs are complete. P2-E01 is `PASS_DEVELOPMENT`; the next action is to materialize the already-preregistered comparator/router ensemble identities and validate every pre-QUALIFICATION freeze gate before protected access.
 
 ## Completed
 
@@ -60,9 +60,17 @@ Crash recovery, the development model ladder, score alignment, and all 30 frozen
 - `ALIGN_TEMP_1.0_0.5` launch attempt 2 subsequently completed on CUDA. Its frozen config hash and 29,446,255-byte VALIDATION output independently match the terminal receipt; exact NDCG@20 was 0.001864 overall, 0 controlled zero, and 0.013602 warm. The p2-only warehouse now passes with 44 receipts and 72 metric rows.
 - The receipt schema identifies this candidate through `model_id=R1_ALIGN_TEMP_1.0_0.5` and its frozen config hash; it does not include separate `alignment_id` or `protected_roles_opened` fields. Global protocol counters remain authoritative at zero, and p1 immutability hashes pass.
 
+## 2026-09-26 — independent-seed stability
+
+- Materialized and committed 30 frozen P2-E01 identities before execution: ten selected families across independent seeds `20261001`, `20261002`, and `20261003`. HPO seed `20260930` was excluded.
+- All 30 CUDA runs terminated `PASS`; the crash-safe queue then rehashed every checkpoint and VALIDATION output and skipped all terminal identities without retraining.
+- The deterministic summary uses all three seeds and explicitly prohibits best-seed selection. `ALIGN_RANK`, frozen metrics, frozen slices, and zero protected access were preserved.
+- Development means show the preregistered tradeoff remains material: `R2` controlled-zero/warm NDCG@20 means are `0.0090449251`/`0.0041864526`; `R3` is substantially less stable on controlled zero (CV `1.2112`); `SASREC` has the strongest listed warm mean at `0.0171005726`. These are DEVELOPMENT stability results, not promotion or protected evidence.
+- All three independent-seed LIGHTGCN runs executed after the historical HPO interruption completed without the defined recurring WSL GPU failure signature. No kernel/environment amendment was made.
+
 ## Active next action
 
-Materialize and commit the preregistered P2-E01 independent-seed identities from the completed summaries before executing any seed run.
+Materialize and commit the preregistered three-seed ensemble identities for comparator and router qualification preparation, then run the clean pre-QUALIFICATION protocol guard. QUALIFICATION and LOCKED_FINAL remain unopened.
 
 ## 2026-09-25 reboot recovery
 

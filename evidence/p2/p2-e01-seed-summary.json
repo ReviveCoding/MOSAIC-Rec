@@ -1,0 +1,471 @@
+{
+  "best_seed_selection": false,
+  "evidence_class": "p2_measured_development_independent_seed_summary",
+  "families": {
+    "BPR_MF": {
+      "checkpoint_sha256": [
+        "5cede02997ab4a0c7f818290b2f76a16c0b6380236ee7dc7417bd897872f12c0",
+        "6f820c954fa5c650b3eeabbb31b858c782bbd46ade695eb96d9fcbdcbe085b75",
+        "de5c5b54a048b6a772b0382ea4dfe08216a232ddbab9cae884bcb117becdf635"
+      ],
+      "metrics": {
+        "all": {
+          "coefficient_of_variation": 0.1119443304539533,
+          "max": 0.0009054003597429687,
+          "mean": 0.0008287445932639993,
+          "min": 0.0007256108645141771,
+          "n": 3,
+          "sample_sd": 9.277325861027226e-05
+        },
+        "controlled_zero": {
+          "coefficient_of_variation": null,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "sample_sd": 0.0
+        },
+        "natural_zero": {
+          "coefficient_of_variation": null,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "sample_sd": 0.0
+        },
+        "warm": {
+          "coefficient_of_variation": 0.15738196390361986,
+          "max": 0.006194914231643947,
+          "mean": 0.005343166519911288,
+          "min": 0.004513513606533921,
+          "n": 3,
+          "sample_sd": 0.0008409180403677086
+        }
+      },
+      "seeds": [
+        20261001,
+        20261002,
+        20261003
+      ]
+    },
+    "CCOLD_TWO_TOWER": {
+      "checkpoint_sha256": [
+        "32b78e9216e046f00602b8b242bfaa7aa9be1e3db47cf2e0299adc4500811946",
+        "0784ce65e5fe9c025f21625640ca44ec7d20e7918cd171a82e723f9308ed0cd4",
+        "79cb74e3f5456c5e24af7a0a50e17d1b72d2d4d58576102892fedd69c412dd89"
+      ],
+      "metrics": {
+        "all": {
+          "coefficient_of_variation": 0.07705624984491212,
+          "max": 0.0018717753966729768,
+          "mean": 0.0017208193815575468,
+          "min": 0.0016231616202394535,
+          "n": 3,
+          "sample_sd": 0.00013259988820326548
+        },
+        "controlled_zero": {
+          "coefficient_of_variation": 0.36591804410647105,
+          "max": 0.0013775758811603875,
+          "mean": 0.0009917294813019154,
+          "min": 0.0006572707328907887,
+          "n": 3,
+          "sample_sd": 0.0003628917120807219
+        },
+        "natural_zero": {
+          "coefficient_of_variation": 0.07516955328398317,
+          "max": 0.00196710575753756,
+          "mean": 0.0018658096247959697,
+          "min": 0.0017057313754613496,
+          "n": 3,
+          "sample_sd": 0.00014025207600886928
+        },
+        "warm": {
+          "coefficient_of_variation": 0.21280171783293783,
+          "max": 0.001991820984887438,
+          "mean": 0.0016657891449161216,
+          "min": 0.0012884475871173069,
+          "n": 3,
+          "sample_sd": 0.0003544827915856113
+        }
+      },
+      "seeds": [
+        20261001,
+        20261002,
+        20261003
+      ]
+    },
+    "CSEQ_BERT4REC": {
+      "checkpoint_sha256": [
+        "6f4e508d7be2d88a5282680c638064523196968ad3ebfc23b91e430877bf1eb4",
+        "fc28a11d6f845dd1ab6ac7f50ceb2cf49d075685d4deabe54d7ca7df94629ea3",
+        "9216e508c68f5b0cd387a1bacd434478bc95b815a3963c5624fd18776458aa42"
+      ],
+      "metrics": {
+        "all": {
+          "coefficient_of_variation": 0.03187593082478931,
+          "max": 0.0018623812154420721,
+          "mean": 0.001820451051517802,
+          "min": 0.0017542232789735867,
+          "n": 3,
+          "sample_sd": 5.802857178809642e-05
+        },
+        "controlled_zero": {
+          "coefficient_of_variation": null,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "sample_sd": 0.0
+        },
+        "natural_zero": {
+          "coefficient_of_variation": null,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "sample_sd": 0.0
+        },
+        "warm": {
+          "coefficient_of_variation": 0.03067478666838185,
+          "max": 0.013653875728128092,
+          "mean": 0.013209148732678748,
+          "min": 0.012860925814701836,
+          "n": 3,
+          "sample_sd": 0.00040518781944584706
+        }
+      },
+      "seeds": [
+        20261001,
+        20261002,
+        20261003
+      ]
+    },
+    "LEGACY_M1": {
+      "checkpoint_sha256": [
+        "fd1dd816b65419b4058cbf0b6e484b600c33b8e8e36330425236faf7421eeec5",
+        "011ed8b771855f4f0583f8eaa56776d560144970cfd8ae8236abe592c1bca0c5",
+        "52aa40c12280417dd9b8e463adcd73d873dca84a21f48d9bba481fe2e3896e37"
+      ],
+      "metrics": {
+        "all": {
+          "coefficient_of_variation": 0.05453283162016557,
+          "max": 0.006942122467661227,
+          "mean": 0.006533794465310967,
+          "min": 0.006285979910259557,
+          "n": 3,
+          "sample_sd": 0.0003563063134175727
+        },
+        "controlled_zero": {
+          "coefficient_of_variation": 0.29758061671327773,
+          "max": 0.0048059240736091375,
+          "mean": 0.0036809678643471705,
+          "min": 0.002617767523014138,
+          "n": 3,
+          "sample_sd": 0.0010953846871741878
+        },
+        "natural_zero": {
+          "coefficient_of_variation": 0.07358204660072148,
+          "max": 0.010267345510426957,
+          "mean": 0.009477839225745792,
+          "min": 0.00894569988812031,
+          "n": 3,
+          "sample_sd": 0.0006973988075829728
+        },
+        "warm": {
+          "coefficient_of_variation": 0.1906187542860206,
+          "max": 0.0033492784490162875,
+          "mean": 0.0027921405930037887,
+          "min": 0.002288913095724427,
+          "n": 3,
+          "sample_sd": 0.000532234361629813
+        }
+      },
+      "seeds": [
+        20261001,
+        20261002,
+        20261003
+      ]
+    },
+    "LIGHTGCN": {
+      "checkpoint_sha256": [
+        "4c525f2e97c7ebfd8fa1aac400b188a68fbe1ce78a1195878130795aa1d62aec",
+        "9d9d030f7f4801e9cb1230999fa435f35a09ef5a49376c2b5fafdc6d3a5f00c2",
+        "4d4544cc967e5a7b37b2107fe03b820f445e6324d017c5ab8fc55e7e437f8b77"
+      ],
+      "metrics": {
+        "all": {
+          "coefficient_of_variation": 0.2348188504838484,
+          "max": 0.0010888453739253947,
+          "mean": 0.000902917382287521,
+          "min": 0.0006720170817177275,
+          "n": 3,
+          "sample_sd": 0.00021202202179064117
+        },
+        "controlled_zero": {
+          "coefficient_of_variation": null,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "sample_sd": 0.0
+        },
+        "natural_zero": {
+          "coefficient_of_variation": null,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "sample_sd": 0.0
+        },
+        "warm": {
+          "coefficient_of_variation": 0.41562638516353895,
+          "max": 0.005157222686091356,
+          "mean": 0.0038373339958833164,
+          "min": 0.002065131746480461,
+          "n": 3,
+          "sample_sd": 0.0015948972573741412
+        }
+      },
+      "seeds": [
+        20261001,
+        20261002,
+        20261003
+      ]
+    },
+    "R2": {
+      "checkpoint_sha256": [
+        "b9c99aae724e609ac55cb31d272a875fcbf7dc6593b406e73afd8297feeeb12d",
+        "32273095540932682ff0688eb63e66cd4952f45f0f27ab0ff3e57d7576526f3c",
+        "c634ac6c33cdcbe4f81de3acd30343c8dd71d65ff6a63b31b86721ca2dfcb34e"
+      ],
+      "metrics": {
+        "all": {
+          "coefficient_of_variation": 0.039617947768822104,
+          "max": 0.007284770498787624,
+          "mean": 0.007071054586109119,
+          "min": 0.006753904149645974,
+          "n": 3,
+          "sample_sd": 0.0002801406712629611
+        },
+        "controlled_zero": {
+          "coefficient_of_variation": 0.04769219840176858,
+          "max": 0.009494875021783871,
+          "mean": 0.009044925096563287,
+          "min": 0.00863490712950482,
+          "n": 3,
+          "sample_sd": 0.00043137236223443214
+        },
+        "natural_zero": {
+          "coefficient_of_variation": 0.043451531530655486,
+          "max": 0.010331929733643318,
+          "mean": 0.009915843611891245,
+          "min": 0.009471594327116417,
+          "n": 3,
+          "sample_sd": 0.00043085859135514123
+        },
+        "warm": {
+          "coefficient_of_variation": 0.10253138788999469,
+          "max": 0.004669945153522476,
+          "mean": 0.004186452624942954,
+          "min": 0.0038502309103187033,
+          "n": 3,
+          "sample_sd": 0.0004292427979711125
+        }
+      },
+      "seeds": [
+        20261001,
+        20261002,
+        20261003
+      ]
+    },
+    "R3": {
+      "checkpoint_sha256": [
+        "872f045969add0d1bd3033aa876d1c75b414d5278055bf050fa662ca6ea1f591",
+        "8db29473ea114702c1e9ed3d574916e5cab752e435d9549d33c866ba0e1c05fe",
+        "f5a3bf328d568ab8286d0c84cd012fd8b75904d7d39eed24a394cd91dc9cdc9a"
+      ],
+      "metrics": {
+        "all": {
+          "coefficient_of_variation": 0.6106103941486775,
+          "max": 0.007204897661481066,
+          "mean": 0.0042256351650371915,
+          "min": 0.0027133162816794128,
+          "n": 3,
+          "sample_sd": 0.002580216753651871
+        },
+        "controlled_zero": {
+          "coefficient_of_variation": 1.211209067728579,
+          "max": 0.00673365313182163,
+          "mean": 0.002811467307150973,
+          "min": 0.000609045732862729,
+          "n": 3,
+          "sample_sd": 0.003405274696043708
+        },
+        "natural_zero": {
+          "coefficient_of_variation": 1.0674284823856552,
+          "max": 0.008781874138998365,
+          "mean": 0.003933546153857618,
+          "min": 0.001503586168118189,
+          "n": 3,
+          "sample_sd": 0.004198779201406168
+        },
+        "warm": {
+          "coefficient_of_variation": 0.0923732329742061,
+          "max": 0.012985025693239095,
+          "mean": 0.012029788426369821,
+          "min": 0.010810230150081198,
+          "n": 3,
+          "sample_sd": 0.0011112304489394678
+        }
+      },
+      "seeds": [
+        20261001,
+        20261002,
+        20261003
+      ]
+    },
+    "R4": {
+      "checkpoint_sha256": [
+        "9edc8f5b13c24727e87f67debdf408b8dda48aff5c27ba2edd2feae9f65171ff",
+        "57737d3912d87e6ca2d7d54f5e4f382c80b248bd04ea9ed4456cf36219085f25",
+        "f3bbbc5bd1b98e7db8ac22c0b92085d1eb4451b8ffb4464487967822089dfe99"
+      ],
+      "metrics": {
+        "all": {
+          "coefficient_of_variation": 0.07468389451826958,
+          "max": 0.0068979994690680675,
+          "mean": 0.006519724898285101,
+          "min": 0.00597035041956753,
+          "n": 3,
+          "sample_sd": 0.0004869184465916604
+        },
+        "controlled_zero": {
+          "coefficient_of_variation": 0.32841853535684845,
+          "max": 0.008175383023597134,
+          "mean": 0.006500897439804352,
+          "min": 0.00409669469517727,
+          "n": 3,
+          "sample_sd": 0.0021350152156856313
+        },
+        "natural_zero": {
+          "coefficient_of_variation": 0.12042718335937157,
+          "max": 0.009326436930507834,
+          "mean": 0.008418360911476408,
+          "min": 0.007324527723878259,
+          "n": 3,
+          "sample_sd": 0.0010137994930717357
+        },
+        "warm": {
+          "coefficient_of_variation": 0.19855679849589775,
+          "max": 0.008913850979066723,
+          "mean": 0.007499447255672128,
+          "min": 0.005945537155960279,
+          "n": 3,
+          "sample_sd": 0.001489066237575104
+        }
+      },
+      "seeds": [
+        20261001,
+        20261002,
+        20261003
+      ]
+    },
+    "SASREC": {
+      "checkpoint_sha256": [
+        "d6cc869407f8e57759b26767dd9887beadccc8fee37fd1a40e87010199a91137",
+        "d89f8931aae79207bc248793e61fc3702ae197b7b7379df8db86cb3bdd809a16",
+        "61653cd673df5f969712341e0861dad9dd7a31e83346a7995c8ce89bb1d32b88"
+      ],
+      "metrics": {
+        "all": {
+          "coefficient_of_variation": 0.08031348289954786,
+          "max": 0.0025052057326065648,
+          "mean": 0.0023353720872113294,
+          "min": 0.0021340643141884276,
+          "n": 3,
+          "sample_sd": 0.0001875618661903285
+        },
+        "controlled_zero": {
+          "coefficient_of_variation": null,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "sample_sd": 0.0
+        },
+        "natural_zero": {
+          "coefficient_of_variation": null,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "sample_sd": 0.0
+        },
+        "warm": {
+          "coefficient_of_variation": 0.08013070073950314,
+          "max": 0.018366684254965883,
+          "mean": 0.017100572595039353,
+          "min": 0.015645695253023246,
+          "n": 3,
+          "sample_sd": 0.001370280865087247
+        }
+      },
+      "seeds": [
+        20261001,
+        20261002,
+        20261003
+      ]
+    },
+    "VBPR": {
+      "checkpoint_sha256": [
+        "27a07519195435dfbe6283d0141922cec5751c9bc13f0c7f670842dc5cfb094f",
+        "7dc17bdcfb3ddf92ca0f7476aa86c198dd65b16d97415a06f98f5380d9991acd",
+        "8ccbe101d8e6d2221f34ff704f452abddf96e8763bba822320b56508f597bd5b"
+      ],
+      "metrics": {
+        "all": {
+          "coefficient_of_variation": 0.18716398864174943,
+          "max": 0.0007235074990572732,
+          "mean": 0.0005973814708158435,
+          "min": 0.000510438246588562,
+          "n": 3,
+          "sample_sd": 0.0001118082988185681
+        },
+        "controlled_zero": {
+          "coefficient_of_variation": 0.8797832569425579,
+          "max": 0.0006572707328907887,
+          "mean": 0.00039714740741063115,
+          "min": 0.0,
+          "n": 3,
+          "sample_sd": 0.000349403639578018
+        },
+        "natural_zero": {
+          "coefficient_of_variation": 0.18060056071866243,
+          "max": 0.0008474095746698886,
+          "mean": 0.000704241248058437,
+          "min": 0.0006043111158970525,
+          "n": 3,
+          "sample_sd": 0.00012718636428056437
+        },
+        "warm": {
+          "coefficient_of_variation": 0.4193175568541393,
+          "max": 0.0005022386109822128,
+          "mean": 0.0003663773918477196,
+          "min": 0.00019966416985580068,
+          "n": 3,
+          "sample_sd": 0.00015362847283617744
+        }
+      },
+      "seeds": [
+        20261001,
+        20261002,
+        20261003
+      ]
+    }
+  },
+  "manifest_sha256": "e336889f07d26dbfecd2033d7a8ee97201b5082f9c672d463a73d22a6cf29aa5",
+  "protected_roles_opened": [],
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-E01",
+  "status": "PASS_DEVELOPMENT"
+}
