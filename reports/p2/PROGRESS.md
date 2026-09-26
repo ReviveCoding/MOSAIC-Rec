@@ -71,7 +71,15 @@ Development and QUALIFICATION are complete. C_seq, C_cold, R2, R3, and R4 were e
 
 ## Active next action
 
-LOCKED_FINAL access is opened exactly once under the committed E05 guard. Protected counts are now `1/1`; F00 scoring has not yet started at this separately committed boundary.
+F00 exact locked scoring is complete for all three frozen families. H1 and H2 both failed their frozen confidence-bound rules, so conjunctive promotion failed. R4 remains the evaluated finalist; no substitution or tuning is permitted. Next is the preregistered Gxx robustness family.
+
+## 2026-09-26 — F00 locked result
+
+- Exact full-catalog CUDA scoring persisted immutable top-20/top-100 outputs for 25,367 common LOCKED_FINAL queries: C_seq SHA-256 `ef234b5b...`, C_cold `4e382313...`, and R4 `f810256c...`.
+- R4 overall NDCG@20 was `0.0018459998`; controlled-zero was `0.0008903374`; warm was `0`. C_cold controlled-zero was `0`; C_seq warm was `0.0013376647`.
+- H1 mean delta was `+0.0008903374`, but the 10,000-draw paired-user 95% interval was `[0, 0.0026710122]`; strict superiority requires a lower bound above zero, so H1 failed. Item-cluster sensitivity also had lower bound zero.
+- H2 mean delta was `-0.0013376647` with interval `[-0.0022764717, -0.0005344753]`. The frozen margin is `0.0013209149`, so the lower bound was below `-margin`; H2 failed.
+- The conjunctive promotion gate failed. This is a valid locked negative result and does not trigger model replacement.
 
 ## 2026-09-26 — one-time LOCKED_FINAL access
 

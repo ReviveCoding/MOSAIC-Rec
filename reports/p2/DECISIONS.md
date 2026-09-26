@@ -208,3 +208,8 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 ## 2026-09-26 — LOCKED_FINAL access
 
 - Open LOCKED_FINAL exactly once after every boundary audit passed. Restrict F00 to the three E05-frozen families in manifest order and preserve the transition as a separate commit before any score is computed.
+
+## 2026-09-26 — locked primary gates
+
+- Preserve R4 as the frozen evaluated finalist and record both primary gates as FAIL. H1's positive point estimate does not pass because its paired-user lower bound equals zero. H2 fails because its lower bound is worse than the frozen noninferiority threshold.
+- Apply the frozen conjunctive rule without reinterpretation: R4 is not promoted. Continue the preregistered robustness and ablation stages for diagnosis; those outcomes cannot reverse the failed primary promotion decision.

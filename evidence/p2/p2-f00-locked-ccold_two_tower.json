@@ -1,0 +1,51 @@
+{
+  "checkpoint_sha256": [
+    "32b78e9216e046f00602b8b242bfaa7aa9be1e3db47cf2e0299adc4500811946",
+    "0784ce65e5fe9c025f21625640ca44ec7d20e7918cd171a82e723f9308ed0cd4",
+    "79cb74e3f5456c5e24af7a0a50e17d1b72d2d4d58576102892fedd69c412dd89"
+  ],
+  "evidence_class": "p2_measured_locked_exact_full_catalog_ensemble",
+  "family": "CCOLD_TWO_TOWER",
+  "freeze_sha256": "15233342edf761c957f061e5ff72323feda8cdcfae9119e8a464fc046c509de7",
+  "git_commit": "e55ffc55ed89b4fc849613c8b2a7bc58e16b167a",
+  "gpu_qualification": {
+    "bf16_supported": true,
+    "cuda_runtime": "13.0",
+    "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+    "tensor_result": 5590357.0,
+    "torch": "2.14.0+cu130",
+    "vram_bytes": 17170956288
+  },
+  "locked_final": {
+    "output": "/home/bjw-0/mosaic-rec-work/p2/locked_final/ccold_two_tower_topk.parquet",
+    "output_sha256": "4e382313803daa6894f7c9af092afadc341d4ded80ff79fe93ba12f95bbaeaa9",
+    "role": "LOCKED_FINAL",
+    "rows": 25367,
+    "seconds": 17.139271693000012,
+    "slices": {
+      "all": {
+        "n": 25367,
+        "ndcg_at_20": 0.0010082537428233898
+      },
+      "controlled_zero": {
+        "n": 295,
+        "ndcg_at_20": 0.0
+      },
+      "natural_zero": {
+        "n": 19792,
+        "ndcg_at_20": 0.001024038208267427
+      },
+      "warm": {
+        "n": 2100,
+        "ndcg_at_20": 0.0016131486354116556
+      }
+    },
+    "users_per_second": 1480.051070787995
+  },
+  "locked_final_access_count": 1,
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "qualification_access_count": 1,
+  "role": "LOCKED_FINAL",
+  "stage_id": "P2-F00",
+  "status": "PASS"
+}
