@@ -67,6 +67,7 @@ Crash recovery, the development model ladder, score alignment, equal-budget HPO,
 - The deterministic summary uses all three seeds and explicitly prohibits best-seed selection. `ALIGN_RANK`, frozen metrics, frozen slices, and zero protected access were preserved.
 - Development means show the preregistered tradeoff remains material: `R2` controlled-zero/warm NDCG@20 means are `0.0090449251`/`0.0041864526`; `R3` is substantially less stable on controlled zero (CV `1.2112`); `SASREC` has the strongest listed warm mean at `0.0171005726`. These are DEVELOPMENT stability results, not promotion or protected evidence.
 - All three independent-seed LIGHTGCN runs executed after the historical HPO interruption completed without the defined recurring WSL GPU failure signature. No kernel/environment amendment was made.
+- The first clean pre-QUALIFICATION guard was invalidated before protected access after audit found that it hashed robustness/ablation definitions but not their executable functions. The receipt is preserved; v2 adds deterministic implementation identities and tests while both protected counters remain zero.
 
 ## Active next action
 

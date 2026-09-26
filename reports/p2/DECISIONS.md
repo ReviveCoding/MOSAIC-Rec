@@ -183,3 +183,4 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 - Freeze `ALIGN_RANK` and the arithmetic three-seed score ensemble. The HPO seed remains excluded and no best seed is selected.
 - Freeze the warm noninferiority margin at `0.001320914873267875`, exactly 10% of the C_seq three-seed VALIDATION warm NDCG@20 mean `0.013209148732678748`.
 - Amendment 003 makes cross-family router selection executable by reusing the already frozen router objective and declared tie rules. It adds no candidate, metric, population, or outcome-dependent choice and occurs with both protected counters at zero.
+- Invalidate pre-QUALIFICATION guard v1 before protected access because it bound the robustness and ablation JSON definitions but omitted executable transformation hashes. Preserve the v1 receipt and add `prequalification_freeze_v2.json`, which binds the deterministic implementations. Both protected counters remain zero.

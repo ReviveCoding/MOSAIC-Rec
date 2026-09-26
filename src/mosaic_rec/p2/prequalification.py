@@ -95,6 +95,8 @@ def build_prequalification_freeze(repo: Path) -> dict[str, Any]:
         "configs/p2/robustness.json",
         "configs/p2/ablations.json",
         "src/mosaic_rec/p2/slices.py",
+        "src/mosaic_rec/p2/robustness.py",
+        "src/mosaic_rec/p2/ablations.py",
     ]
     return {
         "protocol_id": PROTOCOL_ID,

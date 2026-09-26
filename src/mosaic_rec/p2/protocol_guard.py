@@ -34,7 +34,7 @@ def prequalification_guard(repo: Path) -> dict[str, Any]:
     head = subprocess.check_output(
         ["git", "rev-parse", "HEAD"], cwd=repo, text=True
     ).strip()
-    freeze_path = repo / "configs/p2/prequalification_freeze.json"
+    freeze_path = repo / "configs/p2/prequalification_freeze_v2.json"
     frozen = load_json(freeze_path)
     rebuilt = build_prequalification_freeze(repo)
     if canonical_json_sha256(frozen) != canonical_json_sha256(rebuilt):

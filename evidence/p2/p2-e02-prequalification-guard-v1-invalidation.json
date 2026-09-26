@@ -1,0 +1,12 @@
+{
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-E02-PREQUALIFICATION-GUARD-V1-INVALIDATION",
+  "status": "INVALID",
+  "invalidated_receipt": "evidence/p2/p2-e02-prequalification-guard.json",
+  "invalidated_receipt_sha256": "0981f3672369983eab66dad6a04cd2ebd24aa2e1206ef0b010dbb82481d0eef4",
+  "reason": "The clean guard validated frozen robustness and ablation JSON definitions but did not bind executable transformation identities. No protected outcome was accessed. A superseding v2 freeze and guard are required before QUALIFICATION.",
+  "qualification_access_count": 0,
+  "locked_final_access_count": 0,
+  "scientific_state": "DEVELOPMENT",
+  "protected_roles_opened": []
+}
