@@ -1,0 +1,75 @@
+{
+  "alignment_summary_sha256": "0bd428ae5edf0d617a730bfe407db1bba2b50aaf8fb30e048a6fdc5acecb62d7",
+  "hpo_sha256": "2297c0b0953ab3e5f496b87198d6d1a2b0f110396aeb7c9cfa4204d8ad92ce71",
+  "pre_router_summary_sha256": "905510572b723820d7c82f652c1e04d4538835eb4e16fbf13f4fa427e3b9012a",
+  "protected_roles_opened": [],
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-E00-ROUTER-CONFIG-MATERIALIZATION",
+  "status": "PASS",
+  "trial_count": 9,
+  "trials": [
+    {
+      "canonical_config_sha256": "2ddabc34e8feaf8743c5501c51fd42ecb4e873718e4cd015da4b96deefba07d2",
+      "family": "R2",
+      "path": "configs/p2/router_hpo_trials/r2_t1.json",
+      "sha256": "da1849d04af613a44aa8856dbf1ed6b35adcace4edace704904afec2ecff5eab",
+      "trial_id": "R2_T1"
+    },
+    {
+      "canonical_config_sha256": "725005bb34095d5f85ba4bfa3a057815bbe82ae610cd013688bdd8c265302241",
+      "family": "R2",
+      "path": "configs/p2/router_hpo_trials/r2_t2.json",
+      "sha256": "3248ee57d44957c7998bb1ab021b9ba2e31e95b95d7c575d18b309aefe61645c",
+      "trial_id": "R2_T2"
+    },
+    {
+      "canonical_config_sha256": "b823c279bbdc8644ffc95b2fc908b424931ccd55f015bdf3c72583f28d0eb114",
+      "family": "R2",
+      "path": "configs/p2/router_hpo_trials/r2_t3.json",
+      "sha256": "ac4b87d69e1943b9da5c582bba5c7aeb60b63f27de661c68eac61e8d757bbf14",
+      "trial_id": "R2_T3"
+    },
+    {
+      "canonical_config_sha256": "2341666141a52479cdc2bc7520b66895d61625e9e43c0faa57f1d75ccad5e70c",
+      "family": "R3",
+      "path": "configs/p2/router_hpo_trials/r3_t1.json",
+      "sha256": "13907fbf3eba418030d6975b109b58ddac882ebf957bfd1991bd84798a11bb84",
+      "trial_id": "R3_T1"
+    },
+    {
+      "canonical_config_sha256": "1112a500e5977f6ecb8d48e7ebf97187a20fd715c6944e69180b492aee51cae5",
+      "family": "R3",
+      "path": "configs/p2/router_hpo_trials/r3_t2.json",
+      "sha256": "9574ab80222de064aab6e1bf4624d81fd3f15063d5892afe0f41301927065e70",
+      "trial_id": "R3_T2"
+    },
+    {
+      "canonical_config_sha256": "04c3bc417e417bfc2705692a55464cde346a0e17e9629895762ceb796389169e",
+      "family": "R3",
+      "path": "configs/p2/router_hpo_trials/r3_t3.json",
+      "sha256": "134d5ae4e43edbcb7a71d0185f63bafbeb7f9b60fb0d216d8f261f323b4b045b",
+      "trial_id": "R3_T3"
+    },
+    {
+      "canonical_config_sha256": "7ee836ecca7c156c4848d62731408a9f0b6ab0e0b3189c2368f50cc06f4efb14",
+      "family": "R4",
+      "path": "configs/p2/router_hpo_trials/r4_t1.json",
+      "sha256": "5a9b4b1aed5353aba86d4c6a846a6f716794fa71cbc1f4f9f3677897c82483b2",
+      "trial_id": "R4_T1"
+    },
+    {
+      "canonical_config_sha256": "473dfab1208cdc9982c3291c7655f6af56263879e2b99246feb6396bd969bca1",
+      "family": "R4",
+      "path": "configs/p2/router_hpo_trials/r4_t2.json",
+      "sha256": "789bba8658e024201dda1108c05b79720d7190da35a1d0a0cf1eb44af7c29c83",
+      "trial_id": "R4_T2"
+    },
+    {
+      "canonical_config_sha256": "ca873045432dac05dccf29a99754d5033b97c965247e73564734b9ee87b28e88",
+      "family": "R4",
+      "path": "configs/p2/router_hpo_trials/r4_t3.json",
+      "sha256": "8d271008cd03d35911b4cbef70f58d6281104c8cc6aded5bfd5055c881668b98",
+      "trial_id": "R4_T3"
+    }
+  ]
+}
