@@ -1,0 +1,92 @@
+{
+  "baseline": "SASREC",
+  "best_epoch": 2,
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/sasrec_t3.pt",
+  "checkpoint_sha256": "0ecf8a6430067327c7f5969d96a85f5ba8a61ad47435e835b6b3e5be587b1f04",
+  "config_sha256": "4e69ee8055b23f9b0c60858e22725b2bf4e835c8d2775367eecab74b52ef27ce",
+  "epochs_completed": 7,
+  "evidence_class": "p2_measured_development_hpo",
+  "family": "SASREC",
+  "git_commit": "db325d23462bd13bdf022b5d558bdae7665dcc26",
+  "gpu_qualification": {
+    "bf16_supported": true,
+    "cuda_runtime": "13.0",
+    "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+    "tensor_result": 5590357.0,
+    "torch": "2.14.0+cu130",
+    "vram_bytes": 17170956288
+  },
+  "model_id": "SASREC_T3",
+  "peak_vram_bytes": 392599552,
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "seed": 20260930,
+  "stage_id": "P2-E00",
+  "status": "PASS",
+  "stopping_reason": "early_stopping_patience",
+  "train_seconds": 102.66156224400004,
+  "training_examples": 47898,
+  "training_log": [
+    {
+      "epoch": 1,
+      "loss": 10.234451137329124,
+      "validation_ndcg_at_20": 0.0017727343996062092
+    },
+    {
+      "epoch": 2,
+      "loss": 9.30823010612646,
+      "validation_ndcg_at_20": 0.002130692277678969
+    },
+    {
+      "epoch": 3,
+      "loss": 8.676565728101348,
+      "validation_ndcg_at_20": 0.0015740669407796532
+    },
+    {
+      "epoch": 4,
+      "loss": 8.060178442724892,
+      "validation_ndcg_at_20": 0.0011450672782734382
+    },
+    {
+      "epoch": 5,
+      "loss": 7.563678953442436,
+      "validation_ndcg_at_20": 0.0009186007691285127
+    },
+    {
+      "epoch": 6,
+      "loss": 6.983382808335356,
+      "validation_ndcg_at_20": 0.001006547264333572
+    },
+    {
+      "epoch": 7,
+      "loss": 6.1773294446423455,
+      "validation_ndcg_at_20": 0.0006810761889978651
+    }
+  ],
+  "trial_id": "SASREC_T3",
+  "validation": {
+    "output": "/home/bjw-0/mosaic-rec-work/p2/hpo/results/sasrec_t3_validation.parquet",
+    "output_sha256": "d93c88c23784e1c456b0185be012089197c6092818f6b5d70e91cb2438dff577",
+    "role": "VALIDATION",
+    "rows": 27918,
+    "seconds": 13.493689851999989,
+    "slices": {
+      "all": {
+        "n": 27918,
+        "ndcg_at_20": 0.002130692277678969
+      },
+      "controlled_zero": {
+        "n": 458,
+        "ndcg_at_20": 0.0
+      },
+      "natural_zero": {
+        "n": 17866,
+        "ndcg_at_20": 0.0
+      },
+      "warm": {
+        "n": 3808,
+        "ndcg_at_20": 0.015282968417415893
+      }
+    },
+    "users_per_second": 2068.966807346155
+  }
+}

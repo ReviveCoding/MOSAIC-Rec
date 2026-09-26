@@ -1,0 +1,733 @@
+{
+  "evidence_class": "p2_measured_development_hpo_summary",
+  "families": {
+    "BPR_MF": {
+      "selection": {
+        "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/bpr_t3.pt",
+        "checkpoint_sha256": "c45acbe12de0b5e0c6b035f57a67002af3802e6f9fd0d715cf0959d1e4e07999",
+        "selected_trial_id": "BPR_T3",
+        "status": "SELECTED_DEVELOPMENT",
+        "validation": {
+          "all": {
+            "n": 27918,
+            "ndcg_at_20": 0.0008066511293912879
+          },
+          "controlled_zero": {
+            "n": 458,
+            "ndcg_at_20": 0.0
+          },
+          "natural_zero": {
+            "n": 17866,
+            "ndcg_at_20": 0.0
+          },
+          "warm": {
+            "n": 3808,
+            "ndcg_at_20": 0.004867008414267857
+          }
+        }
+      },
+      "trials": [
+        {
+          "best_epoch": 10,
+          "epochs_completed": 10,
+          "status": "PASS",
+          "stopping_reason": "scheduled_epochs_complete",
+          "trial_id": "BPR_T1",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.000722719670094646
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.0
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.0
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.004828911112177883
+            }
+          }
+        },
+        {
+          "best_epoch": 5,
+          "epochs_completed": 10,
+          "status": "PASS",
+          "stopping_reason": "early_stopping_patience",
+          "trial_id": "BPR_T2",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.0007311836000152803
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.0
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.0
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.004682510394202665
+            }
+          }
+        },
+        {
+          "best_epoch": 3,
+          "epochs_completed": 8,
+          "status": "PASS",
+          "stopping_reason": "early_stopping_patience",
+          "trial_id": "BPR_T3",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.0008066511293912879
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.0
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.0
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.004867008414267857
+            }
+          }
+        }
+      ]
+    },
+    "CCOLD_TWO_TOWER": {
+      "selection": {
+        "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/ccold_t2.pt",
+        "checkpoint_sha256": "f2f577903f62307b332b8f263ac783c50fc67c86c21ede96255456fa291e1c1e",
+        "selected_trial_id": "CCOLD_T2",
+        "status": "SELECTED_DEVELOPMENT",
+        "validation": {
+          "all": {
+            "n": 27918,
+            "ndcg_at_20": 0.0017065160084166603
+          },
+          "controlled_zero": {
+            "n": 458,
+            "ndcg_at_20": 0.0026885987186894304
+          },
+          "natural_zero": {
+            "n": 17866,
+            "ndcg_at_20": 0.0018316603426790457
+          },
+          "warm": {
+            "n": 3808,
+            "ndcg_at_20": 0.0013191846106698432
+          }
+        }
+      },
+      "trials": [
+        {
+          "best_epoch": 9,
+          "epochs_completed": 10,
+          "status": "PASS",
+          "stopping_reason": "scheduled_epochs_complete",
+          "trial_id": "CCOLD_T1",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.0014524091488039414
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.0013775758811603875
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.0014267339431855428
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.00201768437301522
+            }
+          }
+        },
+        {
+          "best_epoch": 10,
+          "epochs_completed": 10,
+          "status": "PASS",
+          "stopping_reason": "scheduled_epochs_complete",
+          "trial_id": "CCOLD_T2",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.0017065160084166603
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.0026885987186894304
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.0018316603426790457
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.0013191846106698432
+            }
+          }
+        },
+        {
+          "best_epoch": 3,
+          "epochs_completed": 8,
+          "status": "PASS",
+          "stopping_reason": "early_stopping_patience",
+          "trial_id": "CCOLD_T3",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.001688730782063724
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.0027070141191443916
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.0018006242280891678
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.0014759980686530451
+            }
+          }
+        }
+      ]
+    },
+    "CSEQ_BERT4REC": {
+      "selection": {
+        "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/cseq_t1.pt",
+        "checkpoint_sha256": "caf0be56933d5a13d3206e28b33bdff12e7c05644d15ee2e8a437a3a689cfdb3",
+        "selected_trial_id": "CSEQ_T1",
+        "status": "SELECTED_DEVELOPMENT",
+        "validation": {
+          "all": {
+            "n": 27918,
+            "ndcg_at_20": 0.0018961687542262897
+          },
+          "controlled_zero": {
+            "n": 458,
+            "ndcg_at_20": 0.0
+          },
+          "natural_zero": {
+            "n": 17866,
+            "ndcg_at_20": 0.0
+          },
+          "warm": {
+            "n": 3808,
+            "ndcg_at_20": 0.013745077839316971
+          }
+        }
+      },
+      "trials": [
+        {
+          "best_epoch": 9,
+          "epochs_completed": 10,
+          "status": "PASS",
+          "stopping_reason": "scheduled_epochs_complete",
+          "trial_id": "CSEQ_T1",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.0018961687542262897
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.0
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.0
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.013745077839316971
+            }
+          }
+        },
+        {
+          "best_epoch": 4,
+          "epochs_completed": 9,
+          "status": "PASS",
+          "stopping_reason": "early_stopping_patience",
+          "trial_id": "CSEQ_T2",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.0018901813243555887
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.0
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.0
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.013050534237722865
+            }
+          }
+        },
+        {
+          "best_epoch": 7,
+          "epochs_completed": 10,
+          "status": "PASS",
+          "stopping_reason": "scheduled_epochs_complete",
+          "trial_id": "CSEQ_T3",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.0016721324965526963
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.0
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.0
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.010061742620245976
+            }
+          }
+        }
+      ]
+    },
+    "LEGACY_M1": {
+      "selection": {
+        "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/legacy_t3.pt",
+        "checkpoint_sha256": "2ac37d139e1a7c4910c428b36ad998e6af8d8574fc16eedb7160ec03b1a60c06",
+        "selected_trial_id": "LEGACY_T3",
+        "status": "SELECTED_DEVELOPMENT",
+        "validation": {
+          "all": {
+            "n": 27918,
+            "ndcg_at_20": 0.0065204479147591725
+          },
+          "controlled_zero": {
+            "n": 458,
+            "ndcg_at_20": 0.00436468092036974
+          },
+          "natural_zero": {
+            "n": 17866,
+            "ndcg_at_20": 0.009654079519313744
+          },
+          "warm": {
+            "n": 3808,
+            "ndcg_at_20": 0.0017787718819084685
+          }
+        }
+      },
+      "trials": [
+        {
+          "best_epoch": 10,
+          "epochs_completed": 10,
+          "status": "PASS",
+          "stopping_reason": "scheduled_epochs_complete",
+          "trial_id": "LEGACY_T1",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.005672750141081044
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.0041530034498543774
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.00861986547970024
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.0006479112915816291
+            }
+          }
+        },
+        {
+          "best_epoch": 4,
+          "epochs_completed": 9,
+          "status": "PASS",
+          "stopping_reason": "early_stopping_patience",
+          "trial_id": "LEGACY_T2",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.005858096329486905
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.0013682647899621683
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.009118978397672266
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.0
+            }
+          }
+        },
+        {
+          "best_epoch": 4,
+          "epochs_completed": 9,
+          "status": "PASS",
+          "stopping_reason": "early_stopping_patience",
+          "trial_id": "LEGACY_T3",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.0065204479147591725
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.00436468092036974
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.009654079519313744
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.0017787718819084685
+            }
+          }
+        }
+      ]
+    },
+    "LIGHTGCN": {
+      "selection": {
+        "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/lightgcn_t3.pt",
+        "checkpoint_sha256": "8d815882c5db85863c7653d6b29f9859333558d48ec07c4bbe6d95ed96415a6e",
+        "selected_trial_id": "LIGHTGCN_T3",
+        "status": "SELECTED_DEVELOPMENT",
+        "validation": {
+          "all": {
+            "n": 27918,
+            "ndcg_at_20": 0.0009011413144805935
+          },
+          "controlled_zero": {
+            "n": 458,
+            "ndcg_at_20": 0.0
+          },
+          "natural_zero": {
+            "n": 17866,
+            "ndcg_at_20": 0.0
+          },
+          "warm": {
+            "n": 3808,
+            "ndcg_at_20": 0.0037022330880774694
+          }
+        }
+      },
+      "trials": [
+        {
+          "best_epoch": 10,
+          "epochs_completed": 10,
+          "status": "PASS",
+          "stopping_reason": "scheduled_epochs_complete",
+          "trial_id": "LIGHTGCN_T1",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 9.726767362131738e-05
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.0
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.0
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.000241595215307076
+            }
+          }
+        },
+        {
+          "best_epoch": 10,
+          "epochs_completed": 10,
+          "status": "PASS",
+          "stopping_reason": "scheduled_epochs_complete",
+          "trial_id": "LIGHTGCN_T2",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.00024513996023100773
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.0
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.0
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.0008259742777593965
+            }
+          }
+        },
+        {
+          "best_epoch": 10,
+          "epochs_completed": 10,
+          "status": "PASS",
+          "stopping_reason": "scheduled_epochs_complete",
+          "trial_id": "LIGHTGCN_T3",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.0009011413144805935
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.0
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.0
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.0037022330880774694
+            }
+          }
+        }
+      ]
+    },
+    "SASREC": {
+      "selection": {
+        "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/sasrec_t1.pt",
+        "checkpoint_sha256": "3fa23cf5a235a402af06f3dabfd56b0e75d0d9067f091d9e38113ac2bb3fbbba",
+        "selected_trial_id": "SASREC_T1",
+        "status": "SELECTED_DEVELOPMENT",
+        "validation": {
+          "all": {
+            "n": 27918,
+            "ndcg_at_20": 0.0024562715262175594
+          },
+          "controlled_zero": {
+            "n": 458,
+            "ndcg_at_20": 0.0
+          },
+          "natural_zero": {
+            "n": 17866,
+            "ndcg_at_20": 0.0
+          },
+          "warm": {
+            "n": 3808,
+            "ndcg_at_20": 0.018007927644154893
+          }
+        }
+      },
+      "trials": [
+        {
+          "best_epoch": 4,
+          "epochs_completed": 9,
+          "status": "PASS",
+          "stopping_reason": "early_stopping_patience",
+          "trial_id": "SASREC_T1",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.0024562715262175594
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.0
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.0
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.018007927644154893
+            }
+          }
+        },
+        {
+          "best_epoch": 2,
+          "epochs_completed": 7,
+          "status": "PASS",
+          "stopping_reason": "early_stopping_patience",
+          "trial_id": "SASREC_T2",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.002210065011964204
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.0
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.0
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.016143099988266726
+            }
+          }
+        },
+        {
+          "best_epoch": 2,
+          "epochs_completed": 7,
+          "status": "PASS",
+          "stopping_reason": "early_stopping_patience",
+          "trial_id": "SASREC_T3",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.002130692277678969
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.0
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.0
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.015282968417415893
+            }
+          }
+        }
+      ]
+    },
+    "VBPR": {
+      "selection": {
+        "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/vbpr_t3.pt",
+        "checkpoint_sha256": "457a35303d858c1440e525da297d87f20b3a86fa1dbf43f7f096cf3902ea8522",
+        "selected_trial_id": "VBPR_T3",
+        "status": "SELECTED_DEVELOPMENT",
+        "validation": {
+          "all": {
+            "n": 27918,
+            "ndcg_at_20": 0.0006101904153738918
+          },
+          "controlled_zero": {
+            "n": 458,
+            "ndcg_at_20": 0.0
+          },
+          "natural_zero": {
+            "n": 17866,
+            "ndcg_at_20": 0.0007375092608513343
+          },
+          "warm": {
+            "n": 3808,
+            "ndcg_at_20": 0.0008395222664929679
+          }
+        }
+      },
+      "trials": [
+        {
+          "best_epoch": 8,
+          "epochs_completed": 10,
+          "status": "PASS",
+          "stopping_reason": "scheduled_epochs_complete",
+          "trial_id": "VBPR_T1",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.0004606385701545486
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.0005588603161786364
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.0005438126912293124
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.0005737114052749581
+            }
+          }
+        },
+        {
+          "best_epoch": 4,
+          "epochs_completed": 9,
+          "status": "PASS",
+          "stopping_reason": "early_stopping_patience",
+          "trial_id": "VBPR_T2",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.00048462991279735375
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.0007777449500175156
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.0005895571919250384
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.0005694173152890185
+            }
+          }
+        },
+        {
+          "best_epoch": 9,
+          "epochs_completed": 10,
+          "status": "PASS",
+          "stopping_reason": "scheduled_epochs_complete",
+          "trial_id": "VBPR_T3",
+          "validation": {
+            "all": {
+              "n": 27918,
+              "ndcg_at_20": 0.0006101904153738918
+            },
+            "controlled_zero": {
+              "n": 458,
+              "ndcg_at_20": 0.0
+            },
+            "natural_zero": {
+              "n": 17866,
+              "ndcg_at_20": 0.0007375092608513343
+            },
+            "warm": {
+              "n": 3808,
+              "ndcg_at_20": 0.0008395222664929679
+            }
+          }
+        }
+      ]
+    }
+  },
+  "hpo_sha256": "2297c0b0953ab3e5f496b87198d6d1a2b0f110396aeb7c9cfa4204d8ad92ce71",
+  "protected_roles_opened": [],
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "stage_id": "P2-E00-PRE-ROUTER-SUMMARY",
+  "status": "PASS_DEVELOPMENT",
+  "trial_count": 21,
+  "trial_manifest_sha256": "db6fe0702d6fdece2ee99acb4d60162ed1ec9e7ffab237da798ffb25984f77d6"
+}

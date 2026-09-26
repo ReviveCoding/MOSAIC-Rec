@@ -1,0 +1,107 @@
+{
+  "baseline": "LIGHTGCN",
+  "best_epoch": 10,
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/lightgcn_t3.pt",
+  "checkpoint_sha256": "8d815882c5db85863c7653d6b29f9859333558d48ec07c4bbe6d95ed96415a6e",
+  "config_sha256": "dbe77e8703105164f9980c8e7e7bbd8d737a6762ca5611d3f1d2d6106df0eb2b",
+  "epochs_completed": 10,
+  "evidence_class": "p2_measured_development_hpo",
+  "family": "LIGHTGCN",
+  "git_commit": "db325d23462bd13bdf022b5d558bdae7665dcc26",
+  "gpu_qualification": {
+    "bf16_supported": true,
+    "cuda_runtime": "13.0",
+    "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+    "tensor_result": 5590357.0,
+    "torch": "2.14.0+cu130",
+    "vram_bytes": 17170956288
+  },
+  "model_id": "LIGHTGCN_T3",
+  "peak_vram_bytes": 695345664,
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "seed": 20260930,
+  "stage_id": "P2-E00",
+  "status": "PASS",
+  "stopping_reason": "scheduled_epochs_complete",
+  "train_seconds": 110.36440557899999,
+  "training_examples": 47898,
+  "training_log": [
+    {
+      "epoch": 1,
+      "loss": 0.6928680539131165,
+      "validation_ndcg_at_20": 9.240458066617904e-05
+    },
+    {
+      "epoch": 2,
+      "loss": 0.6925206780433655,
+      "validation_ndcg_at_20": 0.000139851151525519
+    },
+    {
+      "epoch": 3,
+      "loss": 0.6921175122261047,
+      "validation_ndcg_at_20": 0.0001851656548772006
+    },
+    {
+      "epoch": 4,
+      "loss": 0.6916473507881165,
+      "validation_ndcg_at_20": 0.00026236235970378085
+    },
+    {
+      "epoch": 5,
+      "loss": 0.691100001335144,
+      "validation_ndcg_at_20": 0.0004620158259642405
+    },
+    {
+      "epoch": 6,
+      "loss": 0.6904658079147339,
+      "validation_ndcg_at_20": 0.0005832231103002535
+    },
+    {
+      "epoch": 7,
+      "loss": 0.6897355914115906,
+      "validation_ndcg_at_20": 0.0006645882406918008
+    },
+    {
+      "epoch": 8,
+      "loss": 0.6889006495475769,
+      "validation_ndcg_at_20": 0.0007390261631322939
+    },
+    {
+      "epoch": 9,
+      "loss": 0.6879523396492004,
+      "validation_ndcg_at_20": 0.0008142873892839087
+    },
+    {
+      "epoch": 10,
+      "loss": 0.6868826150894165,
+      "validation_ndcg_at_20": 0.0009011413144805935
+    }
+  ],
+  "trial_id": "LIGHTGCN_T3",
+  "validation": {
+    "output": "/home/bjw-0/mosaic-rec-work/p2/hpo/results/lightgcn_t3_validation.parquet",
+    "output_sha256": "c0f08ce27a447e6c1700337c238b765501272c46b65529f9f67ebed5e4dcf65a",
+    "role": "VALIDATION",
+    "rows": 27918,
+    "seconds": 14.737609654000039,
+    "slices": {
+      "all": {
+        "n": 27918,
+        "ndcg_at_20": 0.0009011413144805935
+      },
+      "controlled_zero": {
+        "n": 458,
+        "ndcg_at_20": 0.0
+      },
+      "natural_zero": {
+        "n": 17866,
+        "ndcg_at_20": 0.0
+      },
+      "warm": {
+        "n": 3808,
+        "ndcg_at_20": 0.0037022330880774694
+      }
+    },
+    "users_per_second": 1894.336840368859
+  }
+}

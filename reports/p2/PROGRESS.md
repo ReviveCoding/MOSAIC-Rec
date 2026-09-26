@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-Crash recovery, the development model ladder, and score alignment are complete. P2-E00 equal-budget HPO is in progress: 14 of 21 frozen pre-router trials are terminal PASS, and `LIGHTGCN_T3` attempt 1 is preserved as `INTERRUPTED_UNATTRIBUTED`.
+Crash recovery, the development model ladder, score alignment, and all 21 frozen pre-router HPO trials are complete. P2-E00 remains in progress for the preregistered router families.
 
 ## Completed
 
@@ -62,7 +62,7 @@ Crash recovery, the development model ladder, and score alignment are complete. 
 
 ## Active next action
 
-Run the unchanged frozen `LIGHTGCN_T3` as launch attempt 2 under a distinct log identity with timestamped kernel/CUDA/GPU/process monitoring. Hash validation must skip all 14 terminal trials.
+Materialize and audit the preregistered router HPO configurations using the selected `ALIGN_RANK` and completed pre-router family summary, then continue the frozen router grid.
 
 ## 2026-09-25 reboot recovery
 
@@ -88,6 +88,9 @@ Run the unchanged frozen `LIGHTGCN_T3` as launch attempt 2 under a distinct log 
 - The frozen queue subsequently completed `CSEQ_T2`, `CSEQ_T3`, all three C_cold, all three legacy M1, all three BPR-MF, and `LIGHTGCN_T1/T2` trials. Their terminal receipts and artifacts are preserved for canonicalization.
 - `LIGHTGCN_T3` attempt 1 left only a 535-byte log at SHA-256 `0ffc2ab81388751eebf282b3e0ec73f645fa9b67b188f63072fd65bd424d210b`; no checkpoint, output, terminal receipt, or metric exists. It is `INTERRUPTED_UNATTRIBUTED`. Neither its PyTorch sparse warning nor a dxgkrnl warning from the later recovered boot is assigned as cause.
 - Recovery environment: WSL `2.7.14.0`, kernel `6.18.33.2-microsoft-standard-WSL2` / package `6.18.33.2-2`, NVIDIA driver `616.92`, RTX 4090 Laptop GPU. The actual flock is free, no unrelated CUDA worker exists, and a real CUDA/BF16 tensor qualification passes.
+- `LIGHTGCN_T3` attempt 2 completed all 10 scheduled epochs and exact scoring. Checkpoint/output hashes are `8d815882c5db85863c7653d6b29f9859333558d48ec07c4bbe6d95ed96415a6e` and `c0f08ce27a447e6c1700337c238b765501272c46b65529f9f67ebed5e4dcf65a`; the distinct attempt-2 log hash is `f79454e93aac6db96ab336fd18d2191acd30da76e4b4c2b9ae2a5bb05c886aed`.
+- Timestamped monitoring found no new field-spanning/FORTIFY warning, CUDA error, device-not-ready failure, or loss of process liveness during attempt 2. The monitor log is preserved in scratch at SHA-256 `ef9c47be521686d1ad96841291150b3e696e33898f2f00d41ac04b5b9029233b`. Routine `dxgkio_escape -22` lines were observed and are not reclassified as the specified failure signature.
+- All 21 pre-router HPO receipts and artifact hashes validate. The deterministic summary selected `CSEQ_T1`, `CCOLD_T2`, `LEGACY_T3`, `BPR_T3`, `LIGHTGCN_T3`, `SASREC_T1`, and `VBPR_T3` within their families. This is DEVELOPMENT selection only.
 
 ## Protected access counters
 

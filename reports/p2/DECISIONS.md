@@ -158,3 +158,8 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 - Classify attempt 1 as `INTERRUPTED_UNATTRIBUTED`. Preserve its original log and hash; do not infer cause from the sparse invariant warning in that log or the dxgkrnl warning recorded during the later recovered boot.
 - The absence of checkpoint, output, terminal receipt, and scientific metric permits an infrastructure retry of the unchanged frozen trial under a distinct attempt-2 log identity. No scientific budget or configuration changes.
 - Keep the current WSL/kernel environment during active p2 execution. Timestamp-monitor attempt 2 for dxgkrnl warnings, CUDA errors, GPU activity, and process liveness. A second interruption/hang with a same-time dxgkrnl warning stops the queue pending an explicit environment amendment.
+
+### Attempt-2 disposition
+
+- Attempt 2 passed without the predeclared same-time failure signature. Preserve attempt 1 as `INTERRUPTED_UNATTRIBUTED`, accept attempt 2 as the terminal scientific result, and continue the frozen queue without a WSL/kernel amendment.
+- The completed 21-trial pre-router grid uses the frozen family selection rule. Its selected identities remain DEVELOPMENT inputs to router HPO and do not open QUALIFICATION.
