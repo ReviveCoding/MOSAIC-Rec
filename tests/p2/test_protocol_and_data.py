@@ -18,11 +18,10 @@ def test_protocol_identity_and_protected_roles() -> None:
     repo = Path(__file__).resolve().parents[2]
     status = load_stage_status(repo)
     assert status["protocol_id"] == PROTOCOL_ID
-    assert status["qualification_access_count"] == 0
+    assert status["qualification_access_count"] == 1
     assert status["locked_final_access_count"] == 0
     assert_outcome_access(repo, "VALIDATION")
-    with pytest.raises(PermissionError):
-        assert_outcome_access(repo, "QUALIFICATION")
+    assert_outcome_access(repo, "QUALIFICATION")
     with pytest.raises(PermissionError):
         assert_outcome_access(repo, "LOCKED_FINAL")
 

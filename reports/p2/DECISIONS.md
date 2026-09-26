@@ -192,3 +192,9 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 - Freeze `CSEQ_BERT4REC` as C_seq and `CCOLD_TWO_TOWER` as C_cold; each is the sole preregistered three-seed candidate for its comparator role.
 - Apply the frozen cross-family router objective without amendment. R4 is the finalist with selection score `-0.6350770566`, ahead of R3 `-0.6931656550` and R2 `-0.8405151861`.
 - Preserve the unfavorable result: all routers improved controlled-zero NDCG@20 over the zero-scoring C_cold comparator, while every router was far below C_seq on warm QUALIFICATION. Finalist selection is not promotion.
+
+## 2026-09-26 — E04 freeze
+
+- Treat E04 as the preregistered margin and analysis-family freeze. Outcome execution remains at Gxx/Hxx after F00; running those outcomes before the locked boundary would violate the declared stage order.
+- Freeze the 14 robustness intervention cells and A0-A7 ablation identities exactly as preregistered, including the three fixed retraining seeds for A1-A6. No slice, intensity, threshold, objective, or promotion rule was added after QUALIFICATION.
+- Retain the conjunctive H1/H2 gates and numeric warm margin unchanged. R4 remains a finalist only.

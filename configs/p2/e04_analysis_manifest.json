@@ -1,0 +1,234 @@
+{
+  "ablations": {
+    "cells": [
+      {
+        "id": "A0",
+        "implementation": "frozen router finalist and three-seed score ensemble",
+        "interpretation": "reference",
+        "name": "full_finalist",
+        "overrides": {},
+        "retrain": false,
+        "seeds": []
+      },
+      {
+        "id": "A1",
+        "implementation": "image vector always zero and image_present=false during FIT and scoring",
+        "interpretation": "incremental image contribution",
+        "name": "no_image",
+        "overrides": {
+          "image_enabled": false
+        },
+        "retrain": true,
+        "seeds": [
+          20261001,
+          20261002,
+          20261003
+        ]
+      },
+      {
+        "id": "A2",
+        "implementation": "text vector always zero and text_present=false during FIT and scoring",
+        "interpretation": "incremental text contribution",
+        "name": "no_text",
+        "overrides": {
+          "text_enabled": false
+        },
+        "retrain": true,
+        "seeds": [
+          20261001,
+          20261002,
+          20261003
+        ]
+      },
+      {
+        "id": "A3",
+        "implementation": "remove item-age field and its parameters from gate input",
+        "interpretation": "item lifecycle context contribution",
+        "name": "no_item_age_input",
+        "overrides": {
+          "gate_feature_indices_removed": [
+            1
+          ]
+        },
+        "retrain": true,
+        "seeds": [
+          20261001,
+          20261002,
+          20261003
+        ]
+      },
+      {
+        "id": "A4",
+        "implementation": "remove history length, recency, historical popularity and tail-share fields and their parameters from gate",
+        "interpretation": "user context contribution",
+        "name": "no_user_context_input",
+        "overrides": {
+          "gate_feature_indices_removed": [
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "retrain": true,
+        "seeds": [
+          20261001,
+          20261002,
+          20261003
+        ]
+      },
+      {
+        "id": "A5",
+        "implementation": "set positive-support distillation coefficient exactly to zero",
+        "interpretation": "warm preservation objective contribution",
+        "name": "no_warm_preservation",
+        "overrides": {
+          "distillation_weight": 0.0
+        },
+        "retrain": true,
+        "seeds": [
+          20261001,
+          20261002,
+          20261003
+        ]
+      },
+      {
+        "id": "A6",
+        "implementation": "remove exact content-only override at support zero; learned gate applies at all support values",
+        "interpretation": "zero-support structural constraint contribution",
+        "name": "no_hard_zero_constraint",
+        "overrides": {
+          "hard_zero_support_override": false
+        },
+        "retrain": true,
+        "seeds": [
+          20261001,
+          20261002,
+          20261003
+        ]
+      },
+      {
+        "id": "A7",
+        "implementation": "reuse frozen expert checkpoints; content scores at support zero and sequence scores at positive support with frozen alignment",
+        "interpretation": "learned routing versus direct support rule",
+        "name": "hard_router",
+        "overrides": {
+          "retrain": false,
+          "router_type": "hard_zero_support"
+        },
+        "retrain": false,
+        "seeds": []
+      }
+    ],
+    "config": {
+      "path": "configs/p2/ablations.json",
+      "sha256": "ad816e25b790f5b1368f421764b3ff911c59b0462f6729140d06a877d14761be"
+    },
+    "execution_stage": "P2-H00_AFTER_LOCKED_F00",
+    "implementation": {
+      "path": "src/mosaic_rec/p2/ablations.py",
+      "sha256": "9a216ee48d460bff36a56eba1287a36a939de03b8cdaf8a24c95a8973c60cc22"
+    }
+  },
+  "finalist": "R4",
+  "locked_final_access_count": 0,
+  "metrics": {
+    "path": "configs/p2/metrics.json",
+    "sha256": "035526b059c0719a6ebaad68e3d6f6e57a950f7704c4a7a835ac9aafdaf18b6a"
+  },
+  "p1_immutable_hashes": {
+    "evidence/claims.json": "41153619f71023fb2ae2ebf8168d85be05376ee72badec2b81d2c56777cdf218",
+    "evidence/stage_status.json": "021f340d36a4b5bec5066b74620f9efa76e9d59c3a6928acc4e9d58a3cc593cd",
+    "reports/FINAL_STATUS.md": "79994c8583e2b56bb823c08a32dd8da2b2b850c5409f1e31b6906b881dd6f553"
+  },
+  "primary_gates": {
+    "H1": "lower_95 > 0",
+    "H2": "lower_95 > -frozen_numeric_margin",
+    "conjunctive": true,
+    "overall_metric_cannot_override": true
+  },
+  "protected_roles_opened": [
+    "QUALIFICATION"
+  ],
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "qualification_access_count": 1,
+  "robustness": {
+    "cells": [
+      {
+        "intensity": 0.1,
+        "intervention": "IMAGE_MISSING"
+      },
+      {
+        "intensity": 0.25,
+        "intervention": "IMAGE_MISSING"
+      },
+      {
+        "intensity": 0.5,
+        "intervention": "IMAGE_MISSING"
+      },
+      {
+        "intensity": 1.0,
+        "intervention": "IMAGE_MISSING"
+      },
+      {
+        "intensity": 0.1,
+        "intervention": "TEXT_MISSING"
+      },
+      {
+        "intensity": 0.25,
+        "intervention": "TEXT_MISSING"
+      },
+      {
+        "intensity": 0.5,
+        "intervention": "TEXT_MISSING"
+      },
+      {
+        "intensity": 1.0,
+        "intervention": "TEXT_MISSING"
+      },
+      {
+        "intensity": 0.1,
+        "intervention": "IMAGE_TEXT_JOINT_MISSING"
+      },
+      {
+        "intensity": 0.25,
+        "intervention": "IMAGE_TEXT_JOINT_MISSING"
+      },
+      {
+        "intensity": 0.5,
+        "intervention": "IMAGE_TEXT_JOINT_MISSING"
+      },
+      {
+        "intensity": 0.05,
+        "intervention": "CONTENT_FEATURE_PERTURBATION"
+      },
+      {
+        "intensity": 0.1,
+        "intervention": "CONTENT_FEATURE_PERTURBATION"
+      },
+      {
+        "intensity": 0.2,
+        "intervention": "CONTENT_FEATURE_PERTURBATION"
+      }
+    ],
+    "config": {
+      "path": "configs/p2/robustness.json",
+      "sha256": "6b6e68c450020d14ca8a2685e42526b9e83fe05c51166b65eb45402282cad8d5"
+    },
+    "execution_stage": "P2-G00_AFTER_LOCKED_F00",
+    "implementation": {
+      "path": "src/mosaic_rec/p2/robustness.py",
+      "sha256": "dc792084033531f1853bbfbd63052bbfa0d2ae8a5e13857665b30ef078ab62f2"
+    },
+    "retraining": false
+  },
+  "scientific_state": "QUALIFICATION",
+  "selection_is_promotion": false,
+  "stage_id": "P2-E04",
+  "statistics": {
+    "path": "configs/p2/statistics.json",
+    "sha256": "56f1b05c1b7265bc3364483e8c8c30195caa62ccbd3d777e36467fe26cad84ea"
+  },
+  "status": "FROZEN_ANALYSIS_FAMILIES",
+  "warm_noninferiority_margin": 0.001320914873267875
+}

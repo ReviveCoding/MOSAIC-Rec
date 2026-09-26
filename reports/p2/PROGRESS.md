@@ -71,7 +71,14 @@ Development and QUALIFICATION are complete. C_seq, C_cold, R2, R3, and R4 were e
 
 ## Active next action
 
-Canonicalize the QUALIFICATION boundary, build the complete E05 freeze manifest, and run the frozen protocol guard before any LOCKED_FINAL access.
+P2-E04 is frozen without opening LOCKED_FINAL. Build and commit the complete E05 manifest, then run the clean frozen protocol guard. Robustness and ablation outcomes remain scheduled for Gxx/Hxx after F00 as preregistered.
+
+## 2026-09-26 — E04 analysis-family freeze
+
+- Revalidated all five immutable QUALIFICATION outputs and receipts, p1 immutability, and the p2-only warehouse at 127 receipts and 328 metric rows with protected counts `1/0`.
+- Retained R4 as an unpromoted finalist with selection score `-0.6350770566` and froze the numeric warm margin `0.001320914873267875` unchanged.
+- Materialized the complete preregistered 14-cell robustness family and A0-A7 ablation family, including retraining decisions and seeds. These definitions are executable identities for later Gxx/Hxx; no LOCKED_FINAL result was accessed during E04.
+- Added the separate exact LOCKED_FINAL scorer entrypoint for E05 hashing. It has not been executed.
 
 ## 2026-09-25 reboot recovery
 

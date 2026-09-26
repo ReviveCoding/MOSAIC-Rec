@@ -1,0 +1,13 @@
+{
+  "evidence_class": "p2_frozen_analysis_definition",
+  "locked_final_access_count": 0,
+  "manifest_path": "configs/p2/e04_analysis_manifest.json",
+  "manifest_sha256": "8cadcb2a936f60d246415a8985fb23727ff50c06191191699782b8744e61cc4c",
+  "protected_roles_opened": [
+    "QUALIFICATION"
+  ],
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "qualification_access_count": 1,
+  "stage_id": "P2-E04",
+  "status": "PASS_FREEZE"
+}
