@@ -198,3 +198,8 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 - Treat E04 as the preregistered margin and analysis-family freeze. Outcome execution remains at Gxx/Hxx after F00; running those outcomes before the locked boundary would violate the declared stage order.
 - Freeze the 14 robustness intervention cells and A0-A7 ablation identities exactly as preregistered, including the three fixed retraining seeds for A1-A6. No slice, intensity, threshold, objective, or promotion rule was added after QUALIFICATION.
 - Retain the conjunctive H1/H2 gates and numeric warm margin unchanged. R4 remains a finalist only.
+
+## 2026-09-26 — E05 complete freeze
+
+- Freeze the complete locked identity at manifest SHA-256 `15233342edf761c957f061e5ff72323feda8cdcfae9119e8a464fc046c509de7`.
+- Require a clean committed rederivation guard before any LOCKED_FINAL access. Materializing the manifest changes scientific state to FROZEN but does not itself authorize or open LOCKED_FINAL.

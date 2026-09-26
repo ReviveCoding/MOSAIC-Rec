@@ -1,0 +1,230 @@
+{
+  "alignment": {
+    "alignment_id": "ALIGN_RANK",
+    "method": "rank_percentile_normalization",
+    "summary_path": "evidence/p2/p2-b03-alignment-summary.json",
+    "summary_sha256": "0bd428ae5edf0d617a730bfe407db1bba2b50aaf8fb30e048a6fdc5acecb62d7"
+  },
+  "candidates": {
+    "C_cold": {
+      "family": "CCOLD_TWO_TOWER",
+      "runs": [
+        {
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/checkpoints/e01-ccold_two_tower-seed20261001.pt",
+          "checkpoint_sha256": "32b78e9216e046f00602b8b242bfaa7aa9be1e3db47cf2e0299adc4500811946",
+          "config_path": "configs/p2/seed_trials/e01-ccold_two_tower-seed20261001.json",
+          "config_sha256": "1505e5d9b73259a9fd7f039b8b467a75f3b17fd2a1a1443ac8360ec849b92807",
+          "receipt_path": "evidence/p2/p2-e01-e01-ccold_two_tower-seed20261001.json",
+          "receipt_sha256": "dfe747a1790d5daa43c5145e24ed4a1ba0e57b3f82b1cde009d4e3dfbc556350",
+          "run_id": "E01-CCOLD_TWO_TOWER-SEED20261001",
+          "seed": 20261001,
+          "validation_output": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/results/e01-ccold_two_tower-seed20261001_validation.parquet",
+          "validation_output_sha256": "800920ff0b0d38d9ff3fa2e36c65993a239c6ea97288dd4136737bfb19cd24f9"
+        },
+        {
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/checkpoints/e01-ccold_two_tower-seed20261002.pt",
+          "checkpoint_sha256": "0784ce65e5fe9c025f21625640ca44ec7d20e7918cd171a82e723f9308ed0cd4",
+          "config_path": "configs/p2/seed_trials/e01-ccold_two_tower-seed20261002.json",
+          "config_sha256": "594cbc9cfa24772ddc3dd70545bbdf33d28017e857803451b14295fc5bce45f5",
+          "receipt_path": "evidence/p2/p2-e01-e01-ccold_two_tower-seed20261002.json",
+          "receipt_sha256": "3b6d9a074c4027968eff0e1b2b9970b12ed18467c297eb1a4f23b52535688f0f",
+          "run_id": "E01-CCOLD_TWO_TOWER-SEED20261002",
+          "seed": 20261002,
+          "validation_output": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/results/e01-ccold_two_tower-seed20261002_validation.parquet",
+          "validation_output_sha256": "685262c3937ead4029de50375c22aea27b2745ddfa7c083522acbb71878e520b"
+        },
+        {
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/checkpoints/e01-ccold_two_tower-seed20261003.pt",
+          "checkpoint_sha256": "79cb74e3f5456c5e24af7a0a50e17d1b72d2d4d58576102892fedd69c412dd89",
+          "config_path": "configs/p2/seed_trials/e01-ccold_two_tower-seed20261003.json",
+          "config_sha256": "378071aa601f601185b8f3cfb653e6de63865ff97afdf70165626ea553e897d5",
+          "receipt_path": "evidence/p2/p2-e01-e01-ccold_two_tower-seed20261003.json",
+          "receipt_sha256": "33754b603e4c7e9097eaaac323de3b8696b049011ad492541453aac763b8ba12",
+          "run_id": "E01-CCOLD_TWO_TOWER-SEED20261003",
+          "seed": 20261003,
+          "validation_output": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/results/e01-ccold_two_tower-seed20261003_validation.parquet",
+          "validation_output_sha256": "7e06bb35775ed4d39811c8be3e99d3fc76801e907ec6c754bd827f6714c7252e"
+        }
+      ]
+    },
+    "C_seq": {
+      "family": "CSEQ_BERT4REC",
+      "runs": [
+        {
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/checkpoints/e01-cseq_bert4rec-seed20261001.pt",
+          "checkpoint_sha256": "6f4e508d7be2d88a5282680c638064523196968ad3ebfc23b91e430877bf1eb4",
+          "config_path": "configs/p2/seed_trials/e01-cseq_bert4rec-seed20261001.json",
+          "config_sha256": "abdee32510ab2756a2968f733574f4ac9834aa48348539d310bc72386e418b0a",
+          "receipt_path": "evidence/p2/p2-e01-e01-cseq_bert4rec-seed20261001.json",
+          "receipt_sha256": "ecb32abbb752a215b062e671b2a25cad2a9b0cde410525597f176cc7c58c867b",
+          "run_id": "E01-CSEQ_BERT4REC-SEED20261001",
+          "seed": 20261001,
+          "validation_output": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/results/e01-cseq_bert4rec-seed20261001_validation.parquet",
+          "validation_output_sha256": "8e2b2b7dab94bb63b871988d8578f1d1c097d53889d964589c8328453954a7cd"
+        },
+        {
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/checkpoints/e01-cseq_bert4rec-seed20261002.pt",
+          "checkpoint_sha256": "fc28a11d6f845dd1ab6ac7f50ceb2cf49d075685d4deabe54d7ca7df94629ea3",
+          "config_path": "configs/p2/seed_trials/e01-cseq_bert4rec-seed20261002.json",
+          "config_sha256": "d53f6ed0e9c623bc092d1873742f87655c99e663ce3f058f2213998a97a72254",
+          "receipt_path": "evidence/p2/p2-e01-e01-cseq_bert4rec-seed20261002.json",
+          "receipt_sha256": "ca595524f868b2b7c3ce1a9fbeb39fde9f1bbe6f61fe7288a832886b6dcb4384",
+          "run_id": "E01-CSEQ_BERT4REC-SEED20261002",
+          "seed": 20261002,
+          "validation_output": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/results/e01-cseq_bert4rec-seed20261002_validation.parquet",
+          "validation_output_sha256": "4be259a96631db271947f50b19b2c7297d98a42ad373d7798fd4b5d00ad6ce2c"
+        },
+        {
+          "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/checkpoints/e01-cseq_bert4rec-seed20261003.pt",
+          "checkpoint_sha256": "9216e508c68f5b0cd387a1bacd434478bc95b815a3963c5624fd18776458aa42",
+          "config_path": "configs/p2/seed_trials/e01-cseq_bert4rec-seed20261003.json",
+          "config_sha256": "9cd81193e1f7ee0eff907d12e66336e176b846f81a811b7c8c9ad1781bf3ebd7",
+          "receipt_path": "evidence/p2/p2-e01-e01-cseq_bert4rec-seed20261003.json",
+          "receipt_sha256": "5bb36c1fd2c584311540c27978af00cd03bd249dca1372029b3e39ae5d3ebf6f",
+          "run_id": "E01-CSEQ_BERT4REC-SEED20261003",
+          "seed": 20261003,
+          "validation_output": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/results/e01-cseq_bert4rec-seed20261003_validation.parquet",
+          "validation_output_sha256": "b82ec8c73b83b8f95e417297856a62c05a1982266e9a8443a900330ade4d9052"
+        }
+      ]
+    },
+    "routers": [
+      {
+        "family": "R4",
+        "runs": [
+          {
+            "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/checkpoints/e01-r4-seed20261001.pt",
+            "checkpoint_sha256": "9edc8f5b13c24727e87f67debdf408b8dda48aff5c27ba2edd2feae9f65171ff",
+            "config_path": "configs/p2/seed_trials/e01-r4-seed20261001.json",
+            "config_sha256": "16b02d83c2679217fca466d2abced540cb6492d21c282c72f4c10cce6ba3ac39",
+            "receipt_path": "evidence/p2/p2-e01-e01-r4-seed20261001.json",
+            "receipt_sha256": "d8f38c628f8906fcbefeb81f5e512479de407d2bb87dac10f68e9217c2a6e084",
+            "run_id": "E01-R4-SEED20261001",
+            "seed": 20261001,
+            "validation_output": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/results/e01-r4-seed20261001_validation.parquet",
+            "validation_output_sha256": "99fa007624dc4c0df85a43cada345fae3cf3fb861e207faf2a4953174b589e2b"
+          },
+          {
+            "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/checkpoints/e01-r4-seed20261002.pt",
+            "checkpoint_sha256": "57737d3912d87e6ca2d7d54f5e4f382c80b248bd04ea9ed4456cf36219085f25",
+            "config_path": "configs/p2/seed_trials/e01-r4-seed20261002.json",
+            "config_sha256": "ce07d98906c5083388714d570dce44008e7e3eff90284533e46ff3f98c625ed8",
+            "receipt_path": "evidence/p2/p2-e01-e01-r4-seed20261002.json",
+            "receipt_sha256": "30ec78150818337f4acafba74325b7e04580d80efa374d79f171602923fa4b27",
+            "run_id": "E01-R4-SEED20261002",
+            "seed": 20261002,
+            "validation_output": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/results/e01-r4-seed20261002_validation.parquet",
+            "validation_output_sha256": "080e3ca5a5f94f537ddeba44bbe484a7870d8974d2749b7df9bec58dd182aba2"
+          },
+          {
+            "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/checkpoints/e01-r4-seed20261003.pt",
+            "checkpoint_sha256": "f3bbbc5bd1b98e7db8ac22c0b92085d1eb4451b8ffb4464487967822089dfe99",
+            "config_path": "configs/p2/seed_trials/e01-r4-seed20261003.json",
+            "config_sha256": "52baa2940c734a0ae59238e0fd5c017a1a4cca593d12276026641c8b0115f7e5",
+            "receipt_path": "evidence/p2/p2-e01-e01-r4-seed20261003.json",
+            "receipt_sha256": "86d054227b9facac51e7f5196182d51dcb248fa149b45081cbe28d6b3549140e",
+            "run_id": "E01-R4-SEED20261003",
+            "seed": 20261003,
+            "validation_output": "/home/bjw-0/mosaic-rec-work/p2/seed_qualification/results/e01-r4-seed20261003_validation.parquet",
+            "validation_output_sha256": "34983c4dd586dabd5b58672217aba9964f9f7cf0e1b3309de9b727f1937e6ad0"
+          }
+        ]
+      }
+    ]
+  },
+  "ensemble_policy": "arithmetic mean of aligned full-catalog scores across all three independent seeds",
+  "locked_evaluation": {
+    "access_policy": "open once after committed E05 guard PASS",
+    "families": [
+      "CSEQ_BERT4REC",
+      "CCOLD_TWO_TOWER",
+      "R4"
+    ],
+    "outputs": {
+      "CCOLD_TWO_TOWER": "/home/bjw-0/mosaic-rec-work/p2/locked_final/ccold_two_tower_topk.parquet",
+      "CSEQ_BERT4REC": "/home/bjw-0/mosaic-rec-work/p2/locked_final/cseq_bert4rec_topk.parquet",
+      "R4": "/home/bjw-0/mosaic-rec-work/p2/locked_final/r4_topk.parquet"
+    },
+    "query_manifest": "/home/bjw-0/mosaic-rec-work/p2/contexts/pixelrec50k/LOCKED_FINAL_QUERIES.parquet",
+    "role": "LOCKED_FINAL"
+  },
+  "locked_final_access_count": 0,
+  "metrics_and_output_schema": {
+    "path": "configs/p2/metrics.json",
+    "sha256": "035526b059c0719a6ebaad68e3d6f6e57a950f7704c4a7a835ac9aafdaf18b6a"
+  },
+  "model_identities": {
+    "C_cold": "CCOLD_TWO_TOWER",
+    "C_seq": "CSEQ_BERT4REC",
+    "router_finalist": "R4",
+    "selection_is_promotion": false
+  },
+  "p1_immutable_hashes": {
+    "evidence/claims.json": "41153619f71023fb2ae2ebf8168d85be05376ee72badec2b81d2c56777cdf218",
+    "evidence/stage_status.json": "021f340d36a4b5bec5066b74620f9efa76e9d59c3a6928acc4e9d58a3cc593cd",
+    "reports/FINAL_STATUS.md": "79994c8583e2b56bb823c08a32dd8da2b2b850c5409f1e31b6906b881dd6f553"
+  },
+  "primary_gates": {
+    "H1": "lower_95 > 0",
+    "H2": "lower_95 > -frozen_numeric_margin",
+    "conjunctive": true,
+    "overall_metric_cannot_override": true
+  },
+  "protected_roles_opened": [
+    "QUALIFICATION"
+  ],
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "qualification_access_count": 1,
+  "qualification_receipts": [
+    {
+      "path": "evidence/p2/p2-e02-qualification-cseq_bert4rec.json",
+      "sha256": "72bc1aa3b6a18724b9e9a83d075e5c49340cc289d17479b76f466b6fc3cff995"
+    },
+    {
+      "path": "evidence/p2/p2-e02-qualification-ccold_two_tower.json",
+      "sha256": "bf424dd2a8b6bae0d230fa6ab501b53dd979337299cd3050245fd7a27947d8ba"
+    },
+    {
+      "path": "evidence/p2/p2-e02-qualification-r4.json",
+      "sha256": "52cb83f007884d03ab118a07b081653642394f10473e50972d3e0538f87ca8b9"
+    }
+  ],
+  "qualification_summary": {
+    "path": "evidence/p2/p2-e02-e03-qualification-summary.json",
+    "sha256": "69649ab323984c7020eaf2112f697392308f8989e7b1e35fbed95b75bc391c1d"
+  },
+  "robustness_and_ablations": {
+    "path": "configs/p2/e04_analysis_manifest.json",
+    "sha256": "8cadcb2a936f60d246415a8985fb23727ff50c06191191699782b8744e61cc4c"
+  },
+  "scientific_state": "FROZEN",
+  "scoring_implementation": {
+    "alignment": {
+      "path": "src/mosaic_rec/p2/router.py",
+      "sha256": "e669723dada3975397f3bf95daa6bb3218995314754739a6e47c0b04da55f8b0"
+    },
+    "entrypoint": {
+      "path": "scripts/p2/score_locked.py",
+      "sha256": "10329bf677db568583c7a66962314afd62ab5899b304b5c2793ea1ced3e107b5"
+    },
+    "locked_scorer": {
+      "path": "src/mosaic_rec/p2/locked.py",
+      "sha256": "2dad718f5a4cc2a5e116a6d16f92698dc7a7a83bd01e37cf9418e19792a39ccc"
+    },
+    "shared_exact_ranker": {
+      "path": "src/mosaic_rec/p2/runtime.py",
+      "sha256": "6017a737d33fd85f01931b96d771fa7f343682d31f9348b1d833d42f28fa5b6a"
+    }
+  },
+  "slices": {
+    "path": "src/mosaic_rec/p2/slices.py",
+    "sha256": "d7622080befb5a71f94f646464001c40730db91c0bf9ffd279eab874c2491ba7"
+  },
+  "stage_id": "P2-E05",
+  "statistics": {
+    "path": "configs/p2/statistics.json",
+    "sha256": "56f1b05c1b7265bc3364483e8c8c30195caa62ccbd3d777e36467fe26cad84ea"
+  },
+  "status": "COMPLETE_FREEZE_PENDING_GUARD",
+  "warm_noninferiority_margin": 0.001320914873267875
+}

@@ -1,7 +1,8 @@
 {
   "protocol_id": "mosaic-rec-2026-09-23-p2",
-  "scientific_state": "QUALIFICATION",
-  "updated_utc": "2026-09-26T09:05:00Z",
+  "scientific_state": "FROZEN",
+  "updated_utc": "2026-09-26T09:18:00Z",
+  "frozen_manifest_sha256": "15233342edf761c957f061e5ff72323feda8cdcfae9119e8a464fc046c509de7",
   "qualification_access_count": 1,
   "locked_final_access_count": 0,
   "stages": {
@@ -29,6 +30,7 @@
     "P2-E02": {"status": "PASS_QUALIFICATION", "summary": "frozen C_seq BERT4Rec and C_cold Two-Tower ensembles exact-scored 26900 common QUALIFICATION queries with immutable top-k outputs"},
     "P2-E03": {"status": "PASS_QUALIFICATION", "summary": "R2, R3, and R4 exact-scored under the frozen rule; R4 selected as finalist with negative selection score -0.635077, which is not promotion"},
     "P2-E04": {"status": "PASS_FREEZE", "summary": "numeric warm margin, conjunctive gates, all 14 robustness cells, and A0-A7 ablation identities frozen; outcome execution remains Gxx/Hxx after F00"},
+    "P2-E05": {"status": "FROZEN_PENDING_GUARD", "summary": "complete manifest binds selected ensembles, checkpoints, scorer, metrics, slices, statistics, analysis families, output schema, gates, and LOCKED_FINAL identity"},
     "P2-D01": {"status": "PASS_DEVELOPMENT", "summary": "R1 preserved warm quality but scored zero on controlled-zero validation under standardized alignment"},
     "P2-D02": {"status": "PASS_DEVELOPMENT", "summary": "R2 achieved 0.014892 warm NDCG@20 but zero controlled-zero NDCG@20"},
     "P2-D03": {"status": "PASS_DEVELOPMENT", "summary": "attempt 3 completed on CUDA after the sustained idle gate; exact validation NDCG@20 was 0.001939 overall, 0 controlled zero, 0.000131 natural zero, and 0.013539 warm"},
