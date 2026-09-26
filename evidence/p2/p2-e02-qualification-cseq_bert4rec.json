@@ -1,0 +1,51 @@
+{
+  "checkpoint_sha256": [
+    "6f4e508d7be2d88a5282680c638064523196968ad3ebfc23b91e430877bf1eb4",
+    "fc28a11d6f845dd1ab6ac7f50ceb2cf49d075685d4deabe54d7ca7df94629ea3",
+    "9216e508c68f5b0cd387a1bacd434478bc95b815a3963c5624fd18776458aa42"
+  ],
+  "evidence_class": "p2_measured_qualification_exact_full_catalog_ensemble",
+  "family": "CSEQ_BERT4REC",
+  "freeze_sha256": "36b934aab988b38fdc0e43c3c06341aaa3f37e37c6ef4c735beb383057164d55",
+  "git_commit": "36ed2977c8c3f3f22c8c09de40012c9f33f428fc",
+  "gpu_qualification": {
+    "bf16_supported": true,
+    "cuda_runtime": "13.0",
+    "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+    "tensor_result": 5590357.0,
+    "torch": "2.14.0+cu130",
+    "vram_bytes": 17170956288
+  },
+  "locked_final_access_count": 0,
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "qualification": {
+    "output": "/home/bjw-0/mosaic-rec-work/p2/qualification/cseq_bert4rec_topk.parquet",
+    "output_sha256": "1ee51421a9b1df7a8a3d397640b8c7331cd270a065a106ba445fe6ea25a396a0",
+    "role": "QUALIFICATION",
+    "rows": 26900,
+    "seconds": 20.254203720000078,
+    "slices": {
+      "all": {
+        "n": 26900,
+        "ndcg_at_20": 0.0001445985958984963
+      },
+      "controlled_zero": {
+        "n": 264,
+        "ndcg_at_20": 0.0
+      },
+      "natural_zero": {
+        "n": 21648,
+        "ndcg_at_20": 0.0
+      },
+      "warm": {
+        "n": 2057,
+        "ndcg_at_20": 0.0018909587893386245
+      }
+    },
+    "users_per_second": 1328.1191886145073
+  },
+  "qualification_access_count": 1,
+  "role": "QUALIFICATION",
+  "stage_id": "P2-E02",
+  "status": "PASS"
+}

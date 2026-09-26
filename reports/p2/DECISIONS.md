@@ -186,3 +186,9 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 - Invalidate pre-QUALIFICATION guard v1 before protected access because it bound the robustness and ablation JSON definitions but omitted executable transformation hashes. Preserve the v1 receipt and add `prequalification_freeze_v2.json`, which binds the deterministic implementations. Both protected counters remain zero.
 - Accept guard v2 at committed Git `44e423510bc76902c8b56a55fa64b6cd8285f76c` after exact rederivation of the superseding freeze, p1 immutability validation, clean-worktree validation, and p2 warehouse PASS. Transition to QUALIFICATION state with access count still zero; the first protected scoring receipt will increment the counter.
 - Before any protected inference, invalidate guard v2 because its freeze preceded the exact ensemble scorer implementation. Freeze v3 binds the scorer, shared exact-ranking code, top-k schema, and router diagnostic code. The state label is QUALIFICATION but access count remains zero, so no protected outcome informed this correction.
+
+## 2026-09-26 — QUALIFICATION selection
+
+- Freeze `CSEQ_BERT4REC` as C_seq and `CCOLD_TWO_TOWER` as C_cold; each is the sole preregistered three-seed candidate for its comparator role.
+- Apply the frozen cross-family router objective without amendment. R4 is the finalist with selection score `-0.6350770566`, ahead of R3 `-0.6931656550` and R2 `-0.8405151861`.
+- Preserve the unfavorable result: all routers improved controlled-zero NDCG@20 over the zero-scoring C_cold comparator, while every router was far below C_seq on warm QUALIFICATION. Finalist selection is not promotion.

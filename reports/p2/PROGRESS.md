@@ -6,7 +6,7 @@ Scientific state: `QUALIFICATION`
 
 ## Current phase
 
-Development, HPO, independent-seed stability, and the complete pre-QUALIFICATION freeze are complete. Final clean guard v3 passed and is committed. QUALIFICATION access has opened exactly once; exact scoring begins with C_seq. LOCKED_FINAL remains sealed.
+Development and QUALIFICATION are complete. C_seq, C_cold, R2, R3, and R4 were exact-scored on the same 26,900 QUALIFICATION queries with immutable top-k outputs. The frozen rule selected R4 as the finalist; its negative selection score preserves the cold/warm tradeoff and is not promotion. LOCKED_FINAL remains sealed.
 
 ## Completed
 
@@ -71,7 +71,7 @@ Development, HPO, independent-seed stability, and the complete pre-QUALIFICATION
 
 ## Active next action
 
-Commit the QUALIFICATION state transition, then exact-score the five frozen three-seed ensembles on QUALIFICATION with immutable top-20/top-100 outputs. LOCKED_FINAL remains unopened.
+Canonicalize the QUALIFICATION boundary, build the complete E05 freeze manifest, and run the frozen protocol guard before any LOCKED_FINAL access.
 
 ## 2026-09-25 reboot recovery
 

@@ -1,0 +1,48 @@
+{
+  "C_cold": "CCOLD_TWO_TOWER",
+  "C_seq": "CSEQ_BERT4REC",
+  "locked_final_access_count": 0,
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "qualification_access_count": 1,
+  "receipt_sha256": {
+    "ccold_two_tower": "bf424dd2a8b6bae0d230fa6ab501b53dd979337299cd3050245fd7a27947d8ba",
+    "cseq_bert4rec": "72bc1aa3b6a18724b9e9a83d075e5c49340cc289d17479b76f466b6fc3cff995",
+    "r2": "91c4103a48a962212650190495078140ef14aa3a671fbf621594e388c0173aec",
+    "r3": "0a8e9d5986d520ad028b84db16c814000c0adef453d674db46b1d784838b8582",
+    "r4": "52cb83f007884d03ab118a07b081653642394f10473e50972d3e0538f87ca8b9"
+  },
+  "router_candidates": [
+    {
+      "cold_term": 0.0011949427150974574,
+      "controlled_zero_ndcg_at_20": 0.0011949427150974574,
+      "family": "R2",
+      "overall_ndcg_at_20": 0.002847380604229588,
+      "selection_score": -0.8405151861253359,
+      "warm_ndcg_at_20": 0.00011248333162846823,
+      "warm_term": -0.8405151861253359
+    },
+    {
+      "cold_term": 0.0010566020668603404,
+      "controlled_zero_ndcg_at_20": 0.0010566020668603404,
+      "family": "R3",
+      "overall_ndcg_at_20": 0.002475731400551712,
+      "selection_score": -0.6931656549633692,
+      "warm_ndcg_at_20": 0.0003911152226841147,
+      "warm_term": -0.6931656549633692
+    },
+    {
+      "cold_term": 0.0011949427150974574,
+      "controlled_zero_ndcg_at_20": 0.0011949427150974574,
+      "family": "R4",
+      "overall_ndcg_at_20": 0.0026337045205898166,
+      "selection_score": -0.6350770566466215,
+      "warm_ndcg_at_20": 0.0005009583682315296,
+      "warm_term": -0.6350770566466215
+    }
+  ],
+  "router_finalist": "R4",
+  "selection_is_promotion": false,
+  "stage_id": "P2-E02-E03",
+  "status": "PASS_QUALIFICATION",
+  "warm_noninferiority_margin": 0.001320914873267875
+}

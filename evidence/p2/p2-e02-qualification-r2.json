@@ -1,0 +1,51 @@
+{
+  "checkpoint_sha256": [
+    "b9c99aae724e609ac55cb31d272a875fcbf7dc6593b406e73afd8297feeeb12d",
+    "32273095540932682ff0688eb63e66cd4952f45f0f27ab0ff3e57d7576526f3c",
+    "c634ac6c33cdcbe4f81de3acd30343c8dd71d65ff6a63b31b86721ca2dfcb34e"
+  ],
+  "evidence_class": "p2_measured_qualification_exact_full_catalog_ensemble",
+  "family": "R2",
+  "freeze_sha256": "36b934aab988b38fdc0e43c3c06341aaa3f37e37c6ef4c735beb383057164d55",
+  "git_commit": "36ed2977c8c3f3f22c8c09de40012c9f33f428fc",
+  "gpu_qualification": {
+    "bf16_supported": true,
+    "cuda_runtime": "13.0",
+    "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+    "tensor_result": 5590357.0,
+    "torch": "2.14.0+cu130",
+    "vram_bytes": 17170956288
+  },
+  "locked_final_access_count": 0,
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "qualification": {
+    "output": "/home/bjw-0/mosaic-rec-work/p2/qualification/r2_topk.parquet",
+    "output_sha256": "13b85fbe2daee816d218ff483f431499200ec1b34ddbcb9bce4d5482cee8ad94",
+    "role": "QUALIFICATION",
+    "rows": 26900,
+    "seconds": 59.140328185001636,
+    "slices": {
+      "all": {
+        "n": 26900,
+        "ndcg_at_20": 0.002847380604229588
+      },
+      "controlled_zero": {
+        "n": 264,
+        "ndcg_at_20": 0.0011949427150974574
+      },
+      "natural_zero": {
+        "n": 21648,
+        "ndcg_at_20": 0.0035129201387578725
+      },
+      "warm": {
+        "n": 2057,
+        "ndcg_at_20": 0.00011248333162846823
+      }
+    },
+    "users_per_second": 454.85034497429297
+  },
+  "qualification_access_count": 1,
+  "role": "QUALIFICATION",
+  "stage_id": "P2-E03",
+  "status": "PASS"
+}
