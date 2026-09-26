@@ -71,13 +71,14 @@ Development and QUALIFICATION are complete. C_seq, C_cold, R2, R3, and R4 were e
 
 ## Active next action
 
-The complete E05 manifest is materialized and bound in stage status. Commit this frozen identity, run the clean E05 guard, and keep LOCKED_FINAL sealed until its explicit authorization is recorded.
+E05 is complete and its clean guard passed. The protocol remains FROZEN with protected counts `1/0`; LOCKED_FINAL is sealed. The next separate transition may open it once under the recorded guard authorization.
 
 ## 2026-09-26 — E05 complete freeze manifest
 
 - Bound C_seq `CSEQ_BERT4REC`, C_cold `CCOLD_TWO_TOWER`, the unpromoted R4 finalist, all nine checkpoint identities, `ALIGN_RANK`, and the three-seed mean-score ensemble.
 - Bound the exact LOCKED_FINAL scorer and shared ranker, metrics/top-k schema, slice implementation, statistics, E04 analysis-family manifest, numeric margin, conjunctive gates, output paths, and one-time access policy.
 - Manifest SHA-256 is `15233342edf761c957f061e5ff72323feda8cdcfae9119e8a464fc046c509de7`. Protected counts remain QUALIFICATION `1`, LOCKED_FINAL `0`.
+- The clean guard rederived the manifest exactly at Git `8ba1e5c379d565e0e64c3cf2e1b401b426f6319a`, revalidated the p2-only warehouse, and authorized only the next one-time LOCKED_FINAL transition. It did not open or score LOCKED_FINAL.
 
 ## 2026-09-26 — E04 analysis-family freeze
 
