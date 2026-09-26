@@ -61,3 +61,13 @@ def test_family_runner_mapping(tmp_path: Path) -> None:
     assert expert[1].endswith("run_expert_hpo_trial.py")
     assert legacy[1].endswith("run_legacy_hpo_trial.py")
     assert baseline[1].endswith("run_baseline_hpo_trial.py")
+
+
+def test_audited_retry_uses_distinct_log_only(tmp_path: Path) -> None:
+    repo = Path(__file__).resolve().parents[2]
+    module = _module(repo)
+    paths = module.trial_paths(repo, tmp_path, "LIGHTGCN_T3")
+    assert paths["log"].name == "lightgcn_t3_attempt2.log"
+    assert paths["checkpoint"].name == "lightgcn_t3.pt"
+    assert paths["output"].name == "lightgcn_t3_validation.parquet"
+    assert paths["receipt"].name == "p2-e00-lightgcn_t3.json"

@@ -23,15 +23,21 @@ FAMILY_ORDER = (
     "VBPR",
 )
 
+AUDITED_LAUNCH_ATTEMPTS = {
+    "LIGHTGCN_T3": 2,
+}
+
 
 def trial_paths(repo: Path, scratch: Path, trial_id: str) -> dict[str, Path]:
     stem = trial_id.lower()
+    launch_attempt = AUDITED_LAUNCH_ATTEMPTS.get(trial_id, 1)
+    log_suffix = "" if launch_attempt == 1 else f"_attempt{launch_attempt}"
     return {
         "config": repo / f"configs/p2/hpo_trials/{stem}.json",
         "checkpoint": scratch / f"hpo/checkpoints/{stem}.pt",
         "output": scratch / f"hpo/results/{stem}_validation.parquet",
         "receipt": repo / f"evidence/p2/p2-e00-{stem}.json",
-        "log": scratch / f"hpo/logs/{stem}.log",
+        "log": scratch / f"hpo/logs/{stem}{log_suffix}.log",
     }
 
 

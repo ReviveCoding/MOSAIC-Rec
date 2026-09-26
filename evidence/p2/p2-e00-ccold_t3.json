@@ -1,0 +1,97 @@
+{
+  "attempt_id": "",
+  "best_epoch": 3,
+  "checkpoint": "/home/bjw-0/mosaic-rec-work/p2/hpo/checkpoints/ccold_t3.pt",
+  "checkpoint_sha256": "7d07fbc9f50ad6bdaebc8bca68f556c549ad718d523ab02a057a84a618e59ad9",
+  "config_sha256": "2cba32ae7e969cec8d90e742002394e996a61dbefcd6767928a1a3475bc6dd8a",
+  "epochs_completed": 8,
+  "evidence_class": "p2_measured_development_hpo",
+  "family": "CCOLD_TWO_TOWER",
+  "git_commit": "e2ab7b8efb87fad20417c8a33898554c322cdf2a",
+  "gpu_qualification": {
+    "bf16_supported": true,
+    "cuda_runtime": "13.0",
+    "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+    "tensor_result": 5590357.0,
+    "torch": "2.14.0+cu130",
+    "vram_bytes": 17170956288
+  },
+  "model_id": "CCOLD_T3",
+  "peak_vram_bytes": 732648448,
+  "protocol_id": "mosaic-rec-2026-09-23-p2",
+  "seed": 20260930,
+  "stage_id": "P2-E00",
+  "status": "PASS",
+  "stopping_reason": "early_stopping_patience",
+  "train_seconds": 134.30926632799992,
+  "training_examples": 47898,
+  "training_log": [
+    {
+      "epoch": 1,
+      "loss": 0.5758519274212134,
+      "validation_ndcg_at_20": 0.0013750800207770633
+    },
+    {
+      "epoch": 2,
+      "loss": 0.5433465191638914,
+      "validation_ndcg_at_20": 0.0015710313430237677
+    },
+    {
+      "epoch": 3,
+      "loss": 0.5307518833439865,
+      "validation_ndcg_at_20": 0.001688730782063724
+    },
+    {
+      "epoch": 4,
+      "loss": 0.5219528481486825,
+      "validation_ndcg_at_20": 0.0016886650365606547
+    },
+    {
+      "epoch": 5,
+      "loss": 0.5152952121196995,
+      "validation_ndcg_at_20": 0.0015983243281383773
+    },
+    {
+      "epoch": 6,
+      "loss": 0.5098580673055124,
+      "validation_ndcg_at_20": 0.0014354757630229296
+    },
+    {
+      "epoch": 7,
+      "loss": 0.5055876898289703,
+      "validation_ndcg_at_20": 0.0015871371839757118
+    },
+    {
+      "epoch": 8,
+      "loss": 0.5020124650600335,
+      "validation_ndcg_at_20": 0.001407745851081178
+    }
+  ],
+  "trial_id": "CCOLD_T3",
+  "validation": {
+    "output": "/home/bjw-0/mosaic-rec-work/p2/hpo/results/ccold_t3_validation.parquet",
+    "output_sha256": "1836fd2250ef37388a0b36574909c81971d2c37008837a6d9937197f61f97f91",
+    "role": "VALIDATION",
+    "rows": 27918,
+    "seconds": 16.600127729000178,
+    "slices": {
+      "all": {
+        "n": 27918,
+        "ndcg_at_20": 0.001688730782063724
+      },
+      "controlled_zero": {
+        "n": 458,
+        "ndcg_at_20": 0.0027070141191443916
+      },
+      "natural_zero": {
+        "n": 17866,
+        "ndcg_at_20": 0.0018006242280891678
+      },
+      "warm": {
+        "n": 3808,
+        "ndcg_at_20": 0.0014759980686530451
+      }
+    },
+    "users_per_second": 1681.7940830607556
+  }
+}

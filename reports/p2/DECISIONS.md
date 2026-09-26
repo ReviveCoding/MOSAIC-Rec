@@ -152,3 +152,9 @@ The first C_seq and C_cold scoring attempts are invalid for model selection. The
 
 - `CSEQ_T1` completed scientific execution and wrote a terminal PASS receipt before orchestration failed while looking up a nonexistent `config_sha256` manifest key. The manifest has always stored the materialized file hash as `sha256`; the receipt uses that same hash.
 - Rehash and canonicalize the existing checkpoint/output rather than rerunning the trial. Repair only the post-run validator key lookup, preserve all scientific configuration, and resume from frozen next trial `CSEQ_T2`.
+
+## 2026-09-26 — LIGHTGCN_T3 interrupted attempt 1
+
+- Classify attempt 1 as `INTERRUPTED_UNATTRIBUTED`. Preserve its original log and hash; do not infer cause from the sparse invariant warning in that log or the dxgkrnl warning recorded during the later recovered boot.
+- The absence of checkpoint, output, terminal receipt, and scientific metric permits an infrastructure retry of the unchanged frozen trial under a distinct attempt-2 log identity. No scientific budget or configuration changes.
+- Keep the current WSL/kernel environment during active p2 execution. Timestamp-monitor attempt 2 for dxgkrnl warnings, CUDA errors, GPU activity, and process liveness. A second interruption/hang with a same-time dxgkrnl warning stops the queue pending an explicit environment amendment.

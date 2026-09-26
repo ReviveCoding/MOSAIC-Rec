@@ -6,7 +6,7 @@ Scientific state: `DEVELOPMENT`
 
 ## Current phase
 
-Crash recovery, the development model ladder, and score alignment are complete. P2-E00 equal-budget HPO is in progress; `CSEQ_T1` is terminal PASS and the frozen next trial is `CSEQ_T2`.
+Crash recovery, the development model ladder, and score alignment are complete. P2-E00 equal-budget HPO is in progress: 14 of 21 frozen pre-router trials are terminal PASS, and `LIGHTGCN_T3` attempt 1 is preserved as `INTERRUPTED_UNATTRIBUTED`.
 
 ## Completed
 
@@ -62,7 +62,7 @@ Crash recovery, the development model ladder, and score alignment are complete. 
 
 ## Active next action
 
-Resume the frozen P2-E00 HPO queue from `CSEQ_T2`; hash validation must skip terminal `CSEQ_T1`.
+Run the unchanged frozen `LIGHTGCN_T3` as launch attempt 2 under a distinct log identity with timestamped kernel/CUDA/GPU/process monitoring. Hash validation must skip all 14 terminal trials.
 
 ## 2026-09-25 reboot recovery
 
@@ -85,6 +85,9 @@ Resume the frozen P2-E00 HPO queue from `CSEQ_T2`; hash validation must skip ter
 - Rebuilt the p2-only warehouse at the alignment-complete boundary: 50 receipts, 88 metric rows, zero p1 receipts, zero QUALIFICATION access, zero LOCKED_FINAL access, validation PASS.
 - `CSEQ_T1` completed all 10 scheduled CUDA epochs and exact VALIDATION scoring before the queue hit an implementation-only terminal-validation key error. Its receipt, 21,505,487-byte checkpoint, and 11,200,760-byte output independently match their recorded hashes; it was not rerun.
 - Corrected the queue to read the materialized config byte hash from the manifest's existing `sha256` field. Targeted tests pass, the warehouse canonicalizes `CSEQ_T1` at 51 receipts/92 metric rows, and protected counters remain zero. Frozen next trial is `CSEQ_T2`.
+- The frozen queue subsequently completed `CSEQ_T2`, `CSEQ_T3`, all three C_cold, all three legacy M1, all three BPR-MF, and `LIGHTGCN_T1/T2` trials. Their terminal receipts and artifacts are preserved for canonicalization.
+- `LIGHTGCN_T3` attempt 1 left only a 535-byte log at SHA-256 `0ffc2ab81388751eebf282b3e0ec73f645fa9b67b188f63072fd65bd424d210b`; no checkpoint, output, terminal receipt, or metric exists. It is `INTERRUPTED_UNATTRIBUTED`. Neither its PyTorch sparse warning nor a dxgkrnl warning from the later recovered boot is assigned as cause.
+- Recovery environment: WSL `2.7.14.0`, kernel `6.18.33.2-microsoft-standard-WSL2` / package `6.18.33.2-2`, NVIDIA driver `616.92`, RTX 4090 Laptop GPU. The actual flock is free, no unrelated CUDA worker exists, and a real CUDA/BF16 tensor qualification passes.
 
 ## Protected access counters
 
