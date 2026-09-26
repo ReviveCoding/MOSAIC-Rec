@@ -6,7 +6,7 @@ Scientific state: `QUALIFICATION`
 
 ## Current phase
 
-Development, HPO, independent-seed stability, and the complete pre-QUALIFICATION freeze are complete. The superseding clean guard v2 passed at committed Git `44e4235`; the protocol is authorized to enter QUALIFICATION. No protected model outcome has yet been accessed, and LOCKED_FINAL remains sealed.
+Development, HPO, independent-seed stability, and the complete pre-QUALIFICATION freeze are complete. Final clean guard v3 passed and is committed. QUALIFICATION access has opened exactly once; exact scoring begins with C_seq. LOCKED_FINAL remains sealed.
 
 ## Completed
 

@@ -172,8 +172,23 @@ def validate(repo: Path, warehouse: Path) -> dict[str, Any]:
     status = json.loads((repo / "evidence/p2/stage_status.json").read_text())
     if status["protocol_id"] != PROTOCOL_ID:
         raise RuntimeError("p2 stage status mismatch")
-    if status["qualification_access_count"] or status["locked_final_access_count"]:
-        raise RuntimeError("Unexpected protected access before p2 freeze")
+    qualification_count = int(status["qualification_access_count"])
+    locked_count = int(status["locked_final_access_count"])
+    state = status.get("scientific_state", "DEVELOPMENT")
+    if qualification_count not in {0, 1}:
+        raise RuntimeError("p2 QUALIFICATION may open at most once")
+    if qualification_count and state not in {
+        "QUALIFICATION",
+        "FROZEN",
+        "LOCKED_EXECUTION",
+        "ANALYSIS",
+        "CLOSED",
+    }:
+        raise RuntimeError("QUALIFICATION access is inconsistent with scientific state")
+    if locked_count not in {0, 1}:
+        raise RuntimeError("p2 LOCKED_FINAL may open at most once")
+    if locked_count and state not in {"LOCKED_EXECUTION", "ANALYSIS", "CLOSED"}:
+        raise RuntimeError("LOCKED_FINAL access is inconsistent with scientific state")
     con = duckdb.connect(str(warehouse), read_only=True)
     receipt_count = con.execute("SELECT count(*) FROM receipts").fetchone()[0]
     non_p2 = con.execute(
@@ -196,6 +211,6 @@ def validate(repo: Path, warehouse: Path) -> dict[str, Any]:
         "metric_count": metric_count,
         "p1_canonical_receipts": 0,
         "payloads_mentioning_p1_provenance": non_p2,
-        "qualification_access_count": 0,
-        "locked_final_access_count": 0,
+        "qualification_access_count": qualification_count,
+        "locked_final_access_count": locked_count,
     }

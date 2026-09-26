@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 import duckdb
+import pytest
 
 from mosaic_rec.p2.warehouse import build, validate
 
@@ -48,6 +49,26 @@ def test_empty_p2_warehouse_validates(tmp_path: Path) -> None:
     warehouse = tmp_path / "warehouse.duckdb"
     build(repo, warehouse, tmp_path / "tables")
     assert validate(repo, warehouse)["status"] == "PASS"
+
+
+def test_qualification_access_is_valid_only_in_qualification_state(tmp_path: Path) -> None:
+    repo = tmp_path
+    evidence = repo / "evidence/p2"
+    evidence.mkdir(parents=True)
+    status = {
+        "protocol_id": "mosaic-rec-2026-09-23-p2",
+        "scientific_state": "QUALIFICATION",
+        "qualification_access_count": 1,
+        "locked_final_access_count": 0,
+    }
+    (evidence / "stage_status.json").write_text(json.dumps(status))
+    warehouse = evidence / "warehouse.duckdb"
+    build(repo, warehouse, evidence / "tables")
+    assert validate(repo, warehouse)["qualification_access_count"] == 1
+    status["scientific_state"] = "DEVELOPMENT"
+    (evidence / "stage_status.json").write_text(json.dumps(status))
+    with pytest.raises(RuntimeError, match="inconsistent"):
+        validate(repo, warehouse)
 
 
 def test_invalidated_receipt_is_retained_but_excluded_from_metrics(
