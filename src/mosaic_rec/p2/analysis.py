@@ -152,7 +152,7 @@ def non_accuracy_metrics(
     pair_count: int = 10_000,
 ) -> dict[str, float | int | None]:
     eligible = list(eligible_item_ids)
-    exposure = {item: 0 for item in eligible}
+    exposure = dict.fromkeys(eligible, 0)
     popularity: list[float] = []
     novelty: list[float] = []
     tail = 0
