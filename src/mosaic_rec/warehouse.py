@@ -39,7 +39,7 @@ def build(evidence_dir: Path, output: Path, tables_dir: Path) -> dict:
     con = duckdb.connect(str(output))
     for table, schema in SCHEMAS.items():
         con.execute(f"CREATE TABLE {table} ({schema})")
-    counts = {table: 0 for table in SCHEMAS}
+    counts = dict.fromkeys(SCHEMAS, 0)
     receipts = sorted(evidence_dir.glob("*.json"))
     for path in receipts:
         if path.name in {"stage_status.json", "gpu_qualification.json"}:
